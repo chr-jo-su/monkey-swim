@@ -32,7 +32,7 @@ public class playerMovement : MonoBehaviour
     void Move()
     {
         //rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
-        Vector2 v = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
+        Vector2 v = new Vector2(movement.x, movement.y);
 
         rb.AddForce(v.normalized * moveSpeed);
     }
