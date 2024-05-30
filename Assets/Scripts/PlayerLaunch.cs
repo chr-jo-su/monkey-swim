@@ -10,13 +10,6 @@ public class PlayerLaunch : MonoBehaviour
     private GameObject selectedObject;
     public GameObject playerObject;
     public GameObject mainCamera;
-    private Vector2 velocity = Vector3.zero; // not sure why i need this exactly
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -55,9 +48,11 @@ public class PlayerLaunch : MonoBehaviour
         {
             // !!!: make sure there exists an instance of the player object cuz this clones it
             GameObject newPlayer = Instantiate(playerObject, (Vector2)gameObject.transform.position, Quaternion.identity);
-            mainCamera.transform.SetParent(newPlayer.transform);
-            mainCamera.transform.position = new Vector3(newPlayer.transform.position.x, newPlayer.transform.position.y, -10);
+            //mainCamera.transform.SetParent(newPlayer.transform);
+            //mainCamera.transform.position = new Vector3(newPlayer.transform.position.x, newPlayer.transform.position.y, -10);
             newPlayer.GetComponent<Rigidbody2D>().AddForce(rb.velocity, ForceMode2D.Impulse);
+            mainCamera.GetComponent<SmoothFollowCamera>().enabled = true; 
+            mainCamera.GetComponent<SmoothFollowCamera>().playerObject = newPlayer;
             Destroy(gameObject);
         }
     }
