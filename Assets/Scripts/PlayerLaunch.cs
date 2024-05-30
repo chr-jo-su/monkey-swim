@@ -8,6 +8,9 @@ public class PlayerLaunch : MonoBehaviour
     public float forceFactor; // how much to multiply the force acted upon the monkey
     public Rigidbody2D rb;
     private GameObject selectedObject;
+    public GameObject playerObject;
+    public GameObject mainCamera;
+    private Vector2 velocity = Vector3.zero; // not sure why i need this exactly
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,19 @@ public class PlayerLaunch : MonoBehaviour
         else if (Input.GetMouseButtonUp(0) && selectedObject)
         {
             selectedObject = null;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name == "sea")
+        {
+            // !!!: make sure there exists an instance of the player object cuz this clones it
+            GameObject newPlayer = Instantiate(playerObject, (Vector2)gameObject.transform.position, Quaternion.identity);
+            mainCamera.transform.SetParent(newPlayer.transform);
+            mainCamera.transform.position = new Vector3(newPlayer.transform.position.x, newPlayer.transform.position.y, -10);
+            newPlayer.GetComponent<Rigidbody2D>().AddForce(rb.velocity, ForceMode2D.Impulse);
+            Destroy(gameObject);
         }
     }
 }
