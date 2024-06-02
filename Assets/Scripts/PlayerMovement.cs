@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class playerMovement : MonoBehaviour
 {
     //Variables
     public float moveSpeed = 5f;
-    public Rigidbody2D rb;
+    public Rigidbody2D rigidBody;
+    public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
+                                     // that signifies the sea line
     Vector2 movement;
 
     private bool inSea = false;
@@ -41,12 +44,12 @@ public class playerMovement : MonoBehaviour
         else
             v = new Vector2(movement.x, 0);
 
-        rb.AddForce(v.normalized * moveSpeed);
+        rigidBody.AddForce(v.normalized * moveSpeed);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.name == "sea")
+        if (other.name == seaLineObject.name)
         {
             if (transform.position.y > other.transform.position.y)
                 inSea = false;
@@ -58,12 +61,12 @@ public class playerMovement : MonoBehaviour
 
         if (inSea)
         {
-            rb.gravityScale = 0F;
+            rigidBody.gravityScale = 0F;
             canMoveUp = true;
         }
         else
         {
-            rb.gravityScale = 1F;
+            rigidBody.gravityScale = 1F;
             canMoveUp = false;
         }
     }
