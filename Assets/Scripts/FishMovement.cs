@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class fishMovement : MonoBehaviour
 {
    //Variables
     public float moveSpeed = -5f;
-    public Rigidbody2D rb;
+    public Rigidbody2D rigidBody;
     Vector2 movement;
 
     void Update()
@@ -20,7 +21,7 @@ public class fishMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Movement
-        rb.MovePosition(rb.position + movement*moveSpeed*Time.fixedDeltaTime);
+        rigidBody.MovePosition(rigidBody.position + movement*moveSpeed*Time.fixedDeltaTime);
 
         //Change Directions; -8 and 8 are arbitrary edges of the screen; should be reworked later
         if (transform.position.x <= -8 && moveSpeed < 0) {
