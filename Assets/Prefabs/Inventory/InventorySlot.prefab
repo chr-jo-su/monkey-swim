@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24.461, y: -29.671}
+  m_AnchoredPosition: {x: 19, y: -24.671}
   m_SizeDelta: {x: 43.1736, y: 40.658}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &850347098553041482
@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 7756872730925356503}
   - component: {fileID: 7621737852032884519}
   - component: {fileID: 2118229429348962023}
+  - component: {fileID: 347204995353291810}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -211,6 +212,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &347204995353291810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3926620528701647890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f842e736ec6c87e47a3c1dd8f8a52af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3948749397683150846
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Variables
+    public string itemName;
+    public int itemID;
+    [TextArea]
+    public string itemDescription;
+    public Sprite itemIcon;
+    public GameObject itemModel;
+    public bool isStackable;
+    public int maxStackSize;
 }

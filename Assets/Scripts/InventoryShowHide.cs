@@ -16,7 +16,10 @@ public class InventoryShowHide : MonoBehaviour
     {
         // Used for the close button
         Button btn = closeButton.GetComponent<Button>();
-        btn.onClick.AddListener(closeInventory);
+        btn.onClick.AddListener(CloseInventory);
+
+        // Initialise the inventory slots
+        inventory.GetComponent<InventoryManager>().InitialiseSlots();
 
         // Set the inventory to be hidden at the start
         inventory.SetActive(false);
@@ -33,18 +36,20 @@ public class InventoryShowHide : MonoBehaviour
             if (inventory.activeSelf)
             {
                 // If it is showing, hide it
-                closeInventory();
+                CloseInventory();
             }
             else
             {
-                showInventory();
+                ShowInventory();
             }
         }
     }
 
     // Closes the inventory
-    void closeInventory()
+    void CloseInventory()
     {
+        AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(0, 0));
+
         inventory.SetActive(false);
         isShowing = false;
 
@@ -52,14 +57,17 @@ public class InventoryShowHide : MonoBehaviour
     }
 
     // Opens the inventory
-    void showInventory()
+    void ShowInventory()
     {
         inventory.SetActive(true);
+
+        AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(1, 1));
+
         isShowing = true;
 
         Debug.Log("Inventory opened");
     }
 
     //TODO: Animates the scale of the given gameObject from startScale to endScale
-    void animateScaleChange(GameObject gameObject, Vector2 startScale, Vector2 endScale) { }
+    void AnimateScaleChange(GameObject gameObject, Vector2 startScale, Vector2 endScale) { }
 }
