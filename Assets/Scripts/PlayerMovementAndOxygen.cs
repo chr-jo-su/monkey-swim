@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
@@ -15,10 +16,36 @@ public class playerMovement : MonoBehaviour
     private bool inSea = false;
     private bool canMoveUp = true;
 
+    public GameObject oxygenSlider;
+
+    private float oxygen = 100.0f;
+
+    public float oxygenDepletionRate = 1.0f;
+
+    public float oxygenGainRate = 1.0f;
+
+    private bool canBreath = true;
+
     // Update is called once per frame
     void Update()
     {
         ProcessInputs();
+
+        if (oxygen > 0.0f && !canBreath)
+        {
+            oxygen -= oxygenDepletionRate * Time.deltaTime;
+            oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
+        }
+        else if (oxygen < 100.0f && canBreath)
+        {
+            oxygen += oxygenGainRate * Time.deltaTime;
+            oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
+        }
+
+        if (oxygen <= 0.0f)
+        {
+            Debug.Log("monke painfully drowned :(");
+        }
     }
 
     void FixedUpdate()
@@ -63,12 +90,17 @@ public class playerMovement : MonoBehaviour
         {
             rigidBody.gravityScale = 0F;
             canMoveUp = true;
+            canBreath = false;
         }
         else
         {
             rigidBody.gravityScale = 1F;
             canMoveUp = false;
+            canBreath = true;
         }
     }
 
+    void OnTriggerStay2D(Collider2D other) {
+        canBreath = true;
+    }
 }
