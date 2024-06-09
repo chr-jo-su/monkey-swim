@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System;
-using UnityEditor.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class InventorySlotHolder : MonoBehaviour
+public class InventorySlotHolder : MonoBehaviour, IDropHandler
 {
     // Variables
-    private int currentStackSize = 0;
-    private Item storedItem;
+    [HideInInspector] public int currentStackSize = 0;
+    [HideInInspector] public Item storedItem;
     private TMP_Text textObject;
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (storedItem == null)
+        {
+            GameObject dropped = eventData.pointerDrag;
+            DraggableIcon draggableItem = dropped.GetComponent<DraggableIcon>();
+            draggableItem.parentAfterDrag = transform;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -84,20 +93,30 @@ public class InventorySlotHolder : MonoBehaviour
     /// <param name="item">The Item object to add.</param>
     /// <param name="amount">The number of objects to be added.</param>
     /// <returns>The number of items not added to the inventory slot. 0 means all items have been added.</returns>
-    public int AddItems(Item item, int amount)
+    public int AddItems(Item item, int count)
     {
         bool added;
 
-        while (amount > 0)
+        while (count > 0)
         {
             // Try adding the item
             added = AddItem(item);
             // If the item wasn't added, break the loop
             if (!added) { break; }
-            amount--;
+            count--;
         }
 
         // Should return 0 or more.
-        return amount;
+        return count;
+    }
+
+    /// <summary>
+    /// Removes the item from the inventory slot for drag and drop
+    /// </summary>
+    public void DragItemsAway()
+    {
+        storedItem = null;
+        currentStackSize = 0;
+        ChangeText(0);
     }
 }

@@ -25,6 +25,8 @@ public class InventoryShowHide : MonoBehaviour
         inventory.SetActive(false);
 
         Debug.Log("Inventory key check is active.");
+
+        //inventory.GetComponent<InventoryManager>().AddItems(transform.root.Find("Items").GetChild(0).GetComponent<Item>(), 1);
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCItemHolder : MonoBehaviour
 {
     // Variables
-    public List<Item> items = new List<Item>();
+    public List<Item> items = new();
 
     /// <summary>
     /// Removes all items in the item holder and gives it.
