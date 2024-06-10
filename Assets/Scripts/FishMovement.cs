@@ -45,6 +45,10 @@ public class fishMovement : MonoBehaviour
         else
         {
             theta += thetaStep; //*moveSpeed
+            if (theta >= 2*Mathf.PI)
+            {
+                theta = 0f;
+            }
 
             //Movement
             rb.MovePosition(rb.position + movement*moveSpeed*Time.fixedDeltaTime);
