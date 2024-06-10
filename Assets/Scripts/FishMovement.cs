@@ -10,7 +10,6 @@ public class fishMovement : MonoBehaviour
     public Rigidbody2D rb;
     private float theta = 0f;
     private float thetaStep = Mathf.PI / 32f;
-    public float moveSpeed = -5f;
     public Rigidbody2D rigidBody;
     Vector2 movement;
     public bool following = false;

@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: -5
   rb: {fileID: 1999087896956115757}
+  rigidBody: {fileID: 1999087896956115757}
   following: 0
   distance: 0
-  rigidBody: {fileID: 1999087896956115757}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
@@ -130,7 +130,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1992514099762469983
 BoxCollider2D:
   m_ObjectHideFlags: 0
