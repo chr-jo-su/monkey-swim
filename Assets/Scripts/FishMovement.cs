@@ -5,7 +5,7 @@ using UnityEngine;
 public class fishMovement : MonoBehaviour
 {
    //Variables
-    public float moveSpeed = -5f;
+    public float moveSpeed = -2.5f;
     public Rigidbody2D rb;
     private float theta = 0f;
     private float thetaStep = Mathf.PI / 32f;
@@ -32,11 +32,18 @@ public class fishMovement : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
 
-        if (following) {
+        if (following)
+        {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            
+            if (distance > 3)
+            {
+                following = false;
+            }
         }
 
-        else {
+        else
+        {
             theta += thetaStep; //*moveSpeed
 
             //Movement
@@ -51,10 +58,20 @@ public class fishMovement : MonoBehaviour
                 gameObject.transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             }
 
-            if (distance < 7){
+            if (distance < 3)
+            {
                 following = true;
             }
 
+        }
+    }
+
+    void OnCollisionEnter2D (Collision2D collision) 
+    {
+        if (collision.gameObject.tag == "Player") 
+        {
+            // currentHealth.TakeDamage(damage);
+            Debug.Log("Player is hit");
         }
     }
 
