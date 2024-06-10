@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: -5
   rb: {fileID: 1999087896956115757}
+  rigidBody: {fileID: 1999087896956115757}
   following: 0
   distance: 0
-  rigidBody: {fileID: 1999087896956115757}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
