@@ -9,7 +9,7 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
     // Variables
     [HideInInspector] public int currentStackSize = 0;
     [HideInInspector] public Item storedItem;
-    private TMP_Text textObject;
+    public TMP_Text textObject;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -19,12 +19,6 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
             DraggableIcon draggableItem = dropped.GetComponent<DraggableIcon>();
             draggableItem.parentAfterDrag = transform;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        textObject = gameObject.GetComponentInChildren<TMP_Text>();
     }
 
     /// <summary>

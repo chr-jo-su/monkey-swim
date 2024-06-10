@@ -13,8 +13,6 @@ public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
-
         parentBeforeDrag = transform.parent;
 
         storedItem = parentBeforeDrag.GetComponent<InventorySlotHolder>().storedItem;
@@ -27,15 +25,11 @@ public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
-
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
-
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
 

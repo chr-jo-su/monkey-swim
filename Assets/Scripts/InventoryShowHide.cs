@@ -24,9 +24,9 @@ public class InventoryShowHide : MonoBehaviour
         // Set the inventory to be hidden at the start
         inventory.SetActive(false);
 
-        Debug.Log("Inventory key check is active.");
-
         //inventory.GetComponent<InventoryManager>().AddItems(transform.root.Find("Items").GetChild(0).GetComponent<Item>(), 1);
+
+        Debug.Log("Inventory system is working.");
     }
 
     // Update is called once per frame
@@ -54,8 +54,6 @@ public class InventoryShowHide : MonoBehaviour
 
         inventory.SetActive(false);
         isShowing = false;
-
-        Debug.Log("Inventory closed");
     }
 
     // Opens the inventory
@@ -66,8 +64,6 @@ public class InventoryShowHide : MonoBehaviour
         AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(1, 1));
 
         isShowing = true;
-
-        Debug.Log("Inventory opened");
     }
 
     //TODO: Animates the scale of the given gameObject from startScale to endScale
