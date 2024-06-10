@@ -476,6 +476,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: rigidBody
+      value: 
+      objectReference: {fileID: 722064188361139223}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish
@@ -489,6 +493,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+--- !u!50 &722064188361139223 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1999087896956115757, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+  m_PrefabInstance: {fileID: 722064188361139222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -74,3 +74,7 @@ crashlytics-build.properties
 
 .DS_Store
 /[Aa]ssets/.DS_Store
+Packages/manifest.json
+Packages/packages-lock.json
+.idea/.idea.monkey-swim/.idea/indexLayout.xml
+.idea/.idea.monkey-swim/.idea/vcs.xml
