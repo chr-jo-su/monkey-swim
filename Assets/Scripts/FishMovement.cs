@@ -15,6 +15,8 @@ public class fishMovement : MonoBehaviour
     public bool following = false;
     public float distance;
     private Transform player;
+    public HealthBar playerHealth;
+    public int damage;
 
     void Start()
     {
@@ -40,7 +42,7 @@ public class fishMovement : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             
-            if (distance > 3)
+            if (distance >= 3)
             {
                 following = false;
             }
@@ -78,7 +80,7 @@ public class fishMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") 
         {
-            // currentHealth.TakeDamage(damage);
+            playerHealth.TakeDamage(damage);
             Debug.Log("Player is hit");
         }
     }
