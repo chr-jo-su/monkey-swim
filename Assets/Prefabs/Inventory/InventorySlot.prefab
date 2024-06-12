@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStackSize: 0
   storedItem: {fileID: 0}
+  textObject: {fileID: 7664184158849389126}
 --- !u!114 &94746459419628487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
