@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventorySlotHolder : MonoBehaviour, IDropHandler
 {
     // Variables
     [HideInInspector] public int currentStackSize = 0;
     [HideInInspector] public Item storedItem;
-    public TMP_Text textObject;
+    private bool rightClicked = false;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -21,13 +22,17 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
         }
     }
 
-    /// <summary>
-    /// Initialise the inventory slot.
-    /// </summary>
-    public void InitialiseSlot()
+    void Update()
     {
-        // Set the text to be empty
-        ChangeText(0);
+        if (Input.GetMouseButtonDown(1) && !rightClicked)
+        {
+            Debug.Log("Right clicked!");
+            rightClicked = true;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            rightClicked = false;
+        }
     }
 
     /// <summary>
@@ -37,6 +42,8 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
     private void ChangeText(int num)
     {
         // Change the text
+        TMP_Text textObject = transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+
         if (num == 0)
         {
             textObject.text = "";
@@ -59,6 +66,10 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
         {
             storedItem = item;
             currentStackSize++;
+
+            transform.GetChild(0).gameObject.GetComponent<Image>().sprite = storedItem.itemIcon;
+            transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
             ChangeText(currentStackSize);
 
             return true;
@@ -71,6 +82,10 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
             if (storedItem.itemID == item.itemID && storedItem.isStackable && currentStackSize < storedItem.maxStackSize)
             {
                 currentStackSize++;
+
+                transform.GetChild(0).gameObject.GetComponent<Image>().sprite = storedItem.itemIcon;
+                transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
                 ChangeText(currentStackSize);
 
                 return true;
@@ -93,10 +108,13 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
 
         while (count > 0)
         {
-            // Try adding the item
             added = AddItem(item);
+
             // If the item wasn't added, break the loop
-            if (!added) { break; }
+            if (!added) { 
+                break;
+            }
+
             count--;
         }
 
@@ -111,6 +129,5 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
     {
         storedItem = null;
         currentStackSize = 0;
-        ChangeText(0);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public Sprite sprite;
     public Image image;
     [HideInInspector] public Transform parentBeforeDrag;
     [HideInInspector] public Transform parentAfterDrag;
@@ -35,8 +36,8 @@ public class DraggableIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         parentAfterDrag.GetChild(0).SetParent(parentBeforeDrag);
 
-        parentAfterDrag.GetComponent<InventorySlotHolder>().AddItems(storedItem, parentBeforeDrag.GetComponent<InventorySlotHolder>().currentStackSize);
+        parentBeforeDrag.GetComponent<InventorySlotHolder>().AddItems(storedItem, parentAfterDrag.GetComponent<InventorySlotHolder>().currentStackSize);
 
-        parentBeforeDrag.GetComponent<InventorySlotHolder>().DragItemsAway();
+        parentAfterDrag.GetComponent<InventorySlotHolder>().DragItemsAway();
     }
 }

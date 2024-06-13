@@ -2,15 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(menuName = "Scriptable object/Item")]
+public class Item : ScriptableObject
 {
-    // Variables
+    // Item descriptors
+    [Header("Visible to players")]
     public string itemName;
-    public int itemID;
     [TextArea]
     public string itemDescription;
     public Sprite itemIcon;
-    public GameObject itemModel;
+    public Sprite itemModel;
+
+    [Header("Not visible to players")]
+    public ItemType type;
+    public int itemID;
     public bool isStackable;
     public int maxStackSize;
+}
+
+public enum ItemType
+{
+    // Others is the default item type, don't remove it
+    Others,
+    Consumable,
+    Weapon,
+    Armour
 }

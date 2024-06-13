@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class InventoryShowHide : MonoBehaviour
+public class InventoryKeyHandler : MonoBehaviour
 {
     // Variables
-    private bool isShowing = false;
+    [HideInInspector] public bool isShowing = false;
     public KeyCode inventoryKey = KeyCode.E;
-    public GameObject inventory;
+    private GameObject inventory;
     public Button closeButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Used for the close button
-        Button btn = closeButton.GetComponent<Button>();
-        btn.onClick.AddListener(CloseInventory);
-
-        // Initialise the inventory slots
-        inventory.GetComponent<InventoryManager>().InitialiseSlots();
+        inventory = transform.GetChild(0).gameObject;
 
         // Set the inventory to be hidden at the start
         inventory.SetActive(false);
 
-        //inventory.GetComponent<InventoryManager>().AddItems(transform.root.Find("Items").GetChild(0).GetComponent<Item>(), 1);
+        //TEMP: Adds an item to the inventory to test that it works
+        //Item testItem = new();
+        //inventory.GetComponent<InventoryManager>().AddItems(testItem, 1);
+        //transform.root.GetChild(transform.root.childCount - 1).SetParent(null);
 
         Debug.Log("Inventory system is working.");
     }
@@ -47,8 +45,10 @@ public class InventoryShowHide : MonoBehaviour
         }
     }
 
-    // Closes the inventory
-    void CloseInventory()
+    /// <summary>
+    /// Closes the inventory menu.
+    /// </summary>
+    public void CloseInventory()
     {
         AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(0, 0));
 
@@ -56,8 +56,10 @@ public class InventoryShowHide : MonoBehaviour
         isShowing = false;
     }
 
-    // Opens the inventory
-    void ShowInventory()
+    /// <summary>
+    /// Opens the inventory menu.
+    /// </summary>
+    public void ShowInventory()
     {
         inventory.SetActive(true);
 
