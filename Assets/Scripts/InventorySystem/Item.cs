@@ -10,8 +10,7 @@ public class Item : ScriptableObject
     public string itemName;
     [TextArea]
     public string itemDescription;
-    public Sprite itemIcon;
-    public Sprite itemModel;
+    public Sprite itemSprite;
 
     [Header("Not visible to players")]
     public ItemType type;

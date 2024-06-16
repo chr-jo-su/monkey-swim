@@ -89,9 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f842e736ec6c87e47a3c1dd8f8a52af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStackSize: 0
-  storedItem: {fileID: 0}
-  textObject: {fileID: 0}
+  image: {fileID: 2118229429348962023}
+  selectedSlotColor: {r: 0.48146826, g: 0.67089957, b: 0.8553459, a: 1}
+  deselectedSlotColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &94746459419628487
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
-  m_Name: Fish
+  m_Name: UnstackableTestItem 1
   m_EditorClassIdentifier: 
-  itemName: Fish
-  itemDescription: It's a dead fish. What do you want from it??? You can't eat it,
-    or use it anywhere. :)
-  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  itemModel: {fileID: 0}
-  type: 0
-  itemID: 0
+  itemName: Unstackable Test Item
+  itemDescription: This item can't be stacked. This is a test item that does nothing.
+    It's to test that the inventory system actually takes items in and stacks them
+    properly.
+  itemSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  type: 2
+  itemID: 1
   isStackable: 0
   maxStackSize: 1

@@ -1,36 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class InventoryKeyHandler : MonoBehaviour
 {
     // Variables
     [HideInInspector] public bool isShowing = false;
+    public GameObject inventory;
     public KeyCode inventoryKey = KeyCode.E;
-    private GameObject inventory;
-    public Button closeButton;
+    public int hotbarSlots = 8;
 
     // Start is called before the first frame update
     void Start()
     {
-        inventory = transform.GetChild(0).gameObject;
-
         // Set the inventory to be hidden at the start
         inventory.SetActive(false);
 
-        //TEMP: Adds an item to the inventory to test that it works
-        //Item testItem = new();
-        //inventory.GetComponent<InventoryManager>().AddItems(testItem, 1);
-        //transform.root.GetChild(transform.root.childCount - 1).SetParent(null);
-
-        Debug.Log("Inventory system is working.");
+        Debug.Log("Inventory system is active.");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check for the given key being pressed
+        // Check for the inventory key to be pressed
         if (Input.GetKeyDown(inventoryKey))
         {
             if (inventory.activeSelf)
@@ -41,6 +33,31 @@ public class InventoryKeyHandler : MonoBehaviour
             else
             {
                 ShowInventory();
+            }
+        }
+
+        // Only check keys for the hotbar if the inventory is closed
+        if (!isShowing)
+        {
+            // Check for the scroll wheel to be scrolled
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                // Scroll up
+                InventoryManager.instance.ChangeSelectedSlot("right");
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                // Scroll down
+                InventoryManager.instance.ChangeSelectedSlot("left");
+            }
+
+            // Check for the number keys to be pressed
+            for (int i = 1; i <= hotbarSlots; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+                {
+                    InventoryManager.instance.ChangeSelectedSlot(i - 1, InventoryManager.instance.selectedSlot);
+                }
             }
         }
     }
