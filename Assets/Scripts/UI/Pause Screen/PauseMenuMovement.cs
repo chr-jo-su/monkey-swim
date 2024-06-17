@@ -8,15 +8,29 @@ using UnityEngine.AI;
 public class PauseMenuMovement : MonoBehaviour
 {
     //Variables
-    public Transform TargetDown;
-    public Transform TargetUp;
-    public Transform Target;
+    public GameObject Camera;
+    public GameObject PauseMenuContent;
+    private Vector2 Target;
+    private Vector2 CameraTarget;
+    private Vector2 AboveCameraTarget;
+    private Vector2 CurrentCameraPosition;
+    private Vector2 CameraOffset = new Vector2(-1.9f, 2.6f);
     public float Velocity;
     public bool Paused;
 
-    // Update is called once per frame
+    void Start()
+    {
+        Target = new Vector2(-1.9f, 18);
+    }
+
     void Update()
     {
+        CurrentCameraPosition = Camera.transform.position;
+        CameraTarget = new Vector2(
+            CurrentCameraPosition.x + CameraOffset.x,
+            CurrentCameraPosition.y + CameraOffset.y
+        );
+        AboveCameraTarget = new Vector2(CameraTarget.x, CameraTarget.y + 15.4f);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Paused)
@@ -29,32 +43,39 @@ public class PauseMenuMovement : MonoBehaviour
             }
         }
         Move();
+
+        if (transform.position.y >= CameraTarget.y + 14)
+        {
+            PauseMenuContent.SetActive(false);
+        }
+        else
+        {
+            PauseMenuContent.SetActive(true);
+        }
     }
 
     public void UnpauseGame()
     {
-        Time.timeScale = 1f;        
-        Target = TargetUp;
-        // PauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        Target = AboveCameraTarget;
         Paused = false;
+        Debug.Log("Hello");
     }
 
     public void PauseGame()
     {
+        transform.position = AboveCameraTarget;
         Time.timeScale = 0f;
-        Target = TargetDown;
-        // PauseMenu.SetActive(true);
+        Target = CameraTarget;
         Paused = true;
     }
 
     void Move()
     {
-        transform.position = Vector2.Lerp(transform.position, Target.position, Velocity * Time.unscaledDeltaTime);
+        transform.position = Vector2.Lerp(
+            transform.position,
+            Target,
+            Velocity * Time.unscaledDeltaTime
+        );
     }
 }
-
-// Smooth towards the target
-
-    // void Update() {
-    //     transform.position = Vector2.Lerp(transform.position, target.position, Velocity * Time.deltaTime);
-    // }
