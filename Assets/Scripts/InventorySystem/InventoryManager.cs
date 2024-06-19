@@ -27,12 +27,14 @@ public class InventoryManager : MonoBehaviour
         ChangeSelectedSlot(0);
 
         // Testing code; REMOVE LATER
-        AddItem(testItems[1]);
-        for (int i = 0; i < 20; i++)
+
+        bool added = AddItem(testItems[1]);
+        for (int i = 0; i < 33; i++)    // Chose a weird number of items to see if the stacks are correct
         {
             int randomIndex = Random.Range(0, testItems.Length); // Get a random index
             Item randomItem = testItems[randomIndex]; // Get the random item
-            AddItem(randomItem); // Add the item to the inventory
+            added = AddItem(randomItem); // Add the item to the inventory
+            if (!added) { break; }
         }
         GetSelectedItem(true);
         Debug.Log("Currently selected: " + GetSelectedItem().itemName + " (" + GetSelectedItem().type + ")");
