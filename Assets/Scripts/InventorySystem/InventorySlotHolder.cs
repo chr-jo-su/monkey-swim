@@ -15,6 +15,21 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
         DeselectSlot();
     }
 
+    public void SetDraggable(bool dragOption)
+    {
+        if (transform.childCount != 0)
+        {
+            if (dragOption)
+            {
+                transform.GetChild(0).GetComponent<InventoryItem>().draggable = true;
+            }
+            else
+            {
+                transform.GetChild(0).GetComponent<InventoryItem>().draggable = false;
+            }
+        }
+    }
+
     /// <summary>
     /// Change the color of the slot to indicate that it is selected.
     /// </summary>

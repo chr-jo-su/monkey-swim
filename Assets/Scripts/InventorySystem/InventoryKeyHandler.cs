@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryKeyHandler : MonoBehaviour
 {
     // Variables
-    [HideInInspector] public bool isShowing = false;
+    [HideInInspector] public bool isShowing = true;
     public GameObject inventory;
     public KeyCode inventoryKey = KeyCode.E;
     public int hotbarSlots = 8;
@@ -13,8 +13,8 @@ public class InventoryKeyHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Set the inventory to be hidden at the start
-        inventory.SetActive(false);
+        // Start the inventory closed
+        CloseInventory();
 
         Debug.Log("Inventory system is active.");
     }
@@ -63,7 +63,7 @@ public class InventoryKeyHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// Closes the inventory menu.
+    /// Closes the inventory menu. Also disables dragging for the hotbar items.
     /// </summary>
     public void CloseInventory()
     {
@@ -71,10 +71,13 @@ public class InventoryKeyHandler : MonoBehaviour
 
         inventory.SetActive(false);
         isShowing = false;
+
+        // Disable dragging for the hotbar items
+        InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
     }
 
     /// <summary>
-    /// Opens the inventory menu.
+    /// Opens the inventory menu. Also enables dragging for the hotbar items.
     /// </summary>
     public void ShowInventory()
     {
@@ -83,6 +86,9 @@ public class InventoryKeyHandler : MonoBehaviour
         AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(1, 1));
 
         isShowing = true;
+
+        // Enable dragging for the hotbar items
+        InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
     }
 
     //TODO: Animates the scale of the given gameObject from startScale to endScale

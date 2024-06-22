@@ -92,8 +92,10 @@ MonoBehaviour:
   image: {fileID: 426014041791693058}
   textObject: {fileID: 5771418976226629080}
   storedItem: {fileID: 0}
-  parentBeforeDrag: {fileID: 0}
+  currentStackSize: 1
   parentAfterDrag: {fileID: 0}
+  rightClicked: 0
+  draggable: 1
 --- !u!1 &2106243298119370844
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,11 +128,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8022528414965557346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -40}
-  m_SizeDelta: {x: 43.1736, y: 40.658}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 11, y: -22}
+  m_SizeDelta: {x: 125, y: 40.658}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &3569558141001713108
 CanvasRenderer:
   m_ObjectHideFlags: 0

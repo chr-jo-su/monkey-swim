@@ -17,7 +17,9 @@ MonoBehaviour:
     It's to test that the inventory system actually takes items in and stacks them
     properly.
   itemSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  durability: 100
+  durabilityDecreasePerUse: 1
   type: 2
-  itemID: 1
+  itemID: 980141746
   isStackable: 0
   maxStackSize: 1

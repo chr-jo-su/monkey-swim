@@ -28,16 +28,24 @@ public class InventoryManager : MonoBehaviour
 
         // Testing code; REMOVE LATER
 
-        bool added = AddItem(testItems[1]);
+        int added = AddItems(testItems[0], 10);
         for (int i = 0; i < 33; i++)    // Chose a weird number of items to see if the stacks are correct
         {
             int randomIndex = Random.Range(0, testItems.Length); // Get a random index
             Item randomItem = testItems[randomIndex]; // Get the random item
-            added = AddItem(randomItem); // Add the item to the inventory
-            if (!added) { break; }
+            added = AddItems(randomItem); // Add the item to the inventory
+            if (added > 0) { break; }
         }
-        GetSelectedItem(true);
-        Debug.Log("Currently selected: " + GetSelectedItem().itemName + " (" + GetSelectedItem().type + ")");
+        DropSelectedItem();
+        DropAllSelectedItems();
+    }
+
+    public void SetDraggable(bool dragOption)
+    {
+        for (int i = 0; i < hotbarSlots; i++)
+        {
+            slots[i].SetDraggable(dragOption);
+        }
     }
 
     /// <summary>
@@ -106,40 +114,58 @@ public class InventoryManager : MonoBehaviour
     /// Adds the given item to the inventory. Tries to find an empty slot, or stacks the item if possible.
     /// </summary>
     /// <param name="item">The Item object to be added</param>
-    /// <returns>Returns true if the item was added successfully, otherwise returns false.</returns>
-    public bool AddItem(Item item)
+    /// <param name="quantity">The amount of the item to be added. Defaults to 1.</param>
+    /// <returns>Returns 0 if all the items were added successfully, or the number of items not added.</returns>
+    public int AddItems(Item item, int quantity = 1)
     {
-        // Find a slot with the given item and available space if it's stackable
-        if (item.isStackable)
+        int prevQuantity = quantity;
+        while (quantity > 0)
         {
-            foreach (InventorySlotHolder child in slots)
+            // Find a slot with the given item and available space if it's stackable
+            if (item.isStackable)
             {
-                if (child.transform.childCount != 0)
+                foreach (InventorySlotHolder child in slots)
                 {
-                    InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
-                    if (inventoryItem.storedItem.itemID == item.itemID &&
-                        inventoryItem.currentStackSize < item.maxStackSize)
+                    if (child.transform.childCount != 0)
                     {
-                        // Spawn the item into the slot
-                        IncrementItem(child);
-                        return true;
+                        InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+
+                        if (inventoryItem.storedItem.itemID == item.itemID &&
+                            inventoryItem.currentStackSize < item.maxStackSize)
+                        {
+                            // Spawn the item into the slot
+                            IncrementItem(child);
+                            quantity--;
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        // Find an empty slot
-        foreach (InventorySlotHolder child in slots)
-        {
-            if (child.transform.childCount == 0)
+            if (prevQuantity == quantity)
             {
-                // Spawn the item into the slot
-                SpawnItem(item, child);
-                return true;
+                // Find an empty slot
+                foreach (InventorySlotHolder child in slots)
+                {
+                    if (child.transform.childCount == 0)
+                    {
+                        // Spawn the item into the slot
+                        SpawnItem(item, child);
+                        quantity--;
+                        break;
+                    }
+                }
             }
+
+            // If no items were added, break the loop
+            if (prevQuantity == quantity)
+            {
+                break;
+            }
+            prevQuantity = quantity;
         }
 
-        return false;
+        return quantity;
     }
 
     /// <summary>
@@ -155,7 +181,6 @@ public class InventoryManager : MonoBehaviour
         // Add the item
         InventoryItem itemInstance = newGameObjectItem.GetComponent<InventoryItem>();
         itemInstance.InitialiseItem(item, 1);
-
     }
 
     /// <summary>
@@ -169,11 +194,10 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the selected item from the inventory and optionally use it.
+    /// Get the selected item from the inventory.
     /// </summary>
-    /// <param name="useItem">A boolean for whether the currently selected item should be used or not. Defaults to false.</param>
     /// <returns>The item that's currently selected.</returns>
-    public Item GetSelectedItem(bool useItem = false)
+    public Item GetSelectedItem()
     {
         InventorySlotHolder slot = slots[selectedSlot];
 
@@ -181,10 +205,46 @@ public class InventoryManager : MonoBehaviour
         {
             InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
 
-            if (useItem)
-            {
-                itemInstance.DecrementItem();
-            }
+            return itemInstance.storedItem;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Drops the selected item from the inventory and returns it
+    /// </summary>
+    /// <param name="dropQuantity">The amount of the selected item to drop. Defaults to 1.</param>
+    /// <returns>The item that was dropped.</returns>
+    public Item DropSelectedItem(int dropQuantity = 1)
+    {
+        InventorySlotHolder slot = slots[selectedSlot];
+
+        if (slot.transform.childCount != 0)
+        {
+            InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
+
+            itemInstance.DecrementItem(dropQuantity);
+
+            return itemInstance.storedItem;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Drops all of the selected item from the inventory and returns it
+    /// </summary>
+    /// <returns>The item that was dropped.</returns>
+    public Item DropAllSelectedItems()
+    {
+        InventorySlotHolder slot = slots[selectedSlot];
+
+        if (slot.transform.childCount != 0)
+        {
+            InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
+
+            itemInstance.DecrementItem(itemInstance.currentStackSize);
 
             return itemInstance.storedItem;
         }
