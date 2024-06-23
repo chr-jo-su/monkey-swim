@@ -12,8 +12,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text textObject;
     public Item storedItem;
     public int currentStackSize = 1;
+
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public bool rightClicked = false;
+    [HideInInspector] public bool draggable = true;
 
     void Update()
     {
@@ -29,6 +31,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (eventData.button == PointerEventData.InputButton.Right && !rightClicked)
         {
             Debug.Log("Right clicked!");
+
             rightClicked = true;
         }
     }
@@ -92,21 +95,30 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
-        image.raycastTarget = false;
+        if (draggable)
+        {
+            parentAfterDrag = transform.parent;
+            transform.SetParent(transform.root);
+            transform.SetAsLastSibling();
+            image.raycastTarget = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        if (draggable)
+        {
+            transform.position = Input.mousePosition;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // Check that the position is where the inventory screen or hotbar is
-        transform.SetParent(parentAfterDrag);
-        image.raycastTarget = true;
+        if (draggable)
+        {
+            // Check that the position is where the inventory screen or hotbar is
+            transform.SetParent(parentAfterDrag);
+            image.raycastTarget = true;
+        }
     }
 }
