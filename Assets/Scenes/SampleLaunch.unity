@@ -127,6 +127,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 419459860108603908, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
   m_PrefabInstance: {fileID: 1819730374}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &48398811 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5174726874596751175, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+  m_PrefabInstance: {fileID: 1819730374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &165654696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 48398811}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: oxygenSlider
       value: 
