@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,12 @@ public class playerMovement : MonoBehaviour
     public float oxygenGainRate = 1.0f;
 
     private bool canBreath = true;
+    
+    public AudioSource audioSource;
+    public AudioClip splashSound;
+    public AudioSource seaAmbience;
+    public AudioSource underWaterAmbience;
+    public AudioSource underWaterMusic;
 
     // Update is called once per frame
     void Update()
@@ -73,19 +80,9 @@ public class playerMovement : MonoBehaviour
 
         rigidBody.AddForce(v.normalized * moveSpeed);
     }
-
+    
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.name == seaLineObject.name)
-        {
-            if (transform.position.y > other.transform.position.y)
-                inSea = false;
-            else
-                inSea = true;
-            
-            Debug.Log("inSea = " + inSea);
-        }
-
         if (inSea)
         {
             rigidBody.gravityScale = 0F;
@@ -102,5 +99,32 @@ public class playerMovement : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other) {
         canBreath = true;
+        
+        if (other.name == seaLineObject.name)
+        {
+            if (transform.position.y > other.transform.position.y)
+                inSea = false;
+            else
+                inSea = true;
+            
+            Debug.Log("inSea = " + inSea);
+        }
+        
+        if (inSea)
+        {
+            seaAmbience.Pause();
+            underWaterAmbience.enabled = true;
+        }
+        else
+        {
+            seaAmbience.UnPause();
+            underWaterAmbience.enabled = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(!inSea)
+            audioSource.PlayOneShot(splashSound);
     }
 }
