@@ -83,7 +83,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="num">The number to write to the text object.</param>
     private void ChangeText()
     {
-        if (currentStackSize == 0)
+        if (currentStackSize == 0 || currentStackSize == 1)
         {
             textObject.text = "";
         }
