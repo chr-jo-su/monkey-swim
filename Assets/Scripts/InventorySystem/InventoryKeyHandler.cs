@@ -29,10 +29,12 @@ public class InventoryKeyHandler : MonoBehaviour
             {
                 // If it is showing, hide it
                 CloseInventory();
+                InventoryManager.instance.ReselectPreviousSlot();
             }
             else
             {
                 ShowInventory();
+                InventoryManager.instance.DeselectAllSlots();
             }
         }
 

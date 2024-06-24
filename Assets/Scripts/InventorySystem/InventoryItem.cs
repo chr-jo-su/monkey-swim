@@ -116,7 +116,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (draggable)
         {
-            // Check that the position is where the inventory screen or hotbar is
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
         }
