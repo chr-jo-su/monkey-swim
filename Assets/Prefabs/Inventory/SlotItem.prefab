@@ -93,6 +93,7 @@ MonoBehaviour:
   textObject: {fileID: 5771418976226629080}
   storedItem: {fileID: 0}
   currentStackSize: 1
+  RightClickMenuPrefab: {fileID: 9183276346393224946, guid: 9963eb7d5ea6c0949845f30798d5af1a, type: 3}
   parentAfterDrag: {fileID: 0}
   rightClicked: 0
   draggable: 1

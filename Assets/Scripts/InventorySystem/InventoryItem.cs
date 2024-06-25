@@ -12,30 +12,20 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text textObject;
     public Item storedItem;
     public int currentStackSize = 1;
+    public GameObject RightClickMenuPrefab;
 
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public bool rightClicked = false;
     [HideInInspector] public bool draggable = true;
 
-    void Update()
-    {
-        if (Input.anyKey && rightClicked)
-        {
-            rightClicked = false;
-        }
-    }
-
+    // Checks if the object was right clicked
     public void OnPointerClick(PointerEventData eventData)
     {
         // Check if the current game object was right clicked
-        if (eventData.button == PointerEventData.InputButton.Right && !rightClicked)
+        if (eventData.button == PointerEventData.InputButton.Right && draggable)
         {
-            Debug.Log("Right clicked!");
-
-            rightClicked = true;
+            OpenRightClickMenu();
         }
     }
-
 
     /// <summary>
     /// Initialise the slot with the given image and quantity
@@ -119,5 +109,20 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
         }
+    }
+
+    /// <summary>
+    /// Shows a menu for the inventory item when right clicked. The RightClickInfoDisplay script handles destroying the object.
+    /// </summary>
+    public void OpenRightClickMenu()
+    {
+        // Instantiate the right click menu
+        GameObject newGameObjectItem = Instantiate(RightClickMenuPrefab, transform.root);
+
+        // Set the position of the right click menu
+        newGameObjectItem.transform.position = Input.mousePosition;
+
+        // Set the text for the item info
+        newGameObjectItem.GetComponent<RightClickInfoDisplay>().SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
     }
 }

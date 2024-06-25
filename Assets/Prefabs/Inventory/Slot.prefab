@@ -90,8 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2118229429348962023}
-  selectedSlotColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  deselectedSlotColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedScale: {x: 2.25, y: 2.25, z: 2.25}
 --- !u!114 &94746459419628487
 MonoBehaviour:
   m_ObjectHideFlags: 0

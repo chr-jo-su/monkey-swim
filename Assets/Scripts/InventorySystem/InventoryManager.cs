@@ -16,11 +16,13 @@ public class InventoryManager : MonoBehaviour
     [Header("Testing variables (to be deleted later)")]
     public Item[] testItems;
 
+    // Awake is called when the script instance is being loaded
     private void Awake()
     {
         instance = this;
     }
 
+    // Start is called before the first frame update
     void Start()
     {
         // Select the first slot
@@ -105,6 +107,9 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reselects the previously selected slot. Useful when the inventory is closed and needs to show a selected slot again.
+    /// </summary>
     public void ReselectPreviousSlot()
     {
         UpdateSelectedSlot();
