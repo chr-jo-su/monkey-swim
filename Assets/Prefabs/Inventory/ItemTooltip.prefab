@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 3534066114238722920}
   - component: {fileID: 4802714727889043842}
   m_Layer: 0
-  m_Name: RightClickMenu
+  m_Name: ItemTooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

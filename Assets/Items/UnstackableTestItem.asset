@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
-  m_Name: UnstackableTestItem 1
+  m_Name: UnstackableTestItem
   m_EditorClassIdentifier: 
   itemName: Unstackable Test Item
-  itemDescription: This item can't be stacked. This is a test item that does nothing.
-    It's to test that the inventory system actually takes items in and stacks them
-    properly.
+  itemDescription: This test item can't be stacked and does nothing. It's to test
+    that the inventory takes items and stacks them properly.
   itemSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   durability: 100
   durabilityDecreasePerUse: 1

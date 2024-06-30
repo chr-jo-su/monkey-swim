@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class RightClickInfoDisplay : MonoBehaviour, IPointerExitHandler
+public class ItemTooltip : MonoBehaviour, IPointerExitHandler
 {
     // Variables
     public TMP_Text itemName, itemDescription;

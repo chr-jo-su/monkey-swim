@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     // Variables
     public Image image;
@@ -13,18 +13,28 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Item storedItem;
     public int currentStackSize = 1;
     public GameObject RightClickMenuPrefab;
+    public float tooltipDelay = 0.75f;
 
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public bool draggable = true;
+    
+    private bool allowTooltip = true;
 
-    // Checks if the object was right clicked
-    public void OnPointerClick(PointerEventData eventData)
+    // Checks if the mouse was hovering over the object for a certain amount of time.
+    public void OnPointerEnter(PointerEventData eventData)
     {
         // Check if the current game object was right clicked
-        if (eventData.button == PointerEventData.InputButton.Right && draggable)
+        if (draggable)
         {
-            OpenRightClickMenu();
+            allowTooltip = true;
+            Invoke("ShowTooltip", tooltipDelay);
         }
+    }
+
+    // Don't try to show the tooltip if the mouse exits the object.
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        allowTooltip = false;
     }
 
     /// <summary>
@@ -112,17 +122,35 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     /// <summary>
-    /// Shows a menu for the inventory item when right clicked. The RightClickInfoDisplay script handles destroying the object.
+    /// Shows a menu for the inventory item when hovered over. The ItemTooltip script handles destroying the object.
     /// </summary>
-    public void OpenRightClickMenu()
+    public void ShowTooltip()
     {
-        // Instantiate the right click menu
-        GameObject newGameObjectItem = Instantiate(RightClickMenuPrefab, transform.root);
+        if (allowTooltip)
+        {
+            // Instantiate the tooltip
+            GameObject newGameObjectItem = Instantiate(RightClickMenuPrefab, transform.root);
 
-        // Set the position of the right click menu
-        newGameObjectItem.transform.position = Input.mousePosition;
+            // Get the height of the tooltip
+            RectTransform rectTransform = newGameObjectItem.GetComponent<RectTransform>();
+            float height = rectTransform.rect.height;
+            float width = rectTransform.rect.width;
 
-        // Set the text for the item info
-        newGameObjectItem.GetComponent<RightClickInfoDisplay>().SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            // Set the position of the tooltip
+            newGameObjectItem.transform.position = Input.mousePosition;
+
+            // Check if the tooltip is off the screen and make it always show fully
+            if (Input.mousePosition.y - height < 0)
+            {
+                newGameObjectItem.transform.position = new Vector3(newGameObjectItem.transform.position.x, height, newGameObjectItem.transform.position.z);
+            }
+            if (Input.mousePosition.x + width > Screen.width)
+            {
+                newGameObjectItem.transform.position = new Vector3(Screen.width - width, newGameObjectItem.transform.position.y, newGameObjectItem.transform.position.z);
+            }
+
+            // Set the text for the item info
+            newGameObjectItem.GetComponent<ItemTooltip>().SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+        }
     }
 }
