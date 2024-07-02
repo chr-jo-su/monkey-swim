@@ -16,19 +16,20 @@ public class InventoryManager : MonoBehaviour
     [Header("Testing variables (to be deleted later)")]
     public Item[] testItems;
 
+    // Awake is called when the script instance is being loaded
     private void Awake()
     {
         instance = this;
     }
 
+    // Start is called before the first frame update
     void Start()
     {
         // Select the first slot
         ChangeSelectedSlot(0);
 
         // Testing code; REMOVE LATER
-
-        int added = AddItems(testItems[0], 10);
+        int added = AddItems(testItems[2], 19);
         for (int i = 0; i < 33; i++)    // Chose a weird number of items to see if the stacks are correct
         {
             int randomIndex = Random.Range(0, testItems.Length); // Get a random index
@@ -36,8 +37,7 @@ public class InventoryManager : MonoBehaviour
             added = AddItems(randomItem); // Add the item to the inventory
             if (added > 0) { break; }
         }
-        DropSelectedItem();
-        DropAllSelectedItems();
+        DropSelectedItem(2);
     }
 
     public void SetDraggable(bool dragOption)
@@ -94,6 +94,25 @@ public class InventoryManager : MonoBehaviour
         }
 
         UpdateSelectedSlot(previousSlot);
+    }
+
+    /// <summary>
+    /// Deselects all the slots in the hotbar. Useful when the inventory is open and no slots should be selected.
+    /// </summary>
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < hotbarSlots; i++)
+        {
+            slots[i].DeselectSlot();
+        }
+    }
+
+    /// <summary>
+    /// Reselects the previously selected slot. Useful when the inventory is closed and needs to show a selected slot again.
+    /// </summary>
+    public void ReselectPreviousSlot()
+    {
+        UpdateSelectedSlot();
     }
 
     /// <summary>

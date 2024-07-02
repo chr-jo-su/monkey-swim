@@ -32,6 +32,9 @@ public class Item : ScriptableObject
     [Tooltip("The maximum amount of items that can be stacked together if stackable.")]
     public int maxStackSize;
 
+    /// <summary>
+    /// Generates a random item ID through an option in the Inspector when the itemID variable is right-clicked.
+    /// </summary>
     private void GenerateItemID()
     {
         itemID = Random.Range(0, 999999999);
@@ -40,9 +43,8 @@ public class Item : ScriptableObject
 
 public enum ItemType
 {
-    // Others is the default item type, don't remove it
-    Others,
-    Consumable,
-    Weapon,
-    Armour
+    Others,         // Others is the default item type, so don't remove it.
+    Consumable,     // Consumables would usually have a durabilityDecreasePerUse of 100.
+    Weapon,         // Weapons would usually have a durabilityDecreasePerUse of 1 or lower and not be stackable.
+    Armour          // Armour would usually not be stackable.
 }

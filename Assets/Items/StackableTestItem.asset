@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: StackableTestItem
   m_EditorClassIdentifier: 
   itemName: Stackable Test Item
-  itemDescription: This item can be stacked. This is a test item that does nothing.
-    It's to test that the inventory system actually takes items in and stacks them
-    properly.
+  itemDescription: This test item can be stacked and does nothing. It's to test that
+    the inventory takes items and stacks them properly.
   itemSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   durability: 100
   durabilityDecreasePerUse: 1

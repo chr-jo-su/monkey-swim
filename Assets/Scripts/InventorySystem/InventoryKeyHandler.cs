@@ -29,10 +29,12 @@ public class InventoryKeyHandler : MonoBehaviour
             {
                 // If it is showing, hide it
                 CloseInventory();
+                InventoryManager.instance.ReselectPreviousSlot();
             }
             else
             {
                 ShowInventory();
+                InventoryManager.instance.DeselectAllSlots();
             }
         }
 
@@ -63,34 +65,33 @@ public class InventoryKeyHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// Closes the inventory menu. Also disables dragging for the hotbar items.
+    /// Closes the inventory menu. Also disables dragging and right-clicking for the hotbar items.
     /// </summary>
     public void CloseInventory()
     {
-        AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(0, 0));
-
         inventory.SetActive(false);
         isShowing = false;
 
         // Disable dragging for the hotbar items
         InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
+
+        // Remove any right click menus if there are any
+        try
+        {
+            Destroy(GameObject.Find("RightClickMenu(Clone)"));
+        }
+        catch (System.Exception) { }
     }
 
     /// <summary>
-    /// Opens the inventory menu. Also enables dragging for the hotbar items.
+    /// Opens the inventory menu. Also enables dragging and right-clicking for the hotbar items.
     /// </summary>
     public void ShowInventory()
     {
         inventory.SetActive(true);
-
-        AnimateScaleChange(inventory, inventory.transform.localScale, new Vector2(1, 1));
-
         isShowing = true;
 
         // Enable dragging for the hotbar items
         InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
     }
-
-    //TODO: Animates the scale of the given gameObject from startScale to endScale
-    void AnimateScaleChange(GameObject gameObject, Vector2 startScale, Vector2 endScale) { }
 }
