@@ -2297,6 +2297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1296609502298723916, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: audioSource
       value: 
@@ -2830,6 +2834,10 @@ PrefabInstance:
       propertyPath: underWaterAmbience
       value: 
       objectReference: {fileID: 681617349}
+    - target: {fileID: 5140553331888673616, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5232082867712224095, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.51
