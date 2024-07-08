@@ -35,5 +35,6 @@ public class HealthBar : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+            Debug.Log("Damage taken");
     }
 }

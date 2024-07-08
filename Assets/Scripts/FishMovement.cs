@@ -80,8 +80,8 @@ public class fishMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") 
         {
-            playerHealth.TakeDamage(damage);
             Debug.Log("Player is hit");
+            playerHealth.TakeDamage(damage);
             following = false;
         }
     }
