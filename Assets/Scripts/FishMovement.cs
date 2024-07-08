@@ -40,7 +40,7 @@ public class fishMovement : MonoBehaviour
 
         if (following)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime/2);
             
             if (distance >= 3)
             {
@@ -82,6 +82,7 @@ public class fishMovement : MonoBehaviour
         {
             playerHealth.TakeDamage(damage);
             Debug.Log("Player is hit");
+            following = false;
         }
     }
 
