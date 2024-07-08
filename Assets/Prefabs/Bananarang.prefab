@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3285300257430336354}
   m_Layer: 0
   m_Name: Bananarang
-  m_TagString: Untagged
+  m_TagString: BananarangClone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

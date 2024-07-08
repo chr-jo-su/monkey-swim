@@ -28,7 +28,7 @@ public class Bananarang : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Angle += 0.001f;
+        Angle += 0.0008f;
         transform.rotation = quaternion.Euler(0, 0, Angle * Mathf.Rad2Deg);
     }
 }

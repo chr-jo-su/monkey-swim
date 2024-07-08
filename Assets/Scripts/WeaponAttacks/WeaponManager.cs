@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject BananarangPlacement;
+    public GameObject BananarangStatic;
     public GameObject BananarangObject;
+    public GameObject[] BananarangClones;
     private Vector3 Direction;
     private Vector3 MousePosition;
     private Vector3 PlayerPosition;
@@ -31,11 +32,15 @@ public class WeaponManager : MonoBehaviour
 
         if (!BananarangReady)
         {
-            BananarangPlacement.SetActive(false);
+            BananarangStatic.SetActive(false);
             Timer += Time.deltaTime;
             if (Timer >= Lifespan)
             {
-                BananarangPlacement.SetActive(true);
+                BananarangClones = GameObject.FindGameObjectsWithTag("BananarangClone");
+                foreach(GameObject obj in BananarangClones) {
+                    Destroy(obj);
+                }
+                BananarangStatic.SetActive(true);
                 BananarangReady = true;
                 Timer = 0;
             }
@@ -44,7 +49,7 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetMouseButton(0) && BananarangReady)
         {
             BananarangReady = false;
-            Instantiate(BananarangObject, BananarangPlacement.transform.position, Quaternion.identity);
+            Instantiate(BananarangObject, BananarangStatic.transform.position, Quaternion.identity);
         }
     }
 }
