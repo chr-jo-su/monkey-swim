@@ -13,6 +13,7 @@ public class playerMovement : MonoBehaviour
     public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
                                      // that signifies the sea line
     Vector2 movement;
+    public Animator animator;
 
     private bool inSea = false;
     private bool canMoveUp = true;
@@ -64,6 +65,8 @@ public class playerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;
     }
