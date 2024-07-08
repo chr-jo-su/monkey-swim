@@ -40,12 +40,28 @@ public class InventoryManager : MonoBehaviour
         DropSelectedItem(2);
     }
 
+    /// <summary>
+    /// Set the draggable option for all hotbar slots to the given value.
+    /// </summary>
+    /// <param name="dragOption">A boolean value that specifies if the slots should be draggable or not.</param>
     public void SetDraggable(bool dragOption)
     {
         for (int i = 0; i < hotbarSlots; i++)
         {
             slots[i].SetDraggable(dragOption);
         }
+    }
+
+    /// <summary>
+    /// Checks if the inventory has the given item in the given quantity.
+    /// Function will be public once it's implemented.
+    /// </summary>
+    /// <param name="item">The item to check for.</param>
+    /// <param name="quantity">The quantity of the item to check for. Defaults to 1.</param>
+    /// <returns></returns>
+    private bool CheckForItems(Item item, int quantity = 1)
+    {
+        return false;
     }
 
     /// <summary>
