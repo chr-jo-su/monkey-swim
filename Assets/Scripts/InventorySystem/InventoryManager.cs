@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
 
         // Testing code; REMOVE LATER
         int added = AddItems(testItems[2], 19);
-        for (int i = 0; i < 33; i++)    // Chose a weird number of items to see if the stacks are correct
+        for (int i = 0; i < 53; i++)    // Chose a weird number of items to see if the stacks are correct
         {
             int randomIndex = Random.Range(0, testItems.Length); // Get a random index
             Item randomItem = testItems[randomIndex]; // Get the random item
@@ -54,13 +54,32 @@ public class InventoryManager : MonoBehaviour
 
     /// <summary>
     /// Checks if the inventory has the given item in the given quantity.
-    /// Function will be public once it's implemented.
     /// </summary>
     /// <param name="item">The item to check for.</param>
     /// <param name="quantity">The quantity of the item to check for. Defaults to 1.</param>
     /// <returns></returns>
-    private bool CheckForItems(Item item, int quantity = 1)
+    public bool CheckForItems(Item item, int quantity = 1)
     {
+        int totalItems = 0;
+        // Go through each slot and see if the item is there
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+
+                if (inventoryItem.storedItem.itemID == item.itemID)
+                {
+                    totalItems += inventoryItem.currentStackSize;
+                }
+            }
+        }
+
+        // See if it's enough
+        if (totalItems >= quantity)
+        {
+            return true;
+        }
         return false;
     }
 
