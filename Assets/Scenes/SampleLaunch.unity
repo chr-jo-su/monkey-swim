@@ -132,6 +132,72 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5174726874596751175, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
   m_PrefabInstance: {fileID: 1819730374}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &48398817 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4480218188751584525, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+  m_PrefabInstance: {fileID: 1819730374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &116464326
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 48398817}
+    m_Modifications:
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.40461
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 81.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019248825505773096, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200789726674827905, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+      propertyPath: m_Name
+      value: ItemDropper
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
 --- !u!1 &165654696
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Audio Source
   m_EditorClassIdentifier: 
+--- !u!4 &251504246 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5847155906927158797, guid: bc5136ae8881b45b994ec0cc427fd724, type: 3}
+  m_PrefabInstance: {fileID: 116464326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &503083660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2307,6 +2378,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 48398811}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1470868270}
@@ -2318,10 +2393,6 @@ PrefabInstance:
       propertyPath: splashSound
       value: 
       objectReference: {fileID: 8300000, guid: 926dc6a3478e6bf4d8afa8fe14fe8e77, type: 3}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 48398811}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: oxygenSlider
       value: 
@@ -2388,7 +2459,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4480218188751584525, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 251504246}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
 --- !u!1001 &2001226112
