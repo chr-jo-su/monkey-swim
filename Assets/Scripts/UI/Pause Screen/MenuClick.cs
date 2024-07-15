@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class MenuClick : MonoBehaviour, IPointerClickHandler
+public class MenuClick : MonoBehaviour
 {
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnMouseDown()
     {
         SceneManager.LoadScene("SampleScene");
     }

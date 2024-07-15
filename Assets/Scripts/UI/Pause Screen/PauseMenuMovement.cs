@@ -60,7 +60,6 @@ public class PauseMenuMovement : MonoBehaviour
         Time.timeScale = 1f;
         Target = AboveCameraTarget;
         Paused = false;
-        Debug.Log("Hello");
     }
 
     public void PauseGame()
