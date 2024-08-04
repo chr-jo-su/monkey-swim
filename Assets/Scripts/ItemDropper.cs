@@ -29,13 +29,28 @@ public class ItemDropper : MonoBehaviour
                 droppedItem.transform.position = transform.parent.position;
 
                 droppedItem.name = i.itemName;
+                droppedItem.tag = "Item";
+                droppedItem.layer = 3;
+                
+                // I dont really know a better way to go about this :/
+                DroppedItem itemProperties = droppedItem.AddComponent<DroppedItem>();
+                itemProperties.item = i;
 
                 SpriteRenderer spriteRender = droppedItem.AddComponent<SpriteRenderer>();
                 spriteRender.sprite = i.itemSprite;
+                
+                // REMOVE THIS LATER WHEN ITEMS HAVE A SPRITE SIZE PROPERTY!!!!!!
+                spriteRender.drawMode = SpriteDrawMode.Sliced;
+                spriteRender.size = new Vector2(spriteRender.size.x * 0.10f, spriteRender.size.y * 0.10f);
+                // -------------------------------------
 
                 Rigidbody2D rb = droppedItem.AddComponent<Rigidbody2D>();
                 rb.drag = 1;
                 rb.gravityScale = 0;
+                
+                BoxCollider2D collider = droppedItem.AddComponent<BoxCollider2D>();
+                collider.size = spriteRender.size;
+                collider.isTrigger = true;
 
                 randX = Random.Range(-1, 2);
                 randY = Random.Range(-1, 2);
