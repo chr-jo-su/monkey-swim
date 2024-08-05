@@ -6,12 +6,13 @@ TagManager:
   tags:
   - Boundary
   - Fish
+  - Item
   - PauseMenuManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Items
   - Water
   - UI
   - 

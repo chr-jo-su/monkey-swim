@@ -78,7 +78,7 @@ public class InventoryKeyHandler : MonoBehaviour
         // Remove any right click menus if there are any
         try
         {
-            Destroy(GameObject.Find("RightClickMenu(Clone)"));
+            Destroy(GameObject.Find("ItemTooltip(Clone)"));
         }
         catch (System.Exception) { }
     }
