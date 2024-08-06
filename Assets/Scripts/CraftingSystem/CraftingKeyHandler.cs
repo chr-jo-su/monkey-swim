@@ -5,13 +5,23 @@ using UnityEngine;
 public class CraftingKeyHandler : MonoBehaviour
 {
     // Variables
-    [HideInInspector] public bool isShowing = true;
+    public static CraftingKeyHandler instance;
+
+    [HideInInspector] private bool isShowing;
     public GameObject craftingMenu;
     public KeyCode craftingMenuKey = KeyCode.Q;
+
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        isShowing = true;
+
         // Start the crafting closed
         CloseCraftingMenu();
 
@@ -41,8 +51,18 @@ public class CraftingKeyHandler : MonoBehaviour
     /// </summary>
     public void CloseCraftingMenu()
     {
-        craftingMenu.SetActive(false);
-        isShowing = false;
+        if (isShowing)
+        {
+            // Animate the crafting menu closing
+            AnimateMenu(false);
+
+            // Remove all the items from the crafting list
+            CraftingManager.instance.UnpopulateCraftingList();
+
+            craftingMenu.SetActive(false);
+
+            isShowing = false;
+        }
     }
 
     /// <summary>
@@ -50,7 +70,29 @@ public class CraftingKeyHandler : MonoBehaviour
     /// </summary>
     public void ShowCraftingMenu()
     {
-        craftingMenu.SetActive(true);
-        isShowing = true;
+        if (!isShowing)
+        {
+            // Close the inventory if it is open
+            InventoryKeyHandler.instance.CloseInventory();
+
+            craftingMenu.SetActive(true);
+
+            // Add all items that can be crafted to the crafting list
+            CraftingManager.instance.PopulateCraftingList();
+
+            // Animate the crafting menu opening
+            AnimateMenu(true);
+
+            isShowing = true;
+        }
+    }
+
+    /// <summary>
+    /// Animates the opening and closing of the crafting menu.
+    /// </summary>
+    public void AnimateMenu(bool open)
+    {
+        if (open) { }
+        else { }
     }
 }
