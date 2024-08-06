@@ -11,6 +11,11 @@ public class CraftingKeyHandler : MonoBehaviour
     public GameObject craftingMenu;
     public KeyCode craftingMenuKey = KeyCode.Q;
 
+    [HideInInspector] private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
+    [HideInInspector] private Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
+    [HideInInspector] private Vector3 targetPos;
+    private float velocity = 5f;
+
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
@@ -31,10 +36,12 @@ public class CraftingKeyHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AnimateMenu();
+
         // Check for the crafting menu key to be pressed
         if (Input.GetKeyDown(craftingMenuKey))
         {
-            if (craftingMenu.activeSelf)
+            if (isShowing)
             {
                 // If it is showing, hide it
                 CloseCraftingMenu();
@@ -43,6 +50,15 @@ public class CraftingKeyHandler : MonoBehaviour
             {
                 ShowCraftingMenu();
             }
+        }
+
+        if (craftingMenu.transform.position.y - Camera.main.pixelHeight >= Camera.main.pixelHeight / 2)
+        {
+            craftingMenu.SetActive(false);
+        }
+        else
+        {
+            craftingMenu.SetActive(true);
         }
     }
 
@@ -53,13 +69,10 @@ public class CraftingKeyHandler : MonoBehaviour
     {
         if (isShowing)
         {
-            // Animate the crafting menu closing
-            AnimateMenu(false);
+            targetPos = closePos;
 
             // Remove all the items from the crafting list
             CraftingManager.instance.UnpopulateCraftingList();
-
-            craftingMenu.SetActive(false);
 
             isShowing = false;
         }
@@ -75,13 +88,10 @@ public class CraftingKeyHandler : MonoBehaviour
             // Close the inventory if it is open
             InventoryKeyHandler.instance.CloseInventory();
 
-            craftingMenu.SetActive(true);
-
             // Add all items that can be crafted to the crafting list
             CraftingManager.instance.PopulateCraftingList();
 
-            // Animate the crafting menu opening
-            AnimateMenu(true);
+            targetPos = openPos;
 
             isShowing = true;
         }
@@ -90,9 +100,9 @@ public class CraftingKeyHandler : MonoBehaviour
     /// <summary>
     /// Animates the opening and closing of the crafting menu.
     /// </summary>
-    public void AnimateMenu(bool open)
+    private void AnimateMenu()
     {
-        if (open) { }
-        else { }
+        // Animate the menu moving
+        craftingMenu.transform.position = Vector3.Lerp(craftingMenu.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
     }
 }

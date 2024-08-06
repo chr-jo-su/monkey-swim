@@ -19,12 +19,6 @@ public class CraftingManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     /// <summary>
     /// Adds items (that can be crafted) onto frames on the crafting list.
     /// </summary>
