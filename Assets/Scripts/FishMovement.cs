@@ -17,6 +17,8 @@ public class fishMovement : MonoBehaviour
     private Transform player;
     public HealthBar playerHealth;
     public int damage;
+    private int attackCounter = 0;
+    public GameObject seaLineObject;
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class fishMovement : MonoBehaviour
         //Movement
         rigidBody.MovePosition(rigidBody.position + movement*moveSpeed*Time.fixedDeltaTime);
 
-        if (following)
+        if (following && attackCounter >= 10)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime/2);
             
@@ -74,15 +76,26 @@ public class fishMovement : MonoBehaviour
             }
 
         }
+
+        attackCounter++;
     }
 
     void OnCollisionEnter2D (Collision2D collision) 
     {
         if (collision.gameObject.tag == "Player") 
         {
-            Debug.Log("Player is hit");
             playerHealth.TakeDamage(damage);
             following = false;
+            attackCounter = 0;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other) { // not working correctly
+        if (other.name == seaLineObject.name) {
+            if (transform.position.y >= other.transform.position.y + 100)
+            {
+                movement.y *= movement.y;
+            }
         }
     }
 
