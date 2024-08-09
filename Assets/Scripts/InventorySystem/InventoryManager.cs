@@ -112,6 +112,50 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the total number of Items that can fit into the remaining slots.
+    /// </summary>
+    /// <param name="item">The Item to check for spaces.</param>
+    /// <returns>An integer specifying the total number of Item that can fit into the unfilled slots.</returns>
+    public int GetTotalEmptySlots(Item item)
+    {
+        int total = 0;
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount == 1)
+            {
+                if (child.transform.GetChild(0).GetComponent<InventoryItem>().storedItem == item)
+                {
+                    total += item.maxStackSize - child.transform.GetChild(0).GetComponent<InventoryItem>().currentStackSize;
+                }
+            }
+        }
+
+        total += GetTotalEmptySlots() * item.maxStackSize;
+
+        return total;
+    }
+
+    /// <summary>
+    /// Returns the total number of empty slots
+    /// </summary>
+    /// <returns>An integer specifying the total number of completely empty slots in the player's inventory.</returns>
+    public int GetTotalEmptySlots()
+    {
+        int total = 0;
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount == 0)
+            {
+                total++;
+            }
+        }
+
+        return total;
+    }
+
+    /// <summary>
     /// Changes the selected slot to the given slot position. This doesn't deselect the previous slot.
     /// </summary>
     /// <param name="slotPosition">An integer that specifies the slot position to select. Works for the hotbar only.</param>
