@@ -12,6 +12,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text textObject;
     public Item storedItem;
     public int currentStackSize = 1;
+
     public GameObject RightClickMenuPrefab;
     public float tooltipDelay = 0.75f;
 
@@ -43,7 +44,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="newItem">The Item scriptable object to be added.</param>
     /// <param name="quantity">The amount of that item to be added.</param>
     public void InitialiseItem(Item newItem, int quantity = 1)
-
     {
         storedItem = newItem;
         image.sprite = newItem.itemSprite;

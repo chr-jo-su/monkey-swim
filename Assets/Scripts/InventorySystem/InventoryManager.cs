@@ -215,7 +215,7 @@ public class InventoryManager : MonoBehaviour
                         if (inventoryItem.storedItem.itemID == item.itemID &&
                             inventoryItem.currentStackSize < item.maxStackSize)
                         {
-                            // Spawn the item into the slot
+                            // Add the item into the slot
                             IncrementItem(child);
                             quantity--;
                             break;
