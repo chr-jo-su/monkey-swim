@@ -15,6 +15,6 @@ MonoBehaviour:
   itemSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   itemsRequired:
   - {fileID: 11400000, guid: 25cccaf8f9011d3438a3eaa403f67292, type: 2}
-  quantityRequired: 04000000
+  quantityRequired: 02000000
   resultingItem: {fileID: 11400000, guid: 74eafb33414a35240b2c4f92e32d9201, type: 2}
   craftingRecipeID: 326966688

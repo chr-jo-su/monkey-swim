@@ -18,6 +18,7 @@ public class CraftingManager : MonoBehaviour
     public GameObject craftingFocusSlot;
     public TMP_Text craftingFocusText;
     public GameObject craftingQuantitySection;
+    private Item currentSelectedItem;
 
     public GameObject imagePrefab;
 
@@ -87,10 +88,26 @@ public class CraftingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes all the items that were craftable, and rechecks then readds them back to the list.
+    /// Crafts the currently selected item.
     /// </summary>
-    public void RepopulateCraftingList()
+    public void CraftSelectedItem()
     {
+        if (currentSelectedItem != null)
+        {
+            CraftingRecipe selectedRecipe = itemToRecipeDictionary[currentSelectedItem];
+            int selectedQuantity = craftingQuantitySection.GetComponent<CraftingQuantityHandler>().currentQuantity;
+
+            // Remove the required items from the inventory
+            for (int i = 0; i < selectedRecipe.itemsRequired.Count; i++)
+            {
+                InventoryManager.instance.RemoveItem(selectedRecipe.itemsRequired[i], selectedRecipe.quantityRequired[i] * selectedQuantity);
+            }
+
+            // Add the crafted item to the inventory
+            InventoryManager.instance.AddItems(selectedRecipe.resultingItem, selectedQuantity);
+        }
+
+        // Recheck the crafting list
         UnpopulateCraftingList();
         PopulateCraftingList();
     }
@@ -101,6 +118,8 @@ public class CraftingManager : MonoBehaviour
     /// <param name="selectedItem">The Item that's selected from the crafting list section.</param>
     public void ShowSelectedRecipe(Item selectedItem)
     {
+        currentSelectedItem = selectedItem;
+
         // Remove the previous item from the crafting focus slot if any
         if (craftingFocusSlot.transform.childCount > 0)
         {

@@ -28,16 +28,11 @@ public class InventoryManager : MonoBehaviour
         // Select the first slot
         ChangeSelectedSlot(0);
 
-        // Testing code; REMOVE LATER
-        int added = AddItems(testItems[2], 19);
-        for (int i = 0; i < 53; i++)    // Chose a weird number of items to see if the stacks are correct
-        {
-            int randomIndex = Random.Range(0, testItems.Length); // Get a random index
-            Item randomItem = testItems[randomIndex]; // Get the random item
-            added = AddItems(randomItem); // Add the item to the inventory
-            if (added > 0) { break; }
-        }
-        DropSelectedItem(2);
+        // Testing code; This should allow you to craft 7 ticks and 2 coffee fish and
+        // have only the 2 coffee fish left in the inventory
+        AddItems(testItems[0], 7 * 1);
+        AddItems(testItems[1], 2 * 2);
+        AddItems(testItems[1], 2 * 7);
     }
 
     /// <summary>
@@ -245,6 +240,7 @@ public class InventoryManager : MonoBehaviour
     public int AddItems(Item item, int quantity = 1)
     {
         int prevQuantity = quantity;
+
         while (quantity > 0)
         {
             // Find a slot with the given item and available space if it's stackable
@@ -262,6 +258,7 @@ public class InventoryManager : MonoBehaviour
                             // Add the item into the slot
                             IncrementItem(child);
                             quantity--;
+
                             break;
                         }
                     }
@@ -278,6 +275,7 @@ public class InventoryManager : MonoBehaviour
                         // Spawn the item into the slot
                         SpawnItem(item, child);
                         quantity--;
+
                         break;
                     }
                 }
@@ -338,7 +336,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Drops the selected item from the inventory and returns it
+    /// Drops the selected item from the inventory and returns it.
     /// </summary>
     /// <param name="dropQuantity">The amount of the selected item to drop. Defaults to 1.</param>
     /// <returns>The item that was dropped.</returns>
@@ -376,5 +374,36 @@ public class InventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    // Removes a given quantity of the given item from the inventory and returns it.
+    public Item RemoveItem(Item item, int quantity = 1)
+    {
+        int total = 0;
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+
+                if (inventoryItem.storedItem.itemID == item.itemID)
+                {
+                    if (inventoryItem.currentStackSize >= quantity)
+                    {
+                        inventoryItem.DecrementItem(quantity);
+                        break;
+                    }
+                    else
+                    {
+                        total = inventoryItem.currentStackSize;
+                        inventoryItem.DecrementItem(quantity);
+                        quantity -= total;
+                    }
+                }
+            }
+        }
+
+        return item;
     }
 }

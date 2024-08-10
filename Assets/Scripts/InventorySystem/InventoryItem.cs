@@ -71,7 +71,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         currentStackSize -= quantity;
         ChangeText();
 
-        if (currentStackSize == 0)
+        if (currentStackSize <= 0)
         {
             Destroy(gameObject);
         }
