@@ -115,4 +115,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedItem: {fileID: 0}
   selectedScale: {x: 2.25, y: 2.25, z: 2.25}
-  imagePrefab: {fileID: 5502912750589062748, guid: 2c4e8b61bf87d6c4cb5fce950735c960, type: 3}
+  tooltipPrefab: {fileID: 9183276346393224946, guid: 9963eb7d5ea6c0949845f30798d5af1a, type: 3}
+  tooltipDelay: 0.75

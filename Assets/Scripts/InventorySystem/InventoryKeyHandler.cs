@@ -35,16 +35,14 @@ public class InventoryKeyHandler : MonoBehaviour
         // Check for the inventory key to be pressed
         if (Input.GetKeyDown(inventoryKey))
         {
-            if (inventory.activeSelf)
+            if (isShowing)
             {
-                // If it is showing, hide it
+                // If it's showing, hide it
                 CloseInventory();
-                InventoryManager.instance.ReselectPreviousSlot();
             }
             else
             {
                 ShowInventory();
-                InventoryManager.instance.DeselectAllSlots();
             }
         }
 
@@ -87,12 +85,14 @@ public class InventoryKeyHandler : MonoBehaviour
             // Disable dragging for the hotbar items
             InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
 
-            // Remove any right click menus if there are any
+            // Remove any tooltip menus if there are any
             try
             {
                 Destroy(GameObject.Find("ItemTooltip(Clone)"));
             }
             catch (System.Exception) { }
+
+            InventoryManager.instance.ReselectPreviousSlot();
         }
     }
 
@@ -111,6 +111,8 @@ public class InventoryKeyHandler : MonoBehaviour
 
             // Enable dragging for the hotbar items
             InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
+
+            InventoryManager.instance.DeselectAllSlots();
         }
     }
 }

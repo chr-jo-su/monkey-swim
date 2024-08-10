@@ -376,7 +376,12 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    // Removes a given quantity of the given item from the inventory and returns it.
+    /// <summary>
+    /// Removes a given quantity of the given item from the inventory and returns it.
+    /// </summary>
+    /// <param name="item">The given Item to be removed.</param>
+    /// <param name="quantity">The quantity of the item that should be removed.</param>
+    /// <returns>The Item that was removed.</returns>
     public Item RemoveItem(Item item, int quantity = 1)
     {
         int total = 0;

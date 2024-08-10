@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable object/Crafting recipe")]
 public class CraftingRecipe : ScriptableObject
 {
-    [Tooltip("The sprite that will be displayed in the inventory slot.")]
-    public Sprite itemSprite;
     // This can't be done with a dictionary as it doesn't seem to let us change it in the inspector panel.
     // So instead there's 2 arrays which can be iterated through at the same time.
     [Tooltip("The list of Items that will be needed to create the resultingItem.")]

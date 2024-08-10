@@ -74,6 +74,13 @@ public class CraftingKeyHandler : MonoBehaviour
             // Remove all the items from the crafting list
             CraftingManager.instance.UnpopulateCraftingList();
 
+            // Remove any tooltip menus if there are any
+            try
+            {
+                Destroy(GameObject.Find("ItemTooltip(Clone)"));
+            }
+            catch (System.Exception) { }
+
             isShowing = false;
         }
     }
