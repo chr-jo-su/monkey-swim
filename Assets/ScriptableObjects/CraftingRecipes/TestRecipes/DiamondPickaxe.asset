@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9099da4a2a2d029429b03c0c6f5ad14f, type: 3}
-  m_Name: TestCraftingRecipe2
+  m_Name: DiamondPickaxe
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   itemsRequired:
-  - {fileID: 11400000, guid: 25cccaf8f9011d3438a3eaa403f67292, type: 2}
-  quantityRequired: 02000000
-  resultingItem: {fileID: 11400000, guid: 74eafb33414a35240b2c4f92e32d9201, type: 2}
-  craftingRecipeID: 326966688
+  - {fileID: 11400000, guid: 67f8654f97fe0af458de7ad1c9eb71c9, type: 2}
+  - {fileID: 11400000, guid: a5aacb65e033bc346bf2f1a799b02e60, type: 2}
+  quantityRequired: 0200000003000000
+  resultingItem: {fileID: 11400000, guid: 059942e76a9da934d8d6d6a9932c13fe, type: 2}
+  craftingRecipeID: 788563886

@@ -162,10 +162,12 @@ MonoBehaviour:
   hotbarSlots: 8
   inventoryItemPrefab: {fileID: 903062702048024672, guid: cf00059ae5ccd2d47817e0f591159d19, type: 3}
   selectedSlot: -1
-  testItems:
-  - {fileID: 11400000, guid: 74eafb33414a35240b2c4f92e32d9201, type: 2}
-  - {fileID: 11400000, guid: 25cccaf8f9011d3438a3eaa403f67292, type: 2}
-  - {fileID: 11400000, guid: e45de55ce7e005d4fa54c78d2efe6c1e, type: 2}
+  items:
+  - {fileID: 11400000, guid: ba99cdaa04f68be44bb44ac4d52974ff, type: 2}
+  - {fileID: 11400000, guid: a5aacb65e033bc346bf2f1a799b02e60, type: 2}
+  - {fileID: 11400000, guid: ef74a273d9e15604491a72f08f6946b0, type: 2}
+  - {fileID: 11400000, guid: 67f8654f97fe0af458de7ad1c9eb71c9, type: 2}
+  - {fileID: 11400000, guid: 059942e76a9da934d8d6d6a9932c13fe, type: 2}
 --- !u!1001 &635115143601605696
 PrefabInstance:
   m_ObjectHideFlags: 0

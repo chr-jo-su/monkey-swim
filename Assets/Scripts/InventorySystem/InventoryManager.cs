@@ -13,8 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     [HideInInspector] public int selectedSlot = -1;
 
-    [Header("Testing variables (to be deleted later)")]
-    public Item[] testItems;
+    public Item[] items;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -28,11 +27,11 @@ public class InventoryManager : MonoBehaviour
         // Select the first slot
         ChangeSelectedSlot(0);
 
-        // Testing code; This should allow you to craft 7 ticks and 2 coffee fish and
-        // have only the 2 coffee fish left in the inventory
-        AddItems(testItems[0], 7 * 1);
-        AddItems(testItems[1], 2 * 2);
-        AddItems(testItems[1], 2 * 7);
+        // Testing code; This should allow you to craft
+        // one diamond pickaxe and have two oak log left over
+        AddItems(items[0], 13);
+        AddItems(items[1], 3);
+        AddItems(items[2], 1);
     }
 
     /// <summary>
