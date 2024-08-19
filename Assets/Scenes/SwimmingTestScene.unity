@@ -327,7 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647299035}
   - component: {fileID: 647299036}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BananarangStatic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 419459860108603908, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 616643639994589470, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -561,7 +565,7 @@ PrefabInstance:
       addedObject: {fileID: 647299035}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 419459860108603908, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 1958793833}
   m_SourcePrefab: {fileID: 100100000, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
 --- !u!224 &1334392059 stripped
@@ -757,7 +761,7 @@ MonoBehaviour:
   BananarangStatic: {fileID: 647299034}
   BananarangObject: {fileID: 6870325924892968380, guid: f0b296dbae2d39e419b472fe2810a366, type: 3}
   BananarangClones: []
-  Lifespan: 1
+  Lifespan: 1.8
   Velocity: 0
   BananarangReady: 0
 --- !u!1001 &722064188361139222

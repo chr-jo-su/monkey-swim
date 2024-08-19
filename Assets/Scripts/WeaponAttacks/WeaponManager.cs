@@ -10,7 +10,6 @@ public class WeaponManager : MonoBehaviour
     public GameObject[] BananarangClones;
     private Vector3 Direction;
     private Vector3 MousePosition;
-    private Vector3 PlayerPosition;
     private Camera MainCamera;
     public float Lifespan;
     public float Velocity;
@@ -21,6 +20,7 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        BananarangReady = true;
     }
 
     void Update()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5611068172872823225}
   - component: {fileID: 2452360986791295385}
   - component: {fileID: -3285300257430336354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bananarang
   m_TagString: BananarangClone
   m_Icon: {fileID: 0}
