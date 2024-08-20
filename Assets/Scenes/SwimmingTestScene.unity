@@ -761,9 +761,10 @@ MonoBehaviour:
   BananarangStatic: {fileID: 647299034}
   BananarangObject: {fileID: 6870325924892968380, guid: f0b296dbae2d39e419b472fe2810a366, type: 3}
   BananarangClones: []
-  Lifespan: 1.8
+  MaxBananarangCount: 3
+  BananarangCount: 0
   Velocity: 0
-  BananarangReady: 0
+  Lifespan: 3
 --- !u!1001 &722064188361139222
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,17 +11,22 @@ public class Bananarang : MonoBehaviour
     private UnityEngine.Vector3 PlayerPosition;
     private UnityEngine.Vector3 MousePosition;
     private UnityEngine.Vector3 Direction;
-    private Camera MainCamera;
     private Rigidbody2D RigidBody;
-    public float Velocity;
+    private Collider2D BananarangCollider;
+    private Collider2D PlayerCollider;
+    private Camera MainCamera;
     private float Angle;
     private float Timer;
+    public float Velocity;
     private bool ReturnToPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        PlayerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
+        BananarangCollider = GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(BananarangCollider, PlayerCollider, true);
         RigidBody = GetComponent<Rigidbody2D>();
         MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
         Direction = MousePosition - transform.position;
@@ -46,6 +51,9 @@ public class Bananarang : MonoBehaviour
             Direction = PlayerPosition - transform.position;
             RigidBody.velocity =
                 new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
+            if (UnityEngine.Vector2.Distance(transform.position, PlayerPosition) < 1) {
+                Destroy(gameObject);
+            }
         }
     }
 

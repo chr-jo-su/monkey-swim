@@ -11,16 +11,19 @@ public class WeaponManager : MonoBehaviour
     private Vector3 Direction;
     private Vector3 MousePosition;
     private Camera MainCamera;
-    public float Lifespan;
+    public float MaxBananarangCount;
+    public float BananarangCount;
     public float Velocity;
+    public float Lifespan;
     private float Timer;
     private float Rotation;
-    public bool BananarangReady;
+    private bool BananarangReady;
 
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         BananarangReady = true;
+        BananarangCount = 3;
     }
 
     void Update()
@@ -30,26 +33,37 @@ public class WeaponManager : MonoBehaviour
         Rotation = Mathf.Atan2(-Direction.y, -Direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, Rotation);
 
-        if (!BananarangReady)
+        if (BananarangCount < MaxBananarangCount)
         {
-            BananarangStatic.SetActive(false);
             Timer += Time.deltaTime;
-            if (Timer >= Lifespan)
+            if (Timer >= 1)
             {
-                BananarangClones = GameObject.FindGameObjectsWithTag("BananarangClone");
-                foreach(GameObject obj in BananarangClones) {
-                    Destroy(obj);
-                }
                 BananarangStatic.SetActive(true);
-                BananarangReady = true;
+                BananarangCount += 1;
                 Timer = 0;
             }
         }
 
-        if (Input.GetMouseButton(0) && BananarangReady)
+        if (BananarangReady)
         {
-            BananarangReady = false;
-            Instantiate(BananarangObject, BananarangStatic.transform.position, Quaternion.identity);
+            if (Input.GetMouseButton(0) && BananarangCount >= 1)
+            {
+                Instantiate(
+                    BananarangObject,
+                    BananarangStatic.transform.position,
+                    Quaternion.identity
+                );
+                BananarangReady = false;
+                BananarangCount -= 1;
+                BananarangStatic.SetActive(false);
+            }
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            BananarangReady = true;
+        }
+
+        Debug.Log(BananarangCount);
     }
 }
