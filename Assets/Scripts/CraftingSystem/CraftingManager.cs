@@ -16,9 +16,10 @@ public class CraftingManager : MonoBehaviour
     public GameObject craftingSlotPrefab;
 
     public GameObject craftingFocusSlot;
-    public TMP_Text craftingFocusText;
+    public TMP_Text craftingFocusTitleText;
     public GameObject craftingQuantitySection;
     private Item currentSelectedItem;
+    public TMP_Text craftingFocusResourcesText;
 
     public GameObject imagePrefab;
 
@@ -132,10 +133,18 @@ public class CraftingManager : MonoBehaviour
         newImage.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, -90);
 
         // Set the text to the name of the item
-        craftingFocusText.text = selectedItem.itemName;
+        craftingFocusTitleText.text = selectedItem.itemName;
 
         // Find the recipe for the selected item
         CraftingRecipe selectedRecipe = itemToRecipeDictionary[selectedItem];
+
+        // Set the text of the resources required for the selected item
+        string[] resources;
+
+        for (int i = 0; i < selectedRecipe.itemsRequired.Count; i++)
+        {
+            // resources.
+        }
 
         // Find out the maximum that can be crafted
         int maxCraftable = InventoryManager.instance.GetTotalEmptySlots(selectedItem);
@@ -173,7 +182,9 @@ public class CraftingManager : MonoBehaviour
             Destroy(craftingFocusSlot.transform.GetChild(0).gameObject);
         }
 
-        craftingFocusText.text = "Select an item to craft";
+        craftingFocusTitleText.text = "Select an item to craft";
+
+        craftingFocusResourcesText.text = "Select an item to see the recipe.";
 
         craftingQuantitySection.GetComponent<CraftingQuantityHandler>().ResetQuantitySection();
     }
