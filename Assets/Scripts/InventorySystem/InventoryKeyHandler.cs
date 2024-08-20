@@ -5,14 +5,24 @@ using UnityEngine;
 public class InventoryKeyHandler : MonoBehaviour
 {
     // Variables
-    [HideInInspector] public bool isShowing = true;
+    public static InventoryKeyHandler instance;
+
+    [HideInInspector] private bool isShowing;
     public GameObject inventory;
     public KeyCode inventoryKey = KeyCode.E;
     public int hotbarSlots = 8;
 
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        isShowing = true;
+
         // Start the inventory closed
         CloseInventory();
 
@@ -25,16 +35,14 @@ public class InventoryKeyHandler : MonoBehaviour
         // Check for the inventory key to be pressed
         if (Input.GetKeyDown(inventoryKey))
         {
-            if (inventory.activeSelf)
+            if (isShowing)
             {
-                // If it is showing, hide it
+                // If it's showing, hide it
                 CloseInventory();
-                InventoryManager.instance.ReselectPreviousSlot();
             }
             else
             {
                 ShowInventory();
-                InventoryManager.instance.DeselectAllSlots();
             }
         }
 
@@ -69,18 +77,23 @@ public class InventoryKeyHandler : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
-        inventory.SetActive(false);
-        isShowing = false;
-
-        // Disable dragging for the hotbar items
-        InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
-
-        // Remove any right click menus if there are any
-        try
+        if (isShowing)
         {
-            Destroy(GameObject.Find("ItemTooltip(Clone)"));
+            inventory.SetActive(false);
+            isShowing = false;
+
+            // Disable dragging for the hotbar items
+            InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
+
+            // Remove any tooltip menus if there are any
+            try
+            {
+                Destroy(GameObject.Find("ItemTooltip(Clone)"));
+            }
+            catch (System.Exception) { }
+
+            InventoryManager.instance.ReselectPreviousSlot();
         }
-        catch (System.Exception) { }
     }
 
     /// <summary>
@@ -88,10 +101,18 @@ public class InventoryKeyHandler : MonoBehaviour
     /// </summary>
     public void ShowInventory()
     {
-        inventory.SetActive(true);
-        isShowing = true;
+        if (!isShowing)
+        {
+            // Close the crafting menu if it is open
+            CraftingKeyHandler.instance.CloseCraftingMenu();
 
-        // Enable dragging for the hotbar items
-        InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
+            inventory.SetActive(true);
+            isShowing = true;
+
+            // Enable dragging for the hotbar items
+            InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
+
+            InventoryManager.instance.DeselectAllSlots();
+        }
     }
 }

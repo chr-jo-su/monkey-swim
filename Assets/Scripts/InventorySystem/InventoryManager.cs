@@ -13,8 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     [HideInInspector] public int selectedSlot = -1;
 
-    [Header("Testing variables (to be deleted later)")]
-    public Item[] testItems;
+    public Item[] items;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -28,16 +27,11 @@ public class InventoryManager : MonoBehaviour
         // Select the first slot
         ChangeSelectedSlot(0);
 
-        // Testing code; REMOVE LATER
-        int added = AddItems(testItems[2], 19);
-        for (int i = 0; i < 53; i++)    // Chose a weird number of items to see if the stacks are correct
-        {
-            int randomIndex = Random.Range(0, testItems.Length); // Get a random index
-            Item randomItem = testItems[randomIndex]; // Get the random item
-            added = AddItems(randomItem); // Add the item to the inventory
-            if (added > 0) { break; }
-        }
-        DropSelectedItem(2);
+        // Testing code; This should allow you to craft
+        // one diamond pickaxe and have two oak log left over
+        AddItems(items[0], 13);
+        AddItems(items[1], 3);
+        AddItems(items[2], 1);
     }
 
     /// <summary>
@@ -81,6 +75,78 @@ public class InventoryManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// Returns all the items and quantities currently in the inventory.
+    /// </summary>
+    /// <returns>A dictionary containing all the items (as keys) and their quantities (as values).</returns>
+    public Dictionary<Item, int> GetAllItems()
+    {
+        Dictionary<Item, int> items = new();
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+
+                if (items.ContainsKey(inventoryItem.storedItem))
+                {
+                    items[inventoryItem.storedItem] += inventoryItem.currentStackSize;
+                }
+                else
+                {
+                    items.Add(inventoryItem.storedItem, inventoryItem.currentStackSize);
+                }
+            }
+        }
+
+        return items;
+    }
+
+    /// <summary>
+    /// Returns the total number of Items that can fit into the remaining slots.
+    /// </summary>
+    /// <param name="item">The Item to check for spaces.</param>
+    /// <returns>An integer specifying the total number of Item that can fit into the unfilled slots.</returns>
+    public int GetTotalEmptySlots(Item item)
+    {
+        int total = 0;
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount == 1)
+            {
+                if (child.transform.GetChild(0).GetComponent<InventoryItem>().storedItem == item)
+                {
+                    total += item.maxStackSize - child.transform.GetChild(0).GetComponent<InventoryItem>().currentStackSize;
+                }
+            }
+        }
+
+        total += GetTotalEmptySlots() * item.maxStackSize;
+
+        return total;
+    }
+
+    /// <summary>
+    /// Returns the total number of empty slots
+    /// </summary>
+    /// <returns>An integer specifying the total number of completely empty slots in the player's inventory.</returns>
+    public int GetTotalEmptySlots()
+    {
+        int total = 0;
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount == 0)
+            {
+                total++;
+            }
+        }
+
+        return total;
     }
 
     /// <summary>
@@ -173,6 +239,7 @@ public class InventoryManager : MonoBehaviour
     public int AddItems(Item item, int quantity = 1)
     {
         int prevQuantity = quantity;
+
         while (quantity > 0)
         {
             // Find a slot with the given item and available space if it's stackable
@@ -187,9 +254,10 @@ public class InventoryManager : MonoBehaviour
                         if (inventoryItem.storedItem.itemID == item.itemID &&
                             inventoryItem.currentStackSize < item.maxStackSize)
                         {
-                            // Spawn the item into the slot
+                            // Add the item into the slot
                             IncrementItem(child);
                             quantity--;
+
                             break;
                         }
                     }
@@ -206,6 +274,7 @@ public class InventoryManager : MonoBehaviour
                         // Spawn the item into the slot
                         SpawnItem(item, child);
                         quantity--;
+
                         break;
                     }
                 }
@@ -266,7 +335,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Drops the selected item from the inventory and returns it
+    /// Drops the selected item from the inventory and returns it.
     /// </summary>
     /// <param name="dropQuantity">The amount of the selected item to drop. Defaults to 1.</param>
     /// <returns>The item that was dropped.</returns>
@@ -304,5 +373,41 @@ public class InventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Removes a given quantity of the given item from the inventory and returns it.
+    /// </summary>
+    /// <param name="item">The given Item to be removed.</param>
+    /// <param name="quantity">The quantity of the item that should be removed.</param>
+    /// <returns>The Item that was removed.</returns>
+    public Item RemoveItem(Item item, int quantity = 1)
+    {
+        int total = 0;
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+
+                if (inventoryItem.storedItem.itemID == item.itemID)
+                {
+                    if (inventoryItem.currentStackSize >= quantity)
+                    {
+                        inventoryItem.DecrementItem(quantity);
+                        break;
+                    }
+                    else
+                    {
+                        total = inventoryItem.currentStackSize;
+                        inventoryItem.DecrementItem(quantity);
+                        quantity -= total;
+                    }
+                }
+            }
+        }
+
+        return item;
     }
 }

@@ -8,6 +8,7 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
 {
     // Variables
     public Image image;
+
     public Vector3 selectedScale;
     private Vector3 deselectedScale;
 

@@ -12,7 +12,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text textObject;
     public Item storedItem;
     public int currentStackSize = 1;
-    public GameObject RightClickMenuPrefab;
+
+    public GameObject tooltipPrefab;
     public float tooltipDelay = 0.75f;
 
     [HideInInspector] public Transform parentAfterDrag;
@@ -23,7 +24,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     // Checks if the mouse was hovering over the object for a certain amount of time.
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Check if the current game object was right clicked
+        // Check if the current game object was not dragged
         if (draggable)
         {
             allowTooltip = true;
@@ -43,7 +44,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="newItem">The Item scriptable object to be added.</param>
     /// <param name="quantity">The amount of that item to be added.</param>
     public void InitialiseItem(Item newItem, int quantity = 1)
-
     {
         storedItem = newItem;
         image.sprite = newItem.itemSprite;
@@ -71,7 +71,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         currentStackSize -= quantity;
         ChangeText();
 
-        if (currentStackSize == 0)
+        if (currentStackSize <= 0)
         {
             Destroy(gameObject);
         }
@@ -129,7 +129,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (allowTooltip)
         {
             // Instantiate the tooltip
-            GameObject newGameObjectItem = Instantiate(RightClickMenuPrefab, transform.root);
+            GameObject newGameObjectItem = Instantiate(tooltipPrefab, transform.root);
 
             // Get the height of the tooltip
             RectTransform rectTransform = newGameObjectItem.GetComponent<RectTransform>();
