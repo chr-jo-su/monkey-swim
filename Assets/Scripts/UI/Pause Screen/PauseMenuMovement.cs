@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuMovement : MonoBehaviour
 {
@@ -67,6 +68,11 @@ public class PauseMenuMovement : MonoBehaviour
         Time.timeScale = 0f;
         Target = CameraTarget;
         Paused = true;
+    }
+
+    public void GoToMain()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
     void Move()

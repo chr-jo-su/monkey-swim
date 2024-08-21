@@ -8,11 +8,34 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
 {
     // Variables
     public Image image;
-    public Color selectedSlotColor, deselectedSlotColor;
 
+    public Vector3 selectedScale;
+    private Vector3 deselectedScale;
+
+    // Awake is called when the script instance is being loaded
     private void Awake()
     {
+        deselectedScale = transform.localScale;
         DeselectSlot();
+    }
+
+    /// <summary>
+    /// This sets the item (if any) to be draggable or not.
+    /// </summary>
+    /// <param name="dragOption">A boolean that specifies if the item is draggable or not.</param>
+    public void SetDraggable(bool dragOption)
+    {
+        if (transform.childCount != 0)
+        {
+            if (dragOption)
+            {
+                transform.GetChild(0).GetComponent<InventoryItem>().draggable = true;
+            }
+            else
+            {
+                transform.GetChild(0).GetComponent<InventoryItem>().draggable = false;
+            }
+        }
     }
 
     /// <summary>
@@ -20,7 +43,7 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
     /// </summary>
     public void SelectSlot()
     {
-        image.color = selectedSlotColor;
+        transform.localScale = selectedScale;
     }
 
     /// <summary>
@@ -28,9 +51,10 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
     /// </summary>
     public void DeselectSlot()
     {
-        image.color = deselectedSlotColor;
+        transform.localScale = deselectedScale;
     }
 
+    // This adds the object to the slot if it is empty
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)

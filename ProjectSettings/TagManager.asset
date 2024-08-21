@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Boundary
   - BananarangClone
+  - Fish
+  - Item
+  - PauseMenuManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Items
   - Water
   - UI
   - Monkey

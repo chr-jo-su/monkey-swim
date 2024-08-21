@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 1536919061356436556}
   - component: {fileID: 7569857934313595618}
   - component: {fileID: 1296609502298723916}
-  - component: {fileID: 616643639994589470}
   - component: {fileID: 5174726874596751175}
   m_Layer: 6
+  - component: {fileID: 8249282104773770940}
+  - component: {fileID: 7243071159971029084}
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -105,6 +107,7 @@ MonoBehaviour:
   moveSpeed: 4
   rigidBody: {fileID: 1296609502298723916}
   seaLineObject: {fileID: 0}
+  animator: {fileID: 5174726874596751175}
   oxygenSlider: {fileID: 0}
   oxygenDepletionRate: 3
   oxygenGainRate: 5
@@ -127,6 +130,14 @@ MonoBehaviour:
   BananarangCount: 0
   Velocity: 0
   Lifespan: 3
+  oxygenGainRate: 10
+  audioSource: {fileID: 0}
+  splashSound: {fileID: 8300000, guid: 926dc6a3478e6bf4d8afa8fe14fe8e77, type: 3}
+  itemPickupSound: {fileID: 8300000, guid: ea46a44cce5b1ca5c8c6a4e6ae828bf8, type: 3}
+  seaAmbience: {fileID: 0}
+  underWaterAmbience: {fileID: 0}
+  underWaterMusic: {fileID: 0}
+  inventorySystem: {fileID: 0}
 --- !u!50 &1296609502298723916
 Rigidbody2D:
   serializedVersion: 4
@@ -150,12 +161,46 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &616643639994589470
-PolygonCollider2D:
+--- !u!95 &5174726874596751175
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419459860108603908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b68595111228a48138fa6107cce68132, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8249282104773770940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419459860108603908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9f66802a2914f969d9c7d29ea720c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 20
+--- !u!61 &7243071159971029084
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -186,7 +231,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -401,3 +446,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2.5}
+  m_EdgeRadius: 0
