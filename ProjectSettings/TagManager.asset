@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boundary
+  - BananarangClone
   - Fish
   - Item
   - PauseMenuManager
@@ -15,8 +16,8 @@ TagManager:
   - Items
   - Water
   - UI
-  - 
-  - 
+  - Monkey
+  - Bananarang
   - 
   - 
   - 
