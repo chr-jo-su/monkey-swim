@@ -119,6 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 5416396015729609266}
   inventoryKey: 101
+  hotbar: {fileID: 7539907214528831930}
   hotbarSlots: 8
 --- !u!114 &5101109049234071484
 MonoBehaviour:
@@ -1389,6 +1390,34 @@ PrefabInstance:
     - target: {fileID: 8135491189919267319, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5101109049234071484}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SortInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InventoryManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -3969,6 +3998,11 @@ PrefabInstance:
 --- !u!224 &2522329561322267432 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6775971752231282526, guid: 77b348636ff82c543b11b020788874cf, type: 3}
+  m_PrefabInstance: {fileID: 9009463386324796534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7539907214528831930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1561388557927605708, guid: 77b348636ff82c543b11b020788874cf, type: 3}
   m_PrefabInstance: {fileID: 9009463386324796534}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9208860691964884020

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -101,7 +102,7 @@ public class CraftingManager : MonoBehaviour
             // Remove the required items from the inventory
             for (int i = 0; i < selectedRecipe.itemsRequired.Count; i++)
             {
-                InventoryManager.instance.RemoveItem(selectedRecipe.itemsRequired[i], selectedRecipe.quantityRequired[i] * selectedQuantity);
+                InventoryManager.instance.RemoveItems(selectedRecipe.itemsRequired[i], selectedRecipe.quantityRequired[i] * selectedQuantity);
             }
 
             // Add the crafted item to the inventory
@@ -139,15 +140,17 @@ public class CraftingManager : MonoBehaviour
         CraftingRecipe selectedRecipe = itemToRecipeDictionary[selectedItem];
 
         // Set the text of the resources required for the selected item
-        string[] resources;
+        string resourceText = "";
 
         for (int i = 0; i < selectedRecipe.itemsRequired.Count; i++)
         {
-            // resources.
+            resourceText += "x" + selectedRecipe.quantityRequired[i] + " " + selectedRecipe.itemsRequired[i].itemName + "\n";
         }
 
-        // Find out the maximum that can be crafted
-        int maxCraftable = InventoryManager.instance.GetTotalEmptySlots(selectedItem);
+        craftingFocusResourcesText.text = resourceText;
+
+        // Find out the maximum number of items that can be crafted
+        int maxCraftable = InventoryManager.instance.GetMaximumCapacity(selectedItem);
 
         Dictionary<Item, int> itemList = InventoryManager.instance.GetAllItems();
 

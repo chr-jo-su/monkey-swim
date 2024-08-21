@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour
 
         // Testing code; This should allow you to craft
         // one diamond pickaxe and have two oak log left over
-        AddItems(items[0], 13);
+        AddItems(items[0], 73);
         AddItems(items[1], 3);
         AddItems(items[2], 1);
     }
@@ -55,6 +55,7 @@ public class InventoryManager : MonoBehaviour
     public bool CheckForItems(Item item, int quantity = 1)
     {
         int totalItems = 0;
+
         // Go through each slot and see if the item is there
         foreach (InventorySlotHolder child in slots)
         {
@@ -110,7 +111,7 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     /// <param name="item">The Item to check for spaces.</param>
     /// <returns>An integer specifying the total number of Item that can fit into the unfilled slots.</returns>
-    public int GetTotalEmptySlots(Item item)
+    public int GetMaximumCapacity(Item item)
     {
         int total = 0;
 
@@ -324,14 +325,16 @@ public class InventoryManager : MonoBehaviour
     {
         InventorySlotHolder slot = slots[selectedSlot];
 
+        Item storedItem = null;
+
         if (slot.transform.childCount != 0)
         {
             InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
 
-            return itemInstance.storedItem;
+            storedItem = itemInstance.storedItem;
         }
 
-        return null;
+        return storedItem;
     }
 
     /// <summary>
@@ -341,6 +344,7 @@ public class InventoryManager : MonoBehaviour
     /// <returns>The item that was dropped.</returns>
     public Item DropSelectedItem(int dropQuantity = 1)
     {
+        Item storedItem = null;
         InventorySlotHolder slot = slots[selectedSlot];
 
         if (slot.transform.childCount != 0)
@@ -349,10 +353,10 @@ public class InventoryManager : MonoBehaviour
 
             itemInstance.DecrementItem(dropQuantity);
 
-            return itemInstance.storedItem;
+            storedItem = itemInstance.storedItem;
         }
 
-        return null;
+        return storedItem;
     }
 
     /// <summary>
@@ -361,6 +365,7 @@ public class InventoryManager : MonoBehaviour
     /// <returns>The item that was dropped.</returns>
     public Item DropAllSelectedItems()
     {
+        Item storedItem = null;
         InventorySlotHolder slot = slots[selectedSlot];
 
         if (slot.transform.childCount != 0)
@@ -369,10 +374,10 @@ public class InventoryManager : MonoBehaviour
 
             itemInstance.DecrementItem(itemInstance.currentStackSize);
 
-            return itemInstance.storedItem;
+            storedItem = itemInstance.storedItem;
         }
 
-        return null;
+        return storedItem;
     }
 
     /// <summary>
@@ -381,7 +386,7 @@ public class InventoryManager : MonoBehaviour
     /// <param name="item">The given Item to be removed.</param>
     /// <param name="quantity">The quantity of the item that should be removed.</param>
     /// <returns>The Item that was removed.</returns>
-    public Item RemoveItem(Item item, int quantity = 1)
+    public Item RemoveItems(Item item, int quantity = 1)
     {
         int total = 0;
 
@@ -409,5 +414,62 @@ public class InventoryManager : MonoBehaviour
         }
 
         return item;
+    }
+
+    // Sort out the inventory items
+    public void SortInventory()
+    {
+        // Sort the items
+        Dictionary<Item, int> items = new();
+
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+
+                if (items.ContainsKey(inventoryItem.storedItem))
+                {
+                    items[inventoryItem.storedItem] += inventoryItem.currentStackSize;
+                }
+                else
+                {
+                    items[inventoryItem.storedItem] = inventoryItem.currentStackSize;
+                }
+            }
+        }
+
+        // Clear the previous items
+        foreach (InventorySlotHolder child in slots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                Destroy(child.transform.GetChild(0).gameObject);
+            }
+        }
+
+        bool empty = false;
+        while (!empty)
+        {
+            empty = true;
+            foreach (InventorySlotHolder child in slots)
+            {
+                if (child.transform.childCount != 0)
+                {
+                    Debug.Log( "(" + child.GetComponentInChildren<InventoryItem>().storedItem.itemID + ") " + child.GetComponentInChildren<InventoryItem>().storedItem.name + " x" + child.GetComponentInChildren<InventoryItem>().currentStackSize);
+                }
+            }
+        }
+
+        // Add the items back
+        foreach (Item item in items.Keys)
+        {
+            foreach (InventorySlotHolder child in slots)
+            {
+                InventoryItem itemInstance = child.GetComponentInChildren<InventoryItem>();
+                itemInstance.InitialiseItem(item, items[item]);
+                break;
+            }
+        }
     }
 }

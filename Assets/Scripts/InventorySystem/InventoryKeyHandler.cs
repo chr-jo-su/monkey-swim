@@ -7,9 +7,10 @@ public class InventoryKeyHandler : MonoBehaviour
     // Variables
     public static InventoryKeyHandler instance;
 
-    [HideInInspector] private bool isShowing;
+    [HideInInspector] private bool inventoryIsShowing;
     public GameObject inventory;
     public KeyCode inventoryKey = KeyCode.E;
+    public GameObject hotbar;
     public int hotbarSlots = 8;
 
     // Awake is called when the script instance is being loaded
@@ -21,12 +22,10 @@ public class InventoryKeyHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isShowing = true;
+        inventoryIsShowing = true;
 
         // Start the inventory closed
         CloseInventory();
-
-        Debug.Log("Inventory system is active.");
     }
 
     // Update is called once per frame
@@ -35,7 +34,7 @@ public class InventoryKeyHandler : MonoBehaviour
         // Check for the inventory key to be pressed
         if (Input.GetKeyDown(inventoryKey))
         {
-            if (isShowing)
+            if (inventoryIsShowing)
             {
                 // If it's showing, hide it
                 CloseInventory();
@@ -47,7 +46,7 @@ public class InventoryKeyHandler : MonoBehaviour
         }
 
         // Only check keys for the hotbar if the inventory is closed
-        if (!isShowing)
+        if (!inventoryIsShowing)
         {
             // Check for the scroll wheel to be scrolled
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -77,10 +76,10 @@ public class InventoryKeyHandler : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
-        if (isShowing)
+        if (inventoryIsShowing)
         {
             inventory.SetActive(false);
-            isShowing = false;
+            inventoryIsShowing = false;
 
             // Disable dragging for the hotbar items
             InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
@@ -101,18 +100,42 @@ public class InventoryKeyHandler : MonoBehaviour
     /// </summary>
     public void ShowInventory()
     {
-        if (!isShowing)
+        if (!inventoryIsShowing)
         {
             // Close the crafting menu if it is open
             CraftingKeyHandler.instance.CloseCraftingMenu();
 
             inventory.SetActive(true);
-            isShowing = true;
+            inventoryIsShowing = true;
 
             // Enable dragging for the hotbar items
             InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
 
             InventoryManager.instance.DeselectAllSlots();
         }
+    }
+
+    /// <summary>
+    /// Hides the hotbar game object.
+    /// </summary>
+    public void HideHotbar()
+    {
+        hotbar.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Shows the hotbar game object.
+    /// </summary>
+    public void ShowHotbar()
+    {
+        hotbar.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Toggles the hotbar game object.
+    /// </summary>
+    public void ToggleHotbar()
+    {
+        hotbar.gameObject.SetActive(!hotbar.gameObject.activeSelf);
     }
 }
