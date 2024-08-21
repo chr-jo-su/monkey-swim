@@ -33,8 +33,16 @@ public class playerMovement : MonoBehaviour {
     public AudioSource seaAmbience;
     public AudioSource underWaterAmbience;
     public AudioSource underWaterMusic;
-
+    public Collider2D seaTopBoxCollider;
+    public Collider2D seaBottomBoxCollider;
+    public Collider2D playerCollider;
     public GameObject inventorySystem;
+
+
+    void Start() {
+        Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
+        Physics2D.IgnoreCollision(seaBottomBoxCollider, playerCollider, true);
+    }
 
     // Update is called once per frame
     void Update() {
@@ -46,12 +54,12 @@ public class playerMovement : MonoBehaviour {
         }
 
         else if (oxygen < 100.0f && canBreath) {
-            oxygen += oxygenGainRate * Time.deltaTime;
+            oxygen += 10*oxygenGainRate * Time.deltaTime;
             oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
         }
 
         if (oxygen <= 0.0f) {
-            Debug.Log("monke painfully drowned :(");
+            // Debug.Log("monke painfully drowned :(");
         }
     }
 
@@ -110,17 +118,6 @@ public class playerMovement : MonoBehaviour {
         else {
             seaAmbience.UnPause();
             underWaterAmbience.enabled = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(!inSea) audioSource.PlayOneShot(splashSound);
-
-        if (other.CompareTag("Item")) {
-            Debug.Log("Picked up " + other.name);
-            inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
-            audioSource.PlayOneShot(itemPickupSound);
-            Destroy(other.gameObject);
         }
     }
 }
