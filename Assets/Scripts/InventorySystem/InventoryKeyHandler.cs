@@ -7,11 +7,16 @@ public class InventoryKeyHandler : MonoBehaviour
     // Variables
     public static InventoryKeyHandler instance;
 
-    [HideInInspector] private bool inventoryIsShowing;
+    private bool inventoryIsShowing;
     public GameObject inventory;
     public KeyCode inventoryKey = KeyCode.E;
+    
     public GameObject hotbar;
     public int hotbarSlots = 8;
+
+    private bool touchscreenMode;
+    public GameObject craftingButton;
+    public GameObject inventoryButton;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -22,14 +27,28 @@ public class InventoryKeyHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventoryIsShowing = true;
+        // If there is a touchscreen, show the inventory and crafting buttons
+        touchscreenMode = Input.touchSupported;
+        craftingButton.SetActive(touchscreenMode);
+        inventoryButton.SetActive(touchscreenMode);
+        Debug.Log(touchscreenMode);
 
         // Start the inventory closed
+        inventoryIsShowing = true;
         CloseInventory();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        // Check for keyboard inputs
+        CheckKeyboardInputs();
+    }
+
+    /// <summary>
+    /// Checks for keyboard inputs.
+    /// </summary>
+    private void CheckKeyboardInputs()
     {
         // Check for the inventory key to be pressed
         if (Input.GetKeyDown(inventoryKey))

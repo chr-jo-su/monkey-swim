@@ -355,6 +355,38 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 2616298311786082160, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.w
+      value: 381
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616298311786082160, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.x
+      value: 61.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616298311786082160, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.y
+      value: 328.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616298311786082160, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.z
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309723115060438021, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.w
+      value: 378.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309723115060438021, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.x
+      value: 60.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309723115060438021, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.y
+      value: 330.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309723115060438021, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
+      propertyPath: m_RaycastPadding.z
+      value: 64.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3419893416253037898, guid: 348ca37cf47cb334f81dfff257a0855d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

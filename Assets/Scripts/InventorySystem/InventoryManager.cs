@@ -9,7 +9,6 @@ public class InventoryManager : MonoBehaviour
 
     public InventorySlotHolder[] slots;
     public int hotbarSlots = 8;
-    public GameObject inventoryItemPrefab;
 
     [HideInInspector] public int selectedSlot = -1;
 
@@ -27,11 +26,11 @@ public class InventoryManager : MonoBehaviour
         // Select the first slot
         ChangeSelectedSlot(0);
 
-        // Testing code; This should allow you to craft
-        // one diamond pickaxe and have two oak log left over
+        // Testing code. This should allow you to craft one diamond pickaxe
         AddItems(items[0], 73);
         AddItems(items[1], 3);
-        AddItems(items[2], 1);
+        AddItems(items[2], 11);
+        RemoveItems(items[0], 40);
     }
 
     /// <summary>
@@ -256,7 +255,7 @@ public class InventoryManager : MonoBehaviour
                             inventoryItem.currentStackSize < item.maxStackSize)
                         {
                             // Add the item into the slot
-                            IncrementItem(child);
+                            child.IncrementItem();
                             quantity--;
 
                             break;
@@ -273,7 +272,7 @@ public class InventoryManager : MonoBehaviour
                     if (child.transform.childCount == 0)
                     {
                         // Spawn the item into the slot
-                        SpawnItem(item, child);
+                        child.SpawnItem(item, 1);
                         quantity--;
 
                         break;
@@ -290,31 +289,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         return quantity;
-    }
-
-    /// <summary>
-    /// Spawns a new instance of the given item into the given slot
-    /// </summary>
-    /// <param name="item">The item object to be instantiated.</param>
-    /// <param name="slot">The inventory slot object to instantiate the item in.</param>
-    private void SpawnItem(Item item, InventorySlotHolder slot)
-    {
-        // Instantiate the game object
-        GameObject newGameObjectItem = Instantiate(inventoryItemPrefab, slot.transform);
-
-        // Add the item
-        InventoryItem itemInstance = newGameObjectItem.GetComponent<InventoryItem>();
-        itemInstance.InitialiseItem(item, 1);
-    }
-
-    /// <summary>
-    /// Increments the item stack stored in the given slot.
-    /// </summary>
-    /// <param name="slot">The invenotry slot to add the item to.</param>
-    private void IncrementItem(InventorySlotHolder slot)
-    {
-        InventoryItem itemInstance = slot.GetComponentInChildren<InventoryItem>();
-        itemInstance.IncrementItem();
     }
 
     /// <summary>
@@ -347,20 +321,14 @@ public class InventoryManager : MonoBehaviour
         Item storedItem = null;
         InventorySlotHolder slot = slots[selectedSlot];
 
-        if (slot.transform.childCount != 0)
-        {
-            InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
-
-            itemInstance.DecrementItem(dropQuantity);
-
-            storedItem = itemInstance.storedItem;
-        }
+        storedItem = slot.GetStoredItem();
+        slot.DecrementItem(dropQuantity);
 
         return storedItem;
     }
 
     /// <summary>
-    /// Drops all of the selected item from the inventory and returns it
+    /// Drops all of the selected item from the inventory and returns it.
     /// </summary>
     /// <returns>The item that was dropped.</returns>
     public Item DropAllSelectedItems()
@@ -368,14 +336,8 @@ public class InventoryManager : MonoBehaviour
         Item storedItem = null;
         InventorySlotHolder slot = slots[selectedSlot];
 
-        if (slot.transform.childCount != 0)
-        {
-            InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
-
-            itemInstance.DecrementItem(itemInstance.currentStackSize);
-
-            storedItem = itemInstance.storedItem;
-        }
+        storedItem = slot.GetStoredItem();
+        slot.DecrementItem(slot.GetCurrentStackSize());
 
         return storedItem;
     }
@@ -384,7 +346,7 @@ public class InventoryManager : MonoBehaviour
     /// Removes a given quantity of the given item from the inventory and returns it.
     /// </summary>
     /// <param name="item">The given Item to be removed.</param>
-    /// <param name="quantity">The quantity of the item that should be removed.</param>
+    /// <param name="quantity">The quantity of the item that should be removed. Defaults to 1.</param>
     /// <returns>The Item that was removed.</returns>
     public Item RemoveItems(Item item, int quantity = 1)
     {
@@ -394,19 +356,17 @@ public class InventoryManager : MonoBehaviour
         {
             if (child.transform.childCount != 0)
             {
-                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
-
-                if (inventoryItem.storedItem.itemID == item.itemID)
+                if (child.GetStoredItem().itemID == item.itemID)
                 {
-                    if (inventoryItem.currentStackSize >= quantity)
+                    if (child.GetCurrentStackSize() >= quantity)
                     {
-                        inventoryItem.DecrementItem(quantity);
+                        child.DecrementItem(quantity);
                         break;
                     }
                     else
                     {
-                        total = inventoryItem.currentStackSize;
-                        inventoryItem.DecrementItem(quantity);
+                        total = child.GetCurrentStackSize();
+                        child.DecrementItem(quantity);
                         quantity -= total;
                     }
                 }
@@ -416,7 +376,9 @@ public class InventoryManager : MonoBehaviour
         return item;
     }
 
-    // Sort out the inventory items
+    /// <summary>
+    /// Sorts the inventory items and stacks items as much as possible.
+    /// </summary>
     public void SortInventory()
     {
         // Sort the items
@@ -440,36 +402,15 @@ public class InventoryManager : MonoBehaviour
         }
 
         // Clear the previous items
-        foreach (InventorySlotHolder child in slots)
+        foreach (Item item in items.Keys)
         {
-            if (child.transform.childCount != 0)
-            {
-                Destroy(child.transform.GetChild(0).gameObject);
-            }
-        }
-
-        bool empty = false;
-        while (!empty)
-        {
-            empty = true;
-            foreach (InventorySlotHolder child in slots)
-            {
-                if (child.transform.childCount != 0)
-                {
-                    Debug.Log( "(" + child.GetComponentInChildren<InventoryItem>().storedItem.itemID + ") " + child.GetComponentInChildren<InventoryItem>().storedItem.name + " x" + child.GetComponentInChildren<InventoryItem>().currentStackSize);
-                }
-            }
+            RemoveItems(item, items[item]);
         }
 
         // Add the items back
         foreach (Item item in items.Keys)
         {
-            foreach (InventorySlotHolder child in slots)
-            {
-                InventoryItem itemInstance = child.GetComponentInChildren<InventoryItem>();
-                itemInstance.InitialiseItem(item, items[item]);
-                break;
-            }
+            AddItems(item, items[item]);
         }
     }
 }
