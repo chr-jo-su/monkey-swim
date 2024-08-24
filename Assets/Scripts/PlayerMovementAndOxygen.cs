@@ -37,6 +37,8 @@ public class playerMovement : MonoBehaviour {
     public Collider2D seaBottomBoxCollider;
     public Collider2D playerCollider;
     public GameObject inventorySystem;
+    public HealthBar playerHealth;
+    private int drownTimer = 0;
 
 
     void Start() {
@@ -60,6 +62,11 @@ public class playerMovement : MonoBehaviour {
 
         if (oxygen <= 0.0f) {
             // Debug.Log("monke painfully drowned :(");
+            if (drownTimer == 200) {
+                playerHealth.TakeDamage(1);
+                drownTimer = 0;
+            }
+            drownTimer++;
         }
     }
 
@@ -70,7 +77,11 @@ public class playerMovement : MonoBehaviour {
     void ProcessInputs() {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
         animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;
