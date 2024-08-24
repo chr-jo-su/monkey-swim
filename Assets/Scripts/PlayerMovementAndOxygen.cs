@@ -77,6 +77,7 @@ public class playerMovement : MonoBehaviour {
     void ProcessInputs() {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
+        if (moveX == 1) {
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else {
