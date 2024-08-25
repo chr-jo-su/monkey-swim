@@ -3,7 +3,9 @@ guid: 199f60763a885ff4a9b481026db6156b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - storedItem: {instanceID: 0}
+  - tooltipPrefab: {fileID: 9183276346393224946, guid: 9963eb7d5ea6c0949845f30798d5af1a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

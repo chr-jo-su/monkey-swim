@@ -55,7 +55,10 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         transform.localScale = deselectedScale;
     }
 
-    // Selects the slot when clicked. Deselects all other slots.
+    /// <summary>
+    /// Selects the slot when clicked. Deselects all other slots.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         CraftingManager.instance.DeselectAllSlots();
@@ -63,14 +66,20 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         CraftingManager.instance.ShowSelectedRecipe(storedItem);
     }
 
-    // Checks if the mouse was hovering over the object for a certain amount of time.
+    /// <summary>
+    /// Checks if the mouse was hovering over the object for a certain amount of time.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         allowTooltip = true;
         Invoke("ShowTooltip", tooltipDelay);
     }
 
-    // Don't try to show the tooltip if the mouse exits the object.
+    /// <summary>
+    /// Don't try to show the tooltip if the mouse exits the object.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         allowTooltip = false;

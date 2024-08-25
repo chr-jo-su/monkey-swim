@@ -3,7 +3,14 @@ guid: a69b50eb8f60d934c9c5c46f7d964244
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - craftingList: {instanceID: 0}
+  - craftingSlotPrefab: {fileID: 9013387343068509079, guid: 81c7684680851e944a82512f6ffec5e3, type: 3}
+  - craftingFocusSlot: {instanceID: 0}
+  - craftingFocusTitleText: {instanceID: 0}
+  - craftingQuantitySection: {instanceID: 0}
+  - craftingFocusResourcesText: {instanceID: 0}
+  - imagePrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
