@@ -16,6 +16,10 @@ public class CraftingManager : MonoBehaviour
     public GameObject craftingSlotPrefab;
     public int itemsPerPage = 15;
 
+    public GameObject nextPageButton;
+    public GameObject previousPageButton;
+    private int currentPage = 0;
+
     public GameObject craftingFocusSlot;
     public TMP_Text craftingFocusTitleText;
     public GameObject craftingQuantitySection;
@@ -40,11 +44,15 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
+    
     /// <summary>
     /// Adds items (that can be crafted) onto frames on the crafting list.
     /// </summary>
-    public void PopulateCraftingList(int page = 1)
+    /// <param name="page">The page number that the list should be show.</param>
+    public void PopulateCraftingList(int page = 0)
     {
+        currentPage = page;
+
         Dictionary<Item, int> itemList = InventoryManager.instance.GetAllItems();
 
         List<Item> itemsToAdd = new();
@@ -74,6 +82,40 @@ public class CraftingManager : MonoBehaviour
             GameObject newCraftingSlot = Instantiate(craftingSlotPrefab, craftingList.transform);
             newCraftingSlot.GetComponent<CraftingSlot>().InitialiseSlot(itemsToAdd[i], imagePrefab);
         }
+
+        ShowHidePagination(page, itemsToAdd);
+    }
+
+    /// <summary>
+    /// Shows or hides the pagination buttons based on the current page and the items in the crafting list.
+    /// </summary>
+    /// <param name="page">The current page the user is on.</param>
+    /// <param name="items">The list of items that can be shown in the crafting list.</param>
+    private void ShowHidePagination(int page, List<Item> items)
+    {
+        // Show or hide the previous page button
+        if (page == 0)
+        {
+            // Hide the previous page button
+            previousPageButton.SetActive(false);
+        }
+        else
+        {
+            // Show the previous page button
+            previousPageButton.SetActive(true);
+        }
+
+        // Show or hide the next page button
+        if ((page + 1) * itemsPerPage < items.Count)
+        {
+            // Show the next page button
+            nextPageButton.SetActive(true);
+        }
+        else
+        {
+            // Hide the next page button
+            nextPageButton.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -87,6 +129,18 @@ public class CraftingManager : MonoBehaviour
         }
 
         ResetCraftingFocus();
+    }
+
+    // Shows the next page in the crafting list.
+    public void ShowNextPage()
+    {
+        PopulateCraftingList(currentPage + 1);
+    }
+
+    // Shows the previous page in the crafting list.
+    public void ShowPreviousPage()
+    {
+        PopulateCraftingList(currentPage - 1);
     }
 
     /// <summary>
