@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class CraftingManager : MonoBehaviour
 
     public GameObject craftingList;
     public GameObject craftingSlotPrefab;
+    public int itemsPerPage = 15;
 
     public GameObject craftingFocusSlot;
     public TMP_Text craftingFocusTitleText;
@@ -43,7 +43,7 @@ public class CraftingManager : MonoBehaviour
     /// <summary>
     /// Adds items (that can be crafted) onto frames on the crafting list.
     /// </summary>
-    public void PopulateCraftingList()
+    public void PopulateCraftingList(int page = 1)
     {
         Dictionary<Item, int> itemList = InventoryManager.instance.GetAllItems();
 
@@ -69,7 +69,7 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < itemsToAdd.Count; i++)
+        for (int i = page * itemsPerPage; i < Mathf.Min(itemsToAdd.Count, itemsPerPage); i++)
         {
             GameObject newCraftingSlot = Instantiate(craftingSlotPrefab, craftingList.transform);
             newCraftingSlot.GetComponent<CraftingSlot>().InitialiseSlot(itemsToAdd[i], imagePrefab);

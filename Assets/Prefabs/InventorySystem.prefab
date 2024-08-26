@@ -122,7 +122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CraftingKeyHandler, Assembly-CSharp
-        m_MethodName: ShowCraftingMenu
+        m_MethodName: ToggleCraftingMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3609338584841899555}
         m_TargetAssemblyTypeName: InventoryKeyHandler, Assembly-CSharp
-        m_MethodName: ShowInventory
+        m_MethodName: ToggleInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1192,6 +1192,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1085616816064885194, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 6.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085616816064885194, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -4.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085616816064885194, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9999995
+      objectReference: {fileID: 0}
     - target: {fileID: 1417056129757532657, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1584,6 +1596,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_fontSize
+      value: 31.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_characterSpacing
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8135491189919267319, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1679,6 +1711,14 @@ PrefabInstance:
     - target: {fileID: 8135491189919267319, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293067107452180470, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293067107452180470, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -475
       objectReference: {fileID: 0}
     - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
