@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -44,7 +45,6 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    
     /// <summary>
     /// Adds items (that can be crafted) onto frames on the crafting list.
     /// </summary>
@@ -77,7 +77,7 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        for (int i = page * itemsPerPage; i < Mathf.Min(itemsToAdd.Count, itemsPerPage); i++)
+        for (int i = page * itemsPerPage; i < (page * itemsPerPage) + Mathf.Min(itemsToAdd.Count - (page * itemsPerPage), itemsPerPage); i++)
         {
             GameObject newCraftingSlot = Instantiate(craftingSlotPrefab, craftingList.transform);
             newCraftingSlot.GetComponent<CraftingSlot>().InitialiseSlot(itemsToAdd[i], imagePrefab);
@@ -131,15 +131,21 @@ public class CraftingManager : MonoBehaviour
         ResetCraftingFocus();
     }
 
-    // Shows the next page in the crafting list.
+    /// <summary>
+    /// Shows the next page in the crafting list.
+    /// </summary>
     public void ShowNextPage()
     {
+        UnpopulateCraftingList();
         PopulateCraftingList(currentPage + 1);
     }
 
-    // Shows the previous page in the crafting list.
+    /// <summary>
+    /// Shows the previous page in the crafting list.
+    /// </summary>
     public void ShowPreviousPage()
     {
+        UnpopulateCraftingList();
         PopulateCraftingList(currentPage - 1);
     }
 
@@ -213,6 +219,7 @@ public class CraftingManager : MonoBehaviour
             if (itemList.ContainsKey(selectedRecipe.itemsRequired[i]))
             {
                 int maxCraftableFromItem = itemList[selectedRecipe.itemsRequired[i]] / selectedRecipe.quantityRequired[i];
+
                 if (maxCraftableFromItem < maxCraftable)
                 {
                     maxCraftable = maxCraftableFromItem;

@@ -26,11 +26,14 @@ public class InventoryManager : MonoBehaviour
         // Select the first slot
         ChangeSelectedSlot(0);
 
-        // Testing code. This should allow you to craft one diamond pickaxe
-        AddItems(items[0], 73);
-        AddItems(items[1], 3);
-        AddItems(items[2], 11);
-        RemoveItems(items[0], 40);
+        // Testing code.
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].isStackable)
+            {
+                AddItems(items[i], 10);
+            }
+        }
     }
 
     /// <summary>
