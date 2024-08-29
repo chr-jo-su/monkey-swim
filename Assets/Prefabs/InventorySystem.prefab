@@ -122,7 +122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CraftingKeyHandler, Assembly-CSharp
-        m_MethodName: ShowCraftingMenu
+        m_MethodName: ToggleCraftingMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3609338584841899555}
         m_TargetAssemblyTypeName: InventoryKeyHandler, Assembly-CSharp
-        m_MethodName: ShowInventory
+        m_MethodName: ToggleInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -429,11 +429,36 @@ MonoBehaviour:
   hotbarSlots: 8
   selectedSlot: -1
   items:
-  - {fileID: 11400000, guid: ba99cdaa04f68be44bb44ac4d52974ff, type: 2}
-  - {fileID: 11400000, guid: a5aacb65e033bc346bf2f1a799b02e60, type: 2}
-  - {fileID: 11400000, guid: ef74a273d9e15604491a72f08f6946b0, type: 2}
-  - {fileID: 11400000, guid: 67f8654f97fe0af458de7ad1c9eb71c9, type: 2}
+  - {fileID: 11400000, guid: 7ebafcb2ef46f074993b1f4195151b1e, type: 2}
+  - {fileID: 11400000, guid: b42989bc8c8866146b76312476dff17a, type: 2}
+  - {fileID: 11400000, guid: 2b083267165e9d745bfdf4a7c8fbada0, type: 2}
+  - {fileID: 11400000, guid: 2535a8c5101a89241a5fa58f0f0ebcd4, type: 2}
+  - {fileID: 11400000, guid: b840c762490585342a74936124bc8de4, type: 2}
+  - {fileID: 11400000, guid: d8567e8ee43bc3f48b2cf93aa2cd675d, type: 2}
+  - {fileID: 11400000, guid: 622541d5572b22f41a8651f63f782445, type: 2}
+  - {fileID: 11400000, guid: 78e4dec0d39563e48a608441c4de2564, type: 2}
+  - {fileID: 11400000, guid: 67e3d991637b33140acb095b087cb38b, type: 2}
+  - {fileID: 11400000, guid: 8593a081dfdb26244a863bba05c2c093, type: 2}
+  - {fileID: 11400000, guid: 28c2c25a42017254eb96b58c42c2e44d, type: 2}
   - {fileID: 11400000, guid: 059942e76a9da934d8d6d6a9932c13fe, type: 2}
+  - {fileID: 11400000, guid: a5aacb65e033bc346bf2f1a799b02e60, type: 2}
+  - {fileID: 11400000, guid: 5e86a6c4b23c5ef4cb34b21266286b1d, type: 2}
+  - {fileID: 11400000, guid: 4b0952808e2ef424b99fbb6b5c2fd16b, type: 2}
+  - {fileID: 11400000, guid: 4dcd7543e0cd1db4cbcc3b5f315b3144, type: 2}
+  - {fileID: 11400000, guid: 8e8049316dd8cfc4c9d4a9f77ce5356d, type: 2}
+  - {fileID: 11400000, guid: d9983dcd66b7e77409979b6d5433c967, type: 2}
+  - {fileID: 11400000, guid: 15d460154088d7b40a757e10d81c6376, type: 2}
+  - {fileID: 11400000, guid: ba99cdaa04f68be44bb44ac4d52974ff, type: 2}
+  - {fileID: 11400000, guid: ef74a273d9e15604491a72f08f6946b0, type: 2}
+  - {fileID: 11400000, guid: e83ba1e91dbe6d2419dc66dc9addec99, type: 2}
+  - {fileID: 11400000, guid: 67f8654f97fe0af458de7ad1c9eb71c9, type: 2}
+  - {fileID: 11400000, guid: a026f1bbca7639942a6c41d0e2dba69c, type: 2}
+  - {fileID: 11400000, guid: dc260ece6b40dfe4da01422eb31d0ab4, type: 2}
+  - {fileID: 11400000, guid: e6b561d6e8be6f24aa4446b4d7fdd843, type: 2}
+  - {fileID: 11400000, guid: c3808ba678aa2a2469036ad844802b8f, type: 2}
+  - {fileID: 11400000, guid: b7481e8461a5f0c408234483bcae388d, type: 2}
+  - {fileID: 11400000, guid: 649e1ed23c2c9224bbc41d2c5fbe3f2a, type: 2}
+  - {fileID: 11400000, guid: 7cba6c2176351dd46b660b10c1f0d9a8, type: 2}
 --- !u!1001 &635115143601605696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1192,6 +1217,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1085616816064885194, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 6.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085616816064885194, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -4.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085616816064885194, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9999995
+      objectReference: {fileID: 0}
     - target: {fileID: 1417056129757532657, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1584,6 +1621,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_fontSize
+      value: 31.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_characterSpacing
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266832346375415412, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8135491189919267319, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1679,6 +1736,14 @@ PrefabInstance:
     - target: {fileID: 8135491189919267319, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293067107452180470, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293067107452180470, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -475
       objectReference: {fileID: 0}
     - target: {fileID: 8872988121302420156, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

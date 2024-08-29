@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
+using System;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -15,6 +15,11 @@ public class CraftingManager : MonoBehaviour
 
     public GameObject craftingList;
     public GameObject craftingSlotPrefab;
+    public int itemsPerPage = 15;
+
+    public GameObject nextPageButton;
+    public GameObject previousPageButton;
+    private int currentPage = 0;
 
     public GameObject craftingFocusSlot;
     public TMP_Text craftingFocusTitleText;
@@ -43,8 +48,11 @@ public class CraftingManager : MonoBehaviour
     /// <summary>
     /// Adds items (that can be crafted) onto frames on the crafting list.
     /// </summary>
-    public void PopulateCraftingList()
+    /// <param name="page">The page number that the list should be show.</param>
+    public void PopulateCraftingList(int page = 0)
     {
+        currentPage = page;
+
         Dictionary<Item, int> itemList = InventoryManager.instance.GetAllItems();
 
         List<Item> itemsToAdd = new();
@@ -69,10 +77,44 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < itemsToAdd.Count; i++)
+        for (int i = page * itemsPerPage; i < (page * itemsPerPage) + Mathf.Min(itemsToAdd.Count - (page * itemsPerPage), itemsPerPage); i++)
         {
             GameObject newCraftingSlot = Instantiate(craftingSlotPrefab, craftingList.transform);
             newCraftingSlot.GetComponent<CraftingSlot>().InitialiseSlot(itemsToAdd[i], imagePrefab);
+        }
+
+        ShowHidePagination(page, itemsToAdd);
+    }
+
+    /// <summary>
+    /// Shows or hides the pagination buttons based on the current page and the items in the crafting list.
+    /// </summary>
+    /// <param name="page">The current page the user is on.</param>
+    /// <param name="items">The list of items that can be shown in the crafting list.</param>
+    private void ShowHidePagination(int page, List<Item> items)
+    {
+        // Show or hide the previous page button
+        if (page == 0)
+        {
+            // Hide the previous page button
+            previousPageButton.SetActive(false);
+        }
+        else
+        {
+            // Show the previous page button
+            previousPageButton.SetActive(true);
+        }
+
+        // Show or hide the next page button
+        if ((page + 1) * itemsPerPage < items.Count)
+        {
+            // Show the next page button
+            nextPageButton.SetActive(true);
+        }
+        else
+        {
+            // Hide the next page button
+            nextPageButton.SetActive(false);
         }
     }
 
@@ -87,6 +129,24 @@ public class CraftingManager : MonoBehaviour
         }
 
         ResetCraftingFocus();
+    }
+
+    /// <summary>
+    /// Shows the next page in the crafting list.
+    /// </summary>
+    public void ShowNextPage()
+    {
+        UnpopulateCraftingList();
+        PopulateCraftingList(currentPage + 1);
+    }
+
+    /// <summary>
+    /// Shows the previous page in the crafting list.
+    /// </summary>
+    public void ShowPreviousPage()
+    {
+        UnpopulateCraftingList();
+        PopulateCraftingList(currentPage - 1);
     }
 
     /// <summary>
@@ -159,6 +219,7 @@ public class CraftingManager : MonoBehaviour
             if (itemList.ContainsKey(selectedRecipe.itemsRequired[i]))
             {
                 int maxCraftableFromItem = itemList[selectedRecipe.itemsRequired[i]] / selectedRecipe.quantityRequired[i];
+
                 if (maxCraftableFromItem < maxCraftable)
                 {
                     maxCraftable = maxCraftableFromItem;

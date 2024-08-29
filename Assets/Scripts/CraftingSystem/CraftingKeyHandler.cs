@@ -71,15 +71,15 @@ public class CraftingKeyHandler : MonoBehaviour
         {
             targetPos = closePos;
 
-            // Remove all the items from the crafting list
-            CraftingManager.instance.UnpopulateCraftingList();
-
             // Remove any tooltip menus if there are any
             try
             {
                 Destroy(GameObject.Find("ItemTooltip(Clone)"));
             }
             catch (System.Exception) { }
+
+            // Remove all the items from the crafting list
+            CraftingManager.instance.UnpopulateCraftingList();
 
             isShowing = false;
         }
@@ -88,7 +88,7 @@ public class CraftingKeyHandler : MonoBehaviour
     /// <summary>
     /// Opens the crafting menu.
     /// </summary>
-    public void ShowCraftingMenu()
+    private void ShowCraftingMenu()
     {
         if (!isShowing)
         {
@@ -101,6 +101,21 @@ public class CraftingKeyHandler : MonoBehaviour
             targetPos = openPos;
 
             isShowing = true;
+        }
+    }
+
+    /// <summary>
+    /// Toggle the crafting menu. Useful for assigning to a button.
+    /// </summary>
+    public void ToggleCraftingMenu()
+    {
+        if (isShowing)
+        {
+            CloseCraftingMenu();
+        }
+        else
+        {
+            ShowCraftingMenu();
         }
     }
 
