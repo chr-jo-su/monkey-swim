@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1245752479494040914}
   - component: {fileID: 1999087896956115757}
   - component: {fileID: 1992514099762469983}
+  - component: {fileID: 5867754040138195120}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -106,6 +107,7 @@ MonoBehaviour:
   distance: 0
   playerHealth: {fileID: 0}
   damage: 5
+  seaLineObject: {fileID: 0}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
@@ -178,3 +180,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.33, y: 8.55}
   m_EdgeRadius: 0
+--- !u!114 &5867754040138195120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533529697676140122}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26af0f96e28e1afd1b1133958a76e6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - {fileID: 11400000, guid: a5aacb65e033bc346bf2f1a799b02e60, type: 2}
+  - {fileID: 11400000, guid: dc260ece6b40dfe4da01422eb31d0ab4, type: 2}
+  dropChance:
+  - 100
+  - 50
+  minForce: 0
+  maxForce: 4

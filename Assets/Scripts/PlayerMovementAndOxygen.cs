@@ -113,9 +113,9 @@ public class playerMovement : MonoBehaviour {
     }
 
     void OnTriggerStay2D(Collider2D other) {
-        canBreath = true;
 
         if (other.name == seaLineObject.name) {
+            canBreath = true;
             if (transform.position.y > other.transform.position.y) inSea = false;
             else inSea = true;
 
@@ -130,6 +130,19 @@ public class playerMovement : MonoBehaviour {
         else {
             seaAmbience.UnPause();
             underWaterAmbience.enabled = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(!inSea) audioSource.PlayOneShot(splashSound);
+
+        if (other.CompareTag("Item"))
+        {
+            Debug.Log("Picked up " + other.name);
+            inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+            audioSource.PlayOneShot(itemPickupSound);
+            Destroy(other.gameObject);
         }
     }
 }
