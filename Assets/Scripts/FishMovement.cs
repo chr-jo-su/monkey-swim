@@ -101,13 +101,4 @@ public class fishMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other) { // not working correctly
-        if (other.name == seaLineObject.name) {
-            if (transform.position.y >= other.transform.position.y + 100)
-            {
-                movement.y *= movement.y;
-            }
-        }
-    }
-
 }
