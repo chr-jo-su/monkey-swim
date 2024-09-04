@@ -19,6 +19,7 @@ public class fishMovement : MonoBehaviour
     public int damage;
     private int attackCounter = 0;
     public GameObject seaLineObject;
+    public float health = 100.0f;
 
     void Start()
     {
@@ -32,6 +33,16 @@ public class fishMovement : MonoBehaviour
        movement.x = 1;
        movement.y = Mathf.Sin(theta);
        // Allows for movement in the y axis to be a bit less linear, to imitate the swimming slightly better; could be changed though
+
+       // Death
+       if (health <= 0.0f)
+       {
+            GetComponent<ItemDropper>().enabled = true;
+            if(GetComponent<ItemDropper>().finished)
+                Destroy(this.gameObject);
+       }
+
+       health--;
     }
 
     void FixedUpdate()
@@ -43,7 +54,7 @@ public class fishMovement : MonoBehaviour
         if (following && attackCounter >= 10)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime/2);
-            
+
             if (distance >= 3)
             {
                 following = false;
@@ -80,9 +91,9 @@ public class fishMovement : MonoBehaviour
         attackCounter++;
     }
 
-    void OnCollisionEnter2D (Collision2D collision) 
+    void OnCollisionEnter2D (Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player") 
+        if (collision.gameObject.tag == "Player")
         {
             playerHealth.TakeDamage(damage);
             following = false;

@@ -99,37 +99,54 @@ public class playerMovement : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if (inSea) {
-            rigidBody.gravityScale = 0F;
-            canMoveUp = true;
-            canBreath = false;
-        }
-
-        else {
-            rigidBody.gravityScale = 1F;
-            canMoveUp = false;
-            canBreath = true;
+        if (other.name == seaLineObject.name)
+        {
+            if (inSea)
+            {
+                rigidBody.gravityScale = 0F;
+                canMoveUp = true;
+                canBreath = false;
+            }
+            else
+            {
+                rigidBody.gravityScale = 1F;
+                canMoveUp = false;
+                canBreath = true;
+            }
         }
     }
 
     void OnTriggerStay2D(Collider2D other) {
-        canBreath = true;
 
         if (other.name == seaLineObject.name) {
+            canBreath = true;
             if (transform.position.y > other.transform.position.y) inSea = false;
             else inSea = true;
 
+            if (inSea) {
+                seaAmbience.Pause();
+                underWaterAmbience.enabled = true;
+            }
+
+            else {
+                seaAmbience.UnPause();
+                underWaterAmbience.enabled = false;
+            }
+
             //Debug.Log("inSea = " + inSea);
         }
+    }
 
-        if (inSea) {
-            seaAmbience.Pause();
-            underWaterAmbience.enabled = true;
-        }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(!inSea) audioSource.PlayOneShot(splashSound);
 
-        else {
-            seaAmbience.UnPause();
-            underWaterAmbience.enabled = false;
+        if (other.CompareTag("Item"))
+        {
+            Debug.Log("Picked up " + other.name);
+            inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+            audioSource.PlayOneShot(itemPickupSound);
+            Destroy(other.gameObject);
         }
     }
 }
