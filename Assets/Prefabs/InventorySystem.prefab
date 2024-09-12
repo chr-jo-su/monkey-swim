@@ -327,7 +327,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2988651011008902509
 MonoBehaviour:
@@ -459,6 +459,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b7481e8461a5f0c408234483bcae388d, type: 2}
   - {fileID: 11400000, guid: 649e1ed23c2c9224bbc41d2c5fbe3f2a, type: 2}
   - {fileID: 11400000, guid: 7cba6c2176351dd46b660b10c1f0d9a8, type: 2}
+  - {fileID: 11400000, guid: 0f2b876565f1f8d4b8ea2bdbc85f8867, type: 2}
+  - {fileID: 11400000, guid: d0904fc6573752a48b90073bb9e9fb2d, type: 2}
+  - {fileID: 11400000, guid: 7348a5d5c44c50d4cb4868fd0de6dfb4, type: 2}
+  - {fileID: 11400000, guid: dbb11573e5d3e8a4db12bcb896a398c7, type: 2}
+  - {fileID: 11400000, guid: dbb97c5089319cd45874fa7ca1d7d36b, type: 2}
+  - {fileID: 11400000, guid: 4c6a8d88323b80e458517fc85323efa8, type: 2}
 --- !u!1001 &635115143601605696
 PrefabInstance:
   m_ObjectHideFlags: 0

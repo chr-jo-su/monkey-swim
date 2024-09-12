@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerExitHandler, IPointerClickHandler
 {
     // Variables
     public Image image;
@@ -21,18 +21,24 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     private bool allowTooltip = true;
 
-    // Checks if the mouse was hovering over the object for a certain amount of time.
-    public void OnPointerEnter(PointerEventData eventData)
+    /// <summary>
+    /// Checks if the item was right clicked.
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerClick(PointerEventData eventData)
     {
         // Check if the current game object was not dragged
         if (draggable)
         {
             allowTooltip = true;
-            Invoke("ShowTooltip", tooltipDelay);
+            ShowTooltip();
         }
     }
 
-    // Don't try to show the tooltip if the mouse exits the object.
+    /// <summary>
+    /// Don't allow the tooltip to show if the mouse exits the object.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         allowTooltip = false;
@@ -88,6 +94,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    /// <summary>
+    /// Change the parent to the root object and set it to not be hit by a raycast.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (draggable)
@@ -99,6 +109,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    /// <summary>
+    /// Move the item to the mouse position.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
         if (draggable)
@@ -107,6 +121,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    /// <summary>
+    /// Change the parent of the item to be the new slot and allow it to be hit by a raycast.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
         if (draggable)
@@ -145,7 +163,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
 
             // Set the text for the item info
-            newGameObjectItem.GetComponent<ItemTooltip>().SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            ItemTooltip tooltip = newGameObjectItem.GetComponent<ItemTooltip>();
+            tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            tooltip.ChangeWindowType(storedItem.type == ItemType.Armour);
         }
     }
 }
