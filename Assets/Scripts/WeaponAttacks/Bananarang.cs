@@ -19,15 +19,18 @@ public class Bananarang : MonoBehaviour
     private float Timer;
     public float Velocity;
     private bool ReturnToPlayer;
+    private bool WeaponRebound;
 
     // Start is called before the first frame update
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
         PlayerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
         BananarangCollider = GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(BananarangCollider, PlayerCollider, true);
         RigidBody = GetComponent<Rigidbody2D>();
+
         MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
         Direction = MousePosition - transform.position;
         RigidBody.velocity =
@@ -37,23 +40,44 @@ public class Bananarang : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        WeaponRebound = GameObject
+            .FindGameObjectWithTag("Player")
+            .GetComponent<WeaponManager>()
+            .WeaponRebound;
         PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         Angle += 0.0008f;
         transform.rotation = quaternion.Euler(0, 0, Angle * Mathf.Rad2Deg);
 
-        Timer += Time.deltaTime;
-        if (Timer >= 1)
+        if (WeaponRebound == true)
         {
-            ReturnToPlayer = true;
+            Timer += Time.deltaTime;
+            if (Timer >= 1)
+            {
+                ReturnToPlayer = true;
+            }
+            if (ReturnToPlayer == true)
+            {
+                ReturnWeapon();
+            }
         }
-        if (ReturnToPlayer == true)
+        else
         {
-            Direction = PlayerPosition - transform.position;
-            RigidBody.velocity =
-                new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
-            if (UnityEngine.Vector2.Distance(transform.position, PlayerPosition) < 1) {
+            Timer += Time.deltaTime;
+            if (Timer >= 1)
+            {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void ReturnWeapon()
+    {
+        Direction = PlayerPosition - transform.position;
+        RigidBody.velocity =
+            new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
+        if (UnityEngine.Vector2.Distance(transform.position, PlayerPosition) < 1)
+        {
+            Destroy(gameObject);
         }
     }
 

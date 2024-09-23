@@ -13,8 +13,7 @@ public class WeaponManager : MonoBehaviour
     private Camera MainCamera;
     public float MaxBananarangCount;
     public float BananarangCount;
-    public float Velocity;
-    public float Lifespan;
+    public bool WeaponRebound;
     private float Timer;
     private float Rotation;
     private bool BananarangReady;

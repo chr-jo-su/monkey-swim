@@ -742,8 +742,7 @@ MonoBehaviour:
   BananarangClones: []
   MaxBananarangCount: 3
   BananarangCount: 0
-  Velocity: 0
-  Lifespan: 0
+  WeaponRebound: 1
 --- !u!4 &1798089971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4480218188751584525, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
