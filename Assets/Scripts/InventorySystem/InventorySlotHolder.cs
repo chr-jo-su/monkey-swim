@@ -10,14 +10,18 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
     public Image image;
     public GameObject inventoryItemPrefab;
 
-    public Vector3 selectedScale;
+    [SerializeField] private Vector3 selectedScale;
     private Vector3 deselectedScale;
+
+    [SerializeField] private Vector2 equippedSize = new(5, -5);
+    private Vector2 unequippedSize = new(0, 0);
 
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
         deselectedScale = transform.localScale;
         DeselectSlot();
+        UnequipSlot();
     }
 
     /// <summary>
@@ -136,7 +140,10 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
         return 0;
     }
 
-    // This adds the object to the slot if it is empty
+    /// <summary>
+    /// This adds the object to the slot if it is empty
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
@@ -145,5 +152,63 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
             draggableItem.parentAfterDrag = transform;
         }
         // Can add an else statement here to check if the item can be stacked or else switched around
+    }
+
+    /// <summary>
+    /// Equips the item currently stored in the slot and toggles visual changes when equipping.
+    /// Also unequips any previous items.
+    /// </summary>
+    public void EquipItem()
+    {
+        InventoryManager.instance.UnequipAllItems();
+
+        // Change equip status to true
+        GetComponentInChildren<InventoryItem>().equipped = true;
+
+        // Get stored item in InventoryItem
+        Item item = GetComponentInChildren<InventoryItem>().storedItem;
+
+        InventoryManager.instance.EquipItem(item);
+        EquipSlot();
+
+        Debug.Log(GetStoredItem().itemName + " has been equipped!");
+    }
+
+    /// <summary>
+    /// Unequips the item currently stored in the slot and also toggles visual changes.
+    /// </summary>
+    public void UnequipItem()
+    {
+        Item storedItem = GetStoredItem();
+
+        if (storedItem != null && storedItem.type == ItemType.Armour)
+        {
+            // Change equip status to false
+            GetComponentInChildren<InventoryItem>().equipped = false;
+
+            // Get stored item in InventoryItem
+            Item item = GetComponentInChildren<InventoryItem>().storedItem;
+
+            InventoryManager.instance.UnequipItem(item);
+            UnequipSlot();
+
+            Debug.Log(storedItem.itemName + " has been unequipped!");
+        }
+    }
+
+    /// <summary>
+    /// Shows the visual cue that the slot is equipped.
+    /// </summary>
+    public void EquipSlot()
+    {
+        gameObject.GetComponent<Outline>().effectDistance = equippedSize;
+    }
+
+    /// <summary>
+    /// Hides the visual cue that the slot is equipped.
+    /// </summary>
+    public void UnequipSlot()
+    {
+        gameObject.GetComponent<Outline>().effectDistance = unequippedSize;
     }
 }

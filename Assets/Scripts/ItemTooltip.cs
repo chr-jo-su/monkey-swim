@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class ItemTooltip : MonoBehaviour, IPointerExitHandler
 {
@@ -12,11 +14,28 @@ public class ItemTooltip : MonoBehaviour, IPointerExitHandler
 
     /// <summary>
     /// Shows or hides the equip button based on whether the item is armour.
+    /// Also sets the button onClick function.
     /// </summary>
     /// <param name="isEquipable">A boolean value that specifies if the item attached is armour or not.</param>
-    public void ChangeWindowType(bool isEquipable)
+    /// <param name="slot">The slot that the tooltip is linked to. Defaults to null. Used for the equip button.</param>
+    /// <param name="equip">A boolean value that specifies if the button should equip or unequip the item. Defaults to true.</param>
+    public void ChangeWindowType(bool isEquipable, InventorySlotHolder slot = null, bool equip = true)
     {
         equipButton.SetActive(isEquipable);
+
+        if (slot != null)
+        {
+            if (equip)
+            {
+                equipButton.GetComponent<Button>().onClick.AddListener(slot.EquipItem);
+                equipButton.GetComponent<Button>().onClick.AddListener(DestroySelf);
+            }
+            else
+            {
+                equipButton.GetComponent<Button>().onClick.AddListener(slot.UnequipItem);
+                equipButton.GetComponent<Button>().onClick.AddListener(DestroySelf);
+            }
+        }
     }
 
     /// <summary>
@@ -31,10 +50,18 @@ public class ItemTooltip : MonoBehaviour, IPointerExitHandler
     }
 
     /// <summary>
+    /// Destroys the current instance of the game object.
+    /// </summary>
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
+    /// <summary>
     /// When the mouse exits the object, destroy the tooltip.
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData = null)
     {
         Destroy(gameObject);
     }

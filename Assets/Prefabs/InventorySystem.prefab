@@ -3287,6 +3287,14 @@ PrefabInstance:
       propertyPath: inventoryItemPrefab
       value: 
       objectReference: {fileID: 903062702048024672, guid: cf00059ae5ccd2d47817e0f591159d19, type: 3}
+    - target: {fileID: 3373046584153988241, guid: 7ae2e1e2b0f43da4fabe00fce7e9115e, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373046584153988241, guid: 7ae2e1e2b0f43da4fabe00fce7e9115e, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3926620528701647890, guid: 7ae2e1e2b0f43da4fabe00fce7e9115e, type: 3}
       propertyPath: m_Name
       value: InventorySlot
