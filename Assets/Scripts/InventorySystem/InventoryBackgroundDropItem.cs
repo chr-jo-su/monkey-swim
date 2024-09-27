@@ -5,15 +5,27 @@ using UnityEngine.EventSystems;
 
 public class InventoryBackgroundDropItem : MonoBehaviour, IDropHandler
 {
+    // Variables
+    [SerializeField] private GameObject itemDropperPrefab;
+
+    /// <summary>
+    /// Removes the item from the player and unequips it if it's equipped.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrop(PointerEventData eventData)
     {
         InventoryItem draggableItem = eventData.pointerDrag.GetComponent<InventoryItem>();
 
-        // Drop item and remove it from the inventory
-        Debug.Log("Dropped " + draggableItem.currentStackSize + " " + draggableItem.storedItem.itemName);
+        // Unequip the item if it's equipped
+        if (draggableItem.equipped)
+        {
+            InventoryManager.instance.UnequipItem(draggableItem.storedItem);
+        }
 
-        // Most likely give the dropped item to some other game object here before destroying it
+        // Drop the item
+        //TODO: This is where the item is dropped
 
+        // Destroy the object
         Destroy(draggableItem.gameObject);
     }
 }

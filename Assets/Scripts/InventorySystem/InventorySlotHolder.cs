@@ -170,8 +170,6 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
 
         InventoryManager.instance.EquipItem(item);
         EquipSlot();
-
-        Debug.Log(GetStoredItem().itemName + " has been equipped!");
     }
 
     /// <summary>
@@ -183,16 +181,17 @@ public class InventorySlotHolder : MonoBehaviour, IDropHandler
 
         if (storedItem != null && storedItem.type == ItemType.Armour)
         {
-            // Change equip status to false
-            GetComponentInChildren<InventoryItem>().equipped = false;
+            if (GetComponentInChildren<InventoryItem>().equipped == true)
+            {
+                // Change equip status to false
+                GetComponentInChildren<InventoryItem>().equipped = false;
 
-            // Get stored item in InventoryItem
-            Item item = GetComponentInChildren<InventoryItem>().storedItem;
+                // Get stored item in InventoryItem
+                Item item = GetComponentInChildren<InventoryItem>().storedItem;
 
-            InventoryManager.instance.UnequipItem(item);
-            UnequipSlot();
-
-            Debug.Log(storedItem.itemName + " has been unequipped!");
+                InventoryManager.instance.UnequipItem(item);
+                UnequipSlot();
+            }
         }
     }
 

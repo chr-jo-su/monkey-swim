@@ -383,6 +383,8 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     public void SortInventory()
     {
+        HealthBar.instance.TakeDamage(25);
+
         // Sort the items
         Dictionary<Item, int> items = new();
 
@@ -418,34 +420,40 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Adds the power-ups from the given item
+    /// <summary>
+    /// Adds the boosts of the given item from the player.
+    /// </summary>
+    /// <param name="item">The Item object that should be checked for boosts.</param>
     public void EquipItem(Item item)
     {
         // Add the oxygen boost
-        
+        PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
 
         // Add the health boost
-        
+        HealthBar.instance.ChangeHealth(item.healthBoost);
 
         // Add the speed boost
-        
-    }
-
-    // Removes the power-ups from the given item
-    public void UnequipItem(Item item)
-    {
-        // Remove the oxygen boost
-        
-
-        // Remove the health boost
-        
-
-        // Remove the speed boost
-        
+        PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
     }
 
     /// <summary>
-    /// Removes all power-ups that were equipped.
+    /// Removes the boosts of the given item from the player.
+    /// </summary>
+    /// <param name="item">The Item object that should be checked for boosts.</param>
+    public void UnequipItem(Item item)
+    {
+        // Remove the oxygen boost
+        PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
+
+        // Remove the health boost
+        HealthBar.instance.ChangeHealth(-item.healthBoost);
+
+        // Remove the speed boost
+        PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);
+    }
+
+    /// <summary>
+    /// Removes all power-ups that were equipped from the player.
     /// </summary>
     public void UnequipAllItems()
     {
