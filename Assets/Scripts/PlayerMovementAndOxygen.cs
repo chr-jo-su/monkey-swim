@@ -34,16 +34,13 @@ public class playerMovement : MonoBehaviour {
     public AudioSource underWaterAmbience;
     public AudioSource underWaterMusic;
     public Collider2D seaTopBoxCollider;
-    public Collider2D seaBottomBoxCollider;
     public Collider2D playerCollider;
-    public GameObject inventorySystem;
     public HealthBar playerHealth;
     private int drownTimer = 0;
 
 
     void Start() {
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
-        Physics2D.IgnoreCollision(seaBottomBoxCollider, playerCollider, true);
     }
 
     // Update is called once per frame
@@ -144,7 +141,8 @@ public class playerMovement : MonoBehaviour {
         if (other.CompareTag("Item"))
         {
             Debug.Log("Picked up " + other.name);
-            inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+            // inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+            InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
             audioSource.PlayOneShot(itemPickupSound);
             Destroy(other.gameObject);
         }

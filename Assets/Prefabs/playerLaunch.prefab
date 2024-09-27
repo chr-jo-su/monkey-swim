@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff35bf9a0970e5244b89e5295c22b88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMultiplyer: 100
+  forceMultiplier: 100
   rigidBody: {fileID: 5140553331888673616}
   playerObject: {fileID: 0}
   mainCamera: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   maxForceY: 400
   minForceY: 200
   seaLineObject: {fileID: 0}
+  underWaterMusic: {fileID: 0}
 --- !u!61 &2835695200479791567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +177,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
