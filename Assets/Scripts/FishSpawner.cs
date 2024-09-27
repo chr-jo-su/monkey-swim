@@ -15,11 +15,13 @@ public class FishSpawner : MonoBehaviour
     [Tooltip("spawn interval in seconds.")]
     public float spawnInterval = 1.0f;
 
+    public int spawnCap = 3;
+
     private float randomNumber = -1.0f;
 
     private Vector2 randomVector;
 
-    private List<GameObject> spawnedFishes;
+    private List<GameObject> spawnedFishes = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +33,35 @@ public class FishSpawner : MonoBehaviour
     {
         randomNumber = Random.Range(0.0f, 100.0f);
 
-        for (int i = 0; i < possibleFishToSpawn.Length; i++)
+        if (spawnedFishes.Count < spawnCap)
         {
-            if (randomNumber <= fishSpawnChance[i])
+            Debug.Log("fish");
+            for (int i = 0; i < possibleFishToSpawn.Length; i++)
             {
-                SpawnFish(i);
+                if (randomNumber <= fishSpawnChance[i])
+                {
+                    SpawnFish(i);
+                }
+            }
+        }
+
+        foreach (GameObject fish in spawnedFishes)
+        {
+            //try
+            //{
+            //    if (!fish.activeSelf)
+            //    {
+            //        spawnedFishes.Remove(fish);
+            //    }
+            //}
+            //catch (NullReferenceException)
+            //{
+
+            //}
+
+            if (fish.gameObject == null)
+            {
+                spawnedFishes.Remove(fish);
             }
         }
     }
