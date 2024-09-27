@@ -346,12 +346,11 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes a given quantity of the given item from the inventory and returns it.
+    /// Removes a given quantity of the given item from the inventory. Also unequips any items if it's removed.
     /// </summary>
     /// <param name="item">The given Item to be removed.</param>
     /// <param name="quantity">The quantity of the item that should be removed. Defaults to 1.</param>
-    /// <returns>The Item that was removed.</returns>
-    public Item RemoveItems(Item item, int quantity = 1)
+    public void RemoveItems(Item item, int quantity = 1)
     {
         int total = 0;
 
@@ -370,17 +369,17 @@ public class InventoryManager : MonoBehaviour
                     {
                         total = child.GetCurrentStackSize();
                         child.DecrementItem(quantity);
+                        child.UnequipItem();
                         quantity -= total;
                     }
                 }
             }
         }
-
-        return item;
     }
 
     /// <summary>
     /// Sorts the inventory items and stacks items as much as possible.
+    /// Will unequip any items that were equipped before.
     /// </summary>
     public void SortInventory()
     {
@@ -402,6 +401,8 @@ public class InventoryManager : MonoBehaviour
                     items[inventoryItem.storedItem] = inventoryItem.currentStackSize;
                 }
             }
+
+            child.UnequipSlot();
         }
 
         // Clear the previous items
@@ -414,6 +415,43 @@ public class InventoryManager : MonoBehaviour
         foreach (Item item in items.Keys)
         {
             AddItems(item, items[item]);
+        }
+    }
+
+    // Adds the power-ups from the given item
+    public void EquipItem(Item item)
+    {
+        // Add the oxygen boost
+        
+
+        // Add the health boost
+        
+
+        // Add the speed boost
+        
+    }
+
+    // Removes the power-ups from the given item
+    public void UnequipItem(Item item)
+    {
+        // Remove the oxygen boost
+        
+
+        // Remove the health boost
+        
+
+        // Remove the speed boost
+        
+    }
+
+    /// <summary>
+    /// Removes all power-ups that were equipped.
+    /// </summary>
+    public void UnequipAllItems()
+    {
+        foreach (InventorySlotHolder slot in slots)
+        {
+            slot.UnequipItem();
         }
     }
 }

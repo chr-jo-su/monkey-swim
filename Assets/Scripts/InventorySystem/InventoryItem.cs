@@ -5,34 +5,40 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerExitHandler, IPointerClickHandler
 {
     // Variables
     public Image image;
     public TMP_Text textObject;
-    public Item storedItem;
-    public int currentStackSize = 1;
+    [HideInInspector] public Item storedItem;
+    [HideInInspector] public int currentStackSize = 1;
 
-    public GameObject tooltipPrefab;
-    public float tooltipDelay = 0.75f;
+    [SerializeField] private GameObject tooltipPrefab;
 
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public bool draggable = true;
     
     private bool allowTooltip = true;
+    [HideInInspector] public bool equipped = false;
 
-    // Checks if the mouse was hovering over the object for a certain amount of time.
-    public void OnPointerEnter(PointerEventData eventData)
+    /// <summary>
+    /// Checks if the item was right clicked.
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerClick(PointerEventData eventData)
     {
         // Check if the current game object was not dragged
         if (draggable)
         {
             allowTooltip = true;
-            Invoke("ShowTooltip", tooltipDelay);
+            ShowTooltip();
         }
     }
 
-    // Don't try to show the tooltip if the mouse exits the object.
+    /// <summary>
+    /// Don't allow the tooltip to show if the mouse exits the object.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         allowTooltip = false;
@@ -75,7 +81,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <summary>
     /// Change the text of the child text object to the given number. If the given number is 1, no text is shown.
     /// </summary>
-    /// <param name="num">The number to write to the text object.</param>
     private void ChangeText()
     {
         if (currentStackSize == 1)
@@ -88,10 +93,19 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    /// <summary>
+    /// Change the parent to the root object and set it to not be hit by a raycast.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (draggable)
         {
+            if (equipped)
+            {
+                gameObject.GetComponentInParent<InventorySlotHolder>().UnequipSlot();
+            }
+
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
@@ -99,6 +113,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    /// <summary>
+    /// Move the item to the mouse position.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
         if (draggable)
@@ -107,12 +125,21 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    /// <summary>
+    /// Change the parent of the item to be the new slot and allow it to be hit by a raycast.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
         if (draggable)
         {
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
+
+            if (equipped)
+            {
+                gameObject.GetComponentInParent<InventorySlotHolder>().EquipSlot();
+            }
         }
     }
 
@@ -144,8 +171,26 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 newGameObjectItem.transform.position = new Vector3(Screen.width - width, newGameObjectItem.transform.position.y, newGameObjectItem.transform.position.z);
             }
 
-            // Set the text for the item info
-            newGameObjectItem.GetComponent<ItemTooltip>().SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            // Set the text and equip button info for the item
+            ItemTooltip tooltip = newGameObjectItem.GetComponent<ItemTooltip>();
+            tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+
+            string buttonText = "";
+
+            if (equipped)
+            {
+                tooltip.ChangeWindowType(storedItem.type == ItemType.Armour, gameObject.GetComponentInParent<InventorySlotHolder>(), false);
+                buttonText = "Unequip";
+            }
+            else
+            {
+                tooltip.ChangeWindowType(storedItem.type == ItemType.Armour, gameObject.GetComponentInParent<InventorySlotHolder>(), true);
+                buttonText = "Equip";
+            }
+
+            if (storedItem.type == ItemType.Armour) {
+                newGameObjectItem.GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = buttonText;
+            }
         }
     }
 }

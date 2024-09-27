@@ -730,7 +730,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &6308161182809637462
 MonoBehaviour:
@@ -823,6 +823,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb861e347ce5a064e935808c438eaa22, type: 2}
   - {fileID: 11400000, guid: b9c0e7ddd4b35be40a80686e13f7277b, type: 2}
   - {fileID: 11400000, guid: b84a911061b45a0489a9ae833a6691aa, type: 2}
+  - {fileID: 11400000, guid: 3b439c613534b8e4b996a0ef1ac2e87a, type: 2}
+  - {fileID: 11400000, guid: 7aa94f8b5d79c3343b4e33bab1626536, type: 2}
+  - {fileID: 11400000, guid: 21a5ff8b7ffb32d4d91feabb6e48ab0a, type: 2}
+  - {fileID: 11400000, guid: 821455a10a3a79f4293e61f2fb7d52af, type: 2}
   craftingList: {fileID: 4727501809881433203}
   craftingSlotPrefab: {fileID: 9013387343068509079, guid: 81c7684680851e944a82512f6ffec5e3, type: 3}
   itemsPerPage: 15
