@@ -42,7 +42,7 @@ public class fishMovement : MonoBehaviour
                 Destroy(this.gameObject);
        }
 
-       health--;
+       health -= 0.5f;
     }
 
     void FixedUpdate()
