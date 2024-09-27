@@ -63,8 +63,9 @@ public class PlayerLaunch : MonoBehaviour
         if (other.name == seaLineObject.name)
         {
             // !!!: make sure there exists an instance of the player object cuz this clones it
+            Debug.Log("DRY LAND IVE SEEN IT");
             underWaterMusic.GetComponent<AudioStartDelay>().enabled = true;
-            //GameObject newPlayer = Instantiate(playerObject, (Vector2)gameObject.transform.position, Quaternion.identity);
+            // GameObject newPlayer = Instantiate(playerObject, (Vector2)gameObject.transform.position, Quaternion.identity);
             playerObject.transform.position = (Vector2)gameObject.transform.position;
             //newPlayer.GetComponent<Rigidbody2D>().AddForce(rigidBody.velocity, ForceMode2D.Impulse);
             playerObject.GetComponent<Rigidbody2D>().AddForce(rigidBody.velocity, ForceMode2D.Impulse);
