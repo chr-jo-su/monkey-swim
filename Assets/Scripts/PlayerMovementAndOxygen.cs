@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class playerMovement : MonoBehaviour {
-    //Variables
+public class PlayerMovementAndOxygen : MonoBehaviour {
+    // Variables
+    public static PlayerMovementAndOxygen instance;
+ 
     public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
     public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
@@ -18,6 +20,8 @@ public class playerMovement : MonoBehaviour {
     private bool canMoveUp = true;
 
     public GameObject oxygenSlider;
+
+    private float maxOxygen = 100.0f;
 
     private float oxygen = 100.0f;
 
@@ -38,6 +42,11 @@ public class playerMovement : MonoBehaviour {
     public HealthBar playerHealth;
     private int drownTimer = 0;
 
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start() {
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
@@ -52,7 +61,7 @@ public class playerMovement : MonoBehaviour {
             oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
         }
 
-        else if (oxygen < 100.0f && canBreath) {
+        else if (oxygen < maxOxygen && canBreath) {
             oxygen += 10*oxygenGainRate * Time.deltaTime;
             oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
         }
@@ -93,6 +102,21 @@ public class playerMovement : MonoBehaviour {
         else v = new Vector2(movement.x, 0);
 
         rigidBody.AddForce(v.normalized * moveSpeed);
+    }
+
+    public void ChangeOxygen(int val)
+    {
+        maxOxygen += val;
+
+        if (val < 0)
+        {
+            oxygen = Math.Min(oxygen, maxOxygen);
+        }
+    }
+
+    public void ChangeMoveSpeed(int val)
+    {
+        moveSpeed += val;
     }
 
     void OnTriggerExit2D(Collider2D other) {
