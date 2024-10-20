@@ -19,7 +19,7 @@ public class fishMovement : MonoBehaviour
     public int damage;
     private int attackCounter = 0;
     public GameObject seaLineObject;
-    public float health = 100.0f;
+    public float health = 1000.0f;
 
     void Start()
     {
@@ -42,7 +42,7 @@ public class fishMovement : MonoBehaviour
                 Destroy(this.gameObject);
        }
 
-       health -= 0.5f;
+       health -= 0.01f;
     }
 
     void FixedUpdate()
