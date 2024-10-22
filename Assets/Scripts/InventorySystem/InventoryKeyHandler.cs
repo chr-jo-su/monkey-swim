@@ -18,10 +18,10 @@ public class InventoryKeyHandler : MonoBehaviour
     public GameObject craftingButton;
     public GameObject inventoryButton;
 
-    [HideInInspector] private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    [HideInInspector] private Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
-    [HideInInspector] private Vector3 targetPos;
-    private float velocity = 5f;
+    private Vector3 showingPos = new(Screen.width / 2, Screen.height / 2, 0);
+    private Vector3 hiddenPos = new(Screen.width / 2, Screen.height * 2, 0);
+    private Vector3 targetPos;
+    public float velocity = 5f;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -113,7 +113,7 @@ public class InventoryKeyHandler : MonoBehaviour
     {
         if (inventoryIsShowing)
         {
-            targetPos = closePos;
+            targetPos = hiddenPos;
 
             // Disable dragging for the hotbar items
             InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
@@ -146,7 +146,7 @@ public class InventoryKeyHandler : MonoBehaviour
 
             InventoryManager.instance.DeselectAllSlots();
 
-            targetPos = openPos;
+            targetPos = showingPos;
 
             inventoryIsShowing = true;
         }
