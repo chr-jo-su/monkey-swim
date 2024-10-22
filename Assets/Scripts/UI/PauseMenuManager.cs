@@ -3,25 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuMovement : MonoBehaviour
+public class PauseMenuManager : MonoBehaviour
 {
     // Variables
     public GameObject pauseMenu;
     public KeyCode pauseMenuKey = KeyCode.Escape;
     public float velocity = 5f;
     private bool paused;
-    private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    private Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
+
+    [HideInInspector] public Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
+    [HideInInspector] public Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
     private Vector3 targetPos;
 
-    // Start is called before the first frame update
+    private AsyncOperation asyncLoadLevel;
+
+    /// <summary>
+    /// Unpauses the game on start.
+    /// </summary>
     void Start()
     {
         paused = true;
         UnpauseGame();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Handles animations and keyboard inputs.
+    /// </summary>
     void Update()
     {
         AnimateMenu();
@@ -86,11 +93,24 @@ public class PauseMenuMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Opens the main menu scene.
+    /// Opens the main menu sceneName.
     /// </summary>
-    public void GoToMain()
+    public void LoadTitleScreen()
     {
-        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(LoadLevel());
+    }
+
+    /// <summary>
+    /// Loads the level asynchronously.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LoadLevel()
+    {
+        asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+
+        while (!asyncLoadLevel.isDone) yield return null;
+
+        SceneManager.GetSceneByName("TransitionScene").GetRootGameObjects()[1].GetComponent<TransitionManager>().LoadTransition("TitleScreen", pauseMenu);
     }
 
     /// <summary>
