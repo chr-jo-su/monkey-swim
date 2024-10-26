@@ -5,6 +5,7 @@ using UnityEngine;
 public class SquidAttack : MonoBehaviour
 {
    //Variables
+    // public Collider2D player;
     public const float moveSpeed = 4f;
     public Rigidbody2D rb;
     public GameObject gameObject;
@@ -36,14 +37,12 @@ public class SquidAttack : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D (Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerHealth.TakeDamage(5);
-            // following = false;
-            // attackCounter = 0;
-            Debug.Log("Take Damage");
+            playerHealth.TakeDamage(20);
+            Destroy(gameObject);
         }
     }
 }
