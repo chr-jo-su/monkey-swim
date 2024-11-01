@@ -17,9 +17,10 @@ public class fishMovement : MonoBehaviour
     private Transform player;
     public HealthBar playerHealth;
     public int damage;
+    public int damageTaken;
     private int attackCounter = 0;
     public GameObject seaLineObject;
-    public float health = 1000.0f;
+    public float health = 100.0f;
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class fishMovement : MonoBehaviour
                 Destroy(this.gameObject);
        }
 
-       health -= 0.01f;
+       // health -= 0.01f;
     }
 
     void FixedUpdate()
@@ -98,6 +99,11 @@ public class fishMovement : MonoBehaviour
             playerHealth.TakeDamage(damage);
             following = false;
             attackCounter = 0;
+        }
+
+        if (collision.gameObject.tag == "BananarangClone")
+        {
+            health -= damageTaken;
         }
     }
 

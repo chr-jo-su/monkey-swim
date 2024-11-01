@@ -797,6 +797,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: damageTaken
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1572280397}
