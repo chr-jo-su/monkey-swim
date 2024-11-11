@@ -24,6 +24,7 @@ public class fishMovement : MonoBehaviour
     private GameObject healthSystem;
     public float health = 100.0f;
     private float healthMax;
+    public HealthBar fishHealth;
 
     void Start()
     {
@@ -118,9 +119,10 @@ public class fishMovement : MonoBehaviour
             attackCounter = 0;
         }
 
-        if (collision.gameObject.tag == "BananarangClone")
+        if (collision.gameObject.name == "Bananarang(Clone)")
         {
             health -= damageTaken;
+            fishHealth.TakeDamage(25);
         }
     }
 

@@ -10,8 +10,6 @@ public class FishHealthBarPosition : MonoBehaviour
     private GameObject ParentFish;
     private Vector3 HealthBarPosition;
     private Vector3 FishPosition;
-    private float FishPositionX;
-    private float FishPositionY;
 
     void Start()
     {
@@ -21,10 +19,8 @@ public class FishHealthBarPosition : MonoBehaviour
     void Update()
     {
         FishPosition = ParentFish.transform.position;
-        FishPositionX = FishPosition.x;
-        FishPositionY = FishPosition.y;
 
-        transform.position = new Vector3(FishPositionX, FishPositionY + 0.75f, 2);
+        transform.position = new Vector3(FishPosition.x, FishPosition.y + 0.75f, 2);
         transform.rotation = Quaternion.identity;
     }
 }
