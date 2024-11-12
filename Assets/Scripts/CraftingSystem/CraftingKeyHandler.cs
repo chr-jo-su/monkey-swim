@@ -29,8 +29,6 @@ public class CraftingKeyHandler : MonoBehaviour
 
         // Start the crafting closed
         CloseCraftingMenu();
-
-        Debug.Log("Crafting system is active.");
     }
 
     // Update is called once per frame

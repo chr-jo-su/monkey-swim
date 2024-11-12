@@ -116,7 +116,6 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             // Set the text for the item info
             ItemTooltip tooltip = newGameObjectItem.GetComponent<ItemTooltip>();
             tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
-            tooltip.ChangeWindowType(false);
         }
     }
 }

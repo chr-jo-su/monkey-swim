@@ -72,5 +72,6 @@ public enum ItemType
     Others,         // Others is the default item type.
     Consumable,     // Consumables would usually have a durabilityDecreasePerUse of 100.
     Weapon,         // Weapons would usually have a durabilityDecreasePerUse of 1 or lower and not be stackable.
-    Armour          // Armour would usually not be stackable.
+    Armour,          // Armour would usually not be stackable.
+    Trinket
 }

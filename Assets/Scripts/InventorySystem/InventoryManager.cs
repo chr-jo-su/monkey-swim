@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -346,7 +347,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes a given quantity of the given item from the inventory. Also unequips any items if it's removed.
+    /// Removes a given quantity of the given item from the inventory.
     /// </summary>
     /// <param name="item">The given Item to be removed.</param>
     /// <param name="quantity">The quantity of the item that should be removed. Defaults to 1.</param>
@@ -369,7 +370,6 @@ public class InventoryManager : MonoBehaviour
                     {
                         total = child.GetCurrentStackSize();
                         child.DecrementItem(quantity);
-                        child.UnequipItem();
                         quantity -= total;
                     }
                 }
@@ -379,12 +379,9 @@ public class InventoryManager : MonoBehaviour
 
     /// <summary>
     /// Sorts the inventory items and stacks items as much as possible.
-    /// Will unequip any items that were equipped before.
     /// </summary>
     public void SortInventory()
     {
-        HealthBar.instance.TakeDamage(25);
-
         // Sort the items
         Dictionary<Item, int> items = new();
 
@@ -403,8 +400,6 @@ public class InventoryManager : MonoBehaviour
                     items[inventoryItem.storedItem] = inventoryItem.currentStackSize;
                 }
             }
-
-            child.UnequipSlot();
         }
 
         // Clear the previous items
@@ -424,7 +419,7 @@ public class InventoryManager : MonoBehaviour
     /// Adds the boosts of the given item from the player.
     /// </summary>
     /// <param name="item">The Item object that should be checked for boosts.</param>
-    public void EquipItem(Item item)
+    [Obsolete] public void EquipItem(Item item)
     {
         // Add the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
@@ -440,7 +435,7 @@ public class InventoryManager : MonoBehaviour
     /// Removes the boosts of the given item from the player.
     /// </summary>
     /// <param name="item">The Item object that should be checked for boosts.</param>
-    public void UnequipItem(Item item)
+    [Obsolete] public void UnequipItem(Item item)
     {
         // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
@@ -450,16 +445,5 @@ public class InventoryManager : MonoBehaviour
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);
-    }
-
-    /// <summary>
-    /// Removes all power-ups that were equipped from the player.
-    /// </summary>
-    public void UnequipAllItems()
-    {
-        foreach (InventorySlotHolder slot in slots)
-        {
-            slot.UnequipItem();
-        }
     }
 }

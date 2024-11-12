@@ -101,11 +101,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (draggable)
         {
-            if (equipped)
-            {
-                gameObject.GetComponentInParent<InventorySlotHolder>().UnequipSlot();
-            }
-
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
@@ -135,11 +130,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
-
-            if (equipped)
-            {
-                gameObject.GetComponentInParent<InventorySlotHolder>().EquipSlot();
-            }
         }
     }
 
@@ -171,26 +161,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 newGameObjectItem.transform.position = new Vector3(Screen.width - width, newGameObjectItem.transform.position.y, newGameObjectItem.transform.position.z);
             }
 
-            // Set the text and equip button info for the item
+            // Set the text info for the item
             ItemTooltip tooltip = newGameObjectItem.GetComponent<ItemTooltip>();
             tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
-
-            string buttonText = "";
-
-            if (equipped)
-            {
-                tooltip.ChangeWindowType(storedItem.type == ItemType.Armour, gameObject.GetComponentInParent<InventorySlotHolder>(), false);
-                buttonText = "Unequip";
-            }
-            else
-            {
-                tooltip.ChangeWindowType(storedItem.type == ItemType.Armour, gameObject.GetComponentInParent<InventorySlotHolder>(), true);
-                buttonText = "Equip";
-            }
-
-            if (storedItem.type == ItemType.Armour) {
-                newGameObjectItem.GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = buttonText;
-            }
         }
     }
 }

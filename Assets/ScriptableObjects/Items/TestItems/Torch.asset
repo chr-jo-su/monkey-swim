@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Torch
   m_EditorClassIdentifier: 
   itemName: Torch
-  itemDescription: Glows bright enough to burn your eyes. Careful.
+  itemDescription: Glows bright enough to burn your eyes. Careful. Equip it to hold
+    it in your hand!
   itemSprite: {fileID: 21300000, guid: 7328c3101778b30488d0657cd7610acc, type: 3}
   durability: 100
   durabilityDecreasePerUse: 1
-  type: 0
-  itemID: 694353253
-  isStackable: 1
-  maxStackSize: 16
+  damagePerAttack: 0
+  oxygenBoost: 0
+  healthBoost: 0
+  speedBoost: 0
+  type: 4
+  itemID: 996963332
+  isStackable: 0
+  maxStackSize: 1

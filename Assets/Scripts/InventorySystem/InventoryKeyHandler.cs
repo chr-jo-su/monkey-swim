@@ -36,7 +36,6 @@ public class InventoryKeyHandler : MonoBehaviour
         touchscreenMode = Input.touchSupported;
         craftingButton.SetActive(touchscreenMode);
         inventoryButton.SetActive(touchscreenMode);
-        Debug.Log(touchscreenMode);
 
         // Start the inventory closed
         inventoryIsShowing = true;
