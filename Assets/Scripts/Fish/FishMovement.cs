@@ -16,8 +16,9 @@ public class fishMovement : MonoBehaviour
     public bool following = false;
     public float distance;
     private Transform player;
-    public HealthBar playerHealth;
-    public int damage;
+
+    [SerializeField]
+    private int damage;
     public int damageTaken;
     private int attackCounter = 0;
     public GameObject seaLineObject;
@@ -112,9 +113,10 @@ public class fishMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
+        if (player != null)
         {
-            playerHealth.TakeDamage(damage);
+            player.TakeDamage(damage);
             following = false;
             attackCounter = 0;
         }
