@@ -31,12 +31,12 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
     private bool canBreath = true;
 
-    public AudioSource audioSource;
-    public AudioClip splashSound;
-    public AudioClip itemPickupSound;
-    public AudioSource seaAmbience;
-    public AudioSource underWaterAmbience;
-    public AudioSource underWaterMusic;
+    // public AudioSource audioSource;
+    // public AudioClip splashSound;
+    // public AudioClip itemPickupSound;
+    // public AudioSource seaAmbience;
+    // public AudioSource underWaterAmbience;
+    // public AudioSource underWaterMusic;
     public Collider2D seaTopBoxCollider;
     public Collider2D playerCollider;
     public HealthBar playerHealth;
@@ -144,15 +144,15 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
             if (transform.position.y > other.transform.position.y) inSea = false;
             else inSea = true;
 
-            if (inSea) {
-                seaAmbience.Pause();
-                underWaterAmbience.enabled = true;
-            }
+            // if (inSea) {
+            //     seaAmbience.Pause();
+            //     underWaterAmbience.enabled = true;
+            // }
 
-            else {
-                seaAmbience.UnPause();
-                underWaterAmbience.enabled = false;
-            }
+            // else {
+            //     seaAmbience.UnPause();
+            //     underWaterAmbience.enabled = false;
+            // }
 
             //Debug.Log("inSea = " + inSea);
         }
@@ -160,7 +160,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!inSea) audioSource.PlayOneShot(splashSound);
+        // if(!inSea) audioSource.PlayOneShot(splashSound);
 
         if (other.CompareTag("Item"))
         {
