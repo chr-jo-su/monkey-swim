@@ -31,12 +31,12 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
     private bool canBreath = true;
 
-    // public AudioSource audioSource;
-    // public AudioClip splashSound;
-    // public AudioClip itemPickupSound;
-    // public AudioSource seaAmbience;
-    // public AudioSource underWaterAmbience;
-    // public AudioSource underWaterMusic;
+    public AudioSource audioSource;
+    public AudioClip splashSound;
+    public AudioClip itemPickupSound;
+    public AudioSource seaAmbience;
+    public AudioSource underWaterAmbience;
+    public AudioSource underWaterMusic;
     public Collider2D seaTopBoxCollider;
     public Collider2D playerCollider;
     public HealthBar playerHealth;
