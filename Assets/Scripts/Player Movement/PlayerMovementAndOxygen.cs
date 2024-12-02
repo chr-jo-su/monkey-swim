@@ -45,42 +45,34 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     private int drownTimer = 0;
 
     // Awake is called when the script instance is being loaded
-    private void Awake()
-    {
+    private void Awake() {
         instance = this;
     }
 
-    public void TakeDamage(int damage)
-    {
+    public void TakeDamage(int damage) {
         playerHealth.TakeDamage(damage);
     }
 
-    void Start()
-    {
+    void Start() {
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         ProcessInputs();
 
-        if (oxygen > 0.0f && !canBreath)
-        {
+        if (oxygen > 0.0f && !canBreath) {
             oxygen -= oxygenDepletionRate * Time.deltaTime;
             oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
         }
-        else if (oxygen < maxOxygen && canBreath)
-        {
+        else if (oxygen < maxOxygen && canBreath) {
             oxygen += 10 * oxygenGainRate * Time.deltaTime;
             oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
         }
 
-        if (oxygen <= 0.0f)
-        {
+        if (oxygen <= 0.0f) {
             // Debug.Log("monke painfully drowned :(");
-            if (drownTimer == 200)
-            {
+            if (drownTimer == 200) {
                 playerHealth.TakeDamage(1);
                 drownTimer = 0;
             }
@@ -88,13 +80,11 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         Move();
     }
 
-    void ProcessInputs()
-    {
+    void ProcessInputs() {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         // if (moveX == 1) {
@@ -108,8 +98,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         movement = new Vector2(moveX, moveY).normalized;
     }
 
-    void Move()
-    {
+    void Move() {
         //rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
         Vector2 v = new Vector2(movement.x, movement.y);
 
@@ -121,8 +110,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         rigidBody.AddForce(v.normalized * moveSpeed);
     }
 
-    public void ChangeOxygen(int val)
-    {
+    public void ChangeOxygen(int val) {
         maxOxygen += val;
 
         if (val < 0)
@@ -131,23 +119,18 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
     }
 
-    public void ChangeMoveSpeed(int val)
-    {
+    public void ChangeMoveSpeed(int val) {
         moveSpeed += val;
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.name == seaLineObject.name)
-        {
-            if (inSea)
-            {
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.name == seaLineObject.name) {
+            if (inSea) {
                 rigidBody.gravityScale = 0F;
                 canMoveUp = true;
                 canBreath = false;
             }
-            else
-            {
+            else {
                 rigidBody.gravityScale = 1F;
                 canMoveUp = false;
                 canBreath = true;
@@ -155,23 +138,19 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.name == seaLineObject.name)
-        {
+    void OnTriggerStay2D(Collider2D other) {
+        if (other.name == seaLineObject.name) {
             canBreath = true;
             if (transform.position.y > other.transform.position.y)
                 inSea = false;
             else
                 inSea = true;
 
-            if (inSea)
-            {
+            if (inSea) {
                 seaAmbience.Pause();
                 underWaterAmbience.enabled = true;
             }
-            else
-            {
+            else {
                 seaAmbience.UnPause();
                 underWaterAmbience.enabled = false;
             }
@@ -180,13 +159,11 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
         if (!inSea)
             audioSource.PlayOneShot(splashSound);
 
-        if (other.CompareTag("Item"))
-        {
+        if (other.CompareTag("Item")) {
             Debug.Log("Picked up " + other.name);
             // inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
             InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
