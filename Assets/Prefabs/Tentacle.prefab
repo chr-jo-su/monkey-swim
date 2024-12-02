@@ -148,7 +148,7 @@ MonoBehaviour:
   gameObject: {fileID: 8290471326646125568}
   moving: 1
   direction: 1
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 7925892381410514065, guid: 21c84bb22fc5246f68a7f5ecdd216021, type: 3}
 --- !u!50 &5852302485079400799
 Rigidbody2D:
   serializedVersion: 4

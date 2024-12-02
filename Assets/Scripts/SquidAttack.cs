@@ -39,8 +39,10 @@ public class SquidAttack : MonoBehaviour
 
     void OnCollisionEnter2D (Collision2D collision)
     {
+        Debug.Log("collision");
         if (collision.gameObject.tag == "Player")
         {
+        Debug.Log("damage");
             playerHealth.TakeDamage(20);
             Destroy(gameObject);
         }
