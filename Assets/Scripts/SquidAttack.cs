@@ -10,8 +10,8 @@ public class SquidAttack : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject gameObject;
     private Transform player;
+    private int damage = 20;
     Vector2 movement;
-    public HealthBar playerHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -37,13 +37,16 @@ public class SquidAttack : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// If the player collides with the enemy, it gets the instane of the health
+    /// and deals damage
+    /// </summary>
     void OnCollisionEnter2D (Collision2D collision)
     {
-        Debug.Log("collision");
         if (collision.gameObject.tag == "Player")
         {
-        Debug.Log("damage");
-            playerHealth.TakeDamage(20);
+            HealthBar.instance.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

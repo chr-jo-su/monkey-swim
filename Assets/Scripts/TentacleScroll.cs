@@ -12,7 +12,7 @@ public class TentacleScroll : MonoBehaviour
     Vector2 movement;
     public bool moving = true;
     public int direction = 1;
-    public HealthBar playerHealth;
+    private int damage = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +51,15 @@ public class TentacleScroll : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If the player collides with the enemy, it gets the instane of the health
+    /// and deals damage
+    /// </summary>
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerHealth.TakeDamage(10);
-            // following = false;
-            // attackCounter = 0;
-            Debug.Log("Take Damage");
+            HealthBar.instance.TakeDamage(damage);
         }
     }
 }
