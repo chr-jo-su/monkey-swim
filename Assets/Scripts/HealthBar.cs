@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public static HealthBar instance;
     public Slider healthSlider;
     public Slider damageHealthSlider;
     public float maxHealth = 100f;
@@ -16,14 +15,13 @@ public class HealthBar : MonoBehaviour
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        instance = this;
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
-        Debug.Log(health);
     }
 
     // Update is called once per frame
@@ -34,7 +32,6 @@ public class HealthBar : MonoBehaviour
         }
         if (healthSlider.value != health)
         {
-            Debug.Log("heal");
             healthSlider.value = health;
         }
 

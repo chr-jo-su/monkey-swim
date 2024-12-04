@@ -114,7 +114,11 @@ public class fishMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (playerHealth == null) {
+                PlayerBar.instance.TakeDamage(damage);
+            } else {
             playerHealth.TakeDamage(damage);
+            }
             following = false;
             attackCounter = 0;
         }

@@ -317,6 +317,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454610989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6465115774695108624, guid: bee921ffe10654268bf231705b99b023, type: 3}
+  m_PrefabInstance: {fileID: 3935174413069704016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &474121096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577918316378428072, guid: bee921ffe10654268bf231705b99b023, type: 3}
+  m_PrefabInstance: {fileID: 3935174413069704016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &474121098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474121096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be8b97d03cfe410c971aeeed302451e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 474121099}
+  damageHealthSlider: {fileID: 454610989}
+  maxHealth: 100
+--- !u!114 &474121099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6320901546469911290, guid: bee921ffe10654268bf231705b99b023, type: 3}
+  m_PrefabInstance: {fileID: 3935174413069704016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474121096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &609048986
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1572280397}
+      objectReference: {fileID: 0}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaLineObject
       value: 
@@ -789,17 +831,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1572280397 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 158972159825563094, guid: bee921ffe10654268bf231705b99b023, type: 3}
-  m_PrefabInstance: {fileID: 3935174413069704016}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e3e5692d4f24b99ba8c8acc7580836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1636540365
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +950,7 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1572280397}
+      objectReference: {fileID: 0}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.42400002
@@ -1057,10 +1088,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 158972159825563094, guid: bee921ffe10654268bf231705b99b023, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4577918316378428072, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 474121098}
   m_SourcePrefab: {fileID: 100100000, guid: bee921ffe10654268bf231705b99b023, type: 3}
 --- !u!1001 &5851828615392301281
 PrefabInstance:
@@ -1121,7 +1156,7 @@ PrefabInstance:
     - target: {fileID: 6803831593602463665, guid: dca0194bc1a5340bb8e7dd7326684f78, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1572280397}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -383,7 +383,7 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     public void SortInventory()
     {
-        HealthBar.instance.TakeDamage(25);
+        PlayerBar.instance.TakeDamage(25);
 
         // Sort the items
         Dictionary<Item, int> items = new();
@@ -430,7 +430,7 @@ public class InventoryManager : MonoBehaviour
         PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
 
         // Add the health boost
-        HealthBar.instance.ChangeHealth(item.healthBoost);
+        PlayerBar.instance.ChangeHealth(item.healthBoost);
 
         // Add the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
@@ -446,7 +446,7 @@ public class InventoryManager : MonoBehaviour
         PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
 
         // Remove the health boost
-        HealthBar.instance.ChangeHealth(-item.healthBoost);
+        PlayerBar.instance.ChangeHealth(-item.healthBoost);
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);

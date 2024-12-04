@@ -46,7 +46,7 @@ public class SquidAttack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            HealthBar.instance.TakeDamage(damage);
+            PlayerBar.instance.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
