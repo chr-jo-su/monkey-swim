@@ -273,21 +273,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: seaLineObject
+      value: 
+      objectReference: {fileID: 1899255126}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.42400002
       objectReference: {fileID: 0}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -712,6 +720,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1429006276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+  m_PrefabInstance: {fileID: 1596879947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1572280397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 158972159825563094, guid: bee921ffe10654268bf231705b99b023, type: 3}
@@ -771,21 +784,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: seaLineObject
+      value: 
+      objectReference: {fileID: 1899255126}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.42400002
       objectReference: {fileID: 0}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -840,21 +861,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: seaLineObject
+      value: 
+      objectReference: {fileID: 1899255126}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.42400002
       objectReference: {fileID: 0}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -929,6 +958,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1899255126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7548454554402600291, guid: cde82720501534057998f8ef29743dbe, type: 3}
+  m_PrefabInstance: {fileID: 1107350914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &722064188361139222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -981,6 +1015,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1572280397}
+    - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: seaLineObject
+      value: 
+      objectReference: {fileID: 1899255126}
     - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1115,6 +1153,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee921ffe10654268bf231705b99b023, type: 3}
+--- !u!1001 &7830129523210021594
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7594045
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.019816767
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491721603304578473, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245752479494040914, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: seaLineObject
+      value: 
+      objectReference: {fileID: 1429006276}
+    - target: {fileID: 2956047145361535360, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533529697676140122, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_Name
+      value: AngelFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1129,3 +1240,4 @@ SceneRoots:
   - {fileID: 1626509151}
   - {fileID: 1596879947}
   - {fileID: 1107350914}
+  - {fileID: 7830129523210021594}
