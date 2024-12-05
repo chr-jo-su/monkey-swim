@@ -6,17 +6,16 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public static HealthBar instance;
     public Slider healthSlider;
     public Slider damageHealthSlider;
     public float maxHealth = 100f;
-    public float health;
+    private float health;
     private float lerpSpeed = 0.1f;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        instance = this;
+        
     }
 
     // Start is called before the first frame update
@@ -28,6 +27,9 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health < 0) {
+            Debug.Log("Negative Health");
+        }
         if (healthSlider.value != health)
         {
             healthSlider.value = health;
@@ -37,6 +39,7 @@ public class HealthBar : MonoBehaviour
         {
             damageHealthSlider.value = Mathf.Lerp(damageHealthSlider.value, health, lerpSpeed);
         }
+
     }
 
     public void ChangeHealth(int val)
@@ -51,6 +54,9 @@ public class HealthBar : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("thats a lot of damage");
+        Debug.Log(health);
         health -= damage;
+        Debug.Log(health);
     }
 }

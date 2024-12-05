@@ -116,7 +116,11 @@ public class fishMovement : MonoBehaviour
         var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
         if (player != null)
         {
-            player.TakeDamage(damage);
+            if (playerHealth == null) {
+                PlayerBar.instance.TakeDamage(damage);
+            } else {
+            playerHealth.TakeDamage(damage);
+            }
             following = false;
             attackCounter = 0;
         }

@@ -310,4 +310,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3965734027113982037}
   gameObject: {fileID: 5249547851711428380}
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 7925892381410514065, guid: 21c84bb22fc5246f68a7f5ecdd216021, type: 3}
