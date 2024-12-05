@@ -805,15 +805,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b776f99793a220a4a8bc532bff95f506, type: 2}
   - {fileID: 11400000, guid: 207520704e71c2f42b320252d8d0e779, type: 2}
   - {fileID: 11400000, guid: b31b8b36a706526479c81957ed80f78f, type: 2}
-  - {fileID: 11400000, guid: 1cf42bc08fc9c234abbf784c606e99f0, type: 2}
-  - {fileID: 11400000, guid: 7b05ba1471d52984fa416de9e32fedee, type: 2}
-  - {fileID: 11400000, guid: 926c15c03de8bfd4eb63e7cd6a267334, type: 2}
   - {fileID: 11400000, guid: b24ecad9cf4fd34419c9b471e165b4c0, type: 2}
-  - {fileID: 11400000, guid: ea2a314af69f49447815f2d0539b493a, type: 2}
   - {fileID: 11400000, guid: ec8dcb043bffd22439d8a13c2f385086, type: 2}
   - {fileID: 11400000, guid: 2fe7c49eb953cb54c8f2d5da2638eef1, type: 2}
   - {fileID: 11400000, guid: e85e8871844a28c43be329e86fa786c6, type: 2}
   - {fileID: 11400000, guid: 1d3104b40fd81bf42937764a725747dc, type: 2}
+  - {fileID: 11400000, guid: 7aa94f8b5d79c3343b4e33bab1626536, type: 2}
   - {fileID: 11400000, guid: 659371e23a8932b48ba23062714a2a59, type: 2}
   - {fileID: 11400000, guid: 79686eeea7536d84aa6fe482ac5fa9f7, type: 2}
   - {fileID: 11400000, guid: eead817c6a6394346ae24b832f40b2b3, type: 2}
@@ -823,10 +820,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb861e347ce5a064e935808c438eaa22, type: 2}
   - {fileID: 11400000, guid: b9c0e7ddd4b35be40a80686e13f7277b, type: 2}
   - {fileID: 11400000, guid: b84a911061b45a0489a9ae833a6691aa, type: 2}
-  - {fileID: 11400000, guid: 3b439c613534b8e4b996a0ef1ac2e87a, type: 2}
-  - {fileID: 11400000, guid: 7aa94f8b5d79c3343b4e33bab1626536, type: 2}
-  - {fileID: 11400000, guid: 21a5ff8b7ffb32d4d91feabb6e48ab0a, type: 2}
-  - {fileID: 11400000, guid: 821455a10a3a79f4293e61f2fb7d52af, type: 2}
   craftingList: {fileID: 4727501809881433203}
   craftingSlotPrefab: {fileID: 9013387343068509079, guid: 81c7684680851e944a82512f6ffec5e3, type: 3}
   itemsPerPage: 15

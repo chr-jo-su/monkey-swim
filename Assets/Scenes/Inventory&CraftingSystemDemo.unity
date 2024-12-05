@@ -886,22 +886,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3597634859369548278, guid: 8649920cf0e87dc47bec42c34606c208, type: 3}
-      propertyPath: m_RaycastPadding.w
-      value: 155.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 3597634859369548278, guid: 8649920cf0e87dc47bec42c34606c208, type: 3}
-      propertyPath: m_RaycastPadding.x
-      value: 43.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3597634859369548278, guid: 8649920cf0e87dc47bec42c34606c208, type: 3}
-      propertyPath: m_RaycastPadding.y
-      value: 132.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 3597634859369548278, guid: 8649920cf0e87dc47bec42c34606c208, type: 3}
-      propertyPath: m_RaycastPadding.z
-      value: 46.68
-      objectReference: {fileID: 0}
     - target: {fileID: 3740800018468873572, guid: 8649920cf0e87dc47bec42c34606c208, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
