@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
-  m_Name: StoneSword
+  m_Name: NeedlePurple
   m_EditorClassIdentifier: 
-  itemName: Stone Sword
-  itemDescription: Might get stuck in your enemies.
-  itemSprite: {fileID: 21300000, guid: a6a54a25692b0d748866959e16e9b255, type: 3}
+  itemName: 
+  itemDescription: 
+  itemSprite: {fileID: 21300000, guid: 5ed691792bb6e9b459bfe2d1d8cd1ed4, type: 3}
   durability: 100
-  durabilityDecreasePerUse: 2
-  damagePerAttack: 10
+  durabilityDecreasePerUse: 0
+  damagePerAttack: 0
   oxygenBoost: 0
   healthBoost: 0
   speedBoost: 0
   type: 0
-  itemID: 578475221
+  itemID: 0
   isStackable: 0
-  maxStackSize: 1
+  maxStackSize: 0
