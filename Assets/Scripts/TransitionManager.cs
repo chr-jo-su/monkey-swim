@@ -19,6 +19,8 @@ public class TransitionManager : MonoBehaviour {
     private Vector2 targetPos;
 
     private string sceneName;
+    private bool sameScene;
+    private int delay;
     private GameObject gameObjectToDestroy;
 
     /// <summary>
@@ -28,6 +30,7 @@ public class TransitionManager : MonoBehaviour {
         instance = this;
         hiddenPos = new(transitionScreen.transform.position.x, transitionScreen.transform.position.y);
         showingPos = new(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
+
         HideTransitionScreen();
     }
 
@@ -47,13 +50,25 @@ public class TransitionManager : MonoBehaviour {
             if (!allowLoad) {
                 ShowTransitionScreen();
             } else {
-                Destroy(gameObjectToDestroy);
+                if (!sameScene) {
+                    Destroy(gameObjectToDestroy);
 
-                StartCoroutine(LoadNewScene());
+                    StartCoroutine(LoadNewScene());
+                } else {
+                    if (delay > 0) {
+                        delay -= (int)(Time.unscaledDeltaTime * 1000);
+                    } else {
+                        completedLoading = true;
+                    }
+                }
             }
         } else if (completedLoading && canClose) {
             // Unload the transition screen
-            UnloadOtherScenes();
+            if (sameScene) {
+                UnloadTransitionScene();
+            } else {
+                UnloadOtherScenes();
+            }
         } else {
             HideTransitionScreen();
         }
@@ -91,8 +106,10 @@ public class TransitionManager : MonoBehaviour {
     /// </summary>
     /// <param name="sceneName">The name of the sceneName to be loaded as a string.</param>
     public void LoadTransition(string sceneName, GameObject gameObjectToDestroy = null) {
-        // Show the transition screen
         allowAnimation = true;
+        sameScene = false;
+
+        // Show the transition screen
         ShowTransitionScreen();
 
         // Save the sceneName to load later
@@ -101,10 +118,22 @@ public class TransitionManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Starts the transition and waits the given delay.
+    /// </summary>
+    /// <param name="delay">The delay to wait (given in milliseconds) between opening and closing the transition scene.</param>
+    public void LoadTransition(int delay) {
+        allowAnimation = true;
+        sameScene = true;
+        this.delay = delay;
+
+        ShowTransitionScreen();
+    }
+
+    /// <summary>
     /// Loads the stored sceneName and finishes the transition.
     /// </summary>
     /// <returns></returns>
-    IEnumerator LoadNewScene() {
+    private IEnumerator LoadNewScene() {
         List<AsyncOperation> asyncOperations = UnloadOtherScenes();
 
         while (!asyncOperations.TrueForAll(operation => operation.isDone)) yield return null;
@@ -120,11 +149,28 @@ public class TransitionManager : MonoBehaviour {
     /// </summary>
     /// <returns>A list of async operations for unloading scenes that are being run.</returns>
     private List<AsyncOperation> UnloadOtherScenes() {
-        List<AsyncOperation> asyncOperations = new List<AsyncOperation>();
+        List<AsyncOperation> asyncOperations = new();
 
         // Unload previous scenes
         for (int i = SceneManager.sceneCount - 2; i >= 0; i--) {
             asyncOperations.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i)));
+        }
+
+        return asyncOperations;
+    }
+
+    /// <summary>
+    /// Unloads the transition scene.
+    /// </summary>
+    /// <returns>The transition scene unload operation if found, otherwise null.</returns>
+    private AsyncOperation UnloadTransitionScene() {
+        AsyncOperation asyncOperations = null;
+
+        // Unload transition scene
+        for (int i = SceneManager.sceneCount; i >= 0; i--) {
+            if (SceneManager.GetSceneAt(i).name == "TransitionScene") {
+                asyncOperations = SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
+            }
         }
 
         return asyncOperations;
