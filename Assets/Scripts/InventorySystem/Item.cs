@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable object/Item")]
-public class Item : ScriptableObject
-{
+[CreateAssetMenu(menuName = "Custom Objects/Item")]
+public class Item : ScriptableObject {
     // Item descriptors
     [Header("Visible to players")]
 
@@ -50,28 +49,27 @@ public class Item : ScriptableObject
     
     [Tooltip("The ID of the item. This must be unique to each item.")]
     [ContextMenuItem("Generate a random ID", "GenerateItemID")]
-    public int itemID;
+    public int itemID = 0;
     
     [Tooltip("Whether the item can be stacked or not.")]
-    public bool isStackable;
+    public bool isStackable = false;
     
     [Tooltip("The maximum amount of items that can be stacked together if stackable.")]
-    public int maxStackSize;
+    public int maxStackSize = 1;
 
     /// <summary>
     /// Generates a random item ID through an option in the Inspector when the itemID variable is right-clicked.
+    /// This should be unique to each item, not to each instance of every item.
     /// </summary>
-    private void GenerateItemID()
-    {
+    private void GenerateItemID() {
         itemID = Random.Range(0, 999999999);
     }
 }
 
-public enum ItemType
-{
-    Others,         // Others is the default item type.
-    Consumable,     // Consumables would usually have a durabilityDecreasePerUse of 100.
-    Weapon,         // Weapons would usually have a durabilityDecreasePerUse of 1 or lower and not be stackable.
-    Armour,          // Armour would usually not be stackable.
-    Trinket
+public enum ItemType {
+    Others,         // Others is the default item type. Most, if not all, items should not be this type.
+    Consumable,     // Consumables have a durabilityDecreasePerUse of 100 (they are gone after a single use).
+    Weapon,         // Weapons have a durabilityDecreasePerUse of 1 or higher and are not stackable.
+    Armour,         // Armour have a durabilityDecreasePerUse of 1 or higher and are not stackable.
+    Trinket         // Trinkets are not stackable.
 }

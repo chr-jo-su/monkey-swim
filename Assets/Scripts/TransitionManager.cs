@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TransitionManager : MonoBehaviour
-{
+public class TransitionManager : MonoBehaviour {
     // Variables
     public static TransitionManager instance;
     public GameObject transitionScreen;
@@ -25,8 +24,7 @@ public class TransitionManager : MonoBehaviour
     /// <summary>
     /// Hides the transition screen on start and sets the positions for the start and end.
     /// </summary>
-    private void Awake()
-    {
+    private void Awake() {
         instance = this;
         hiddenPos = new(transitionScreen.transform.position.x, transitionScreen.transform.position.y);
         showingPos = new(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
@@ -36,44 +34,31 @@ public class TransitionManager : MonoBehaviour
     /// <summary>
     /// Handles transition animations and boolean checking for certin stages.
     /// </summary>
-    private void Update()
-    {
+    private void Update() {
         AnimateMenu();
 
-        if (allowAnimation && !completedLoading)
-        {
-            if (Mathf.Round(transitionScreen.transform.position.y) == Camera.main.pixelHeight / 2)
-            {
+        if (allowAnimation && !completedLoading) {
+            if (Mathf.Round(transitionScreen.transform.position.y) == Camera.main.pixelHeight / 2) {
                 allowLoad = true;
-            }
-            else
-            {
+            } else {
                 allowLoad = false;
             }
 
-            if (!allowLoad)
-            {
+            if (!allowLoad) {
                 ShowTransitionScreen();
-            }
-            else
-            {
+            } else {
                 Destroy(gameObjectToDestroy);
 
                 StartCoroutine(LoadNewScene());
             }
-        }
-        else if (completedLoading && canClose)
-        {
+        } else if (completedLoading && canClose) {
             // Unload the transition screen
             UnloadOtherScenes();
-        }
-        else
-        {
+        } else {
             HideTransitionScreen();
         }
 
-        if (!canClose && completedLoading && Mathf.Round(transitionScreen.transform.position.y) == hiddenPos.y)
-        {
+        if (!canClose && completedLoading && Mathf.Round(transitionScreen.transform.position.y) == hiddenPos.y) {
             canClose = true;
         }
     }
@@ -81,18 +66,15 @@ public class TransitionManager : MonoBehaviour
     /// <summary>
     /// Animates the transition screen to targetPos.
     /// </summary>
-    private void AnimateMenu()
-    {
+    private void AnimateMenu() {
         transitionScreen.transform.position = Vector3.Lerp(transitionScreen.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
     }
 
     /// <summary>
     /// Changes the target positioning to fill the camera frame.
     /// </summary>
-    private void ShowTransitionScreen()
-    {
-        if (!completedLoading)
-        {
+    private void ShowTransitionScreen() {
+        if (!completedLoading) {
             targetPos = showingPos;
         }
     }
@@ -100,8 +82,7 @@ public class TransitionManager : MonoBehaviour
     /// <summary>
     /// Changes the target positioning to out of the camera frame.
     /// </summary>
-    private void HideTransitionScreen()
-    {
+    private void HideTransitionScreen() {
         targetPos = hiddenPos;
     }
 
@@ -109,8 +90,7 @@ public class TransitionManager : MonoBehaviour
     /// Starts the transition to switch to sceneName with given name.
     /// </summary>
     /// <param name="sceneName">The name of the sceneName to be loaded as a string.</param>
-    public void LoadTransition(string sceneName, GameObject gameObjectToDestroy = null)
-    {
+    public void LoadTransition(string sceneName, GameObject gameObjectToDestroy = null) {
         // Show the transition screen
         allowAnimation = true;
         ShowTransitionScreen();
@@ -139,13 +119,11 @@ public class TransitionManager : MonoBehaviour
     /// Unloads all scenes except the last one.
     /// </summary>
     /// <returns>A list of async operations for unloading scenes that are being run.</returns>
-    private List<AsyncOperation> UnloadOtherScenes()
-    {
+    private List<AsyncOperation> UnloadOtherScenes() {
         List<AsyncOperation> asyncOperations = new List<AsyncOperation>();
 
         // Unload previous scenes
-        for (int i = SceneManager.sceneCount - 2; i >= 0; i--)
-        {
+        for (int i = SceneManager.sceneCount - 2; i >= 0; i--) {
             asyncOperations.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i)));
         }
 
