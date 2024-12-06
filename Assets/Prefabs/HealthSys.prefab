@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 166108747890924356}
-  - component: {fileID: 6061713337822074091}
   m_Layer: 5
   m_Name: HealthSys
   m_TagString: Untagged
@@ -38,22 +37,6 @@ RectTransform:
   m_AnchoredPosition: {x: -672, y: 460}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6061713337822074091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318630828183811065}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e3e5692d4f24b99ba8c8acc7580836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 6320901546469911290}
-  damageHealthSlider: {fileID: 6465115774695108624}
-  maxHealth: 100
-  health: 0
 --- !u!1 &4057626349329784304
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +216,6 @@ MonoBehaviour:
   healthSlider: {fileID: 6320901546469911290}
   damageHealthSlider: {fileID: 6465115774695108624}
   maxHealth: 100
-  health: 0
 --- !u!1 &4993733375259110852
 GameObject:
   m_ObjectHideFlags: 0

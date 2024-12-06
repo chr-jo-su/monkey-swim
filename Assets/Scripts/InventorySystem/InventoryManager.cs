@@ -359,7 +359,7 @@ public class InventoryManager : MonoBehaviour {
         PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
 
         // Add the health boost
-        HealthBar.instance.ChangeHealth(item.healthBoost);
+        PlayerBar.instance.ChangeHealth(item.healthBoost);
 
         // Add the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
@@ -375,7 +375,7 @@ public class InventoryManager : MonoBehaviour {
         PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
 
         // Remove the health boost
-        HealthBar.instance.ChangeHealth(-item.healthBoost);
+        PlayerBar.instance.ChangeHealth(-item.healthBoost);
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);

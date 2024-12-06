@@ -17,7 +17,7 @@ public class Bananarang : MonoBehaviour
     private Camera MainCamera;
     private float Angle;
     private float Timer;
-    public float Velocity;
+    private float Velocity = 15;
     private bool ReturnToPlayer;
     private bool WeaponRebound;
 
@@ -84,5 +84,6 @@ public class Bananarang : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision2D)
     {
         ReturnToPlayer = true;
+        gameObject.GetComponent<Collider2D>().enabled = false;
     }
 }

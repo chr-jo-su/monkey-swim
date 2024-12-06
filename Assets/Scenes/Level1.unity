@@ -270,14 +270,26 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -550,6 +562,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &223639730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4473732990868618320, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
+  m_PrefabInstance: {fileID: 687864739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &384365092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,14 +1093,26 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1101,30 +1136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1296609502298723916, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1055117105}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: seaTopBox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaAmbience
       value: 
       objectReference: {fileID: 1889461596}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: splashSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 926dc6a3478e6bf4d8afa8fe14fe8e77, type: 3}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: oxygenSlider
       value: 
@@ -1132,27 +1147,11 @@ PrefabInstance:
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 707935993}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: oxygenGainRate
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: playerCollider
-      value: 
-      objectReference: {fileID: 1055117103}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: inventorySystem
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: itemPickupSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ea46a44cce5b1ca5c8c6a4e6ae828bf8, type: 3}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: underWaterMusic
       value: 
@@ -1165,14 +1164,6 @@ PrefabInstance:
       propertyPath: underWaterAmbience
       value: 
       objectReference: {fileID: 1319501342}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: oxygenDepletionRate
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-      propertyPath: seaBottomBoxCollider
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4480218188751584525, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.404606
@@ -1330,20 +1321,44 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7321050544930734486, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6351580211564191464, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 707935993}
   m_SourcePrefab: {fileID: 100100000, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
---- !u!114 &687864740 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7321050544930734486, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
+--- !u!1 &707935991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6351580211564191464, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
   m_PrefabInstance: {fileID: 687864739}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &707935993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707935991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e3e5692d4f24b99ba8c8acc7580836, type: 3}
+  m_Script: {fileID: 11500000, guid: 0be8b97d03cfe410c971aeeed302451e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 707935994}
+  damageHealthSlider: {fileID: 223639730}
+  maxHealth: 100
+--- !u!114 &707935994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3464687099160880826, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
+  m_PrefabInstance: {fileID: 687864739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707935991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &759753344
@@ -2339,14 +2354,26 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2356,16 +2383,6 @@ PrefabInstance:
 --- !u!1 &1055117102 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 419459860108603908, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-  m_PrefabInstance: {fileID: 684619294}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1055117103 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7243071159971029084, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
-  m_PrefabInstance: {fileID: 684619294}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1055117105 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5174726874596751175, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
   m_PrefabInstance: {fileID: 684619294}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1067705226
@@ -3010,14 +3027,26 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3075,14 +3104,26 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3140,14 +3181,26 @@ PrefabInstance:
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 687864740}
+      objectReference: {fileID: 0}
     - target: {fileID: 1245752479494040914, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956047145361535360, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533529697676140122, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
       propertyPath: m_Name
       value: Fish (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087814741304352877, guid: 336785245dff94e079b9a0d80988cdf8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

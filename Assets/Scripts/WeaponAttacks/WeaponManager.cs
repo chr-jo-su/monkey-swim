@@ -62,7 +62,5 @@ public class WeaponManager : MonoBehaviour
         {
             BananarangReady = true;
         }
-
-        Debug.Log(BananarangCount);
     }
 }
