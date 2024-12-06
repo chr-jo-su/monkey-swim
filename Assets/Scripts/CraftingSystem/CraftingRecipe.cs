@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable object/Crafting recipe")]
-public class CraftingRecipe : ScriptableObject
-{
+[CreateAssetMenu(menuName = "Custom Objects/Crafting Recipe")]
+public class CraftingRecipe : ScriptableObject {
     // This can't be done with a dictionary as it doesn't seem to let us change it in the inspector panel.
     // So instead there's 2 arrays which can be iterated through at the same time.
     [Tooltip("The list of Items that will be needed to create the resultingItem.")]
@@ -21,8 +20,7 @@ public class CraftingRecipe : ScriptableObject
     /// <summary>
     /// Generates a random crafting recipe ID through an option in the Inspector when the craftingRecipeID variable is right-clicked.
     /// </summary>
-    private void GenerateCraftingRecipeID()
-    {
+    private void GenerateCraftingRecipeID() {
         craftingRecipeID = Random.Range(0, 999999999);
     }
 }

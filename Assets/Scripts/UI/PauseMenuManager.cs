@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuManager : MonoBehaviour
-{
+public class PauseMenuManager : MonoBehaviour {
     // Variables
     public GameObject pauseMenu;
     public KeyCode pauseMenuKey = KeyCode.Escape;
@@ -20,8 +19,7 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Unpauses the game on start.
     /// </summary>
-    void Start()
-    {
+    void Start() {
         paused = true;
         UnpauseGame();
     }
@@ -29,19 +27,15 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Handles animations and keyboard inputs.
     /// </summary>
-    void Update()
-    {
+    void Update() {
         AnimateMenu();
 
         // Check for keyboard inputs
         CheckKeyboardInputs();
 
-        if (pauseMenu.transform.position.y - Camera.main.pixelHeight >= Camera.main.pixelHeight / 2)
-        {
+        if (pauseMenu.transform.position.y - Camera.main.pixelHeight >= Camera.main.pixelHeight / 2) {
             pauseMenu.SetActive(false);
-        }
-        else
-        {
+        } else {
             pauseMenu.SetActive(true);
         }
     }
@@ -49,18 +43,13 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Checks for keyboard inputs.
     /// </summary>
-    private void CheckKeyboardInputs()
-    {
+    private void CheckKeyboardInputs() {
         // Check for the pause menu key to be pressed
-        if (Input.GetKeyDown(pauseMenuKey))
-        {
-            if (paused)
-            {
+        if (Input.GetKeyDown(pauseMenuKey)) {
+            if (paused) {
                 // If the game's paused, unpause it
                 UnpauseGame();
-            }
-            else
-            {
+            } else {
                 PauseGame();
             }
         }
@@ -69,10 +58,8 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Unpauses the game.
     /// </summary>
-    public void UnpauseGame()
-    {
-        if (paused)
-        {
+    public void UnpauseGame() {
+        if (paused) {
             targetPos = closePos;
             Time.timeScale = 1f;
             paused = false;
@@ -82,10 +69,8 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Pauses the game.
     /// </summary>
-    public void PauseGame()
-    {
-        if (!paused)
-        {
+    public void PauseGame() {
+        if (!paused) {
             targetPos = openPos;
             Time.timeScale = 0f;
             paused = true;
@@ -95,8 +80,7 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Opens the main menu sceneName.
     /// </summary>
-    public void LoadTitleScreen()
-    {
+    public void LoadTitleScreen() {
         StartCoroutine(LoadLevel());
     }
 
@@ -104,8 +88,7 @@ public class PauseMenuManager : MonoBehaviour
     /// Loads the level asynchronously.
     /// </summary>
     /// <returns></returns>
-    IEnumerator LoadLevel()
-    {
+    IEnumerator LoadLevel() {
         asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
 
         while (!asyncLoadLevel.isDone) yield return null;
@@ -116,8 +99,7 @@ public class PauseMenuManager : MonoBehaviour
     /// <summary>
     /// Animates the opening and closing of the pause menu.
     /// </summary>
-    private void AnimateMenu()
-    {
+    private void AnimateMenu() {
         // Animate the menu moving
         pauseMenu.transform.position = Vector3.Lerp(pauseMenu.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
     }
