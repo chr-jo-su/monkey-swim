@@ -155,7 +155,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
                 underWaterAmbience.enabled = false;
             }
 
-            //Debug.Log("inSea = " + inSea);
+            // Debug.Log("inSea = " + inSea);
         }
     }
 
@@ -165,7 +165,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
 
         if (other.CompareTag("Item")) {
             Debug.Log("Picked up " + other.name);
-            // inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+            //inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
             InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
             audioSource.PlayOneShot(itemPickupSound);
             Destroy(other.gameObject);
