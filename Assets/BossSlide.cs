@@ -11,7 +11,7 @@ public class BossSlide : MonoBehaviour
 {
     private Vector3 StartPosition;
     private float DistanceOut = 18;
-    public float SlideSpeed = 15;
+    private float SlideSpeed = 15;
     public bool SlideOut = false;
 
     // Start is called before the first frame update
