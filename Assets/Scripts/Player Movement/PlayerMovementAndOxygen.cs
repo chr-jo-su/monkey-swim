@@ -144,28 +144,30 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
             if (transform.position.y > other.transform.position.y) inSea = false;
             else inSea = true;
 
-            // if (inSea) {
-            //     seaAmbience.Pause();
-            //     underWaterAmbience.enabled = true;
-            // }
+            if (inSea)
+            {
+                seaAmbience.Pause();
+                underWaterAmbience.enabled = true;
+            }
 
-            // else {
-            //     seaAmbience.UnPause();
-            //     underWaterAmbience.enabled = false;
-            // }
+            else
+            {
+                seaAmbience.UnPause();
+                underWaterAmbience.enabled = false;
+            }
 
-            //Debug.Log("inSea = " + inSea);
+            // Debug.Log("inSea = " + inSea);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // if(!inSea) audioSource.PlayOneShot(splashSound);
+        if(!inSea) audioSource.PlayOneShot(splashSound);
 
         if (other.CompareTag("Item"))
         {
             Debug.Log("Picked up " + other.name);
-            // inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+            //inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
             InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
             audioSource.PlayOneShot(itemPickupSound);
             Destroy(other.gameObject);
