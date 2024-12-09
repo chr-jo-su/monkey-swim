@@ -9,6 +9,8 @@ TagManager:
   - Fish
   - Item
   - PauseMenuManager
+  - Squid
+  - Boss
   layers:
   - Default
   - TransparentFX

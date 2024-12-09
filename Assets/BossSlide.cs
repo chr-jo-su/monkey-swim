@@ -10,8 +10,8 @@ using Vector3 = UnityEngine.Vector3;
 public class BossSlide : MonoBehaviour
 {
     private Vector3 StartPosition;
-    private float DistanceOut = 30;
-    private float SlideSpeed = 1;
+    private float DistanceOut = 18;
+    private float SlideSpeed = 15;
     public bool SlideOut = false;
 
     // Start is called before the first frame update
@@ -31,7 +31,7 @@ public class BossSlide : MonoBehaviour
     {
         if (SlideOut == false)
         {
-            gameObject.transform.position = Vector3.Lerp(
+            gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
                 StartPosition,
                 SlideSpeed * Time.unscaledDeltaTime
@@ -43,7 +43,7 @@ public class BossSlide : MonoBehaviour
     {
         if (SlideOut == true)
         {
-            gameObject.transform.position = Vector3.Lerp(
+            gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
                 new Vector3(DistanceOut, StartPosition.y, StartPosition.z),
                 SlideSpeed * Time.unscaledDeltaTime
