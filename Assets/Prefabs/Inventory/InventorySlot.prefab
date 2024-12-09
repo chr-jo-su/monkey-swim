@@ -91,9 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2118229429348962023}
-  inventoryItemPrefab: {fileID: 0}
+  inventoryItemPrefab: {fileID: 903062702048024672, guid: cf00059ae5ccd2d47817e0f591159d19, type: 3}
   selectedScale: {x: 2.25, y: 2.25, z: 2.25}
-  equippedSize: 0
+  equippedSize: {x: 5, y: -5}
 --- !u!114 &94746459419628487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0.39836192, b: 1, a: 0.72156864}
+  m_EffectColor: {r: 0.08235294, g: 1, b: 0, a: 0.72156864}
   m_EffectDistance: {x: 0, y: 0}
   m_UseGraphicAlpha: 1

@@ -2,62 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingKeyHandler : MonoBehaviour
-{
+public class CraftingKeyHandler : MonoBehaviour {
     // Variables
     public static CraftingKeyHandler instance;
 
-    [HideInInspector] private bool isShowing;
+    private bool isShowing;
     public GameObject craftingMenu;
     public KeyCode craftingMenuKey = KeyCode.Q;
 
-    [HideInInspector] private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    [HideInInspector] private Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
-    [HideInInspector] private Vector3 targetPos;
-    private float velocity = 5f;
+    private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
+    private Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
+    private Vector3 targetPos;
+    [SerializeField] private readonly float velocity = 5f;
 
     // Awake is called when the script instance is being loaded
-    private void Awake()
-    {
+    private void Awake() {
         instance = this;
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         isShowing = true;
 
         // Start the crafting closed
         CloseCraftingMenu();
-
-        Debug.Log("Crafting system is active.");
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    private void Update() {
         AnimateMenu();
 
         // Check for the crafting menu key to be pressed
-        if (Input.GetKeyDown(craftingMenuKey))
-        {
-            if (isShowing)
-            {
+        if (Input.GetKeyDown(craftingMenuKey)) {
+            if (isShowing) {
                 // If it is showing, hide it
                 CloseCraftingMenu();
-            }
-            else
-            {
+            } else {
                 ShowCraftingMenu();
             }
         }
 
-        if (craftingMenu.transform.position.y - Camera.main.pixelHeight >= Camera.main.pixelHeight / 2)
-        {
+        if (craftingMenu.transform.position.y - Camera.main.pixelHeight >= Camera.main.pixelHeight / 2) {
             craftingMenu.SetActive(false);
-        }
-        else
-        {
+        } else {
             craftingMenu.SetActive(true);
         }
     }
@@ -65,18 +52,14 @@ public class CraftingKeyHandler : MonoBehaviour
     /// <summary>
     /// Closes the crafting menu.
     /// </summary>
-    public void CloseCraftingMenu()
-    {
-        if (isShowing)
-        {
+    public void CloseCraftingMenu() {
+        if (isShowing) {
             targetPos = closePos;
 
             // Remove any tooltip menus if there are any
-            try
-            {
+            try {
                 Destroy(GameObject.Find("ItemTooltip(Clone)"));
-            }
-            catch (System.Exception) { }
+            } catch (System.Exception) { }
 
             // Remove all the items from the crafting list
             CraftingManager.instance.UnpopulateCraftingList();
@@ -88,10 +71,8 @@ public class CraftingKeyHandler : MonoBehaviour
     /// <summary>
     /// Opens the crafting menu.
     /// </summary>
-    private void ShowCraftingMenu()
-    {
-        if (!isShowing)
-        {
+    private void ShowCraftingMenu() {
+        if (!isShowing) {
             // Close the inventory if it is open
             InventoryKeyHandler.instance.CloseInventory();
 
@@ -107,14 +88,10 @@ public class CraftingKeyHandler : MonoBehaviour
     /// <summary>
     /// Toggle the crafting menu. Useful for assigning to a button.
     /// </summary>
-    public void ToggleCraftingMenu()
-    {
-        if (isShowing)
-        {
+    public void ToggleCraftingMenu() {
+        if (isShowing) {
             CloseCraftingMenu();
-        }
-        else
-        {
+        } else {
             ShowCraftingMenu();
         }
     }
@@ -122,8 +99,7 @@ public class CraftingKeyHandler : MonoBehaviour
     /// <summary>
     /// Animates the opening and closing of the crafting menu.
     /// </summary>
-    private void AnimateMenu()
-    {
+    private void AnimateMenu() {
         // Animate the menu moving
         craftingMenu.transform.position = Vector3.Lerp(craftingMenu.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
     }

@@ -5,13 +5,15 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class PlayerMovementAndOxygen : MonoBehaviour {
+public class PlayerMovementAndOxygen : MonoBehaviour
+{
     // Variables
     public static PlayerMovementAndOxygen instance;
- 
+
     public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
     public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
+
     // that signifies the sea line
     Vector2 movement;
     public Animator animator;
@@ -43,9 +45,12 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
     private int drownTimer = 0;
 
     // Awake is called when the script instance is being loaded
-    private void Awake()
-    {
+    private void Awake() {
         instance = this;
+    }
+
+    public void TakeDamage(int damage) {
+        playerHealth.TakeDamage(damage);
     }
 
     void Start() {
@@ -58,12 +63,11 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
         if (oxygen > 0.0f && !canBreath) {
             oxygen -= oxygenDepletionRate * Time.deltaTime;
-            oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
+            oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
         }
-
         else if (oxygen < maxOxygen && canBreath) {
-            oxygen += 10*oxygenGainRate * Time.deltaTime;
-            oxygenSlider.GetComponent<Slider>().value = oxygen*0.01f;
+            oxygen += 10 * oxygenGainRate * Time.deltaTime;
+            oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
         }
 
         if (oxygen <= 0.0f) {
@@ -98,14 +102,15 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         //rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
         Vector2 v = new Vector2(movement.x, movement.y);
 
-        if (canMoveUp) v = new Vector2(movement.x, movement.y);
-        else v = new Vector2(movement.x, 0);
+        if (canMoveUp)
+            v = new Vector2(movement.x, movement.y);
+        else
+            v = new Vector2(movement.x, 0);
 
         rigidBody.AddForce(v.normalized * moveSpeed);
     }
 
-    public void ChangeOxygen(int val)
-    {
+    public void ChangeOxygen(int val) {
         maxOxygen += val;
 
         if (val < 0)
@@ -114,22 +119,18 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         }
     }
 
-    public void ChangeMoveSpeed(int val)
-    {
+    public void ChangeMoveSpeed(int val) {
         moveSpeed += val;
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if (other.name == seaLineObject.name)
-        {
-            if (inSea)
-            {
+        if (other.name == seaLineObject.name) {
+            if (inSea) {
                 rigidBody.gravityScale = 0F;
                 canMoveUp = true;
                 canBreath = false;
             }
-            else
-            {
+            else {
                 rigidBody.gravityScale = 1F;
                 canMoveUp = false;
                 canBreath = true;
@@ -138,20 +139,18 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
     }
 
     void OnTriggerStay2D(Collider2D other) {
-
         if (other.name == seaLineObject.name) {
             canBreath = true;
-            if (transform.position.y > other.transform.position.y) inSea = false;
-            else inSea = true;
+            if (transform.position.y > other.transform.position.y)
+                inSea = false;
+            else
+                inSea = true;
 
-            if (inSea)
-            {
+            if (inSea) {
                 seaAmbience.Pause();
                 underWaterAmbience.enabled = true;
             }
-
-            else
-            {
+            else {
                 seaAmbience.UnPause();
                 underWaterAmbience.enabled = false;
             }
@@ -160,12 +159,11 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(!inSea) audioSource.PlayOneShot(splashSound);
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (!inSea)
+            audioSource.PlayOneShot(splashSound);
 
-        if (other.CompareTag("Item"))
-        {
+        if (other.CompareTag("Item")) {
             Debug.Log("Picked up " + other.name);
             //inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
             InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
