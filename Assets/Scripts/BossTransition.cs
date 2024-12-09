@@ -26,8 +26,20 @@ public class BossTransition : MonoBehaviour {
 
 
     public void teleportPlayer() {
+        bool mainSceneChanged = false;
+
         StartCoroutine(ShowTransition());
-        playerObject.transform.position = new Vector2(100, 100);
+
+        int delay = 0;
+        while (delay < 2000) {
+            delay += (int)(Time.unscaledDeltaTime * 1000);
+
+            if (!mainSceneChanged && delay > 1500) {
+                playerObject.transform.position = new Vector2(100, 100);
+                mainSceneChanged = true;
+            }
+        }
+
         popUp.enabled = false;
     }
 

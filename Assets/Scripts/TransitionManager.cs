@@ -57,6 +57,7 @@ public class TransitionManager : MonoBehaviour {
                 } else {
                     if (delay > 0) {
                         delay -= (int)(Time.unscaledDeltaTime * 1000);
+                        // Move the camera to where the fixed camera is
                     } else {
                         completedLoading = true;
                     }
@@ -122,6 +123,7 @@ public class TransitionManager : MonoBehaviour {
     /// </summary>
     /// <param name="delay">The delay to wait (given in milliseconds) between opening and closing the transition scene.</param>
     public void LoadTransition(int delay) {
+        // Move the camera to where the follow camera is
         allowAnimation = true;
         sameScene = true;
         this.delay = delay;
@@ -160,7 +162,7 @@ public class TransitionManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Unloads the transition scene.
+    /// Unloads any transition scenes that exist.
     /// </summary>
     /// <returns>The transition scene unload operation if found, otherwise null.</returns>
     private AsyncOperation UnloadTransitionScene() {
