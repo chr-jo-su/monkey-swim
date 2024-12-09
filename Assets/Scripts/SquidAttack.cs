@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SquidAttack : MonoBehaviour
 {
-   //Variables
+    //Variables
     // public Collider2D player;
     public const float moveSpeed = 4f;
     public Rigidbody2D rb;
@@ -18,6 +18,11 @@ public class SquidAttack : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        Physics2D.IgnoreCollision(
+            gameObject.GetComponent<Collider2D>(),
+            GameObject.FindGameObjectWithTag("Boss").GetComponent<Collider2D>(),
+            true
+        );
     }
 
     // Update is called once per frame
@@ -29,7 +34,7 @@ public class SquidAttack : MonoBehaviour
     void FixedUpdate()
     {
         //Movement
-        rb.MovePosition(rb.position - movement*moveSpeed*Time.fixedDeltaTime);
+        rb.MovePosition(rb.position - movement * moveSpeed * Time.fixedDeltaTime);
 
         if (transform.position.x <= -12)
         {
@@ -37,12 +42,11 @@ public class SquidAttack : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// If the player collides with the enemy, it gets the instane of the health
     /// and deals damage
     /// </summary>
-    void OnCollisionEnter2D (Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
