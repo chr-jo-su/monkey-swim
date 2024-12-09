@@ -16,6 +16,11 @@ public class SquidAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics2D.IgnoreCollision(
+            gameObject.GetComponent<Collider2D>(),
+            GameObject.FindGameObjectWithTag("Boss").GetComponent<Collider2D>(),
+            true
+        );
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
