@@ -167,7 +167,7 @@ public class TransitionManager : MonoBehaviour {
         AsyncOperation asyncOperations = null;
 
         // Unload transition scene
-        for (int i = SceneManager.sceneCount; i >= 0; i--) {
+        for (int i = 0; i < SceneManager.sceneCount; i++) {
             if (SceneManager.GetSceneAt(i).name == "TransitionScene") {
                 asyncOperations = SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
             }
