@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Custom Objects/Item")]
+[CreateAssetMenu(menuName = "Objects/Item")]
 public class Item : ScriptableObject {
     // Item descriptors
     [Header("Visible to players")]
@@ -32,6 +32,21 @@ public class Item : ScriptableObject {
     [Tooltip("The damage dealt to the enemy per hit. This vaule should be between 0 and 100 inclusive.")]
     public int damagePerAttack = 0;
 
+    [Tooltip("The type of the item.")]
+    public ItemType type = ItemType.Others;
+
+    [Tooltip("The ID of the item. This must be unique to each item.")]
+    [ContextMenuItem("Generate a random ID", "GenerateItemID")]
+    public int itemID = 0;
+
+    [Tooltip("Whether the item can be stacked or not.")]
+    public bool isStackable = false;
+
+    [Tooltip("The maximum amount of items that can be stacked together if stackable.")]
+    public int maxStackSize = 1;
+
+    [Header("Change these values if the item is equipable")]
+
     [Range(0, 100)]
     [Tooltip("The boost to the player's oxygen meter. This vaule should be between 0 and 100 inclusive.")]
     public int oxygenBoost = 0;
@@ -44,25 +59,12 @@ public class Item : ScriptableObject {
     [Tooltip("The boost to the player's swim speed. This vaule should be between 0 and 25 inclusive.")]
     public int speedBoost = 0;
 
-    [Tooltip("The type of the item.")]
-    public ItemType type = ItemType.Others;
-    
-    [Tooltip("The ID of the item. This must be unique to each item.")]
-    [ContextMenuItem("Generate a random ID", "GenerateItemID")]
-    public int itemID = 0;
-    
-    [Tooltip("Whether the item can be stacked or not.")]
-    public bool isStackable = false;
-    
-    [Tooltip("The maximum amount of items that can be stacked together if stackable.")]
-    public int maxStackSize = 1;
-
     /// <summary>
     /// Generates a random item ID through an option in the Inspector when the itemID variable is right-clicked.
     /// This should be unique to each item, not to each instance of every item.
     /// </summary>
     private void GenerateItemID() {
-        itemID = Random.Range(0, 999999999);
+        itemID = Random.Range(0, 99999999);
     }
 }
 

@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Custom Objects/Crafting Recipe")]
+[CreateAssetMenu(menuName = "Objects/Crafting Recipe")]
 public class CraftingRecipe : ScriptableObject {
     // This can't be done with a dictionary as it doesn't seem to let us change it in the inspector panel.
     // So instead there's 2 arrays which can be iterated through at the same time.
     [Tooltip("The list of Items that will be needed to create the resultingItem.")]
     public List<Item> itemsRequired;
+
     [Tooltip("The list of integers specifying how many of each Item will be needed to create the resultingItem.")]
     public List<int> quantityRequired;
+
     [Tooltip("The Item that's created when crafted.")]
     public Item resultingItem;
 

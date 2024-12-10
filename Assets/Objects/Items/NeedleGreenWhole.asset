@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
-  m_Name: NeedlePurple
+  m_Name: NeedleGreenWhole
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemSprite: {fileID: 21300000, guid: 5ed691792bb6e9b459bfe2d1d8cd1ed4, type: 3}
+  itemName: Green Needle
+  itemDescription: Try injecting it. I dare you.
+  itemSprite: {fileID: 21300000, guid: 82f7783f87176b04fbea52248a9f1564, type: 3}
   durability: 100
   durabilityDecreasePerUse: 0
   damagePerAttack: 0
+  type: 0
+  itemID: 39846941
+  isStackable: 1
+  maxStackSize: 5
   oxygenBoost: 0
   healthBoost: 0
   speedBoost: 0
-  type: 0
-  itemID: 0
-  isStackable: 0
-  maxStackSize: 0
