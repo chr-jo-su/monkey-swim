@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9099da4a2a2d029429b03c0c6f5ad14f, type: 3}
   m_Name: Halo
   m_EditorClassIdentifier: 
-  itemsRequired: []
-  quantityRequired: 
+  itemsRequired:
+  - {fileID: 11400000, guid: 83f8c53aef620f44fbf0d30a8a343615, type: 2}
+  quantityRequired: 02000000
   resultingItem: {fileID: 0}
   craftingRecipeID: 0
