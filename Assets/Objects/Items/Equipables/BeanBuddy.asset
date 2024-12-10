@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
-  m_Name: NeedleGreen
+  m_Name: BeanBuddy
   m_EditorClassIdentifier: 
-  itemName: Green Needle
-  itemDescription: 
-  itemSprite: {fileID: 21300000, guid: 82f7783f87176b04fbea52248a9f1564, type: 3}
+  itemName: Bean Buddy
+  itemDescription: This little guy follows you around and gives you the effects of
+    coffee. (Like faster move speed and the ability to pull an all-nighter)
+  itemSprite: {fileID: 21300000, guid: 910acc98855028b4f96de760b13dd46f, type: 3}
   durability: 100
   durabilityDecreasePerUse: 0
   damagePerAttack: 0
+  type: 4
+  itemID: 15629333
+  isStackable: 0
+  maxStackSize: 1
   oxygenBoost: 0
   healthBoost: 0
-  speedBoost: 0
-  type: 0
-  itemID: 190876226
-  isStackable: 1
-  maxStackSize: 0
+  speedBoost: 10
