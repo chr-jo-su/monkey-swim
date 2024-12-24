@@ -813,13 +813,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7aa94f8b5d79c3343b4e33bab1626536, type: 2}
   - {fileID: 11400000, guid: 659371e23a8932b48ba23062714a2a59, type: 2}
   - {fileID: 11400000, guid: 79686eeea7536d84aa6fe482ac5fa9f7, type: 2}
-  - {fileID: 11400000, guid: eead817c6a6394346ae24b832f40b2b3, type: 2}
-  - {fileID: 11400000, guid: 581150c11994a66449937c3f754a79ab, type: 2}
-  - {fileID: 11400000, guid: a4074f61bee8f454ebc6da0100f11170, type: 2}
-  - {fileID: 11400000, guid: 089241811e9730d41bd39028f37efb88, type: 2}
-  - {fileID: 11400000, guid: bb861e347ce5a064e935808c438eaa22, type: 2}
-  - {fileID: 11400000, guid: b9c0e7ddd4b35be40a80686e13f7277b, type: 2}
-  - {fileID: 11400000, guid: b84a911061b45a0489a9ae833a6691aa, type: 2}
+  - {fileID: 11400000, guid: f9e9932d461b6f944b03fe63f645f144, type: 2}
+  - {fileID: 11400000, guid: 7b56615a59f682543a45138048e19df7, type: 2}
+  - {fileID: 11400000, guid: 71789c84ae1a6044d9629ee950dc2dd8, type: 2}
   craftingList: {fileID: 4727501809881433203}
   craftingSlotPrefab: {fileID: 9013387343068509079, guid: 81c7684680851e944a82512f6ffec5e3, type: 3}
   itemsPerPage: 15

@@ -166,8 +166,14 @@ MonoBehaviour:
   hotbarSlots: 8
   selectedSlot: -1
   items:
-  - {fileID: 11400000, guid: 2f6896e57630119499cd8266cb20c1e6, type: 2}
-  - {fileID: 11400000, guid: 8ba1ee6671a75ae4087833ef47ec00d8, type: 2}
+  - {fileID: 11400000, guid: 754cf3c92aa457a40bec506338fc36b0, type: 2}
+  - {fileID: 11400000, guid: c7a5350fd341fc94e8a3f8daa3b8a8ba, type: 2}
+  - {fileID: 11400000, guid: 83f8c53aef620f44fbf0d30a8a343615, type: 2}
+  - {fileID: 11400000, guid: df896c16b6d65f54388d41db77247f09, type: 2}
+  - {fileID: 11400000, guid: 46e30c1772052754f8e948b6480c5e3d, type: 2}
+  - {fileID: 11400000, guid: ddd133a7e832ad24580861c90293ea5b, type: 2}
+  - {fileID: 11400000, guid: 8dbeede5578aea34fb02659a6e0d3f14, type: 2}
+  - {fileID: 11400000, guid: 85c9b069f3562784ab8a82ee4b7d40ea, type: 2}
 --- !u!1001 &2025081196502121042
 PrefabInstance:
   m_ObjectHideFlags: 0
