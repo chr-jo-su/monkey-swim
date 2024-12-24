@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9099da4a2a2d029429b03c0c6f5ad14f, type: 3}
-  m_Name: TNT
+  m_Name: NeedlePurple
   m_EditorClassIdentifier: 
   itemsRequired:
-  - {fileID: 11400000, guid: e83ba1e91dbe6d2419dc66dc9addec99, type: 2}
-  - {fileID: 11400000, guid: d9983dcd66b7e77409979b6d5433c967, type: 2}
-  quantityRequired: 0400000005000000
-  resultingItem: {fileID: 11400000, guid: 649e1ed23c2c9224bbc41d2c5fbe3f2a, type: 2}
-  craftingRecipeID: 573491366
+  - {fileID: 11400000, guid: 8dbeede5578aea34fb02659a6e0d3f14, type: 2}
+  quantityRequired: 02000000
+  resultingItem: {fileID: 11400000, guid: 85c9b069f3562784ab8a82ee4b7d40ea, type: 2}
+  craftingRecipeID: 663220362
