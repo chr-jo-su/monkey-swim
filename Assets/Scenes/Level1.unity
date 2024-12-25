@@ -4534,6 +4534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUp: {fileID: 1192887680}
   yesButton: {fileID: 1437838369}
+  cam1: {fileID: 1621673447}
+  cam2: {fileID: 1231074799}
 --- !u!1 &1621673445
 GameObject:
   m_ObjectHideFlags: 0
