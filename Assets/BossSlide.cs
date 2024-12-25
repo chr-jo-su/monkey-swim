@@ -9,6 +9,9 @@ using Vector3 = UnityEngine.Vector3;
 
 public class BossSlide : MonoBehaviour
 {
+    public float health = 500.0f;
+    public HealthBar bossHealth;
+    private Rigidbody2D rb;
     private Vector3 StartPosition;
     private float DistanceOut = 18;
     private float SlideSpeed = 15;
@@ -17,6 +20,7 @@ public class BossSlide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody2D>();
         StartPosition = transform.position;
     }
 
@@ -48,6 +52,14 @@ public class BossSlide : MonoBehaviour
                 new Vector3(DistanceOut, StartPosition.y, StartPosition.z),
                 SlideSpeed * Time.unscaledDeltaTime
             );
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Bananarang(Clone)")
+        {
+            bossHealth.TakeDamage(25);
         }
     }
 }
