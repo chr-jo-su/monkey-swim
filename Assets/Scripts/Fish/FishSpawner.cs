@@ -35,7 +35,6 @@ public class FishSpawner : MonoBehaviour
 
         if (spawnedFishes.Count < spawnCap)
         {
-            Debug.Log("fish");
             for (int i = 0; i < possibleFishToSpawn.Length; i++)
             {
                 if (randomNumber <= fishSpawnChance[i])

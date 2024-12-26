@@ -71,7 +71,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
 
         if (oxygen <= 0.0f) {
-            // Debug.Log("monke painfully drowned :(");
+            Debug.Log("monke painfully drowned :(");
             if (drownTimer == 200) {
                 playerHealth.TakeDamage(1);
                 drownTimer = 0;
@@ -154,8 +154,6 @@ public class PlayerMovementAndOxygen : MonoBehaviour
                 seaAmbience.UnPause();
                 underWaterAmbience.enabled = false;
             }
-
-            // Debug.Log("inSea = " + inSea);
         }
     }
 
