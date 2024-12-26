@@ -22,6 +22,7 @@ public class BossSlide : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         StartPosition = transform.position;
+        TentacleManager.instance.enabled = true;
     }
 
     // Update is called once per frame

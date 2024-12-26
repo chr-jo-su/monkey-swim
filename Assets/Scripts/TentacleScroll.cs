@@ -47,6 +47,8 @@ public class TentacleScroll : MonoBehaviour
 
         if (transform.position.y <= -15)
         {
+            TentacleManager.instance.enabled = false;
+            QuidManager.instance.enabled = true;
             Destroy(gameObject);
         }
     }
