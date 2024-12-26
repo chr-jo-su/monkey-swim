@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
     public Slider damageHealthSlider;
-    public float maxHealth = 100f;
+    public float maxHealth;
     private float health;
     private float lerpSpeed = 0.1f;
 
@@ -27,9 +27,6 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health < 0) {
-            Debug.Log("Negative Health");
-        }
         if (healthSlider.value != health)
         {
             healthSlider.value = health;
@@ -55,6 +52,5 @@ public class HealthBar : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log(health);
     }
 }
