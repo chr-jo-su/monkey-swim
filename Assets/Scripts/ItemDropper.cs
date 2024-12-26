@@ -59,7 +59,7 @@ public class ItemDropper : MonoBehaviour
                 randForce = Random.Range(minForce, maxForce);
 
                 rb.AddForce(new Vector2(randX, randY) * randForce, ForceMode2D.Impulse);
-                Debug.Log("Item released with with force of " + randX * randForce + "," + randY * randForce);
+                // Debug.Log("Item released with with force of " + randX * randForce + "," + randY * randForce);
             }
 
             counter++;

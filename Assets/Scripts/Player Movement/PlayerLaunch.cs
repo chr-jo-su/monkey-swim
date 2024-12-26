@@ -44,7 +44,7 @@ public class PlayerLaunch : MonoBehaviour
             rigidBody.AddForce(forceDirection);
 
             //Debug.Log("Released with mouth position: " + -(mousePosition.x - rigidBody.position.x) * forceMultiplier + ", " + -(mousePosition.y - rigidBody.position.y) * forceMultiplier);
-            Debug.Log("Released with a force of " + forceDirection.x + ", " + forceDirection.y);
+            // Debug.Log("Released with a force of " + forceDirection.x + ", " + forceDirection.y);
             
             mainCamera.GetComponent<SmoothFollowCamera>().enabled = true; 
             mainCamera.GetComponent<SmoothFollowCamera>().playerObject = gameObject;
@@ -63,7 +63,6 @@ public class PlayerLaunch : MonoBehaviour
         if (other.name == seaLineObject.name)
         {
             // !!!: make sure there exists an instance of the player object cuz this clones it
-            Debug.Log("DRY LAND IVE SEEN IT");
             underWaterMusic.GetComponent<AudioStartDelay>().enabled = true;
             // GameObject newPlayer = Instantiate(playerObject, (Vector2)gameObject.transform.position, Quaternion.identity);
             playerObject.transform.position = (Vector2)gameObject.transform.position;

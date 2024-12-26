@@ -25,7 +25,7 @@ public class BossFightManager : MonoBehaviour
         }
 
         alreadySpawned = new bool[bossObjects.Length];
-        Debug.Log(alreadySpawned.Length);
+        // Debug.Log(alreadySpawned.Length);
     }
 
     void Update()
