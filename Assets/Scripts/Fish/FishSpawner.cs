@@ -39,6 +39,7 @@ public class FishSpawner : MonoBehaviour
             {
                 if (randomNumber <= fishSpawnChance[i])
                 {
+                    Debug.Log("fish!!!");
                     SpawnFish(i);
                 }
             }

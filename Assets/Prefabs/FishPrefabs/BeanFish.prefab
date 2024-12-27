@@ -205,10 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: -5
   rb: {fileID: 1999087896956115757}
-  rigidBody: {fileID: 1999087896956115757}
   following: 0
   distance: 0
-  playerHealth: {fileID: 0}
   damage: 5
   damageTaken: 25
   seaLineObject: {fileID: 0}
@@ -299,11 +297,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItems:
-  - {fileID: 11400000, guid: a5aacb65e033bc346bf2f1a799b02e60, type: 2}
-  - {fileID: 11400000, guid: dc260ece6b40dfe4da01422eb31d0ab4, type: 2}
+  - {fileID: 11400000, guid: 8ece5f959e7a2431a8c36afdb056653d, type: 2}
+  - {fileID: 11400000, guid: 8ece5f959e7a2431a8c36afdb056653d, type: 2}
+  - {fileID: 11400000, guid: 8ece5f959e7a2431a8c36afdb056653d, type: 2}
   dropChance:
   - 100
   - 50
+  - 25
   minForce: 0
   maxForce: 4
   finished: 0
