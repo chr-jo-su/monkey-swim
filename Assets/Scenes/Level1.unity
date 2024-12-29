@@ -825,7 +825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &243534227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,7 +890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174899085571090132, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 146.4
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 7174899085571090132, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
       propertyPath: m_LocalPosition.y
@@ -928,6 +928,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: quid
+      value: 
+      objectReference: {fileID: 1643833823}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: tent
+      value: 
+      objectReference: {fileID: 243534227}
     - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
       propertyPath: bossHealth
       value: 
@@ -4902,6 +4910,7 @@ MonoBehaviour:
   cam1: {fileID: 1621673447}
   cam2: {fileID: 1231074799}
   bossHealthThing: {fileID: 769400329}
+  boss: {fileID: 1125922255}
 --- !u!1 &1621673445
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,7 +5047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1643833823
 MonoBehaviour:
   m_ObjectHideFlags: 0

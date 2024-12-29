@@ -13,16 +13,19 @@ public class BossSlide : MonoBehaviour
     public HealthBar bossHealth;
     private Rigidbody2D rb;
     private Vector3 StartPosition;
-    private float DistanceOut = 18;
+    private float DistanceOut = 145;
     private float SlideSpeed = 15;
     public bool SlideOut = false;
+    public TentacleManager tent;
+    public QuidManager quid;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         StartPosition = transform.position;
-        TentacleManager.instance.enabled = true;
+        tent.enabled = true;
+        quid.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,6 +33,11 @@ public class BossSlide : MonoBehaviour
     {
         BossSlideOut();
         BossSlideIn();
+        if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2) {
+            tent.enabled = false;
+            quid.enabled = true;
+            SlideOut = true;
+        }
     }
 
     public void BossSlideIn()

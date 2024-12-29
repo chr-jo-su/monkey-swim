@@ -25,7 +25,7 @@ public class BossFightManager : MonoBehaviour
         }
 
         alreadySpawned = new bool[bossObjects.Length];
-        Debug.Log(alreadySpawned.Length);
+        // Debug.Log(alreadySpawned.Length);
     }
 
     void Update()
@@ -38,7 +38,7 @@ public class BossFightManager : MonoBehaviour
                 alreadySpawned[counter] = true;
             }
             // Debug.Log(counter);
-            counter++;
+            // counter++;
         }
         counter = 0;
 
