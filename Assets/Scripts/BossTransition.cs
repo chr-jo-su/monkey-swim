@@ -11,8 +11,6 @@ public class BossTransition : MonoBehaviour
     public Camera cam1;
     public Camera cam2;
     public Canvas bossHealthThing;
-    // public TentacleManager tent;
-    // public BossSlide boss;
 
 
     public void Start()
@@ -22,8 +20,6 @@ public class BossTransition : MonoBehaviour
         cam1.enabled = true;
         cam2.enabled = false;
         bossHealthThing.enabled = false;
-        // tent.enabled = false;
-        // boss.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +42,6 @@ public class BossTransition : MonoBehaviour
         cam1.enabled = false;
         cam2.enabled = true;
         bossHealthThing.enabled = true;
-        // boss.enabled = true;
     }
 
     //private IEnumerator ShowTransition()

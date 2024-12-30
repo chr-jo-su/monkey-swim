@@ -43,7 +43,6 @@ public class SquidAttack : MonoBehaviour
 
         if (transform.position.x <= 114)
         {
-            Debug.Log("I should be despawning");
             QuidManager.instance.enabled = false;
             TentacleManager.instance.enabled = true;
             BossSlide.instance.SlideIn = true;

@@ -36,10 +36,17 @@ public class BossSlide : MonoBehaviour
     {
         BossSlideOut();
         BossSlideIn();
-        if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2) {
+        if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2)
+        {
             tent.enabled = false;
             quid.enabled = true;
-            // SlideIn = false;
+        }
+
+        if (bossHealth.GetHealth() <= 0)
+        {
+            TentacleManager.instance.TurnOff();
+            QuidManager.instance.TurnOff();
+            Destroy(gameObject);
         }
     }
 
