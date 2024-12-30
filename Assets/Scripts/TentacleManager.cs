@@ -10,6 +10,13 @@ public class TentacleManager : BossFightManager
     private void Awake()
     {
         instance = this;
-        boss.SlideOut = false;
+    }
+
+    private void Update()
+    {
+        // boss.SlideIn = true;
+        base.Update();
+        // QuidManager.instance.enabled = true;
+        // TentacleManager.instance.enabled = false;
     }
 }

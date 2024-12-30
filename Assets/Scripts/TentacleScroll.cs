@@ -49,6 +49,7 @@ public class TentacleScroll : MonoBehaviour
         {
             TentacleManager.instance.enabled = false;
             QuidManager.instance.enabled = true;
+            BossSlide.instance.SlideIn = false;
             Destroy(gameObject);
         }
     }

@@ -611,8 +611,8 @@ Transform:
   m_GameObject: {fileID: 215388131}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 83.7, y: -19.3003, z: -0.1285517}
-  m_LocalScale: {x: 59.918903, y: 113.02686, z: 1}
+  m_LocalPosition: {x: 78.4, y: -19.3003, z: -0.1285517}
+  m_LocalScale: {x: 51.69, y: 113.02686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 990100227}
@@ -4910,7 +4910,6 @@ MonoBehaviour:
   cam1: {fileID: 1621673447}
   cam2: {fileID: 1231074799}
   bossHealthThing: {fileID: 769400329}
-  boss: {fileID: 1125922255}
 --- !u!1 &1621673445
 GameObject:
   m_ObjectHideFlags: 0
@@ -5065,7 +5064,7 @@ MonoBehaviour:
   - {fileID: 5249547851711428380, guid: dca0194bc1a5340bb8e7dd7326684f78, type: 3}
   - {fileID: 5249547851711428380, guid: dca0194bc1a5340bb8e7dd7326684f78, type: 3}
   - {fileID: 5249547851711428380, guid: dca0194bc1a5340bb8e7dd7326684f78, type: 3}
-  spawnPositionX: 0b0000000b0000000b0000000b000000
+  spawnPositionX: aa000000aa000000aa000000aa000000
   spawnPositionY: 03000000fdffffff02000000feffffff
   spawnTimes:
   - 5

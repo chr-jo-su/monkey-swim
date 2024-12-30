@@ -10,7 +10,15 @@ public class QuidManager : BossFightManager
     private void Awake()
     {
         instance = this;
-        boss.SlideOut = true;
+        // boss.SlideIn = false;
+        // Debug.Log("Instance is running");
+    }
 
+    void Update()
+    {
+        // boss.SlideIn = false;
+        base.Update();
+        // TentacleManager.instance.enabled = true;
+        // QuidManager.instance.enabled = false;
     }
 }

@@ -28,7 +28,7 @@ public class BossFightManager : MonoBehaviour
         // Debug.Log(alreadySpawned.Length);
     }
 
-    void Update()
+    protected void Update()
     {
 
         foreach (double s in spawnTimes) {
@@ -38,7 +38,7 @@ public class BossFightManager : MonoBehaviour
                 alreadySpawned[counter] = true;
             }
             // Debug.Log(counter);
-            // counter++;
+            counter++;
         }
         counter = 0;
 

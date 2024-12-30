@@ -9,23 +9,26 @@ using Vector3 = UnityEngine.Vector3;
 
 public class BossSlide : MonoBehaviour
 {
+    public static BossSlide instance;
     public float health = 500.0f;
     public HealthBar bossHealth;
     private Rigidbody2D rb;
     private Vector3 StartPosition;
     private float DistanceOut = 145;
     private float SlideSpeed = 15;
-    public bool SlideOut = false;
+    public bool SlideIn = false;
     public TentacleManager tent;
     public QuidManager quid;
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         rb = gameObject.GetComponent<Rigidbody2D>();
         StartPosition = transform.position;
         tent.enabled = true;
         quid.enabled = false;
+        SlideIn = true;
     }
 
     // Update is called once per frame
@@ -36,13 +39,13 @@ public class BossSlide : MonoBehaviour
         if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2) {
             tent.enabled = false;
             quid.enabled = true;
-            SlideOut = true;
+            // SlideIn = false;
         }
     }
 
     public void BossSlideIn()
     {
-        if (SlideOut == false)
+        if (SlideIn == false)
         {
             gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
@@ -54,7 +57,7 @@ public class BossSlide : MonoBehaviour
 
     public void BossSlideOut()
     {
-        if (SlideOut == true)
+        if (SlideIn == true)
         {
             gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
