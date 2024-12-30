@@ -26,6 +26,7 @@ public class fishMovement : MonoBehaviour
     public float health = 100.0f;
     private float healthMax;
     public HealthBar fishHealth;
+    private Vector2 spawnPos;
 
     void Start()
     {
@@ -33,13 +34,16 @@ public class fishMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         healthSystem = transform.Find("Canvas/HealthSys").gameObject;
+        spawnPos = this.transform.position;
+        seaLineObject = GameObject.Find("seaLine");
     }
 
     void Update()
     {
         //Input
         movement.x = 1;
-        movement.y = Mathf.Sin(theta);
+        movement.y = Mathf.Sin(theta) * 0.4f;
+
         // Allows for movement in the y axis to be a bit less linear, to imitate the swimming slightly better; could be changed though
 
         // Death
@@ -72,6 +76,10 @@ public class fishMovement : MonoBehaviour
                 moveSpeed * Time.deltaTime / 2
             );
 
+            var dir = player.position - transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
             if (distance >= 3)
             {
                 following = false;
@@ -83,26 +91,36 @@ public class fishMovement : MonoBehaviour
             if (theta >= 2 * Mathf.PI)
             {
                 theta = 0f;
+            } else if (theta <= 0)
+            {
+                theta = 2 * Mathf.PI;
             }
 
             //Movement
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-            transform.Rotate(Vector3.forward * Mathf.Sin(theta));
+            //transform.Rotate(Vector3.forward * Mathf.Sin(theta));
+            if (movement != Vector2.zero)
+            {
+                float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle * 0.5f, Vector3.forward);
+            }
 
             //Change Directions; -8 and 8 are arbitrary edges of the screen; should be reworked later
             if (
-                (transform.position.x >= 8 && moveSpeed > 0)
-                | (transform.position.x <= -8 && moveSpeed < 0)
+                (transform.position.x >= (spawnPos.x + 8) && moveSpeed > 0)
+                || (transform.position.x <= (spawnPos.x - 8) && moveSpeed < 0)
             )
             {
                 moveSpeed *= -1;
-                gameObject.transform.localScale = new Vector2(
-                    -transform.localScale.x,
-                    transform.localScale.y
-                );
+                thetaStep = -thetaStep;
+                //gameObject.transform.localScale = new Vector2(
+                //    -transform.localScale.x,
+                //    transform.localScale.y
+                //);
+                GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
             }
 
-            if (distance < 3)
+                if (distance < 3)
             {
                 following = true;
             }
@@ -126,16 +144,52 @@ public class fishMovement : MonoBehaviour
             health -= damageTaken;
             fishHealth.TakeDamage(25);
         }
+
+        // yikes
+        if (collision.gameObject.name.Contains("Square")
+                || collision.gameObject.name.Contains("Triangle")
+                || collision.gameObject.name.Contains("Hexagon")
+                || collision.gameObject.name.Contains("seaLine"))
+        {
+            moveSpeed *= -1;
+            thetaStep = -thetaStep;
+            //gameObject.transform.localScale = new Vector2(
+            //    -transform.localScale.x,
+            //    transform.localScale.y
+            //);
+            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
+        }
+
+        if (collision.gameObject.tag == "Fish")
+        {
+            Debug.Log("FISH COLLISION!");
+
+            if (GetComponent<PolygonCollider2D>())
+            {
+                Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
+            } else
+            {
+                Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+            }
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
     { // not working correctly
-        if (other.name == seaLineObject.name)
-        {
-            if (transform.position.y >= other.transform.position.y + 100)
-            {
-                movement.y *= movement.y;
-            }
-        }
+        //if (other.name == seaLineObject.name)
+        //{
+        //    if (transform.position.y >= other.transform.position.y + 100)
+        //    {
+        //        movement.y *= movement.y;
+        //    }
+
+
+        //}
+
+        //moveSpeed *= -1;
+        //gameObject.transform.localScale = new Vector2(
+        //    -transform.localScale.x,
+        //    transform.localScale.y
+        //);
     }
 }

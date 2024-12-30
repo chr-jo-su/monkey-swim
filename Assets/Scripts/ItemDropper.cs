@@ -43,7 +43,7 @@ public class ItemDropper : MonoBehaviour
 
                 // REMOVE THIS LATER WHEN ITEMS HAVE A SPRITE SIZE PROPERTY!!!!!!
                 spriteRender.drawMode = SpriteDrawMode.Sliced;
-                spriteRender.size = new Vector2(spriteRender.size.x * 10f, spriteRender.size.y * 10f);
+                spriteRender.size = new Vector2(spriteRender.size.x * 2f, spriteRender.size.y * 2f);
                 // -------------------------------------
 
                 Rigidbody2D rb = droppedItem.AddComponent<Rigidbody2D>();
@@ -59,7 +59,7 @@ public class ItemDropper : MonoBehaviour
                 randForce = Random.Range(minForce, maxForce);
 
                 rb.AddForce(new Vector2(randX, randY) * randForce, ForceMode2D.Impulse);
-                Debug.Log("Item released with with force of " + randX * randForce + "," + randY * randForce);
+                // Debug.Log("Item released with with force of " + randX * randForce + "," + randY * randForce);
             }
 
             counter++;
