@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChangeToBossScript : MonoBehaviour {
+    private string newSceneName = "ToCopySceneDemo";
+
     /// <summary>
     /// Loads in the boss scene.
     /// </summary>
@@ -17,7 +19,7 @@ public class ChangeToBossScript : MonoBehaviour {
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
     private IEnumerator LoadNewScene() {
-        SceneManager.LoadScene("ToCopySceneDemo", LoadSceneMode.Additive);
+        SceneManager.LoadScene(newSceneName, LoadSceneMode.Additive);
 
         // Add items here that should be transferred over
         List<GameObject> itemsToCopyOver = new() {
@@ -26,14 +28,16 @@ public class ChangeToBossScript : MonoBehaviour {
         };
 
         foreach (GameObject gameObject in itemsToCopyOver) {
-            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName("ToCopySceneDemo"));
+            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(newSceneName));
         }
 
         // Unload the old scene
-        while (!SceneManager.GetSceneByName("ToCopySceneDemo").isLoaded) yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("ToCopySceneDemo"));
+        string oldSceneName = SceneManager.GetActiveScene().name;
 
-        Scene oldScene = SceneManager.GetSceneByName("FromCopySceneDemo");
+        while (!SceneManager.GetSceneByName(newSceneName).isLoaded) yield return null;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(newSceneName));
+
+        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
         while (!asyncUnload.isDone) yield return null;
     }
