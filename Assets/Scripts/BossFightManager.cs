@@ -14,10 +14,13 @@ public class BossFightManager : MonoBehaviour
     private int counter = 0;
     private float timerMax = 0;
     private bool[] alreadySpawned;
+    private bool running;
 
     private void Start()
     {
-        foreach (float s in spawnTimes) {
+        running = true;
+        foreach (float s in spawnTimes)
+        {
             if (s > timerMax)
             {
                 timerMax = s;
@@ -25,30 +28,39 @@ public class BossFightManager : MonoBehaviour
         }
 
         alreadySpawned = new bool[bossObjects.Length];
-        // Debug.Log(alreadySpawned.Length);
     }
 
-    void Update()
+    protected void Update()
     {
-
-        foreach (double s in spawnTimes) {
-            if (time >= s && alreadySpawned[counter] == false) {
-                Vector2 spawnPos = new Vector2(spawnPositionX[counter], spawnPositionY[counter]);
-                Instantiate(bossObjects[counter], spawnPos, Quaternion.identity);
-                alreadySpawned[counter] = true;
+        if (running)
+        {
+            foreach (double s in spawnTimes)
+            {
+                if (time >= s && alreadySpawned[counter] == false)
+                {
+                    Vector2 spawnPos = new Vector2(spawnPositionX[counter], spawnPositionY[counter]);
+                    Instantiate(bossObjects[counter], spawnPos, Quaternion.identity);
+                    alreadySpawned[counter] = true;
+                }
+                // Debug.Log(counter);
+                counter++;
             }
-            // Debug.Log(counter);
-            counter++;
-        }
-        counter = 0;
+            counter = 0;
 
-        if (time >= timerMax)
-        {
-            time = 0;
-            alreadySpawned = new bool[bossObjects.Length];
-        } else
-        {
-            time += Time.deltaTime;
+            if (time >= timerMax)
+            {
+                time = 0;
+                alreadySpawned = new bool[bossObjects.Length];
+            }
+            else
+            {
+                time += Time.deltaTime;
+            }
         }
+    }
+
+    public void TurnOff()
+    {
+        running = false;
     }
 }

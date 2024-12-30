@@ -41,8 +41,11 @@ public class SquidAttack : MonoBehaviour
         //Movement
         rb.MovePosition(rb.position - movement * moveSpeed * Time.fixedDeltaTime);
 
-        if (transform.position.x <= -12)
+        if (transform.position.x <= 114)
         {
+            QuidManager.instance.enabled = false;
+            TentacleManager.instance.enabled = true;
+            BossSlide.instance.SlideIn = true;
             Destroy(gameObject);
         }
     }

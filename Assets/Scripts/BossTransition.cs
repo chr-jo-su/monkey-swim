@@ -8,11 +8,14 @@ public class BossTransition : MonoBehaviour {
     // Variables
     public string bossSceneName;
     public GameObject popUp;
+    public Button yesButton;
+    private GameObject playerObject;
 
     /// <summary>
     /// Hides the pop up on start.
     /// </summary>
-    public void Start() {
+    public void Start()
+    {
         popUp.SetActive(false);
     }
 
@@ -20,7 +23,8 @@ public class BossTransition : MonoBehaviour {
     /// Shows the pop up when the player enters the trigger box.
     /// </summary>
     /// <param name="other">The other collider that entered the trigger box.</param>
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.CompareTag("Player")) {
             popUp.SetActive(true);
         }
@@ -30,8 +34,20 @@ public class BossTransition : MonoBehaviour {
     /// <summary>
     /// Loads in the boss scene and teleports the player to the boss scene.
     /// </summary>
-    public void teleportPlayerToBossScene() {
+    public void teleportPlayerToBossScene()
+    {
         StartCoroutine(LoadBossScene());
+    }
+
+    public void teleportPlayer()
+    {
+        //StartCoroutine(ShowTransition());
+        playerObject.transform.position = new Vector2(120, 5);
+        popUp.enabled = false;
+
+        cam1.enabled = false;
+        cam2.enabled = true;
+        bossHealthThing.enabled = true;
     }
 
     /// <summary>

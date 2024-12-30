@@ -45,8 +45,11 @@ public class TentacleScroll : MonoBehaviour
             direction = -1;
         }
 
-        if (transform.position.y <= -15)
+        if (transform.position.y <= -11)
         {
+            TentacleManager.instance.enabled = false;
+            QuidManager.instance.enabled = true;
+            BossSlide.instance.SlideIn = false;
             Destroy(gameObject);
         }
     }
