@@ -53,4 +53,13 @@ public class HealthBar : MonoBehaviour
     {
         health -= damage;
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 }

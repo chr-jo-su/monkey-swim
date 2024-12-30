@@ -8,8 +8,8 @@ public class BossTransition : MonoBehaviour
     public Canvas popUp;
     public Button yesButton;
     private GameObject playerObject;
-    public Camera  cam1;
-    public Camera  cam2;
+    public Camera cam1;
+    public Camera cam2;
     public Canvas bossHealthThing;
 
 
@@ -39,9 +39,9 @@ public class BossTransition : MonoBehaviour
         playerObject.transform.position = new Vector2(120, 5);
         popUp.enabled = false;
 
-            cam1.enabled = false;
-            cam2.enabled = true;
-            bossHealthThing.enabled = true;
+        cam1.enabled = false;
+        cam2.enabled = true;
+        bossHealthThing.enabled = true;
     }
 
     //private IEnumerator ShowTransition()
