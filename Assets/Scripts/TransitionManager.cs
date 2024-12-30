@@ -22,6 +22,7 @@ public class TransitionManager : MonoBehaviour {
     private bool sameScene;
     private int delay;
     private GameObject gameObjectToDestroy;
+    private List<GameObject> toCopyOver;
 
     /// <summary>
     /// Hides the transition screen on start and sets the positions for the start and end.
@@ -105,16 +106,17 @@ public class TransitionManager : MonoBehaviour {
     /// Starts the transition to switch to sceneName with given name.
     /// </summary>
     /// <param name="sceneName">The name of the sceneName to be loaded as a string.</param>
-    public void LoadTransition(string sceneName, GameObject gameObjectToDestroy = null) {
+    public void LoadTransition(string sceneName, GameObject gameObjectToDestroy = null, List<GameObject> toCopyOver = null) {
         allowAnimation = true;
         sameScene = false;
 
         // Show the transition screen
         ShowTransitionScreen();
 
-        // Save the sceneName to load later
+        // Save info to use later
         this.sceneName = sceneName;
         this.gameObjectToDestroy = gameObjectToDestroy;
+        this.toCopyOver = toCopyOver;
     }
 
     /// <summary>
@@ -140,6 +142,11 @@ public class TransitionManager : MonoBehaviour {
 
         // Load the next sceneName
         SceneManager.LoadScene(this.sceneName, LoadSceneMode.Additive);
+
+        // Add items here, if any
+        foreach (GameObject gameObject in toCopyOver) {
+            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(this.sceneName));
+        }
 
         completedLoading = true;
     }
