@@ -39,16 +39,16 @@ public class BossTransition : MonoBehaviour {
         StartCoroutine(LoadBossScene());
     }
 
-    public void teleportPlayer()
-    {
-        //StartCoroutine(ShowTransition());
-        playerObject.transform.position = new Vector2(120, 5);
-        popUp.enabled = false;
+    // public void teleportPlayer()
+    // {
+    //     //StartCoroutine(ShowTransition());
+    //     playerObject.transform.position = new Vector2(120, 5);
+    //     popUp.enabled = false;
 
-        cam1.enabled = false;
-        cam2.enabled = true;
-        bossHealthThing.enabled = true;
-    }
+    //     cam1.enabled = false;
+    //     cam2.enabled = true;
+    //     bossHealthThing.enabled = true;
+    // }
 
     /// <summary>
     /// Loads the boss scene and unloads the current scene while transferring over the player's health bar and inventory system.
