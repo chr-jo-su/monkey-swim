@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerMovementAndOxygen : MonoBehaviour {
@@ -44,10 +43,17 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         instance = this;
     }
 
+    /// <summary>
+    /// Removes health from the player.
+    /// </summary>
+    /// <param name="damage">The amount of health to remove from the player.</param>
     public void TakeDamage(int damage) {
         playerHealth.TakeDamage(damage);
     }
 
+    /// <summary>
+    /// Sets the collision between the player and the sea line to be ignored.
+    /// </summary>
     void Start() {
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
     }
@@ -81,6 +87,9 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         Move();
     }
 
+    /// <summary>
+    /// Process the inputs for the player.
+    /// </summary>
     void ProcessInputs() {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -95,6 +104,9 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         movement = new Vector2(moveX, moveY).normalized;
     }
 
+    /// <summary>
+    /// Moves the player.
+    /// </summary>
     void Move() {
         //rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
         Vector2 v = new Vector2(movement.x, movement.y);
@@ -107,6 +119,10 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         rigidBody.AddForce(v.normalized * moveSpeed);
     }
 
+    /// <summary>
+    /// Changes the oxygen level of the player by the given value.
+    /// </summary>
+    /// <param name="val">The value to change the oxygen level by. Can be negative.</param>
     public void ChangeOxygen(int val) {
         maxOxygen += val;
 
@@ -115,6 +131,10 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Changes the move speed of the player by the given value.
+    /// </summary>
+    /// <param name="val">The value to change the move speed by. Can be negative.</param>
     public void ChangeMoveSpeed(int val) {
         moveSpeed += val;
     }
@@ -163,7 +183,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
     }
 
     /// <summary>
-    /// Relinks the attributes if they are null.
+    /// Relinks the player's attributes if they are missing.
     /// </summary>
     public void RelinkAttributes() {
         if (playerHealth == null) {
