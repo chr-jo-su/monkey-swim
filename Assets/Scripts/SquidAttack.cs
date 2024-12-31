@@ -41,7 +41,7 @@ public class SquidAttack : MonoBehaviour
         //Movement
         rb.MovePosition(rb.position - movement * moveSpeed * Time.fixedDeltaTime);
 
-        if (transform.position.x <= 114)
+        if (transform.position.x <= -16)
         {
             QuidManager.instance.enabled = false;
             TentacleManager.instance.enabled = true;

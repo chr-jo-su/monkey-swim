@@ -14,7 +14,7 @@ public class BossSlide : MonoBehaviour
     public HealthBar bossHealth;
     private Rigidbody2D rb;
     private Vector3 StartPosition;
-    private float DistanceOut = 145;
+    private float DistanceOut = 22;
     private float SlideSpeed = 15;
     public bool SlideIn = false;
     public TentacleManager tent;
