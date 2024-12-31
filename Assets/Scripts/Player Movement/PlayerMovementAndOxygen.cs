@@ -71,7 +71,6 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
 
         if (oxygen <= 0.0f) {
-            Debug.Log("monke painfully drowned :(");
             if (drownTimer == 200) {
                 playerHealth.TakeDamage(1);
                 drownTimer = 0;
