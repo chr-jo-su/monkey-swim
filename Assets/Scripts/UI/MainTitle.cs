@@ -10,19 +10,23 @@ public class MainMenu : MonoBehaviour
     public bool MrPresidentTheMonkeyHasBeenPressed = false;
 
     void Update() {
-        if (MrPresidentTheMonkeyHasBeenPressed == true) {
+        if (MrPresidentTheMonkeyHasBeenPressed == true)
+        {
             HideMainTitleMenu();
         }
-        if (transform.position.y > 10) {
+        if (transform.position.y > 10)
+        {
             Menu.SetActive(false);
         }
     }
 
-    public void HideMainTitleMenu() {
+    public void HideMainTitleMenu()
+    {
         transform.position = Vector2.Lerp(transform.position, new Vector2(0,30), Velocity * Time.unscaledDeltaTime);
     }
 
-    public void SecretServiceAnnouncementToThePresident() {
+    public void SecretServiceAnnouncementToThePresident()
+    {
         MrPresidentTheMonkeyHasBeenPressed = true;
     }
 

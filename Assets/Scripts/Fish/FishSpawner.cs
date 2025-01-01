@@ -46,18 +46,6 @@ public class FishSpawner : MonoBehaviour
 
         foreach (GameObject fish in spawnedFishes)
         {
-            //try
-            //{
-            //    if (!fish.activeSelf)
-            //    {
-            //        spawnedFishes.Remove(fish);
-            //    }
-            //}
-            //catch (NullReferenceException)
-            //{
-
-            //}
-
             if (fish.gameObject == null)
             {
                 spawnedFishes.Remove(fish);

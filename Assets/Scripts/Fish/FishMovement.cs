@@ -162,6 +162,7 @@ public class fishMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Fish")
         {
+
             if (GetComponent<PolygonCollider2D>())
             {
                 Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
