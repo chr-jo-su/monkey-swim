@@ -162,7 +162,6 @@ public class fishMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Fish")
         {
-            Debug.Log("FISH COLLISION!");
 
             if (GetComponent<PolygonCollider2D>())
             {

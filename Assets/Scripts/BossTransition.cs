@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BossTransition : MonoBehaviour {
+public class BossTransition : MonoBehaviour
+{
     // Variables
     public string bossSceneName;
     public GameObject popUp;
@@ -54,7 +55,8 @@ public class BossTransition : MonoBehaviour {
     /// Loads the boss scene and unloads the current scene while transferring over the player's health bar and inventory system.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    private IEnumerator LoadBossScene() {
+    private IEnumerator LoadBossScene()
+    {
         SceneManager.LoadScene(bossSceneName, LoadSceneMode.Additive);
 
         // Add items here that should be transferred over
@@ -63,7 +65,8 @@ public class BossTransition : MonoBehaviour {
             GameObject.Find("InventorySystem")
         };
 
-        foreach (GameObject gameObject in itemsToCopyOver) {
+        foreach (GameObject gameObject in itemsToCopyOver)
+        {
             SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(bossSceneName));
         }
 

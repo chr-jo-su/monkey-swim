@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeToBossScript : MonoBehaviour {
+public class ChangeToBossScript : MonoBehaviour
+{
     private string newSceneName = "ToCopySceneDemo";
 
     /// <summary>
     /// Loads in the boss scene.
     /// </summary>
-    public void LoadBossScene() {
+    public void LoadBossScene()
+    {
         StartCoroutine(LoadNewScene());
     }
 
@@ -18,16 +20,19 @@ public class ChangeToBossScript : MonoBehaviour {
     /// Loads the boss scene and unloads the current scene while transferring over the player's health bar and inventory system.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    private IEnumerator LoadNewScene() {
+    private IEnumerator LoadNewScene()
+    {
         SceneManager.LoadScene(newSceneName, LoadSceneMode.Additive);
 
         // Add items here that should be transferred over
-        List<GameObject> itemsToCopyOver = new() {
+        List<GameObject> itemsToCopyOver = new()
+        {
             GameObject.Find("PlayerHealthBar"),
             GameObject.Find("InventorySystem")
         };
 
-        foreach (GameObject gameObject in itemsToCopyOver) {
+        foreach (GameObject gameObject in itemsToCopyOver)
+        {
             SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(newSceneName));
         }
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Objects/Item")]
-public class Item : ScriptableObject {
+public class Item : ScriptableObject
+{
     // Item descriptors
     [Header("Visible to players")]
 
@@ -63,12 +64,14 @@ public class Item : ScriptableObject {
     /// Generates a random item ID through an option in the Inspector when the itemID variable is right-clicked.
     /// This should be unique to each item, not to each instance of every item.
     /// </summary>
-    private void GenerateItemID() {
+    private void GenerateItemID()
+    {
         itemID = Random.Range(0, 99999999);
     }
 }
 
-public enum ItemType {
+public enum ItemType
+{
     Others,         // Others is the default item type. Most, if not all, items should not be this type.
     Consumable,     // Consumables have a durabilityDecreasePerUse of 100 (they are gone after a single use).
     Weapon,         // Weapons have a durabilityDecreasePerUse of 1 or higher and are not stackable.
