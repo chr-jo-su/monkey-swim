@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -11,12 +12,6 @@ public class HealthBar : MonoBehaviour
     public float maxHealth;
     private float health;
     private float lerpSpeed = 0.1f;
-
-    // Awake is called when the script instance is being loaded
-    private void Awake()
-    {
-        
-    }
 
     // Start is called before the first frame update
     void Start()

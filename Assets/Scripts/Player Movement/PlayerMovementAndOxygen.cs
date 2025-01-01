@@ -2,36 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class PlayerMovementAndOxygen : MonoBehaviour
-{
+public class PlayerMovementAndOxygen : MonoBehaviour {
     // Variables
     public static PlayerMovementAndOxygen instance;
 
     public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
     public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
-
-    // that signifies the sea line
+                                     // that signifies the sea line
     Vector2 movement;
     public Animator animator;
 
+    [HideInInspector] public bool sceneChanged = true;
     private bool inSea = false;
     private bool canMoveUp = true;
+    private bool canBreath = true;
 
     public GameObject oxygenSlider;
 
-    private float maxOxygen = 100.0f;
-
     private float oxygen = 100.0f;
-
+    private float maxOxygen = 100.0f;
     public float oxygenDepletionRate = 1.0f;
-
     public float oxygenGainRate = 1.0f;
-
-    private bool canBreath = true;
 
     public AudioSource audioSource;
     public AudioClip splashSound;
@@ -45,33 +39,53 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     private int drownTimer = 0;
 
     // Awake is called when the script instance is being loaded
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
     }
 
-    public void TakeDamage(int damage) {
+    /// <summary>
+    /// Removes health from the player.
+    /// </summary>
+    /// <param name="damage">The amount of health to remove from the player.</param>
+    public void TakeDamage(int damage)
+    {
         playerHealth.TakeDamage(damage);
     }
 
-    void Start() {
+    /// <summary>
+    /// Sets the collision between the player and the sea line to be ignored.
+    /// </summary>
+    void Start()
+    {
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
+        if (sceneChanged)
+        {
+            RelinkAttributes();
+        }
+
         ProcessInputs();
 
-        if (oxygen > 0.0f && !canBreath) {
+        if (oxygen > 0.0f && !canBreath)
+        {
             oxygen -= oxygenDepletionRate * Time.deltaTime;
             oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
         }
-        else if (oxygen < maxOxygen && canBreath) {
+        else if (oxygen < maxOxygen && canBreath)
+        {
             oxygen += 10 * oxygenGainRate * Time.deltaTime;
             oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
         }
 
-        if (oxygen <= 0.0f) {
-            if (drownTimer == 200) {
+        if (oxygen <= 0.0f)
+        {
+            if (drownTimer == 200)
+            {
                 playerHealth.TakeDamage(1);
                 drownTimer = 0;
             }
@@ -79,11 +93,16 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Move();
     }
 
-    void ProcessInputs() {
+    /// <summary>
+    /// Process the inputs for the player.
+    /// </summary>
+    void ProcessInputs()
+    {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         // if (moveX == 1) {
@@ -97,39 +116,60 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         movement = new Vector2(moveX, moveY).normalized;
     }
 
-    void Move() {
+    /// <summary>
+    /// Moves the player.
+    /// </summary>
+    void Move()
+    {
         //rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
         Vector2 v = new Vector2(movement.x, movement.y);
 
         if (canMoveUp)
+        {
             v = new Vector2(movement.x, movement.y);
+        }
         else
+        {
             v = new Vector2(movement.x, 0);
+        }
 
         rigidBody.AddForce(v.normalized * moveSpeed);
     }
 
-    public void ChangeOxygen(int val) {
+    /// <summary>
+    /// Changes the oxygen level of the player by the given value.
+    /// </summary>
+    /// <param name="val">The value to change the oxygen level by. Can be negative.</param>
+    public void ChangeOxygen(int val)
+    {
         maxOxygen += val;
 
-        if (val < 0)
-        {
+        if (val < 0) {
             oxygen = Math.Min(oxygen, maxOxygen);
         }
     }
 
-    public void ChangeMoveSpeed(int val) {
+    /// <summary>
+    /// Changes the move speed of the player by the given value.
+    /// </summary>
+    /// <param name="val">The value to change the move speed by. Can be negative.</param>
+    public void ChangeMoveSpeed(int val)
+    {
         moveSpeed += val;
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.name == seaLineObject.name) {
-            if (inSea) {
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other != null && other.name == seaLineObject.name)
+        {
+            if (inSea)
+            {
                 rigidBody.gravityScale = 0F;
                 canMoveUp = true;
                 canBreath = false;
             }
-            else {
+            else
+            {
                 rigidBody.gravityScale = 1F;
                 canMoveUp = false;
                 canBreath = true;
@@ -137,35 +177,84 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.name == seaLineObject.name) {
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other != null && other.name == seaLineObject.name)
+        {
             canBreath = true;
-            if (transform.position.y > other.transform.position.y)
+            if (transform.position.y > other.transform.position.y) {
                 inSea = false;
+            }
             else
+            {
                 inSea = true;
+            }
 
-            if (inSea) {
+            if (inSea)
+            {
                 seaAmbience.Pause();
                 underWaterAmbience.enabled = true;
             }
-            else {
+            else
+            {
                 seaAmbience.UnPause();
                 underWaterAmbience.enabled = false;
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (!inSea)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!inSea) {
             audioSource.PlayOneShot(splashSound);
+        }
 
-        if (other.CompareTag("Item")) {
-            Debug.Log("Picked up " + other.name);
-            //inventorySystem.GetComponent<InventoryManager>().AddItems(other.GetComponent<DroppedItem>().item);
+        if (other.CompareTag("Item"))
+        {
             InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
             audioSource.PlayOneShot(itemPickupSound);
             Destroy(other.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Relinks the player's attributes if they are missing.
+    /// </summary>
+    public void RelinkAttributes()
+    {
+        if (playerHealth == null)
+        {
+            playerHealth = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        }
+        if (seaTopBoxCollider == null)
+        {
+            seaTopBoxCollider = GameObject.Find("SeaTopBox").GetComponent<Collider2D>();
+        }
+        if (seaLineObject == null)
+        {
+            seaLineObject = GameObject.Find("seaLine");
+        }
+        if (audioSource == null)
+        {
+            audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+        }
+        if (seaAmbience == null)
+        {
+            seaAmbience = GameObject.Find("seaAmbience").GetComponent<AudioSource>();
+        }
+        if (underWaterAmbience == null)
+        {
+            underWaterAmbience = GameObject.Find("underWaterAmbience").GetComponent<AudioSource>();
+        }
+        if (underWaterMusic == null)
+        {
+            underWaterMusic = GameObject.Find("underWaterMusic").GetComponent<AudioSource>();
+        }
+
+        if (seaTopBoxCollider != null && !Physics2D.GetIgnoreCollision(seaTopBoxCollider, playerCollider))
+        {
+            sceneChanged = false;
+            Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
         }
     }
 }

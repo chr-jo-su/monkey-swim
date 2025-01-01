@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class BossTransition : MonoBehaviour {
+public class BossTransition : MonoBehaviour
+{
     // Variables
     public string bossSceneName;
     public GameObject popUp;
-    public Button yesButton;
-    private GameObject playerObject;
 
     /// <summary>
     /// Hides the pop up on start.
@@ -25,7 +23,8 @@ public class BossTransition : MonoBehaviour {
     /// <param name="other">The other collider that entered the trigger box.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player"))
+        {
             popUp.SetActive(true);
         }
     }
@@ -39,35 +38,40 @@ public class BossTransition : MonoBehaviour {
         StartCoroutine(LoadBossScene());
     }
 
-    // public void teleportPlayer()
-    // {
-    //     //StartCoroutine(ShowTransition());
-    //     playerObject.transform.position = new Vector2(120, 5);
-    //     popUp.enabled = false;
-
-    //     cam1.enabled = false;
-    //     cam2.enabled = true;
-    //     bossHealthThing.enabled = true;
-    // }
-
     /// <summary>
     /// Loads the boss scene and unloads the current scene while transferring over the player's health bar and inventory system.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    private IEnumerator LoadBossScene() {
+    private IEnumerator LoadBossScene()
+    {
         SceneManager.LoadScene(bossSceneName, LoadSceneMode.Additive);
 
-        // Add items here that should be transferred over
-        List<GameObject> itemsToCopyOver = new() {
+        // Items that should be moved over are added
+        List<GameObject> itemsToCopyOver = new()
+        {
             GameObject.Find("PlayerHealthBar"),
-            GameObject.Find("InventorySystem")
+            GameObject.Find("InventorySystem"),
+            GameObject.Find("EventSystem"),
+            GameObject.Find("Player")
         };
 
-        foreach (GameObject gameObject in itemsToCopyOver) {
+        // Move the items to the new scene
+        foreach (GameObject gameObject in itemsToCopyOver)
+        {
             SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(bossSceneName));
         }
 
-        // Unload the old scene
+        // Reset player position and change sceneChanged bool to true
+        foreach (GameObject go in SceneManager.GetSceneByName(bossSceneName).GetRootGameObjects())
+        {
+            if (go.name == "Player")
+            {
+                go.transform.position = new Vector3(0, 0, 0);
+                go.GetComponent<PlayerMovementAndOxygen>().sceneChanged = true;
+            }
+        }
+
+        // Set the new scene as the default and unload the old scene
         string oldSceneName = SceneManager.GetActiveScene().name;
 
         while (!SceneManager.GetSceneByName(bossSceneName).isLoaded) yield return null;

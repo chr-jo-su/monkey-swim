@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryBackgroundDropItem : MonoBehaviour, IDropHandler {
+public class InventoryBackgroundDropItem : MonoBehaviour, IDropHandler
+{
     // Variables
     [SerializeField] private GameObject itemDropperPrefab;
 
@@ -11,11 +12,13 @@ public class InventoryBackgroundDropItem : MonoBehaviour, IDropHandler {
     /// Removes the item from the player and unequips it if it's equipped.
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnDrop(PointerEventData eventData) {
+    public void OnDrop(PointerEventData eventData)
+    {
         InventoryItem draggableItem = eventData.pointerDrag.GetComponent<InventoryItem>();
 
         // Unequip the item if it's equipped
-        if (draggableItem.equipped) {
+        if (draggableItem.equipped)
+        {
             InventoryManager.instance.UnequipItem(draggableItem.storedItem);
         }
 
