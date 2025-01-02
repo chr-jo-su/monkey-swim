@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class fishMovement : MonoBehaviour
+public class FishMovement : MonoBehaviour
 {
     //Variables
     public float moveSpeed = -2.5f;

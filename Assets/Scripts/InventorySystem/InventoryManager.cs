@@ -27,14 +27,9 @@ public class InventoryManager : MonoBehaviour
         // Select the first slot
         ChangeSelectedSlot(0);
 
-        // Testing code.
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i].isStackable)
-            {
-                AddItems(items[i], 10);
-            }
-        }
+        // Testing code
+        AddItems(items[0]);
+        AddItems(items[8]);
     }
 
     /// <summary>
@@ -98,7 +93,9 @@ public class InventoryManager : MonoBehaviour
                 if (items.ContainsKey(inventoryItem.storedItem))
                 {
                     items[inventoryItem.storedItem] += inventoryItem.currentStackSize;
-                } else {
+                }
+                else
+                {
                     items.Add(inventoryItem.storedItem, inventoryItem.currentStackSize);
                 }
             }
@@ -242,7 +239,8 @@ public class InventoryManager : MonoBehaviour
     {
         int prevQuantity = quantity;
 
-        while (quantity > 0) {
+        while (quantity > 0)
+        {
             // Find a slot with the given item and available space if it's stackable
             if (item.isStackable)
             {
@@ -254,7 +252,7 @@ public class InventoryManager : MonoBehaviour
 
                         if (inventoryItem.storedItem.itemID == item.itemID &&
                             inventoryItem.currentStackSize < item.maxStackSize)
-                            {
+                        {
                             // Add the item into the slot
                             child.IncrementItem();
                             quantity--;
@@ -310,6 +308,26 @@ public class InventoryManager : MonoBehaviour
         }
 
         return storedItem;
+    }
+
+    /// <summary>
+    /// Uses the selected item from the inventory once.
+    /// </summary>
+    public void UseSelectedItem()
+    {
+        InventorySlotHolder slot = slots[selectedSlot];
+
+        if (slot.transform.childCount != 0)
+        {
+            Item storedItem = slot.transform.GetChild(0).GetComponent<InventoryItem>().storedItem;
+
+            storedItem.durability -= storedItem.durabilityDecreasePerUse;
+
+            if (storedItem.durability <= 0)
+            {
+                slot.DecrementItem();
+            }
+        }
     }
 
     /// <summary>
@@ -400,7 +418,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         // Clear the previous items
-        foreach (Item item in items.Keys) 
+        foreach (Item item in items.Keys)
         {
             RemoveItems(item, items[item]);
         }
@@ -413,29 +431,45 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds the boosts of the given item from the player.
+    /// Adds the boosts of the given item or trinkets to the player.
     /// </summary>
-    /// <param name="item">The Item object that should be checked for boosts.</param>
-    [Obsolete]
-    public void EquipItem(Item item) 
+    /// <param name="item">The Item object that should be checked for boosts/trinkets.</param>
+    public void EquipItem(Item item)
     {
-        // Add the oxygen boost
+        if (item.type == ItemType.Trinket)
+        {
+            // Spawn the trinket into the scene here
+        }
+        else if (item.type == ItemType.Armour)
+        {
+            // Change the player sprite to be the armoured version
+        }
+
+        // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
 
-        // Add the health boost
+        // Remove the health boost
         PlayerBar.instance.ChangeHealth(item.healthBoost);
 
-        // Add the speed boost
+        // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
     }
 
     /// <summary>
-    /// Removes the boosts of the given item from the player.
+    /// Removes the boosts of the given item or trinkets from the player.
     /// </summary>
-    /// <param name="item">The Item object that should be checked for boosts.</param>
-    [Obsolete]
+    /// <param name="item">The Item object that should be checked for boosts/trinkets.</param>
     public void UnequipItem(Item item)
     {
+        if (item.type == ItemType.Trinket)
+        {
+            // Spawn the trinket into the scene here
+        }
+        else if (item.type == ItemType.Armour)
+        {
+            // Change the player sprite to be the armoured version
+        }
+
         // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
 

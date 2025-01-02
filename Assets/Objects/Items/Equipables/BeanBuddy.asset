@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Bean Buddy
   itemDescription: This little guy follows you around and gives you the effects of
-    coffee. (Like faster move speed and the ability to pull an all-nighter)
-  itemSprite: {fileID: 21300000, guid: 910acc98855028b4f96de760b13dd46f, type: 3}
+    coffee.
+  itemSprite: {fileID: 21300000, guid: 326cdb9a3953c41b6ba13715a5f1cd05, type: 3}
   durability: 100
   durabilityDecreasePerUse: 0
   damagePerAttack: 0

@@ -211,7 +211,7 @@ MonoBehaviour:
   damageTaken: 25
   seaLineObject: {fileID: 0}
   health: 100
-  fishHealth: {fileID: 3146479549022737525}
+  fishHealth: {fileID: 0}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
@@ -431,6 +431,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8416593469493524133, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416593469493524133, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -439,17 +447,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1471285110948417538}
   m_SourcePrefab: {fileID: 100100000, guid: bee921ffe10654268bf231705b99b023, type: 3}
---- !u!114 &3146479549022737525 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 158972159825563094, guid: bee921ffe10654268bf231705b99b023, type: 3}
-  m_PrefabInstance: {fileID: 2998907162632935843}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e3e5692d4f24b99ba8c8acc7580836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3157130173397320423 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}

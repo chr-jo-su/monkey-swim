@@ -27,7 +27,7 @@ public class ChangeToBossScript : MonoBehaviour
         // Add items here that should be transferred over
         List<GameObject> itemsToCopyOver = new()
         {
-            GameObject.Find("PlayerHealthBar"),
+            GameObject.Find("PlayerBar"),
             GameObject.Find("InventorySystem")
         };
 

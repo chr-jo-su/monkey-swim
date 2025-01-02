@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4783305131222243578}
   - component: {fileID: 5785072751520363125}
   - component: {fileID: 2103948805395540190}
-  - component: {fileID: 486405431097671582}
+  - component: {fileID: 6476203774318435302}
   - component: {fileID: 1264849669448949605}
   m_Layer: 5
   m_Name: TrinketSlot
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &486405431097671582
+--- !u!114 &6476203774318435302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,13 +86,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7329997816562179606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f842e736ec6c87e47a3c1dd8f8a52af0, type: 3}
+  m_Script: {fileID: 11500000, guid: 00c505769160f5445ab344b657cf4306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2103948805395540190}
   inventoryItemPrefab: {fileID: 903062702048024672, guid: cf00059ae5ccd2d47817e0f591159d19, type: 3}
-  selectedScale: {x: 2.25, y: 2.25, z: 2.25}
-  equippedSize: {x: 5, y: -5}
 --- !u!114 &1264849669448949605
 MonoBehaviour:
   m_ObjectHideFlags: 0

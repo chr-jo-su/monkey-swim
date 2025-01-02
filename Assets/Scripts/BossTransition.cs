@@ -49,7 +49,7 @@ public class BossTransition : MonoBehaviour
         // Items that should be moved over are added
         List<GameObject> itemsToCopyOver = new()
         {
-            GameObject.Find("PlayerHealthBar"),
+            GameObject.Find("PlayerBar"),
             GameObject.Find("InventorySystem"),
             GameObject.Find("EventSystem"),
             GameObject.Find("Player")
