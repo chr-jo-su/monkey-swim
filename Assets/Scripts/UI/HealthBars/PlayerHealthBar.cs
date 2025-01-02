@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerBar : HealthBar
+public class PlayerHealthBar : HealthBar
 {
-    public static PlayerBar instance;
+    public static PlayerHealthBar instance;
+    private bool gameOver = false;
 
     private void Awake()
     {
@@ -17,10 +18,11 @@ public class PlayerBar : HealthBar
     public new void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-
-        if (base.GetHealth() <= 0)
+ 
+        if (base.GetHealth() <= 0 && !gameOver)
         {
             StartCoroutine(LoadGameOverScreen());
+            gameOver = true;
         }
     }
 

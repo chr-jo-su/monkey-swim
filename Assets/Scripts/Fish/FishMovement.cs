@@ -33,7 +33,7 @@ public class FishMovement : MonoBehaviour
         healthMax = health;
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        healthSystem = transform.Find("Canvas/HealthSys").gameObject;
+        healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
         spawnPos = this.transform.position;
         seaLineObject = GameObject.Find("seaLine");
     }
@@ -134,7 +134,7 @@ public class FishMovement : MonoBehaviour
         var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
         if (player != null)
         {
-            PlayerBar.instance.TakeDamage(damage);
+            PlayerHealthBar.instance.TakeDamage(damage);
             following = false;
             attackCounter = 0;
         }

@@ -62,7 +62,7 @@ public class TentacleScroll : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerBar.instance.TakeDamage(damage);
+            PlayerHealthBar.instance.TakeDamage(damage);
         }
     }
 }
