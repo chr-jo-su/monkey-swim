@@ -88,3 +88,4 @@ Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.as
 ProjectSettings/BurstAotSettings_StandaloneOSX.json
 ProjectSettings/CommonBurstAotSettings.json
 ProjectSettings/EditorBuildSettings.asset
+*.asset
