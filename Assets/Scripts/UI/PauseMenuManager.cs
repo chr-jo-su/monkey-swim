@@ -11,8 +11,8 @@ public class PauseMenuManager : MonoBehaviour
     public float velocity = 5f;
     private bool paused;
 
-    [HideInInspector] public Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    [HideInInspector] public Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
+    [HideInInspector] private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
+    [HideInInspector] private Vector3 closePos = new(Screen.width / 2, Screen.height * 3, 0);
     private Vector3 targetPos;
 
     private AsyncOperation asyncLoadLevel;
