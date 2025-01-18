@@ -39,11 +39,11 @@ public class BossSlide : MonoBehaviour
     {
         BossSlideOut();
         BossSlideIn();
-        if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2)
-        {
-            tent.enabled = false;
-            quid.enabled = true;
-        }
+        // if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2)
+        // {
+        //     tent.enabled = false;
+        //     quid.enabled = true;
+        // }
 
         if (bossHealth.GetHealth() <= 0 && !gameOver)
         {
