@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 355faa06f930a454a892bb4b7585b52f
   - enabled: 1
-    path: Assets/Scenes/ToCopySceneDemo.unity
+    path: Assets/Scenes/BossLevel.unity
     guid: a8a85256e8aab574da76a36a3f1c2622
   - enabled: 1
     path: Assets/Scenes/GameOver.unity

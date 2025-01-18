@@ -21,6 +21,8 @@ public class BossSlide : MonoBehaviour
     public TentacleManager tent;
     public QuidManager quid;
 
+    private bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,11 +45,13 @@ public class BossSlide : MonoBehaviour
         //     quid.enabled = true;
         // }
 
-        if (bossHealth.GetHealth() <= 0)
+        if (bossHealth.GetHealth() <= 0 && !gameOver)
         {
             TentacleManager.instance.TurnOff();
             QuidManager.instance.TurnOff();
+
             StartCoroutine(LoadGameOverScreen());
+            gameOver = true;
         }
     }
 

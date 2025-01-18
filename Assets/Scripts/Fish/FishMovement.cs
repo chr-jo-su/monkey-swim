@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class fishMovement : MonoBehaviour
+public class FishMovement : MonoBehaviour
 {
     //Variables
     public float moveSpeed = -2.5f;
@@ -33,7 +33,7 @@ public class fishMovement : MonoBehaviour
         healthMax = health;
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        healthSystem = transform.Find("Canvas/HealthSys").gameObject;
+        healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
         spawnPos = this.transform.position;
         seaLineObject = GameObject.Find("seaLine");
     }
@@ -134,7 +134,7 @@ public class fishMovement : MonoBehaviour
         var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
         if (player != null)
         {
-            PlayerBar.instance.TakeDamage(damage);
+            PlayerHealthBar.instance.TakeDamage(damage);
             following = false;
             attackCounter = 0;
         }

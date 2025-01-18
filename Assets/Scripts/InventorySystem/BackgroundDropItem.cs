@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryBackgroundDropItem : MonoBehaviour, IDropHandler
+public class BackgroundDropItem : MonoBehaviour, IDropHandler
 {
     // Variables
-    [SerializeField] private GameObject itemDropperPrefab;
+    [SerializeField]
+    private GameObject itemDropperPrefab;
 
     /// <summary>
     /// Removes the item from the player and unequips it if it's equipped.

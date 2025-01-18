@@ -1171,8 +1171,21 @@ PrefabInstance:
       propertyPath: m_Direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6546737583983273500, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416593469493524133, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416593469493524133, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 158972159825563094, guid: bee921ffe10654268bf231705b99b023, type: 3}
+    - {fileID: 6546737583983273500, guid: bee921ffe10654268bf231705b99b023, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
