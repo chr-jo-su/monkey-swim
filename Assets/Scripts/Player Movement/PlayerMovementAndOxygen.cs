@@ -22,7 +22,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
     public GameObject oxygenSlider;
 
-    private float oxygen = 100.0f;
+    public float oxygen = 100.0f;
     private float maxOxygen = 100.0f;
     public float oxygenDepletionRate = 1.0f;
     public float oxygenGainRate = 1.0f;
