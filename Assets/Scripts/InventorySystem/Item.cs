@@ -48,16 +48,16 @@ public class Item : ScriptableObject
 
     [Header("Change these values if the item is equipable")]
 
-    [Range(0, 100)]
-    [Tooltip("The boost to the player's oxygen meter. This vaule should be between 0 and 100 inclusive.")]
+    [Range(-50, 100)]
+    [Tooltip("The boost to the player's oxygen meter. This vaule should be between -50 and 100 inclusive.")]
     public int oxygenBoost = 0;
 
-    [Range(0, 100)]
-    [Tooltip("The boost to the player's health meter. This vaule should be between 0 and 100 inclusive.")]
+    [Range(-50, 100)]
+    [Tooltip("The boost to the player's health meter. This vaule should be between -50 and 100 inclusive.")]
     public int healthBoost = 0;
 
-    [Range(0, 25)]
-    [Tooltip("The boost to the player's swim speed. This vaule should be between 0 and 25 inclusive.")]
+    [Range(-15, 15)]
+    [Tooltip("The boost to the player's swim speed. This vaule should be between -15 and 15 inclusive.")]
     public int speedBoost = 0;
 
     /// <summary>

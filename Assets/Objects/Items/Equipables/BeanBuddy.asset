@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BeanBuddy
   m_EditorClassIdentifier: 
   itemName: Bean Buddy
-  itemDescription: This little guy follows you around and gives you the effects of
-    coffee.
+  itemDescription: '+5 Speed
+
+    -10 Health'
   itemSprite: {fileID: 21300000, guid: 326cdb9a3953c41b6ba13715a5f1cd05, type: 3}
   durability: 100
   durabilityDecreasePerUse: 0
@@ -25,4 +26,4 @@ MonoBehaviour:
   maxStackSize: 1
   oxygenBoost: 0
   healthBoost: 0
-  speedBoost: 10
+  speedBoost: 5
