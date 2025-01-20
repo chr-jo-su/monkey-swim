@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject BananarangStatic;
     public GameObject BananarangObject;
     public GameObject[] BananarangClones;
+    private Transform PlayerTransform;
+    private Vector3 BananarangPosition;
     private Vector3 Direction;
     private Vector3 MousePosition;
     private Camera MainCamera;
@@ -27,17 +29,18 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
+        PlayerTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+        BananarangPosition = new Vector3(PlayerTransform.position.x, PlayerTransform.position.y, 1);
         MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Direction = MousePosition - transform.position;
-        Rotation = Mathf.Atan2(-Direction.y, -Direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, Rotation);
+        //Rotation = Mathf.Atan2(-Direction.y, -Direction.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Euler(0, 0, Rotation);
 
         if (BananarangCount < MaxBananarangCount)
         {
             Timer += Time.deltaTime;
             if (Timer >= 1)
             {
-                BananarangStatic.SetActive(true);
                 BananarangCount += 1;
                 Timer = 0;
             }
@@ -47,14 +50,9 @@ public class WeaponManager : MonoBehaviour
         {
             if (Input.GetMouseButton(0) && BananarangCount >= 1)
             {
-                Instantiate(
-                    BananarangObject,
-                    BananarangStatic.transform.position,
-                    Quaternion.identity
-                );
+                Instantiate(BananarangObject, BananarangPosition, Quaternion.identity);
                 BananarangReady = false;
                 BananarangCount -= 1;
-                BananarangStatic.SetActive(false);
             }
         }
 
