@@ -43,7 +43,7 @@ public class Item : ScriptableObject
     [Tooltip("Whether the item can be stacked or not.")]
     public bool isStackable = false;
 
-    [Tooltip("The maximum amount of items that can be stacked together if stackable.")]
+    [Tooltip("The maximum amount of items that can be stacked together if stackable. isStackable must be true for this value to be used.")]
     public int maxStackSize = 1;
 
     [Header("Change these values if the item is equipable")]

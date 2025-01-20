@@ -25,5 +25,5 @@ MonoBehaviour:
   isStackable: 0
   maxStackSize: 1
   oxygenBoost: 0
-  healthBoost: 0
+  healthBoost: -10
   speedBoost: 5

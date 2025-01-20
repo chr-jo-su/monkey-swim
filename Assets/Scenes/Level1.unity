@@ -1005,11 +1005,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8568398966567676312, guid: 3ac36db20d6ec4f77a15281c77af560a, type: 3}
       propertyPath: possibleFishToSpawn.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 8533529697676140122, guid: c3d7d9e3d39984da89ac94125da3ba88, type: 3}
     - target: {fileID: 8568398966567676312, guid: 3ac36db20d6ec4f77a15281c77af560a, type: 3}
       propertyPath: possibleFishToSpawn.Array.data[1]
-      value:
+      value: 
       objectReference: {fileID: 8533529697676140122, guid: 4a95631589c4d46c2b78300acdcff9f0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1151,19 +1151,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: mainCamera
-      value:
+      value: 
       objectReference: {fileID: 1621673447}
     - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: playerObject
-      value:
+      value: 
       objectReference: {fileID: 1055117102}
     - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: seaLineObject
-      value:
+      value: 
       objectReference: {fileID: 1998483635}
     - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: underWaterMusic
-      value:
+      value: 
       objectReference: {fileID: 895752724}
     - target: {fileID: 5232082867712224095, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1210,12 +1210,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
-
---- !u!1 &655193012 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7861249487896344806, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
-  m_PrefabInstance: {fileID: 687864739}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &673040406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1226,7 +1220,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2536203263906913091, guid: 476be24e7e2d54a4fba2104b289ac890, type: 3}
       propertyPath: m_Camera
-      value:
+      value: 
       objectReference: {fileID: 1621673447}
     - target: {fileID: 2536203263906913091, guid: 476be24e7e2d54a4fba2104b289ac890, type: 3}
       propertyPath: m_RenderMode
@@ -1351,35 +1345,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: audioSource
-      value:
+      value: 
       objectReference: {fileID: 1661456214}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaAmbience
-      value:
+      value: 
       objectReference: {fileID: 1889461596}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: oxygenSlider
-      value:
+      value: 
       objectReference: {fileID: 1015333837}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: playerHealth
-      value:
+      value: 
       objectReference: {fileID: 1832367974}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaLineObject
-      value:
+      value: 
       objectReference: {fileID: 1998483635}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: underWaterMusic
-      value:
+      value: 
       objectReference: {fileID: 895752724}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaTopBoxCollider
-      value:
+      value: 
       objectReference: {fileID: 792372672}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: underWaterAmbience
-      value:
+      value: 
       objectReference: {fileID: 1319501342}
     - target: {fileID: 4480218188751584525, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1512,15 +1506,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8568398966567676312, guid: 3ac36db20d6ec4f77a15281c77af560a, type: 3}
       propertyPath: possibleFishToSpawn.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 8533529697676140122, guid: 43af02facbdea4a809d4eb5115d154b8, type: 3}
     - target: {fileID: 8568398966567676312, guid: 3ac36db20d6ec4f77a15281c77af560a, type: 3}
       propertyPath: possibleFishToSpawn.Array.data[1]
-      value:
+      value: 
       objectReference: {fileID: 8533529697676140122, guid: a1fd8ba8446e44cb997d6c6a5699e8de, type: 3}
     - target: {fileID: 8568398966567676312, guid: 3ac36db20d6ec4f77a15281c77af560a, type: 3}
       propertyPath: possibleFishToSpawn.Array.data[2]
-      value:
+      value: 
       objectReference: {fileID: 8533529697676140122, guid: 1deba9095d5284838bc0a32423ccd6ee, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1550,6 +1544,7 @@ PrefabInstance:
     - target: {fileID: 2206192639935658842, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2591844888284331067, guid: c20612547e2a546a99ebef0fc7dd9689, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -3270,8 +3265,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb08366c655e7f24c8d6175fb0c8fe5a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   smoothTime: 0.5
   playerObject: {fileID: 0}
 --- !u!114 &1621673450
@@ -3284,8 +3279,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81f9d9efa5c0e4a72a8b32a4f35ea7d4, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1636899614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1973638114694102629, guid: 3ac36db20d6ec4f77a15281c77af560a, type: 3}
@@ -3430,8 +3425,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3b35ded67729b74c96471fc595b1cea, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   delay: 1
 --- !u!1 &1786861554
@@ -3573,8 +3568,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dae62d80144e81b45ac85b637cdc4fd4, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &1889461596 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4900346009100093799, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
@@ -3738,8 +3733,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
@@ -3758,8 +3753,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
