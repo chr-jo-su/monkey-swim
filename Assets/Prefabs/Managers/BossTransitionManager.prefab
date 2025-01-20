@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c12c7fb3ca81499ba55aa53bcc0a313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSceneName: ToCopySceneDemo
+  bossSceneName: BossScene
   popUp: {fileID: 2818618596006560373}
 --- !u!1 &8488054914025777490
 GameObject:
