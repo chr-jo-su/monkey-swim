@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovementAndOxygen : MonoBehaviour {
+public class PlayerMovementAndOxygen : MonoBehaviour
+{
     // Variables
     public static PlayerMovementAndOxygen instance;
 
@@ -22,10 +23,13 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
     public GameObject oxygenSlider;
 
-    private float oxygen = 100.0f;
+    public float oxygen = 100.0f;
     private float maxOxygen = 100.0f;
     public float oxygenDepletionRate = 1.0f;
     public float oxygenGainRate = 1.0f;
+    public int oxygenDepletionDamage = 3;
+    public int drownTimer = 100;
+    private int currentDrownTimer = 0;
 
     public AudioSource audioSource;
     public AudioClip splashSound;
@@ -36,7 +40,6 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
     public Collider2D seaTopBoxCollider;
     public Collider2D playerCollider;
     public HealthBar playerHealth;
-    private int drownTimer = 0;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -84,12 +87,12 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
         if (oxygen <= 0.0f)
         {
-            if (drownTimer == 200)
+            if (currentDrownTimer == drownTimer)
             {
-                playerHealth.TakeDamage(1);
-                drownTimer = 0;
+                playerHealth.TakeDamage(oxygenDepletionDamage);
+                currentDrownTimer = 0;
             }
-            drownTimer++;
+            currentDrownTimer++;
         }
     }
 
@@ -144,7 +147,8 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
     {
         maxOxygen += val;
 
-        if (val < 0) {
+        if (val < 0)
+        {
             oxygen = Math.Min(oxygen, maxOxygen);
         }
     }
@@ -182,7 +186,8 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
         if (other != null && other.name == seaLineObject.name)
         {
             canBreath = true;
-            if (transform.position.y > other.transform.position.y) {
+            if (transform.position.y > other.transform.position.y)
+            {
                 inSea = false;
             }
             else
@@ -205,7 +210,8 @@ public class PlayerMovementAndOxygen : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!inSea) {
+        if (!inSea)
+        {
             audioSource.PlayOneShot(splashSound);
         }
 
