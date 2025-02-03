@@ -25,7 +25,7 @@ public class FishMovement : MonoBehaviour
     private GameObject healthSystem;
     public float health = 100.0f;
     private float healthMax;
-    public HealthBar fishHealth;
+    private EnemyHealthBar fishHealth;
     private Vector2 spawnPos;
 
     void Start()
@@ -34,6 +34,7 @@ public class FishMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
+        fishHealth = gameObject.GetComponentInChildren<EnemyHealthBar>();
         spawnPos = this.transform.position;
         seaLineObject = GameObject.Find("seaLine");
     }
