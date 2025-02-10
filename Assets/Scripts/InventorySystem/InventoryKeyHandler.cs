@@ -78,44 +78,16 @@ public class InventoryKeyHandler : MonoBehaviour
                 ShowInventory();
             }
         }
-
-        // Only check keys for the hotbar if the inventory is closed
-        if (!inventoryIsShowing)
-        {
-            // Check for the scroll wheel to be scrolled
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                // Scroll up
-                InventoryManager.instance.ChangeSelectedSlot("right");
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
-                // Scroll down
-                InventoryManager.instance.ChangeSelectedSlot("left");
-            }
-
-            // Check for the number keys to be pressed
-            for (int i = 1; i <= hotbarSlots; i++)
-            {
-                if (Input.GetKeyDown(KeyCode.Alpha0 + i))
-                {
-                    InventoryManager.instance.ChangeSelectedSlot(i - 1, InventoryManager.instance.selectedSlot);
-                }
-            }
-        }
     }
 
     /// <summary>
-    /// Closes the inventory menu. Also disables dragging and right-clicking for the hotbar items.
+    /// Closes the inventory menu. Also disables right-clicking for the item slots.
     /// </summary>
     public void CloseInventory()
     {
         if (inventoryIsShowing)
         {
             targetPos = hiddenPos;
-
-            // Disable dragging for the hotbar items
-            InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(false);
 
             // Remove any tooltip menus if there are any
             try
@@ -124,14 +96,12 @@ public class InventoryKeyHandler : MonoBehaviour
             }
             catch (System.Exception) { }
 
-            InventoryManager.instance.ReselectPreviousSlot();
-
             inventoryIsShowing = false;
         }
     }
 
     /// <summary>
-    /// Opens the inventory menu. Also enables dragging and right-clicking for the hotbar items.
+    /// Opens the inventory menu. Also enables right-clicking for the item slots.
     /// </summary>
     private void ShowInventory()
     {
@@ -139,11 +109,6 @@ public class InventoryKeyHandler : MonoBehaviour
         {
             // Close the crafting menu if it is open
             CraftingKeyHandler.instance.CloseCraftingMenu();
-
-            // Enable dragging for the hotbar items
-            InventoryManager.instance.GetComponent<InventoryManager>().SetDraggable(true);
-
-            InventoryManager.instance.DeselectAllSlots();
 
             targetPos = showingPos;
 
@@ -173,29 +138,5 @@ public class InventoryKeyHandler : MonoBehaviour
     {
         // Animate the menu moving
         inventory.transform.position = Vector3.Lerp(inventory.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
-    }
-
-    /// <summary>
-    /// Hides the hotbar game object.
-    /// </summary>
-    public void HideHotbar()
-    {
-        hotbar.gameObject.SetActive(false);
-    }
-
-    /// <summary>
-    /// Shows the hotbar game object.
-    /// </summary>
-    public void ShowHotbar()
-    {
-        hotbar.gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// Toggles the hotbar game object.
-    /// </summary>
-    public void ToggleHotbar()
-    {
-        hotbar.gameObject.SetActive(!hotbar.gameObject.activeSelf);
     }
 }
