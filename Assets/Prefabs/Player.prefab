@@ -23,22 +23,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4480218188751584525
-Transform:
+--- !u!224 &4480218188751584525
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419459860108603908}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.04002, y: 3.4277263, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8347816659562467774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.04002, y: 3.4277263}
+  m_SizeDelta: {x: 6.4, y: 6.4}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &885564812536587742
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121,7 +125,6 @@ MonoBehaviour:
   underWaterMusic: {fileID: 0}
   seaTopBoxCollider: {fileID: 0}
   playerCollider: {fileID: 127681522772710495}
-  playerHealth: {fileID: 0}
 --- !u!50 &1296609502298723916
 Rigidbody2D:
   serializedVersion: 4

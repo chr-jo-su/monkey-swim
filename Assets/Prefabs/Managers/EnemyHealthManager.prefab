@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166108747890924356}
   - component: {fileID: 6132098759147662261}
+  - component: {fileID: 5099504245450216405}
   m_Layer: 5
   m_Name: EnemyHealthManager
   m_TagString: Untagged
@@ -50,6 +51,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719c46ead6229af4a9e7fdf665802847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5099504245450216405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318630828183811065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d264047ce5453459ca9e19ba0f271a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 6320901546469911290}
+  damageSlider: {fileID: 6465115774695108624}
+  maxHealth: 100
 --- !u!1 &4057626349329784304
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +151,6 @@ GameObject:
   m_Component:
   - component: {fileID: 63466143994363050}
   - component: {fileID: 6320901546469911290}
-  - component: {fileID: 7592053304454072231}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -210,25 +225,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 42.4
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7592053304454072231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577918316378428072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d264047ce5453459ca9e19ba0f271a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 6320901546469911290}
-  damageHealthSlider: {fileID: 6465115774695108624}
-  maxHealth: 100
 --- !u!1 &4993733375259110852
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 70758547245525246}
   - component: {fileID: 6465115774695108624}
   m_Layer: 5
-  m_Name: DamageHealthBar
+  m_Name: DamageBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 75
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7306458051818280399}
   - component: {fileID: 4334176903116508449}
   m_Layer: 5
-  m_Name: DamageHealthBar
+  m_Name: DamageBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 500
   m_WholeNumbers: 0
-  m_Value: 5
+  m_Value: 375
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -249,9 +249,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7313802339335504283}
   - component: {fileID: 3613848509754759115}
-  - component: {fileID: 6960263143862398063}
   m_Layer: 5
-  m_Name: HealthBarInside
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,25 +323,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 500
   m_WholeNumbers: 0
-  m_Value: 5
+  m_Value: 250
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6960263143862398063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491562903495389081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d264047ce5453459ca9e19ba0f271a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 3613848509754759115}
-  damageHealthSlider: {fileID: 4334176903116508449}
-  maxHealth: 500
 --- !u!1 &6760245880250343617
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7480621245974718069}
+  - component: {fileID: 3152073911118305300}
   m_Layer: 5
   m_Name: BossHealthManager
   m_TagString: Untagged
@@ -455,3 +440,18 @@ RectTransform:
   m_AnchoredPosition: {x: 1634, y: -76}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3152073911118305300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057883240663469768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d264047ce5453459ca9e19ba0f271a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 3613848509754759115}
+  damageSlider: {fileID: 4334176903116508449}
+  maxHealth: 500

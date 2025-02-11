@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     {
         // Testing code
         AddItems(items[0]);
-        AddItems(items[8]);
+        AddItems(items[1]);
     }
 
     /// <summary>
@@ -272,14 +272,14 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.type == ItemType.Armour)
         {
-            // Change the player sprite to be the armoured version
+            // Change the player sprite to the armoured version
         }
 
         // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
 
         // Remove the health boost
-        PlayerHealthBar.instance.ChangeHealth(item.healthBoost);
+        PlayerHealthBar.instance.ChangeMaxHealth(item.healthBoost);
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
@@ -297,14 +297,14 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.type == ItemType.Armour)
         {
-            // Change the player sprite to be the armoured version
+            // Change the player sprite back to the original
         }
 
         // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
 
         // Remove the health boost
-        PlayerHealthBar.instance.ChangeHealth(-item.healthBoost);
+        PlayerHealthBar.instance.ChangeMaxHealth(-item.healthBoost);
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);
