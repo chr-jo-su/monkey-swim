@@ -46,7 +46,7 @@ public class Item : ScriptableObject
     [Tooltip("The maximum amount of items that can be stacked together if stackable. isStackable must be true for this value to be used.")]
     public int maxStackSize = 1;
 
-    [Header("Change these values if the item is equipable")]
+    [Header("Change these values if the item is  trinket")]
 
     [Range(-50, 100)]
     [Tooltip("The boost to the player's oxygen meter. This vaule should be between -50 and 100 inclusive.")]

@@ -134,6 +134,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9e9932d461b6f944b03fe63f645f144, type: 2}
   - {fileID: 11400000, guid: 7b56615a59f682543a45138048e19df7, type: 2}
   - {fileID: 11400000, guid: 71789c84ae1a6044d9629ee950dc2dd8, type: 2}
+  - {fileID: 11400000, guid: 9c9ec562f657b9349b8fb3d70493dc2f, type: 2}
   craftingList: {fileID: 4727501809881433203}
   craftingSlotPrefab: {fileID: 9013387343068509079, guid: 81c7684680851e944a82512f6ffec5e3, type: 3}
   itemsPerPage: 15
