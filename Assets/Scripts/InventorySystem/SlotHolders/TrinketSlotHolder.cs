@@ -19,10 +19,9 @@ public class TrinketSlotHolder : SlotHolder
             {
                 draggableItem.parentAfterDrag = transform;
 
-                InventoryManager.instance.EquipItem(draggableItem.storedItem);
-
                 if (!draggableItem.equipped)
                 {
+                    InventoryManager.instance.EquipItem(draggableItem.storedItem);
                     draggableItem.equipped = true;
                 }
             }

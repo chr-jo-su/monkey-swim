@@ -33,17 +33,13 @@ public class Bananarang : MonoBehaviour
 
         MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
         Direction = MousePosition - transform.position;
-        RigidBody.velocity =
-            new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
+        RigidBody.velocity = new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        WeaponRebound = GameObject
-            .FindGameObjectWithTag("Player")
-            .GetComponent<WeaponManager>()
-            .WeaponRebound;
+        WeaponRebound = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponManager>().WeaponRebound;
         PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         Angle += 0.0008f;
         transform.rotation = quaternion.Euler(0, 0, Angle * Mathf.Rad2Deg);
@@ -73,8 +69,7 @@ public class Bananarang : MonoBehaviour
     void ReturnWeapon()
     {
         Direction = PlayerPosition - transform.position;
-        RigidBody.velocity =
-            new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
+        RigidBody.velocity = new UnityEngine.Vector2(Direction.x, Direction.y).normalized * Velocity;
         if (UnityEngine.Vector2.Distance(transform.position, PlayerPosition) < 1)
         {
             Destroy(gameObject);

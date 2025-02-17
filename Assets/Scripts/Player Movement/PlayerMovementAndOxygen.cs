@@ -39,7 +39,6 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     public AudioSource underWaterMusic;
     public Collider2D seaTopBoxCollider;
     public Collider2D playerCollider;
-    public HealthBar playerHealth;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -53,7 +52,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     /// <param name="damage">The amount of health to remove from the player.</param>
     public void TakeDamage(int damage)
     {
-        playerHealth.TakeDamage(damage);
+        PlayerHealthBar.instance.TakeDamage(damage);
     }
 
     /// <summary>
@@ -89,7 +88,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
         {
             if (currentDrownTimer == drownTimer)
             {
-                playerHealth.TakeDamage(oxygenDepletionDamage);
+                PlayerHealthBar.instance.TakeDamage(oxygenDepletionDamage);
                 currentDrownTimer = 0;
             }
             currentDrownTimer++;
@@ -228,10 +227,6 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     /// </summary>
     public void RelinkAttributes()
     {
-        if (playerHealth == null)
-        {
-            playerHealth = GameObject.Find("HealthBar").GetComponent<HealthBar>();
-        }
         if (seaTopBoxCollider == null)
         {
             seaTopBoxCollider = GameObject.Find("SeaTopBox").GetComponent<Collider2D>();

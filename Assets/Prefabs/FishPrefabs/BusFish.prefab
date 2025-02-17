@@ -211,7 +211,6 @@ MonoBehaviour:
   damageTaken: 25
   seaLineObject: {fileID: 0}
   health: 120
-  fishHealth: {fileID: 2435221826102503846}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
@@ -643,6 +642,10 @@ PrefabInstance:
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -652,7 +655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -660,23 +663,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -672
+      value: -672.00085
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 460
+      value: 460.00064
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -711,17 +714,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
---- !u!114 &2435221826102503846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6546737583983273500, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
-  m_PrefabInstance: {fileID: 8867880671999922106}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e3e5692d4f24b99ba8c8acc7580836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8745754605423695102 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
