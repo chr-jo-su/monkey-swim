@@ -23,7 +23,7 @@ public class PlayerMovementAndOxygen : MonoBehaviour
 
     public GameObject oxygenSlider;
 
-    private float oxygen = 100.0f;
+    public float oxygen = 100.0f;
     private float maxOxygen = 100.0f;
     public float oxygenDepletionRate = 1.0f;
     public float oxygenGainRate = 1.0f;
@@ -107,12 +107,12 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        // if (moveX == 1) {
-        //     GetComponent<SpriteRenderer>().flipX = true;
-        // }
-        // else {
-        //     GetComponent<SpriteRenderer>().flipX = false;
-        // }
+        if (moveX == 1) {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
         animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;
