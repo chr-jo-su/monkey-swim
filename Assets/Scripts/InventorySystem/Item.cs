@@ -43,21 +43,21 @@ public class Item : ScriptableObject
     [Tooltip("Whether the item can be stacked or not.")]
     public bool isStackable = false;
 
-    [Tooltip("The maximum amount of items that can be stacked together if stackable.")]
+    [Tooltip("The maximum amount of items that can be stacked together if stackable. isStackable must be true for this value to be used.")]
     public int maxStackSize = 1;
 
-    [Header("Change these values if the item is equipable")]
+    [Header("Change these values if the item is  trinket")]
 
-    [Range(0, 100)]
-    [Tooltip("The boost to the player's oxygen meter. This vaule should be between 0 and 100 inclusive.")]
+    [Range(-50, 100)]
+    [Tooltip("The boost to the player's oxygen meter. This vaule should be between -50 and 100 inclusive.")]
     public int oxygenBoost = 0;
 
-    [Range(0, 100)]
-    [Tooltip("The boost to the player's health meter. This vaule should be between 0 and 100 inclusive.")]
+    [Range(-50, 100)]
+    [Tooltip("The boost to the player's health meter. This vaule should be between -50 and 100 inclusive.")]
     public int healthBoost = 0;
 
-    [Range(0, 25)]
-    [Tooltip("The boost to the player's swim speed. This vaule should be between 0 and 25 inclusive.")]
+    [Range(-15, 15)]
+    [Tooltip("The boost to the player's swim speed. This vaule should be between -15 and 15 inclusive.")]
     public int speedBoost = 0;
 
     /// <summary>

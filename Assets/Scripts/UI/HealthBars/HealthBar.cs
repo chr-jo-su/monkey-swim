@@ -7,19 +7,26 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider healthSlider;
-    public Slider damageHealthSlider;
-    public float maxHealth;
-    private float health;
-    private float lerpSpeed = 0.1f;
+    // Variables
+    [SerializeField] protected Slider healthSlider;
+    [SerializeField] protected Slider damageSlider;
 
-    // Start is called before the first frame update
+    [SerializeField] protected float maxHealth;
+    protected float health;
+
+    private readonly float lerpSpeed = 0.1f;
+
+    /// <summary>
+    /// Sets the health to the max health when the game starts.
+    /// </summary>
     void Start()
     {
         health = maxHealth;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Updates the health bar to reflect the current health of the player.
+    /// </summary>
     void Update()
     {
         if (healthSlider.value != health)
@@ -27,32 +34,54 @@ public class HealthBar : MonoBehaviour
             healthSlider.value = health;
         }
 
-        if (healthSlider.value != damageHealthSlider.value)
+        if (healthSlider.value != damageSlider.value)
         {
-            damageHealthSlider.value = Mathf.Lerp(damageHealthSlider.value, health, lerpSpeed);
+            damageSlider.value = Mathf.Lerp(damageSlider.value, health, lerpSpeed);
         }
-
     }
 
-    public void ChangeHealth(int val)
+    /// <summary>
+    /// Changes the max health of the player by the given value. Can be either negative or positive. This value also changes the current health of the player to be in the range of [0, maxHealth].
+    /// </summary>
+    /// <param name="val">The value to change the max health by.</param>
+    public void ChangeMaxHealth(int val)
     {
         maxHealth += val;
 
-        if (val < 0)
-        {
-            health = Math.Min(health, maxHealth);
-        }
+        health = Math.Min(health, maxHealth);
     }
 
-    public void TakeDamage(int damage)
+    /// <summary>
+    /// Damages the player for the given amount of health.
+    /// </summary>
+    /// <param name="val">The amount of damage to give.</param>
+    public void TakeDamage(int val)
     {
-        health -= damage;
+        health = Math.Max(0, health - val);
     }
 
+    /// <summary>
+    /// Heals the player for the given amount of health until the player reaches max health.
+    /// </summary>
+    /// <param name="val">The amount of health to heal.</param>
+    public void Heal(int val)
+    {
+        health = Math.Max(health + val, maxHealth);
+    }
+
+    /// <summary>
+    /// Returns the current health of the player.
+    /// </summary>
+    /// <returns>Integer value of player's health.</returns>
     public float GetHealth()
     {
         return health;
     }
+
+    /// <summary>
+    /// Returns the max health of the player.
+    /// </summary>
+    /// <returns>Integer value of the player's max health.</returns>
     public float GetMaxHealth()
     {
         return maxHealth;

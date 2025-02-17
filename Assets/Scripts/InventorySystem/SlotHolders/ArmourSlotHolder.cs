@@ -18,9 +18,11 @@ public class ArmourSlotHolder : SlotHolder
             {
                 draggableItem.parentAfterDrag = transform;
 
-                InventoryManager.instance.EquipItem(draggableItem.storedItem);
-
-                draggableItem.equipped = true;
+                if (!draggableItem.equipped)
+                {
+                    InventoryManager.instance.EquipItem(draggableItem.storedItem);
+                    draggableItem.equipped = true;
+                }
             }
         }
     }

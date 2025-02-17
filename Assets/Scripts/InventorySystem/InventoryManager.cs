@@ -9,9 +9,6 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public InventorySlotHolder[] slots;
-    public int hotbarSlots = 8;
-
-    [HideInInspector] public int selectedSlot = -1;
 
     public Item[] items;
 
@@ -24,24 +21,9 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Select the first slot
-        ChangeSelectedSlot(0);
-
         // Testing code
         AddItems(items[0]);
-        AddItems(items[8]);
-    }
-
-    /// <summary>
-    /// Set the draggable option for all hotbar slots to the given value.
-    /// </summary>
-    /// <param name="dragOption">A boolean value that specifies if the slots should be draggable or not.</param>
-    public void SetDraggable(bool dragOption)
-    {
-        for (int i = 0; i < hotbarSlots; i++)
-        {
-            slots[i].SetDraggable(dragOption);
-        }
+        AddItems(items[1]);
     }
 
     /// <summary>
@@ -149,87 +131,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Changes the selected slot to the given slot position. This doesn't deselect the previous slot.
-    /// </summary>
-    /// <param name="slotPosition">An integer that specifies the slot position to select. Works for the hotbar only.</param>
-    public void ChangeSelectedSlot(int slotPosition)
-    {
-        selectedSlot = slotPosition % hotbarSlots;
-        UpdateSelectedSlot();
-    }
-
-    /// <summary>
-    /// Changes the selected slot to the given slot position. This also deselects the previous slot.
-    /// </summary>
-    /// <param name="slotPosition">An integer that specifies the slot position to select. Works for the hotbar only.</param>
-    /// <param name="previousSlotPosition">An integer that specifies the slot position to deselect. Works for the hotbar only.</param>
-    public void ChangeSelectedSlot(int slotPosition, int previousSlotPosition)
-    {
-        selectedSlot = slotPosition % hotbarSlots;
-        UpdateSelectedSlot(previousSlotPosition);
-    }
-
-    /// <summary>
-    /// Change the selected slot based on the given direction. This also deselects the previous slot.
-    /// </summary>
-    /// <param name="direction">A string that specifies the direction as either "left" or "right".</param>
-    public void ChangeSelectedSlot(string direction)
-    {
-        // Save the previous slot to deselect it
-        int previousSlot = selectedSlot;
-
-        if (direction == "right")
-        {
-            selectedSlot++;
-            selectedSlot %= hotbarSlots;
-        }
-        else if (direction == "left")
-        {
-            selectedSlot--;
-
-            if (selectedSlot < 0)
-            {
-                selectedSlot = hotbarSlots - 1;
-            }
-        }
-
-        UpdateSelectedSlot(previousSlot);
-    }
-
-    /// <summary>
-    /// Deselects all the slots in the hotbar. Useful when the inventory is open and no slots should be selected.
-    /// </summary>
-    public void DeselectAllSlots()
-    {
-        for (int i = 0; i < hotbarSlots; i++)
-        {
-            slots[i].DeselectSlot();
-        }
-    }
-
-    /// <summary>
-    /// Reselects the previously selected slot. Useful when the inventory is closed and needs to show a selected slot again.
-    /// </summary>
-    public void ReselectPreviousSlot()
-    {
-        UpdateSelectedSlot();
-    }
-
-    /// <summary>
-    /// Selects the new slot and deselects the given slot if needed.
-    /// </summary>
-    /// <param name="previousSlot">The integer value of the slot to deselect. Defaults to -1 for no deselecting. Works for the hotbar only.</param>
-    private void UpdateSelectedSlot(int previousSlot = -1)
-    {
-        if (previousSlot != -1)
-        {
-            slots[previousSlot % hotbarSlots].DeselectSlot();
-        }
-
-        slots[selectedSlot].SelectSlot();
-    }
-
-    /// <summary>
     /// Adds the given item to the inventory. Tries to find an empty slot, or stacks the item if possible.
     /// </summary>
     /// <param name="item">The Item object to be added</param>
@@ -288,77 +189,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         return quantity;
-    }
-
-    /// <summary>
-    /// Get the selected item from the inventory.
-    /// </summary>
-    /// <returns>The item that's currently selected.</returns>
-    public Item GetSelectedItem()
-    {
-        InventorySlotHolder slot = slots[selectedSlot];
-
-        Item storedItem = null;
-
-        if (slot.transform.childCount != 0)
-        {
-            InventoryItem itemInstance = slot.transform.GetChild(0).GetComponent<InventoryItem>();
-
-            storedItem = itemInstance.storedItem;
-        }
-
-        return storedItem;
-    }
-
-    /// <summary>
-    /// Uses the selected item from the inventory once.
-    /// </summary>
-    public void UseSelectedItem()
-    {
-        InventorySlotHolder slot = slots[selectedSlot];
-
-        if (slot.transform.childCount != 0)
-        {
-            Item storedItem = slot.transform.GetChild(0).GetComponent<InventoryItem>().storedItem;
-
-            storedItem.durability -= storedItem.durabilityDecreasePerUse;
-
-            if (storedItem.durability <= 0)
-            {
-                slot.DecrementItem();
-            }
-        }
-    }
-
-    /// <summary>
-    /// Drops the selected item from the inventory and returns it.
-    /// </summary>
-    /// <param name="dropQuantity">The amount of the selected item to drop. Defaults to 1.</param>
-    /// <returns>The item that was dropped.</returns>
-    public Item DropSelectedItem(int dropQuantity = 1)
-    {
-        Item storedItem = null;
-        InventorySlotHolder slot = slots[selectedSlot];
-
-        storedItem = slot.GetStoredItem();
-        slot.DecrementItem(dropQuantity);
-
-        return storedItem;
-    }
-
-    /// <summary>
-    /// Drops all of the selected item from the inventory and returns it.
-    /// </summary>
-    /// <returns>The item that was dropped.</returns>
-    public Item DropAllSelectedItems()
-    {
-        Item storedItem = null;
-        InventorySlotHolder slot = slots[selectedSlot];
-
-        storedItem = slot.GetStoredItem();
-        slot.DecrementItem(slot.GetCurrentStackSize());
-
-        return storedItem;
     }
 
     /// <summary>
@@ -442,14 +272,14 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.type == ItemType.Armour)
         {
-            // Change the player sprite to be the armoured version
+            // Change the player sprite to the armoured version
         }
 
         // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
 
         // Remove the health boost
-        PlayerHealthBar.instance.ChangeHealth(item.healthBoost);
+        PlayerHealthBar.instance.ChangeMaxHealth(item.healthBoost);
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
@@ -467,14 +297,14 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.type == ItemType.Armour)
         {
-            // Change the player sprite to be the armoured version
+            // Change the player sprite back to the original
         }
 
         // Remove the oxygen boost
         PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
 
         // Remove the health boost
-        PlayerHealthBar.instance.ChangeHealth(-item.healthBoost);
+        PlayerHealthBar.instance.ChangeMaxHealth(-item.healthBoost);
 
         // Remove the speed boost
         PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);

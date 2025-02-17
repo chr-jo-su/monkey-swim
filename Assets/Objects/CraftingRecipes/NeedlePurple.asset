@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsRequired:
   - {fileID: 11400000, guid: 8dbeede5578aea34fb02659a6e0d3f14, type: 2}
-  quantityRequired: 02000000
+  quantityRequired: 04000000
   resultingItem: {fileID: 11400000, guid: 85c9b069f3562784ab8a82ee4b7d40ea, type: 2}
   craftingRecipeID: 663220362

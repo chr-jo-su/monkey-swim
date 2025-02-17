@@ -12,7 +12,7 @@ public class BossSlide : MonoBehaviour
 {
     public static BossSlide instance;
     public float health = 500.0f;
-    public HealthBar bossHealth;
+    public EnemyHealthBar bossHealth;
     private Rigidbody2D rb;
     private Vector3 StartPosition;
     private float DistanceOut = 22;

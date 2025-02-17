@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 166108747890924356}
+  - component: {fileID: 3315748878974305468}
   m_Layer: 5
   m_Name: PlayerHealthManager
   m_TagString: Untagged
@@ -38,6 +39,22 @@ RectTransform:
   m_AnchoredPosition: {x: -672, y: 460}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3315748878974305468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318630828183811065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae62d80144e81b45ac85b637cdc4fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 6320901546469911290}
+  damageSlider: {fileID: 6465115774695108624}
+  maxHealth: 100
+  oxygenSlider: {fileID: 1966520745160303653}
 --- !u!1 &4057626349329784304
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +215,6 @@ GameObject:
   m_Component:
   - component: {fileID: 63466143994363050}
   - component: {fileID: 6320901546469911290}
-  - component: {fileID: 6546737583983273500}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -221,11 +237,11 @@ RectTransform:
   - {fileID: 43838745845737507}
   m_Father: {fileID: 166108747890924356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250.00006, y: -40}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 80}
-  m_Pivot: {x: 0.5000001, y: 0.49999994}
+  m_Pivot: {x: 0, y: 0.49999994}
 --- !u!114 &6320901546469911290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,25 +289,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 42.4
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6546737583983273500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577918316378428072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dae62d80144e81b45ac85b637cdc4fd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 6320901546469911290}
-  damageHealthSlider: {fileID: 6465115774695108624}
-  maxHealth: 100
 --- !u!1 &4993733375259110852
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +454,7 @@ GameObject:
   - component: {fileID: 70758547245525246}
   - component: {fileID: 6465115774695108624}
   m_Layer: 5
-  m_Name: DamageHealthBar
+  m_Name: DamageBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,11 +476,11 @@ RectTransform:
   - {fileID: 6305080672677362126}
   m_Father: {fileID: 166108747890924356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -40}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 500, y: 80}
-  m_Pivot: {x: 0.5000001, y: 0.49999994}
+  m_Pivot: {x: 0, y: 0.49999994}
 --- !u!114 &6465115774695108624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +528,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 75
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -617,7 +618,7 @@ GameObject:
   - component: {fileID: 8785068439626692948}
   - component: {fileID: 1966520745160303653}
   m_Layer: 5
-  m_Name: AirBar
+  m_Name: OxygenBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,11 +640,11 @@ RectTransform:
   - {fileID: 8416593469493524133}
   m_Father: {fileID: 166108747890924356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200.4, y: -111.4}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -75}
   m_SizeDelta: {x: 500, y: 80}
-  m_Pivot: {x: 0.5000001, y: 0.49999994}
+  m_Pivot: {x: 0, y: 0.49999994}
 --- !u!114 &1966520745160303653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +692,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
