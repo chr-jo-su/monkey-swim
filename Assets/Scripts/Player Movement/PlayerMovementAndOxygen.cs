@@ -108,12 +108,14 @@ public class PlayerMovementAndOxygen : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        if (moveX == 1) {
+
+        if (moveX > 0) {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else {
+        else if (moveX < 0) {
             GetComponent<SpriteRenderer>().flipX = false;
         }
+
         animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;

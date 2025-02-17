@@ -20,7 +20,7 @@ public class FishMovement : MonoBehaviour
     [SerializeField]
     public int damage;
     public int damageTaken;
-    private int attackCounter = 0;
+    private float attackCounter = 0;
     public GameObject seaLineObject;
     private GameObject healthSystem;
     public float health = 100.0f;
@@ -65,24 +65,32 @@ public class FishMovement : MonoBehaviour
     void FixedUpdate()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
+        if (distance < 3)
+            following = true;
         //Movement
         // rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        if (following && attackCounter >= 10)
+        if (following)
         {
-            transform.position = Vector2.MoveTowards(
-                this.transform.position,
-                player.transform.position,
-                moveSpeed * Time.deltaTime / 2
-            );
+            if (attackCounter >= 1) {
+                transform.position = Vector2.MoveTowards(
+                   this.transform.position,
+                   player.transform.position,
+                   moveSpeed * Time.deltaTime / 2
+                );
 
-            var dir = player.position - transform.position;
-            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                // var dir = player.position - transform.position;
+                //var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            if (distance >= 3)
-            {
-                following = false;
+                // transform.LookAt(Vector3.forward, Vector3.Cross(Vector3.forward, dir));
+                // transform.position += transform.forward * moveSpeed * Time.deltaTime;
+
+                if (distance >= 7)
+                {
+                    Debug.Log("bruh");
+                    following = false;
+                }
             }
         }
         else
@@ -119,17 +127,13 @@ public class FishMovement : MonoBehaviour
                 //);
                 GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
             }
-
-                if (distance < 3)
-            {
-                following = true;
-            }
         }
 
-        attackCounter++;
+        if (attackCounter < 1)
+            attackCounter += Time.deltaTime;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
         if (player != null)
@@ -160,18 +164,62 @@ public class FishMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         }
 
-        if (collision.gameObject.tag == "Fish")
-        {
+        // if (collision.gameObject.tag == "Fish")
+        // {
 
-            if (GetComponent<PolygonCollider2D>())
-            {
-                Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
-            } else
-            {
-                Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
-            }
-        }
+        //     if (GetComponent<PolygonCollider2D>())
+        //     {
+        //         Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
+        //     } else
+        //     {
+        //         Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+        //     }
+        // }
     }
+
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
+    //     if (player != null)
+    //     {
+    //         PlayerHealthBar.instance.TakeDamage(damage);
+    //         following = false;
+    //         attackCounter = 0;
+    //     }
+
+    //     if (collision.gameObject.name == "Bananarang(Clone)")
+    //     {
+    //         health -= damageTaken;
+    //         fishHealth.TakeDamage(25);
+    //     }
+
+    //     // yikes
+    //     if (collision.gameObject.name.Contains("Square")
+    //             || collision.gameObject.name.Contains("Triangle")
+    //             || collision.gameObject.name.Contains("Hexagon")
+    //             || collision.gameObject.name.Contains("seaLine"))
+    //     {
+    //         moveSpeed *= -1;
+    //         thetaStep = -thetaStep;
+    //         //gameObject.transform.localScale = new Vector2(
+    //         //    -transform.localScale.x,
+    //         //    transform.localScale.y
+    //         //);
+    //         GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
+    //     }
+
+    //     if (collision.gameObject.tag == "Fish")
+    //     {
+
+    //         if (GetComponent<PolygonCollider2D>())
+    //         {
+    //             Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
+    //         } else
+    //         {
+    //             Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+    //         }
+    //     }
+    // }
 
     void OnTriggerStay2D(Collider2D other)
     { // not working correctly

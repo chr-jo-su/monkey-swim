@@ -81,7 +81,13 @@ public class Bananarang : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision2D)
+    // void OnCollisionEnter2D(Collision2D collision2D)
+    // {
+    //     ReturnToPlayer = true;
+    //     gameObject.GetComponent<Collider2D>().enabled = false;
+    // }
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         ReturnToPlayer = true;
         gameObject.GetComponent<Collider2D>().enabled = false;
