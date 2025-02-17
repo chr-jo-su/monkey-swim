@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject Menu;
     public GameObject ChimpButton;
+    public GameObject BigRedArrow;
     public float Velocity;
     public bool MrPresidentTheMonkeyHasBeenPressed = false;
 
@@ -13,6 +14,9 @@ public class MainMenu : MonoBehaviour
         if (MrPresidentTheMonkeyHasBeenPressed == true)
         {
             HideMainTitleMenu();
+            BigRedArrow.SetActive(true);
+        } else {
+            BigRedArrow.SetActive(false);
         }
         if (transform.position.y > 10)
         {
