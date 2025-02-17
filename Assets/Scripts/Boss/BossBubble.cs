@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BossBubble : MonoBehaviour
 {
-    public PlayerMovementAndOxygen player;
-    public float oxygenGain = 10.0f;
+    public PlayerMovement player;
+    public int oxygenGain = 10;
     public float speed = 4.0f;
     public float deletePositionY = 20.0f;
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerMovementAndOxygen>();
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class BossBubble : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            player.oxygen += oxygenGain;
+            OxygenBar.instance.ChangeOxygen(oxygenGain);
             Destroy(gameObject);
         }
     }

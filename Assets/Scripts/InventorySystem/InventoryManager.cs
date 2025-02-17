@@ -276,13 +276,13 @@ public class InventoryManager : MonoBehaviour
         }
 
         // Remove the oxygen boost
-        PlayerMovementAndOxygen.instance.ChangeOxygen(item.oxygenBoost);
+        OxygenBar.instance.ChangeOxygen(item.oxygenBoost);
 
         // Remove the health boost
         PlayerHealthBar.instance.ChangeMaxHealth(item.healthBoost);
 
         // Remove the speed boost
-        PlayerMovementAndOxygen.instance.ChangeMoveSpeed(item.speedBoost);
+        PlayerMovement.instance.ChangeMoveSpeed(item.speedBoost);
     }
 
     /// <summary>
@@ -301,12 +301,12 @@ public class InventoryManager : MonoBehaviour
         }
 
         // Remove the oxygen boost
-        PlayerMovementAndOxygen.instance.ChangeOxygen(-item.oxygenBoost);
+        OxygenBar.instance.ChangeOxygen(-item.oxygenBoost);
 
         // Remove the health boost
         PlayerHealthBar.instance.ChangeMaxHealth(-item.healthBoost);
 
         // Remove the speed boost
-        PlayerMovementAndOxygen.instance.ChangeMoveSpeed(-item.speedBoost);
+        PlayerMovement.instance.ChangeMoveSpeed(-item.speedBoost);
     }
 }

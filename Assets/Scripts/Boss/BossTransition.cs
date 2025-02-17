@@ -67,7 +67,7 @@ public class BossTransition : MonoBehaviour
             if (go.name == "Player")
             {
                 go.transform.position = new Vector3(0, 0, 0);
-                go.GetComponent<PlayerMovementAndOxygen>().sceneChanged = true;
+                go.GetComponent<PlayerMovement>().sceneChanged = true;
             }
         }
 
