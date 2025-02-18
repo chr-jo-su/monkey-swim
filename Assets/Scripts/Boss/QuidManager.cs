@@ -11,9 +11,4 @@ public class QuidManager : BossFightManager
     {
         instance = this;
     }
-
-    void Update()
-    {
-        base.Update();
-    }
 }

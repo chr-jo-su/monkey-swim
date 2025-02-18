@@ -10,8 +10,6 @@ public class PlayerHealthBar : HealthBar
     // Variables
     public static PlayerHealthBar instance;
 
-    [SerializeField] protected Slider oxygenSlider;
-
     private bool isMaxHealth = true;
     private bool gameOver = false;
 

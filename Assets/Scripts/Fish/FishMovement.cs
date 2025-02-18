@@ -132,7 +132,7 @@ public class FishMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
+        var player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
         {
             PlayerHealthBar.instance.TakeDamage(damage);

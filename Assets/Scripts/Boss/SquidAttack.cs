@@ -8,7 +8,6 @@ public class SquidAttack : MonoBehaviour
     // public Collider2D player;
     public const float moveSpeed = 4f;
     public Rigidbody2D rb;
-    public GameObject gameObject;
     private Transform player;
     private int damage = 20;
     Vector2 movement;

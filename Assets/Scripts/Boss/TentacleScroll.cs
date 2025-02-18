@@ -7,7 +7,6 @@ public class TentacleScroll : MonoBehaviour
    //Variables
     public const float moveSpeed = 2.5f;
     public Rigidbody2D rb;
-    public GameObject gameObject;
     private Transform player;
     Vector2 movement;
     public bool moving = true;
