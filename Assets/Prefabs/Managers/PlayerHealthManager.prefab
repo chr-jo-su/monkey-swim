@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166108747890924356}
   - component: {fileID: 3315748878974305468}
+  - component: {fileID: 454006322416594559}
   m_Layer: 5
   m_Name: PlayerHealthManager
   m_TagString: Untagged
@@ -55,6 +56,23 @@ MonoBehaviour:
   damageSlider: {fileID: 6465115774695108624}
   maxHealth: 100
   oxygenSlider: {fileID: 1966520745160303653}
+--- !u!114 &454006322416594559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318630828183811065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0fabc32d75de54ba4131c418e5a882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oxygenSlider: {fileID: 9058489483443760985}
+  maxOxygen: 100
+  oxygenChangeRate: 1
+  oxygenDamage: 3
+  drownTimer: 100
 --- !u!1 &4057626349329784304
 GameObject:
   m_ObjectHideFlags: 0

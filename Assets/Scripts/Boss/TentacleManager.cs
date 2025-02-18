@@ -11,9 +11,4 @@ public class TentacleManager : BossFightManager
     {
         instance = this;
     }
-
-    private void Update()
-    {
-        base.Update();
-    }
 }
