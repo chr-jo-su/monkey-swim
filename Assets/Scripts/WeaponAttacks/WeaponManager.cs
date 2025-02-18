@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
-        PlayerTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+        PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         BananarangPosition = new Vector3(PlayerTransform.position.x, PlayerTransform.position.y, 1);
         MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Direction = MousePosition - transform.position;
