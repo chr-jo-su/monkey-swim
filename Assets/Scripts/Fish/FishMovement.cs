@@ -69,7 +69,7 @@ public class FishMovement : MonoBehaviour
         //Movement
         // rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        if (following && attackCounter >= 10)
+        if (following && attackCounter >= 11)
         {
             transform.position = Vector2.MoveTowards(
                 this.transform.position,
@@ -81,7 +81,7 @@ public class FishMovement : MonoBehaviour
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            if (distance >= 3)
+            if (distance >= 4)
             {
                 following = false;
             }
