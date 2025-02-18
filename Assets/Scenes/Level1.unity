@@ -1683,6 +1683,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1889461596}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: oxygenSlider
+      value: 
+      objectReference: {fileID: 1015333837}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
@@ -4325,7 +4333,7 @@ GameObject:
   - component: {fileID: 1998483638}
   m_Layer: 0
   m_Name: seaLine
-  m_TagString: Untagged
+  m_TagString: Sealine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
