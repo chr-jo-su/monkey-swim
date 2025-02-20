@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementAndOxygen : MonoBehaviour
 {
     // Variables
-    public static PlayerMovement instance;
+    public static PlayerMovementAndOxygen instance;
 
-    [SerializeField] private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
     public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
                                      // that signifies the sea line
@@ -19,6 +19,17 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool sceneChanged = true;
     private bool inSea = false;
     private bool canMoveUp = true;
+    private bool canBreath = true;
+
+    public GameObject oxygenSlider;
+
+    public float oxygen = 100.0f;
+    private float maxOxygen = 100.0f;
+    public float oxygenDepletionRate = 1.0f;
+    public float oxygenGainRate = 1.0f;
+    public int oxygenDepletionDamage = 3;
+    public int drownTimer = 100;
+    private int currentDrownTimer = 0;
 
     public AudioSource audioSource;
     public AudioClip splashSound;
@@ -28,10 +39,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource underWaterMusic;
     public Collider2D seaTopBoxCollider;
     public Collider2D playerCollider;
+    public HealthBar playerHealth;
 
-    /// <summary>
-    /// Creates a singleton instance of the PlayerMovement.
-    /// </summary>
+    // Awake is called when the script instance is being loaded
     private void Awake()
     {
         instance = this;
@@ -43,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="damage">The amount of health to remove from the player.</param>
     public void TakeDamage(int damage)
     {
-        PlayerHealthBar.instance.TakeDamage(damage);
+        playerHealth.TakeDamage(damage);
     }
 
     /// <summary>
@@ -54,9 +64,7 @@ public class PlayerMovement : MonoBehaviour
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
     }
 
-    /// <summary>
-    /// Relinks the player's attributes if they are missing and processes the inputs for player movement.
-    /// </summary>
+    // Update is called once per frame
     void Update()
     {
         if (sceneChanged)
@@ -65,6 +73,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         ProcessInputs();
+
+        if (oxygen > 0.0f && !canBreath)
+        {
+            oxygen -= oxygenDepletionRate * Time.deltaTime;
+            oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
+        }
+        else if (oxygen < maxOxygen && canBreath)
+        {
+            oxygen += 10 * oxygenGainRate * Time.deltaTime;
+            oxygenSlider.GetComponent<Slider>().value = oxygen * 0.01f;
+        }
+
+        if (oxygen <= 0.0f)
+        {
+            if (currentDrownTimer == drownTimer)
+            {
+                playerHealth.TakeDamage(oxygenDepletionDamage);
+                currentDrownTimer = 0;
+            }
+            currentDrownTimer++;
+        }
     }
 
     void FixedUpdate()
@@ -79,14 +108,14 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        if (moveX == 1)
-        {
+
+        if (moveX > 0) {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        else
-        {
+        else if (moveX < 0) {
             GetComponent<SpriteRenderer>().flipX = false;
         }
+
         animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;
@@ -113,6 +142,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
+    /// Changes the oxygen level of the player by the given value.
+    /// </summary>
+    /// <param name="val">The value to change the oxygen level by. Can be negative.</param>
+    public void ChangeOxygen(int val)
+    {
+        maxOxygen += val;
+
+        if (val < 0)
+        {
+            oxygen = Math.Min(oxygen, maxOxygen);
+        }
+    }
+
+    /// <summary>
     /// Changes the move speed of the player by the given value.
     /// </summary>
     /// <param name="val">The value to change the move speed by. Can be negative.</param>
@@ -121,10 +164,6 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed += val;
     }
 
-    /// <summary>
-    /// Changes the player's ability to breathe and changes the gravity scale of the player.
-    /// </summary>
-    /// <param name="other"></param>
     void OnTriggerExit2D(Collider2D other)
     {
         if (other != null && other.name == seaLineObject.name)
@@ -133,27 +172,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidBody.gravityScale = 0F;
                 canMoveUp = true;
-                OxygenBar.instance.SetBreathe(false);
+                canBreath = false;
             }
             else
             {
                 rigidBody.gravityScale = 1F;
                 canMoveUp = false;
-                OxygenBar.instance.SetBreathe(true);
+                canBreath = true;
             }
         }
     }
 
-    /// <summary>
-    /// Changes the player's ability to breathe and plays the underwater ambience.
-    /// </summary>
-    /// <param name="other"></param>
     void OnTriggerStay2D(Collider2D other)
     {
         if (other != null && other.name == seaLineObject.name)
         {
-            OxygenBar.instance.SetBreathe(true);
-
+            canBreath = true;
             if (transform.position.y > other.transform.position.y)
             {
                 inSea = false;
@@ -176,10 +210,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Plays the splash sound when the player enters the sea and picks up items.
-    /// </summary>
-    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!inSea)
@@ -200,6 +230,10 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void RelinkAttributes()
     {
+        if (playerHealth == null)
+        {
+            playerHealth = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        }
         if (seaTopBoxCollider == null)
         {
             seaTopBoxCollider = GameObject.Find("SeaTopBox").GetComponent<Collider2D>();
@@ -230,11 +264,5 @@ public class PlayerMovement : MonoBehaviour
             sceneChanged = false;
             Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
         }
-    }
-
-    // Getters and setters
-    public bool isInSea()
-    {
-        return inSea;
     }
 }
