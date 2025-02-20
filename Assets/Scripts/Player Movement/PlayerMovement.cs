@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public Collider2D seaTopBoxCollider;
     public Collider2D playerCollider;
 
+    private bool facingLeft = true;
+
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
     /// </summary>
@@ -79,14 +81,19 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-        if (moveX == 1)
-        {
+
+        
+        if (facingLeft == false)
             GetComponent<SpriteRenderer>().flipX = true;
-        }
         else
-        {
             GetComponent<SpriteRenderer>().flipX = false;
-        }
+
+
+        if (moveX < 0)
+            facingLeft = true;
+        else if (moveX > 0)
+            facingLeft = false;
+        
         animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;
