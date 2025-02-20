@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
-  m_Name: Bean
+  m_Name: JestersFeast
   m_EditorClassIdentifier: 
-  itemName: Beans
-  itemDescription: Mmm. Coffee.
-  itemSprite: {fileID: 21300000, guid: 49e45154731a6496ab19c35228560026, type: 3}
+  itemName: Jester's Feast
+  itemDescription: Try throwing it at the enemies you truly hate. They will disappear
+    instantly.
+  itemSprite: {fileID: 21300000, guid: 6896cd59f2f3f1a4eb772841e11fb1e4, type: 3}
   durability: 100
-  durabilityDecreasePerUse: 0
-  damagePerAttack: 0
-  type: 0
-  itemID: 349754
+  durabilityDecreasePerUse: 100
+  damagePerAttack: 100
+  type: 2
+  itemID: 63364694
   isStackable: 1
-  maxStackSize: 16
+  maxStackSize: 5
   oxygenBoost: 0
   healthBoost: 0
   speedBoost: 0

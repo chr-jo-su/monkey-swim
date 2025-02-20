@@ -70,22 +70,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-/.vscode
 
 .DS_Store
 /[Aa]ssets/.DS_Store
-Packages/manifest.json
-Packages/packages-lock.json
-.idea/.idea.monkey-swim/.idea/indexLayout.xml
-.idea/.idea.monkey-swim/.idea/vcs.xml
 .editorconfig
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset
-Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset
-Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
-ProjectSettings/BurstAotSettings_StandaloneOSX.json
-ProjectSettings/CommonBurstAotSettings.json
-ProjectSettings/EditorBuildSettings.asset
-*.asset
+/.vscode
+/.idea
