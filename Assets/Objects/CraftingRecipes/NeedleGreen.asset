@@ -15,5 +15,5 @@ MonoBehaviour:
   itemsRequired:
   - {fileID: 11400000, guid: 46e30c1772052754f8e948b6480c5e3d, type: 2}
   quantityRequired: 04000000
-  resultingItem: {fileID: 11400000, guid: ddd133a7e832ad24580861c90293ea5b, type: 2}
+  resultingItem: {fileID: 11400000, guid: 94a85da689acae145ba64076f3ed2159, type: 2}
   craftingRecipeID: 437191145

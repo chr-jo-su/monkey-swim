@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d619f7242af379649be7ecff9b14844a, type: 3}
   m_Name: BeanBuddy
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Bean Buddy
   itemDescription: 
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: 326cdb9a3953c41b6ba13715a5f1cd05, type: 3}
   durability: 100
   durabilityDecreasePerUse: 0
   damagePerAttack: 0
-  type: 0
-  itemID: 0
+  type: 4
+  itemID: 16254286
   isStackable: 0
   maxStackSize: 1
   oxygenBoost: 0
-  healthBoost: 0
-  speedBoost: 0
+  healthBoost: -15
+  speedBoost: 5
