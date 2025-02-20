@@ -118,6 +118,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 70758547245525246, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -202,6 +206,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHealthManager
       objectReference: {fileID: 0}
+    - target: {fileID: 454006322416594559, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: lowOxygen
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 454006322416594559, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: shakeAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 454006322416594559, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: oxygenSlider
+      value: 
+      objectReference: {fileID: 8149892018421492186}
+    - target: {fileID: 1966520745160303653, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_Value
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966520745160303653, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315748878974305468, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: lowHealth
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315748878974305468, guid: bee921ffe10654268bf231705b99b023, type: 3}
+      propertyPath: shakeAmount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6305080672677362126, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -228,3 +260,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
   m_PrefabInstance: {fileID: 7660701780979387903}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8149892018421492186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1966520745160303653, guid: bee921ffe10654268bf231705b99b023, type: 3}
+  m_PrefabInstance: {fileID: 7660701780979387903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

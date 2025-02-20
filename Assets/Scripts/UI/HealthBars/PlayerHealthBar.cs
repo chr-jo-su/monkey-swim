@@ -12,18 +12,67 @@ public class PlayerHealthBar : HealthBar
 
     private bool isMaxHealth = true;
     private bool gameOver = false;
+    protected bool shake = false;
 
     private float healthBarRatio;
+    protected Vector3 barPosition;
+    [SerializeField] protected float lowHealth;
+    [SerializeField] private int shakeAmount = 3;
 
+    /// <summary>
+    /// Creates a singleton instance of the PlayerHealthBar.
+    /// </summary>
     private void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    /// <summary>
+    /// Sets the health to the max health when the game starts.
+    /// </summary>
+    private new void Start()
     {
+        base.Start();
+
         healthBarRatio = healthSlider.transform.localScale.x / maxHealth;
-        health = maxHealth;
+        barPosition = healthSlider.transform.localPosition;
+    }
+
+    /// <summary>
+    /// Check if the player is at low health
+    /// </summary>
+    private new void Update()
+    {
+        base.Update();
+
+        if (health / maxHealth < lowHealth)
+        {
+            shake = true;
+        }
+        else if (shake)
+        {
+            shake = false;
+        }
+    }
+
+    /// <summary>
+    /// Shake the health bar when the player's health is low.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (barPosition != new Vector3())
+        {
+            if (shake)
+            {
+                healthSlider.transform.localPosition = new Vector3(barPosition.x + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.y + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.z);
+                damageSlider.transform.localPosition = new Vector3(barPosition.x + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.y + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.z);
+            }
+            else
+            {
+                healthSlider.transform.localPosition = barPosition;
+                damageSlider.transform.localPosition = barPosition;
+            }
+        }
     }
 
     /// <summary>
@@ -42,7 +91,10 @@ public class PlayerHealthBar : HealthBar
         }
     }
 
-    // Changes the max health of the player by the given value. Can be either negative or positive. This value also changes the current health of the player to be in the range of [0, maxHealth].
+    /// <summary>
+    /// Changes the max health of the player by the given value. Can be either negative or positive. This value also changes the current health of the player to be in the range of [0, maxHealth].
+    /// </summary>
+    /// <param name="val">The value to change the maxHealth variable by.</param>
     public new void ChangeMaxHealth(int val)
     {
         maxHealth += val;
@@ -73,6 +125,9 @@ public class PlayerHealthBar : HealthBar
         }
     }
 
+    /// <summary>
+    /// Change the size of the health bar.
+    /// </summary>
     public void ChangeHealthBarSize()
     {
         healthSlider.transform.localScale = new Vector3(healthBarRatio * maxHealth, healthSlider.transform.localScale.y, healthSlider.transform.localScale.z);

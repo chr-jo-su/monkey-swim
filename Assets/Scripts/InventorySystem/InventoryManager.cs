@@ -276,7 +276,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         // Remove the oxygen boost
-        OxygenBar.instance.ChangeOxygen(item.oxygenBoost);
+        OxygenBar.instance.ChangeMaxOxygen(item.oxygenBoost);
 
         // Remove the health boost
         PlayerHealthBar.instance.ChangeMaxHealth(item.healthBoost);
@@ -301,7 +301,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         // Remove the oxygen boost
-        OxygenBar.instance.ChangeOxygen(-item.oxygenBoost);
+        OxygenBar.instance.ChangeMaxOxygen(-item.oxygenBoost);
 
         // Remove the health boost
         PlayerHealthBar.instance.ChangeMaxHealth(-item.healthBoost);

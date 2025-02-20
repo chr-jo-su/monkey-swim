@@ -1531,13 +1531,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 2d46e6d47647190468e1eb6fe15135cf, type: 3}
 --- !u!114 &2323811412639445807 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4898397397572942938, guid: 2d46e6d47647190468e1eb6fe15135cf, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1669428915196703386, guid: 2d46e6d47647190468e1eb6fe15135cf, type: 3}
   m_PrefabInstance: {fileID: 2323811412639445806}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d264047ce5453459ca9e19ba0f271a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bce48520fee13945a32af0bf42deacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

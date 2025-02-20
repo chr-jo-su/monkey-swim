@@ -9,7 +9,6 @@ public class WeaponManager : MonoBehaviour
     public GameObject BananarangObject;
     public GameObject[] BananarangClones;
     private Transform PlayerTransform;
-    private Transform SealineTransform;
     private Vector3 BananarangPosition;
     private Vector3 Direction;
     private Vector3 MousePosition;
@@ -24,7 +23,6 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        SealineTransform = GameObject.FindGameObjectWithTag("Sealine").GetComponent<Transform>();
         BananarangReady = true;
         BananarangCount = 3;
     }
@@ -48,7 +46,7 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        if (PlayerTransform.position.y < SealineTransform.position.y)
+        if (PlayerMovement.instance.isInSea())
         {
             if (BananarangReady)
             {
