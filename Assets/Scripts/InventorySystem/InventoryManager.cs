@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TODO: Remove testing code
         // Testing code
         AddItems(items[0]);
         AddItems(items[1]);
