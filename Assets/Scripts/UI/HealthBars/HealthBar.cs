@@ -19,19 +19,22 @@ public class HealthBar : MonoBehaviour
     /// <summary>
     /// Sets the health to the max health when the game starts.
     /// </summary>
-    void Start()
+    protected void Start()
     {
         health = maxHealth;
+
+        healthSlider.value = health;
+        damageSlider.value = health;
     }
 
     /// <summary>
     /// Updates the health bar to reflect the current health of the player.
     /// </summary>
-    void Update()
+    protected void Update()
     {
         if (healthSlider.value != health)
         {
-            healthSlider.value = health;
+            healthSlider.value = Mathf.Lerp(healthSlider.value, health, lerpSpeed * 2);
         }
 
         if (healthSlider.value != damageSlider.value)

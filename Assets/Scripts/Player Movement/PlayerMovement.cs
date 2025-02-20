@@ -231,4 +231,10 @@ public class PlayerMovement : MonoBehaviour
             Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
         }
     }
+
+    // Getters and setters
+    public bool isInSea()
+    {
+        return inSea;
+    }
 }

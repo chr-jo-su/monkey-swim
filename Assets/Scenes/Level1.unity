@@ -1799,7 +1799,7 @@ PrefabInstance:
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: oxygenSlider
       value: 
-      objectReference: {fileID: 1015333837}
+      objectReference: {fileID: 0}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: playerHealth
       value: 
