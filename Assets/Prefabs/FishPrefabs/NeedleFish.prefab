@@ -182,7 +182,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 02cc3b4c628a54f9a8abf1ed60e313ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -203,15 +203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929bc2c270e5d4800971928dfb265b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -5
+  moveSpeed: 5
   rb: {fileID: 1999087896956115757}
-  following: 0
-  distance: 0
   damage: 20
   damageTaken: 25
   seaLineObject: {fileID: 0}
   health: 60
-  fishHealth: {fileID: 5901989859839723521}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
@@ -224,7 +221,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 999999
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -289,7 +286,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -718,14 +715,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 166108747890924356, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
   m_PrefabInstance: {fileID: 806913597991153181}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5901989859839723521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6546737583983273500, guid: 4cee7ec03d226b743b005752986ffcfd, type: 3}
-  m_PrefabInstance: {fileID: 806913597991153181}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e3e5692d4f24b99ba8c8acc7580836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
