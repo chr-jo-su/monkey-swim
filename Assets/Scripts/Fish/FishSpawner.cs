@@ -23,8 +23,6 @@ public class FishSpawner : MonoBehaviour
 
     private List<GameObject> spawnedFishes = new List<GameObject>();
 
-    private float perfTimer = 0; // put updating list of fishes in timer for performance
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,19 +44,13 @@ public class FishSpawner : MonoBehaviour
             }
         }
 
-        if (perfTimer > 0.5) 
+        foreach (GameObject fish in spawnedFishes)
         {
-            foreach (GameObject fish in spawnedFishes)
+            if (fish.gameObject == null)
             {
-                if (fish.gameObject == null)
-                {
-                    spawnedFishes.Remove(fish);
-                }
+                spawnedFishes.Remove(fish);
             }
-            perfTimer = 0;
         }
-
-        perfTimer += Time.deltaTime;
     }
 
     void SpawnFish(int index)
