@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,27 +7,31 @@ using UnityEngine.Serialization;
 
 public class FishMovement : MonoBehaviour
 {
+    public enum behaviours {
+        BEAN,
+        NEEDLE
+    }
+
+    public behaviours behaviour = behaviours.BEAN;
+
     //Variables
-    public float moveSpeed = -2.5f;
+    public float moveSpeed = 1.5f;
     public Rigidbody2D rb;
-    private float theta = 0f;
-    private float thetaStep = Mathf.PI / 32f;
-    // public Rigidbody2D rigidBody;
-    Vector2 movement;
-    public bool following = false;
-    public float distance;
     private Transform player;
 
     [SerializeField]
     public int damage;
     public int damageTaken;
-    private float attackCounter = 0;
     public GameObject seaLineObject;
     private GameObject healthSystem;
     public float health = 100.0f;
     private float healthMax;
     public HealthBar fishHealth;
+
     private Vector2 spawnPos;
+    private bool moveLeft = false; // false == right, true == left
+    private bool chasing = false;
+    private float attackTimer = 0;
 
     void Start()
     {
@@ -34,24 +39,20 @@ public class FishMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
-        spawnPos = this.transform.position;
         seaLineObject = GameObject.Find("seaLine");
+
+        spawnPos = transform.position;
     }
 
     void Update()
     {
-        //Input
-        movement.x = 1;
-        movement.y = Mathf.Sin(theta) * 0.4f;
 
-        // Allows for movement in the y axis to be a bit less linear, to imitate the swimming slightly better; could be changed though
-
-        // Death
+        // HEALTH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (health <= 0.0f)
         {
             GetComponent<ItemDropper>().enabled = true;
             if (GetComponent<ItemDropper>().finished)
-                Destroy(this.gameObject);
+                Destroy(gameObject);
         }
 
         if (health < healthMax)
@@ -59,184 +60,80 @@ public class FishMovement : MonoBehaviour
             healthSystem.transform.localScale = new Vector3(0.2f, 0.1f, 1);
         }
 
-        // health -= 0.01f;
-    }
-
-    void FixedUpdate()
-    {
-        distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance < 3)
-            following = true;
-        //Movement
-        // rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-        if (following)
-        {
-            if (attackCounter >= 1) {
-                transform.position = Vector2.MoveTowards(
-                   this.transform.position,
-                   player.transform.position,
-                   moveSpeed * Time.deltaTime / 2
-                );
-
-                // var dir = player.position - transform.position;
-                //var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-                // transform.LookAt(Vector3.forward, Vector3.Cross(Vector3.forward, dir));
-                // transform.position += transform.forward * moveSpeed * Time.deltaTime;
-
-                if (distance >= 7)
-                {
-                    Debug.Log("bruh");
-                    following = false;
-                }
-            }
-        }
-        else
-        {
-            theta += thetaStep; //*moveSpeed
-            if (theta >= 2 * Mathf.PI)
-            {
-                theta = 0f;
-            } else if (theta <= 0)
-            {
-                theta = 2 * Mathf.PI;
-            }
-
-            //Movement
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-            //transform.Rotate(Vector3.forward * Mathf.Sin(theta));
-            if (movement != Vector2.zero)
-            {
-                float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle * 0.5f, Vector3.forward);
-            }
-
-            //Change Directions; -8 and 8 are arbitrary edges of the screen; should be reworked later
-            if (
-                (transform.position.x >= (spawnPos.x + 8) && moveSpeed > 0)
-                || (transform.position.x <= (spawnPos.x - 8) && moveSpeed < 0)
-            )
-            {
-                moveSpeed *= -1;
-                thetaStep = -thetaStep;
-                //gameObject.transform.localScale = new Vector2(
-                //    -transform.localScale.x,
-                //    transform.localScale.y
-                //);
-                GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
-            }
+        // MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+        if (distance < 7) {
+            chasing = true;
         }
 
-        if (attackCounter < 1)
-            attackCounter += Time.deltaTime;
+        if (chasing) {
+            // rotate to player!
+            GetComponent<SpriteRenderer>().flipX = false;
+            Vector2 direction = player.position - transform.position;
+            float angleRads = (float)Math.Atan2(direction.x, direction.y);
+            float angleDeg = angleRads * Mathf.Rad2Deg;
+            angleDeg = -angleDeg - 90;
+            if (-angleDeg < 90 || -angleDeg > 270) {
+                GetComponent<SpriteRenderer>().flipY = false;
+            } else {
+                GetComponent<SpriteRenderer>().flipY = true;
+            }
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angleDeg);
+            transform.rotation = targetRotation;
+
+            // chase player!
+            if (attackTimer <= 0) {
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed*Time.deltaTime);
+            } else {
+                attackTimer -= Time.deltaTime;
+            }
+        } else {
+            if (moveLeft == false)
+                transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
+            else
+                transform.position += (Vector3)Vector2.left * moveSpeed * Time.deltaTime;
+
+            if (transform.position.x < spawnPos.x - 8) {
+                moveLeft = false;
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+
+            if (transform.position.x > spawnPos.x + 8) {
+                moveLeft = true;
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
-        if (player != null)
-        {
-            PlayerHealthBar.instance.TakeDamage(damage);
-            following = false;
-            attackCounter = 0;
-        }
-
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
             health -= damageTaken;
-            fishHealth.TakeDamage(25);
+            fishHealth.TakeDamage(damageTaken);
         }
 
-        // yikes
+        // yikes ;; switch direction after colliding with primitive shapes (tim)
         if (collision.gameObject.name.Contains("Square")
                 || collision.gameObject.name.Contains("Triangle")
                 || collision.gameObject.name.Contains("Hexagon")
                 || collision.gameObject.name.Contains("seaLine"))
         {
-            moveSpeed *= -1;
-            thetaStep = -thetaStep;
-            //gameObject.transform.localScale = new Vector2(
-            //    -transform.localScale.x,
-            //    transform.localScale.y
-            //);
+            moveLeft = !moveLeft;
             GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         }
-
-        // if (collision.gameObject.tag == "Fish")
-        // {
-
-        //     if (GetComponent<PolygonCollider2D>())
-        //     {
-        //         Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
-        //     } else
-        //     {
-        //         Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
-        //     }
-        // }
     }
 
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
-    //     if (player != null)
-    //     {
-    //         PlayerHealthBar.instance.TakeDamage(damage);
-    //         following = false;
-    //         attackCounter = 0;
-    //     }
-
-    //     if (collision.gameObject.name == "Bananarang(Clone)")
-    //     {
-    //         health -= damageTaken;
-    //         fishHealth.TakeDamage(25);
-    //     }
-
-    //     // yikes
-    //     if (collision.gameObject.name.Contains("Square")
-    //             || collision.gameObject.name.Contains("Triangle")
-    //             || collision.gameObject.name.Contains("Hexagon")
-    //             || collision.gameObject.name.Contains("seaLine"))
-    //     {
-    //         moveSpeed *= -1;
-    //         thetaStep = -thetaStep;
-    //         //gameObject.transform.localScale = new Vector2(
-    //         //    -transform.localScale.x,
-    //         //    transform.localScale.y
-    //         //);
-    //         GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
-    //     }
-
-    //     if (collision.gameObject.tag == "Fish")
-    //     {
-
-    //         if (GetComponent<PolygonCollider2D>())
-    //         {
-    //             Physics2D.IgnoreCollision(collision.collider, GetComponent<PolygonCollider2D>());
-    //         } else
-    //         {
-    //             Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
-    //         }
-    //     }
-    // }
-
-    void OnTriggerStay2D(Collider2D other)
-    { // not working correctly
-        //if (other.name == seaLineObject.name)
-        //{
-        //    if (transform.position.y >= other.transform.position.y + 100)
-        //    {
-        //        movement.y *= movement.y;
-        //    }
-
-
-        //}
-
-        //moveSpeed *= -1;
-        //gameObject.transform.localScale = new Vector2(
-        //    -transform.localScale.x,
-        //    transform.localScale.y
-        //);
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        var player = collision.gameObject.GetComponent<PlayerMovementAndOxygen>();
+        if (player != null)
+        {
+            if (attackTimer <= 0) {
+                PlayerHealthBar.instance.TakeDamage(damage);
+                attackTimer += 1;
+            }
+        }
     }
+
 }
