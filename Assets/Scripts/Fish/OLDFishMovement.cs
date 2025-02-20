@@ -25,7 +25,7 @@ public class OLDFishMovement : MonoBehaviour
     private GameObject healthSystem;
     public float health = 100.0f;
     private float healthMax;
-    private EnemyHealthBar fishHealth;
+    //private EnemyHealthBar fishHealth;
     private Vector2 spawnPos;
 
     void Start()
@@ -34,7 +34,7 @@ public class OLDFishMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
-        fishHealth = gameObject.GetComponentInChildren<EnemyHealthBar>();
+        //fishHealth = gameObject.GetComponentInChildren<EnemyHealthBar>();
         spawnPos = this.transform.position;
         seaLineObject = GameObject.Find("seaLine");
     }
@@ -132,7 +132,7 @@ public class OLDFishMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        var player = collision.gameObject.GetComponent<PlayerMovement>();
+        //var player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
         {
             PlayerHealthBar.instance.TakeDamage(damage);
@@ -143,7 +143,7 @@ public class OLDFishMovement : MonoBehaviour
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
             health -= damageTaken;
-            fishHealth.TakeDamage(25);
+            //fishHealth.TakeDamage(25);
         }
 
         // yikes
