@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        
+
         if (facingLeft == false)
             GetComponent<SpriteRenderer>().flipX = true;
         else
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             facingLeft = true;
         else if (moveX > 0)
             facingLeft = false;
-        
+
         animator.SetFloat("Speed", Mathf.Abs(moveX));
 
         movement = new Vector2(moveX, moveY).normalized;
@@ -189,7 +189,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Fish")) {
+        if (other.CompareTag("Fish"))
+        {
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
             Vector2 dir = -(other.transform.position - transform.position);
