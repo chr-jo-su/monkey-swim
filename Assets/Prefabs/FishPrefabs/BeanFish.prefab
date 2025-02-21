@@ -209,6 +209,8 @@ MonoBehaviour:
   damageTaken: 25
   seaLineObject: {fileID: 0}
   health: 100
+  detectionRadius: 4
+  timeToDeAggro: 1
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
