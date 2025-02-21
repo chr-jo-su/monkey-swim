@@ -147,7 +147,7 @@ public class FishMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
             chasing = true;
-            chaseTimer = timeToDeAggro * 2; // twice as long to de-aggro when hit
+            chaseTimer = 99999999; // chase player after hit
             moveSpeed = 0;
 
             // Vector2 dir = -(collision.transform.position - transform.position);

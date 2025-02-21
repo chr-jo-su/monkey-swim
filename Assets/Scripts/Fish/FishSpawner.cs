@@ -23,10 +23,15 @@ public class FishSpawner : MonoBehaviour
 
     private List<GameObject> spawnedFishes = new List<GameObject>();
 
+    private float clearTimer = 1;
+
+    public Camera mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateSpawner", 0, spawnInterval);
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void UpdateSpawner()
@@ -44,13 +49,19 @@ public class FishSpawner : MonoBehaviour
             }
         }
 
-        foreach (GameObject fish in spawnedFishes)
+        if (clearTimer <= 0) 
         {
-            if (fish.gameObject == null)
+            foreach (GameObject fish in spawnedFishes)
             {
-                spawnedFishes.Remove(fish);
+                if (fish.gameObject == null)
+                {
+                    spawnedFishes.Remove(fish);
+                }
             }
+            clearTimer = 1;
         }
+        else
+            clearTimer -= Time.deltaTime;
     }
 
     void SpawnFish(int index)
@@ -60,6 +71,22 @@ public class FishSpawner : MonoBehaviour
             transform.position.x + transform.localScale.x / 2),
             Random.Range(transform.position.y - transform.localScale.y / 2,
             transform.position.y + transform.localScale.y / 2));
+
+        Vector3 viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
+        bool isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+                        viewportPoint.y >= 0 && viewportPoint.y <= 1;
+        
+        while(isInView) {
+            randomVector = new Vector2(
+                Random.Range(transform.position.x - transform.localScale.x / 2,
+                transform.position.x + transform.localScale.x / 2),
+                Random.Range(transform.position.y - transform.localScale.y / 2,
+                transform.position.y + transform.localScale.y / 2));
+
+                viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
+                isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+                            viewportPoint.y >= 0 && viewportPoint.y <= 1;
+        }
 
         GameObject newFish = Instantiate(possibleFishToSpawn[index],
             randomVector,
