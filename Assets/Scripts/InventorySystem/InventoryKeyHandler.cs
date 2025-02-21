@@ -18,12 +18,14 @@ public class InventoryKeyHandler : MonoBehaviour
     public GameObject craftingButton;
     public GameObject inventoryButton;
 
-    private Vector3 showingPos = new(Screen.width / 2, Screen.height / 2, 0);
-    private Vector3 hiddenPos = new(Screen.width / 2, Screen.height * 2, 0);
+    private Vector3 showingPos = new(0, 0, 0);
+    private Vector3 hiddenPos = new(0, Screen.height * 2, 0);
     private Vector3 targetPos;
     public float velocity = 5f;
 
-    // Awake is called when the script instance is being loaded
+    /// <summary>
+    /// Create a singleton instance of the InventoryKeyHandler.
+    /// </summary>
     private void Awake()
     {
         instance = this;
@@ -137,6 +139,6 @@ public class InventoryKeyHandler : MonoBehaviour
     private void AnimateMenu()
     {
         // Animate the menu moving
-        inventory.transform.position = Vector3.Lerp(inventory.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
+        inventory.transform.localPosition = Vector3.Lerp(inventory.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
     }
 }

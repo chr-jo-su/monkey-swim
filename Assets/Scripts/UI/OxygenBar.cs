@@ -128,12 +128,7 @@ public class OxygenBar : MonoBehaviour
     /// <param name="val">The value to change the oxygen level by. Can be negative.</param>
     public void ChangeOxygen(int val)
     {
-        maxOxygen += val;
-
-        if (val < 0)
-        {
-            oxygen = Math.Min(oxygen, maxOxygen);
-        }
+        oxygen = Math.Max(0, Math.Min(oxygen + val, maxOxygen));
     }
 
     /// <summary>

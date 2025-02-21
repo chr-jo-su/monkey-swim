@@ -10,12 +10,14 @@ public class CraftingKeyHandler : MonoBehaviour {
     public GameObject craftingMenu;
     public KeyCode craftingMenuKey = KeyCode.Q;
 
-    private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    private Vector3 closePos = new(Screen.width / 2, Screen.height * 2, 0);
+    private Vector3 showingPos = new(0, 0, 0);
+    private Vector3 hiddenPos = new(0, Screen.height * 2, 0);
     private Vector3 targetPos;
     [SerializeField] private readonly float velocity = 5f;
 
-    // Awake is called when the script instance is being loaded
+    /// <summary>
+    /// Creates a singleton instance of the CraftingKeyHandler.
+    /// </summary>
     private void Awake() {
         instance = this;
     }
@@ -54,7 +56,7 @@ public class CraftingKeyHandler : MonoBehaviour {
     /// </summary>
     public void CloseCraftingMenu() {
         if (isShowing) {
-            targetPos = closePos;
+            targetPos = hiddenPos;
 
             // Remove any tooltip menus if there are any
             try {
@@ -79,7 +81,7 @@ public class CraftingKeyHandler : MonoBehaviour {
             // Add all items that can be crafted to the crafting list
             CraftingManager.instance.PopulateCraftingList();
 
-            targetPos = openPos;
+            targetPos = showingPos;
 
             isShowing = true;
         }
@@ -101,6 +103,6 @@ public class CraftingKeyHandler : MonoBehaviour {
     /// </summary>
     private void AnimateMenu() {
         // Animate the menu moving
-        craftingMenu.transform.position = Vector3.Lerp(craftingMenu.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
+        craftingMenu.transform.localPosition = Vector3.Lerp(craftingMenu.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
     }
 }

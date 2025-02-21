@@ -55,7 +55,8 @@ MonoBehaviour:
   healthSlider: {fileID: 6320901546469911290}
   damageSlider: {fileID: 6465115774695108624}
   maxHealth: 100
-  oxygenSlider: {fileID: 1966520745160303653}
+  lowHealth: 0.25
+  shakeAmount: 3
 --- !u!114 &454006322416594559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,11 +69,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0fabc32d75de54ba4131c418e5a882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenSlider: {fileID: 9058489483443760985}
+  oxygenSlider: {fileID: 1966520745160303653}
   maxOxygen: 100
-  oxygenChangeRate: 1
+  oxygenGainRate: 20
+  oxygenDepletionRate: 1
+  lowOxygen: 0.25
   oxygenDamage: 3
   drownTimer: 100
+  shakeAmount: 3
 --- !u!1 &4057626349329784304
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0, y: 0.49999994}
 --- !u!114 &6465115774695108624
@@ -708,9 +712,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
