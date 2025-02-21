@@ -1,9 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 public class FishMovement : MonoBehaviour
 {
@@ -25,6 +29,7 @@ public class FishMovement : MonoBehaviour
     private bool moveLeft = false; // false == right, true == left
     private bool chasing = false;
     private float attackTimer = 0;
+    private double sineRads = 0;
 
     void Start()
     {
@@ -50,52 +55,65 @@ public class FishMovement : MonoBehaviour
         }
 
         if (health < healthMax)
-        {
             healthSystem.transform.localScale = new Vector3(0.2f, 0.1f, 1);
-        }
 
         // MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance < 7) {
+        if (distance <= 4)
             chasing = true;
-        }
+        else
+            chasing = false;
 
-        if (chasing) {
+        if (chasing)
+        {
             // rotate to player!
             GetComponent<SpriteRenderer>().flipX = false;
             Vector2 direction = player.position - transform.position;
             float angleRads = (float)Math.Atan2(direction.x, direction.y);
             float angleDeg = angleRads * Mathf.Rad2Deg;
             angleDeg = -angleDeg - 90;
-            if (-angleDeg < 90 || -angleDeg > 270) {
+            if (-angleDeg < 90 || -angleDeg > 270)
                 GetComponent<SpriteRenderer>().flipY = false;
-            } else {
+            else
                 GetComponent<SpriteRenderer>().flipY = true;
-            }
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angleDeg);
             transform.rotation = targetRotation;
 
             // chase player!
-            if (attackTimer <= 0) {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed*Time.deltaTime);
-            } else {
-                attackTimer -= Time.deltaTime;
-            }
-        } else {
-            if (moveLeft == false)
-                transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
+            if (attackTimer <= 0)
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             else
-                transform.position += (Vector3)Vector2.left * moveSpeed * Time.deltaTime;
+                attackTimer -= Time.deltaTime;
 
-            if (transform.position.x < spawnPos.x - 8) {
-                moveLeft = false;
+            spawnPos.y = transform.position.y; // updating spawnPos.y so fish dont teleport back to spawn position after losing aggro
+        }
+        else
+        {
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.rotation = targetRotation;
+            GetComponent<SpriteRenderer>().flipY = false;
+
+            if (moveLeft == false)
+            {
+                transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
                 GetComponent<SpriteRenderer>().flipX = true;
             }
-
-            if (transform.position.x > spawnPos.x + 8) {
-                moveLeft = true;
+            else
+            {
+                transform.position += (Vector3)Vector2.left * moveSpeed * Time.deltaTime;
                 GetComponent<SpriteRenderer>().flipX = false;
             }
+
+            transform.position = new Vector2(transform.position.x, spawnPos.y + 0.2f * (float)Math.Sin(sineRads));
+            if (sineRads >= 2 * Math.PI)
+                sineRads = 0;
+            sineRads += 2 * Math.PI * Time.deltaTime; // one full sine wave per second
+
+            if (transform.position.x < spawnPos.x - 8)
+                moveLeft = false;
+
+            if (transform.position.x > spawnPos.x + 8)
+                moveLeft = true;
         }
     }
 
@@ -123,7 +141,8 @@ public class FishMovement : MonoBehaviour
         var player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            if (attackTimer <= 0) {
+            if (attackTimer <= 0)
+            {
                 PlayerHealthBar.instance.TakeDamage(damage);
                 attackTimer += 1;
             }
