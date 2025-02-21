@@ -79,11 +79,10 @@ public class FishMovement : MonoBehaviour
             transform.rotation = targetRotation;
 
             // chase player!
-            if (attackTimer <= 0) {
+            if (attackTimer <= 0)
                 transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed*Time.deltaTime);
-            } else {
+            else 
                 attackTimer -= Time.deltaTime;
-            }
 
             spawnPos.y = transform.position.y; // updating spawnPos.y so fish dont teleport back to spawn position after losing aggro
         } else {
@@ -95,7 +94,8 @@ public class FishMovement : MonoBehaviour
                 transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
                 GetComponent<SpriteRenderer>().flipX = true;
             }
-            else {
+            else 
+            {
                 transform.position += (Vector3)Vector2.left * moveSpeed * Time.deltaTime;
                 GetComponent<SpriteRenderer>().flipX = false;
             }
