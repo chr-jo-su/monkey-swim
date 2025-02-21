@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -57,9 +59,10 @@ public class FishMovement : MonoBehaviour
 
         // MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance < 3) {
+        if (distance <= 4)
             chasing = true;
-        }
+        else
+            chasing = false;
 
         if (chasing) {
             // rotate to player!
@@ -81,26 +84,32 @@ public class FishMovement : MonoBehaviour
             } else {
                 attackTimer -= Time.deltaTime;
             }
+
+            spawnPos.y = transform.position.y; // updating spawnPos.y so fish dont teleport back to spawn position after losing aggro
         } else {
-            if (moveLeft == false)
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.rotation = targetRotation;
+            GetComponent<SpriteRenderer>().flipY = false;
+
+            if (moveLeft == false) {
                 transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
-            else
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else {
                 transform.position += (Vector3)Vector2.left * moveSpeed * Time.deltaTime;
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
 
             transform.position = new Vector2(transform.position.x, spawnPos.y + 0.2f * (float)Math.Sin(sineRads));
             if (sineRads >= 2 * Math.PI)
                 sineRads = 0;
             sineRads += 2 * Math.PI * Time.deltaTime; // one full sine wave per second
 
-            if (transform.position.x < spawnPos.x - 8) {
+            if (transform.position.x < spawnPos.x - 8)
                 moveLeft = false;
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
 
-            if (transform.position.x > spawnPos.x + 8) {
+            if (transform.position.x > spawnPos.x + 8)
                 moveLeft = true;
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
         }
     }
 
