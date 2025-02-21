@@ -27,6 +27,8 @@ public class FishMovement : MonoBehaviour
     public float detectionRadius = 4;
     public float timeToDeAggro = 1; // in seconds
 
+    public float timeToDeAggroBrangMultiplier = 4;
+
     private Vector2 spawnPos;
     private bool moveLeft = false; // false == right, true == left
     private bool chasing = false;
@@ -147,7 +149,7 @@ public class FishMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
             chasing = true;
-            chaseTimer = 99999999; // chase player after hit
+            chaseTimer = timeToDeAggro * timeToDeAggroBrangMultiplier; // chase player after hit
             moveSpeed = 0;
 
             // Vector2 dir = -(collision.transform.position - transform.position);
