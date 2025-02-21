@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 public class FishMovement : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class FishMovement : MonoBehaviour
     private bool moveLeft = false; // false == right, true == left
     private bool chasing = false;
     private float attackTimer = 0;
+    private double sineRads = 0;
 
     void Start()
     {
@@ -50,13 +53,11 @@ public class FishMovement : MonoBehaviour
         }
 
         if (health < healthMax)
-        {
             healthSystem.transform.localScale = new Vector3(0.2f, 0.1f, 1);
-        }
 
         // MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance < 7) {
+        if (distance < 3) {
             chasing = true;
         }
 
@@ -67,11 +68,10 @@ public class FishMovement : MonoBehaviour
             float angleRads = (float)Math.Atan2(direction.x, direction.y);
             float angleDeg = angleRads * Mathf.Rad2Deg;
             angleDeg = -angleDeg - 90;
-            if (-angleDeg < 90 || -angleDeg > 270) {
+            if (-angleDeg < 90 || -angleDeg > 270)
                 GetComponent<SpriteRenderer>().flipY = false;
-            } else {
+            else
                 GetComponent<SpriteRenderer>().flipY = true;
-            }
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angleDeg);
             transform.rotation = targetRotation;
 
@@ -86,6 +86,11 @@ public class FishMovement : MonoBehaviour
                 transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
             else
                 transform.position += (Vector3)Vector2.left * moveSpeed * Time.deltaTime;
+
+            transform.position = new Vector2(transform.position.x, spawnPos.y + 0.2f * (float)Math.Sin(sineRads));
+            if (sineRads >= 2 * Math.PI)
+                sineRads = 0;
+            sineRads += 2 * Math.PI * Time.deltaTime; // one full sine wave per second
 
             if (transform.position.x < spawnPos.x - 8) {
                 moveLeft = false;

@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool facingLeft = true;
 
+    private float colorTimer = 0;
+
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
     /// </summary>
@@ -67,6 +69,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         ProcessInputs();
+
+        if (colorTimer <= 0)
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        else
+            colorTimer -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -180,6 +187,13 @@ public class PlayerMovement : MonoBehaviour
                 seaAmbience.UnPause();
                 underWaterAmbience.enabled = false;
             }
+        }
+
+        if (other.CompareTag("Fish")) {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            colorTimer = 0.1f;
+            Vector2 dir = -(other.transform.position - transform.position);
+            rigidBody.AddForce(dir * 50);
         }
     }
 
