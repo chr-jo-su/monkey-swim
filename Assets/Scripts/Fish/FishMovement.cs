@@ -24,12 +24,19 @@ public class FishMovement : MonoBehaviour
     public float health = 100.0f;
     private float healthMax;
     private EnemyHealthBar fishHealth;
+    public float detectionRadius = 4;
+    public float timeToDeAggro = 1; // in seconds
+
+    public float timeToDeAggroBrangMultiplier = 4;
 
     private Vector2 spawnPos;
     private bool moveLeft = false; // false == right, true == left
     private bool chasing = false;
     private float attackTimer = 0;
+    private float chaseTimer = 0;
     private double sineRads = 0;
+    private float colorTimer = 0;
+    private float originalMoveSpeed;
 
     void Start()
     {
@@ -39,6 +46,7 @@ public class FishMovement : MonoBehaviour
         healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
         fishHealth = gameObject.GetComponentInChildren<EnemyHealthBar>();
         seaLineObject = GameObject.Find("seaLine");
+        originalMoveSpeed = moveSpeed;
 
         spawnPos = transform.position;
     }
@@ -57,12 +65,27 @@ public class FishMovement : MonoBehaviour
         if (health < healthMax)
             healthSystem.transform.localScale = new Vector3(0.2f, 0.1f, 1);
 
+        // turn red on hit
+        if (colorTimer <= 0)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+            moveSpeed = originalMoveSpeed;
+        }
+        else
+            colorTimer -= Time.deltaTime;
+
         // MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance <= 4)
+        if (distance <= detectionRadius) 
+        {
             chasing = true;
-        else
+            chaseTimer = timeToDeAggro;
+        }
+
+        if (chaseTimer <= 0 && chasing)
             chasing = false;
+        else
+            chaseTimer -= Time.deltaTime;
 
         if (chasing)
         {
@@ -123,6 +146,14 @@ public class FishMovement : MonoBehaviour
         {
             health -= damageTaken;
             fishHealth.TakeDamage(damageTaken);
+            GetComponent<SpriteRenderer>().color = Color.red;
+            colorTimer = 0.1f;
+            chasing = true;
+            chaseTimer = timeToDeAggro * timeToDeAggroBrangMultiplier; // chase player after hit
+            moveSpeed = 0;
+
+            // Vector2 dir = -(collision.transform.position - transform.position);
+
         }
 
         // yikes ;; switch direction after colliding with primitive shapes (tim)
