@@ -8,22 +8,20 @@ public class TransitionManager : MonoBehaviour
     // Variables
     public static TransitionManager instance;
     public GameObject transitionScreen;
-    public float velocity = 10f;
+    public float velocity = 5f;
 
-    private bool allowLoad = false;
-    private bool allowAnimation = false;
-    private bool completedLoading = false;
-    private bool canClose = false;
+    private bool canLoadNewScene = true;
+    private bool canCopyOver = true;
+    private bool canUnloadOldScenes = true;
+    private bool endTransition = false;
 
     private Vector2 hiddenPos;
-    private Vector2 showingPos;
+    private Vector2 showingPos = new(0, 0);
     private Vector2 targetPos;
 
     private string sceneName;
-    private bool sameScene;
-    private int delay;
-    private GameObject gameObjectToDestroy;
     private List<GameObject> toCopyOver;
+    private bool runSpecialCode;
 
     /// <summary>
     /// Hides the transition screen on start and sets the positions for the start and end.
@@ -31,8 +29,7 @@ public class TransitionManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        hiddenPos = new(transitionScreen.transform.position.x, transitionScreen.transform.position.y);
-        showingPos = new(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
+        hiddenPos = new(0, transitionScreen.transform.localPosition.y);
 
         HideTransitionScreen();
     }
@@ -42,60 +39,80 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        AnimateMenu();
-
-        if (allowAnimation && !completedLoading)
+        // Check if the transition screen is fully up if it's starting the transition
+        if (!IsTransitionScreenUp() && !endTransition)
         {
-            if (Mathf.Round(transitionScreen.transform.position.y) == Camera.main.pixelHeight / 2)
+            AnimateMenu();
+        }
+        // Transition screen is fully up at this point
+        else if (!endTransition)
+        {
+            // Transition screen is covering everything at this point
+
+            // Check if the new scene can/needs to be loaded
+            if (canLoadNewScene)
             {
-                allowLoad = true;
-            } else {
-                allowLoad = false;
+                LoadNewScene();
+                canLoadNewScene = false;
             }
-
-            if (!allowLoad)
+            // Check if the new scene has been loaded in
+            else if (SceneManager.GetSceneByName(sceneName).isLoaded)
             {
-                ShowTransitionScreen();
-            } else {
-                if (!sameScene)
-                {
-                    Destroy(gameObjectToDestroy);
+                // New scene has been loaded in at this point
 
-                    StartCoroutine(LoadNewScene());
-                }
-                else
+                // Check if items can/need to be copied over
+                if (canCopyOver)
                 {
-                    if (delay > 0)
+                    CopyOverItems();
+                    canCopyOver = false;
+                }
+                else if (IsCopiedOver())
+                {
+                    // Items have been copied over at this point
+
+                    // Check if the other scenes can be unloaded (not including the new or transition scene)
+                    if (canUnloadOldScenes)
                     {
-                        delay -= (int)(Time.unscaledDeltaTime * 1000);
+                        StartCoroutine(UnloadOldScenes());
+
+                        if (runSpecialCode)
+                        {
+                            RunSpecialCode();
+                        }
+
+                        canUnloadOldScenes = false;
                     }
-                    else
+                    else if (SceneManager.sceneCount == 2)
                     {
-                        completedLoading = true;
+                        // All other scenes have been unloaded at this point
+                        HideTransitionScreen();
+
+                        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+
+                        Time.timeScale = 1f;
+
+                        // Change the active camera to the new scene's camera
+                        //Camera.main.gameObject.SetActive(false);
+                        Camera.allCameras[0].gameObject.SetActive(true);
+
+                        endTransition = true;
                     }
                 }
             }
         }
-        else if (completedLoading && canClose)
+        else
         {
-            // Unload the transition screen
-            if (sameScene)
+            // Everything is done transferring and loading, so move the transition screen down
+
+            // Check if the transition screen is fully down
+            if (IsTransitionScreenDown())
             {
                 UnloadTransitionScene();
             }
             else
             {
-                UnloadOtherScenes();
+                AnimateMenu();
             }
-        }
-        else
-        {
-            HideTransitionScreen();
-        }
-
-        if (!canClose && completedLoading && Mathf.Round(transitionScreen.transform.position.y) == hiddenPos.y)
-        {
-            canClose = true;
         }
     }
 
@@ -104,7 +121,7 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     private void AnimateMenu()
     {
-        transitionScreen.transform.position = Vector3.Lerp(transitionScreen.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
+        transitionScreen.transform.localPosition = Vector3.Lerp(transitionScreen.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
     }
 
     /// <summary>
@@ -112,10 +129,7 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     private void ShowTransitionScreen()
     {
-        if (!completedLoading)
-        {
-            targetPos = showingPos;
-        }
+        targetPos = showingPos;
     }
 
     /// <summary>
@@ -127,92 +141,118 @@ public class TransitionManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Checks if the transition screen is up.
+    /// </summary>
+    /// <returns>A boolean value whether the transition screen is fully showing or not.</returns>
+    private bool IsTransitionScreenUp()
+    {
+        return Mathf.Round(transitionScreen.transform.localPosition.y) == showingPos.y;
+    }
+
+    /// <summary>
+    /// Checks if the transition screen is down.
+    /// </summary>
+    /// <returns>A boolean value whether the transition screen is fully hidden or not.</returns>
+    private bool IsTransitionScreenDown()
+    {
+        return Mathf.Round(transitionScreen.transform.localPosition.y) == hiddenPos.y;
+    }
+
+    /// <summary>
     /// Starts the transition to switch to sceneName with given name.
     /// </summary>
     /// <param name="sceneName">The name of the sceneName to be loaded as a string.</param>
-    public void LoadTransition(string sceneName, GameObject gameObjectToDestroy = null, List<GameObject> toCopyOver = null)
+    public void LoadTransition(string sceneName, List<GameObject> toCopyOver = null, bool runSpecialCode = false)
     {
-        allowAnimation = true;
-        sameScene = false;
-
         // Show the transition screen
         ShowTransitionScreen();
 
         // Save info to use later
         this.sceneName = sceneName;
-        this.gameObjectToDestroy = gameObjectToDestroy;
         this.toCopyOver = toCopyOver;
+        this.runSpecialCode = runSpecialCode;
     }
 
     /// <summary>
-    /// Starts the transition and waits the given delay.
+    /// Loads the new scene that matches the given sceneName.
     /// </summary>
-    /// <param name="delay">The delay to wait (given in milliseconds) between opening and closing the transition scene.</param>
-    public void LoadTransition(int delay)
+    private void LoadNewScene()
     {
-        allowAnimation = true;
-        sameScene = true;
-        this.delay = delay;
-
-        ShowTransitionScreen();
-    }
-
-    /// <summary>
-    /// Loads the stored sceneName and finishes the transition.
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator LoadNewScene()
-    {
-        List<AsyncOperation> asyncOperations = UnloadOtherScenes();
-
-        while (!asyncOperations.TrueForAll(operation => operation.isDone)) yield return null;
-
         // Load the next sceneName
         SceneManager.LoadScene(this.sceneName, LoadSceneMode.Additive);
-
-        // Add items here, if any
-        foreach (GameObject gameObject in toCopyOver)
-        {
-            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(this.sceneName));
-        }
-
-        completedLoading = true;
     }
 
     /// <summary>
-    /// Unloads all scenes except the last one.
+    /// Copies over items from the old scene into the new scene if there are any.
     /// </summary>
-    /// <returns>A list of async operations for unloading scenes that are being run.</returns>
-    private List<AsyncOperation> UnloadOtherScenes()
+    private void CopyOverItems()
+    {
+        // Add items here, if any
+        if (toCopyOver != null)
+        {
+            foreach (GameObject gameObject in toCopyOver)
+            {
+                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(this.sceneName));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if all items that need to be copied over have been copied over.
+    /// </summary>
+    /// <returns>A boolean value whether the items have all been copied over or not.</returns>
+    private bool IsCopiedOver()
+    {
+        if (toCopyOver != null)
+        {
+            return toCopyOver.TrueForAll(gameObject => gameObject.scene == SceneManager.GetSceneByName(this.sceneName));
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// This is run when the player is teleported to the boss level.
+    /// </summary>
+    private void RunSpecialCode()
+    {
+        // Reset player position and change sceneChanged bool to true
+        foreach (GameObject go in SceneManager.GetSceneByName(sceneName).GetRootGameObjects())
+        {
+            if (go.name == "Player")
+            {
+                go.transform.position = new Vector3(0, 0, 0);
+                go.GetComponent<PlayerMovement>().sceneChanged = true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Unloads all scenes except the transition scene and the newly loaded scene.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator UnloadOldScenes()
     {
         List<AsyncOperation> asyncOperations = new();
 
         // Unload previous scenes
-        for (int i = SceneManager.sceneCount - 2; i >= 0; i--)
+        for (int i = SceneManager.sceneCount - 1; i >= 0; i--)
         {
-            asyncOperations.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i)));
+            if (SceneManager.GetSceneAt(i).name != "TransitionScene" && SceneManager.GetSceneAt(i).name != this.sceneName)
+            {
+                asyncOperations.Add(SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i)));
+            }
         }
 
-        return asyncOperations;
+        while (!asyncOperations.TrueForAll(operation => operation.isDone)) yield return null;
     }
 
     /// <summary>
     /// Unloads the transition scene.
     /// </summary>
-    /// <returns>The transition scene unload operation if found, otherwise null.</returns>
+    /// <returns>The transition scene unload operation.</returns>
     private AsyncOperation UnloadTransitionScene()
     {
-        AsyncOperation asyncOperations = null;
-
-        // Unload transition scene
-        for (int i = SceneManager.sceneCount; i >= 0; i--)
-        {
-            if (SceneManager.GetSceneAt(i).name == "TransitionScene")
-            {
-                asyncOperations = SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
-            }
-        }
-
-        return asyncOperations;
+        return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("TransitionScene"));
     }
 }

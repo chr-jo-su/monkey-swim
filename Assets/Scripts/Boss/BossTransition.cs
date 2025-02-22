@@ -29,11 +29,10 @@ public class BossTransition : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Loads in the boss scene and teleports the player to the boss scene.
     /// </summary>
-    public void teleportPlayerToBossScene()
+    public void TeleportPlayerToBossScene()
     {
         StartCoroutine(LoadBossScene());
     }
@@ -44,8 +43,6 @@ public class BossTransition : MonoBehaviour
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
     private IEnumerator LoadBossScene()
     {
-        SceneManager.LoadScene(bossSceneName, LoadSceneMode.Additive);
-
         // Items that should be moved over are added
         List<GameObject> itemsToCopyOver = new()
         {
@@ -55,30 +52,9 @@ public class BossTransition : MonoBehaviour
             GameObject.Find("Player")
         };
 
-        // Move the items to the new scene
-        foreach (GameObject gameObject in itemsToCopyOver)
-        {
-            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(bossSceneName));
-        }
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
 
-        // Reset player position and change sceneChanged bool to true
-        foreach (GameObject go in SceneManager.GetSceneByName(bossSceneName).GetRootGameObjects())
-        {
-            if (go.name == "Player")
-            {
-                go.transform.position = new Vector3(0, 0, 0);
-                go.GetComponent<PlayerMovement>().sceneChanged = true;
-            }
-        }
-
-        // Set the new scene as the default and unload the old scene
-        string oldSceneName = SceneManager.GetActiveScene().name;
-
-        while (!SceneManager.GetSceneByName(bossSceneName).isLoaded) yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(bossSceneName));
-
-        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
-        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
-        while (!asyncUnload.isDone) yield return null;
+        TransitionManager.instance.LoadTransition("BossLevel", itemsToCopyOver, true);
     }
 }

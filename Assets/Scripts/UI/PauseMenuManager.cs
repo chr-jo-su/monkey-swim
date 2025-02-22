@@ -11,9 +11,9 @@ public class PauseMenuManager : MonoBehaviour
     public float velocity = 5f;
     private bool paused;
 
-    [HideInInspector] private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    [HideInInspector] private Vector3 closePos = new(Screen.width / 2, Screen.height * 3, 0);
-    private Vector3 targetPos;
+    private Vector2 openPos = new(Screen.width / 2, Screen.height / 2);
+    private Vector2 closePos = new(Screen.width / 2, Screen.height * 3);
+    private Vector2 targetPos;
 
     private AsyncOperation asyncLoadLevel;
 
@@ -110,7 +110,7 @@ public class PauseMenuManager : MonoBehaviour
 
         while (!asyncLoadLevel.isDone) yield return null;
 
-        SceneManager.GetSceneByName("TransitionScene").GetRootGameObjects()[1].GetComponent<TransitionManager>().LoadTransition("TitleScreen", pauseMenu);
+        TransitionManager.instance.LoadTransition("TitleScreen");
     }
 
     /// <summary>
