@@ -7,6 +7,7 @@ public class TransitionManager : MonoBehaviour
 {
     // Variables
     public static TransitionManager instance;
+
     public GameObject transitionScreen;
     public float velocity = 10f;
 
@@ -49,14 +50,18 @@ public class TransitionManager : MonoBehaviour
             if (Mathf.Round(transitionScreen.transform.position.y) == Camera.main.pixelHeight / 2)
             {
                 allowLoad = true;
-            } else {
+            }
+            else
+            {
                 allowLoad = false;
             }
 
             if (!allowLoad)
             {
                 ShowTransitionScreen();
-            } else {
+            }
+            else
+            {
                 if (!sameScene)
                 {
                     Destroy(gameObjectToDestroy);
@@ -135,13 +140,13 @@ public class TransitionManager : MonoBehaviour
         allowAnimation = true;
         sameScene = false;
 
-        // Show the transition screen
-        ShowTransitionScreen();
-
         // Save info to use later
         this.sceneName = sceneName;
         this.gameObjectToDestroy = gameObjectToDestroy;
         this.toCopyOver = toCopyOver;
+
+        // Show the transition screen
+        ShowTransitionScreen();
     }
 
     /// <summary>
@@ -171,9 +176,13 @@ public class TransitionManager : MonoBehaviour
         SceneManager.LoadScene(this.sceneName, LoadSceneMode.Additive);
 
         // Add items here, if any
-        foreach (GameObject gameObject in toCopyOver)
+        if (toCopyOver != null)
         {
-            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(this.sceneName));
+            foreach (GameObject gameObject in toCopyOver)
+            {
+                Debug.Log(gameObject.name);
+                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(this.sceneName));
+            }
         }
 
         completedLoading = true;

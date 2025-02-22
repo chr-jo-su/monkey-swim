@@ -9,19 +9,16 @@ public class InventoryKeyHandler : MonoBehaviour
 
     private bool inventoryIsShowing;
     public GameObject inventory;
-    public KeyCode inventoryKey = KeyCode.E;
-    
-    public GameObject hotbar;
-    public int hotbarSlots = 8;
+    [SerializeField] private KeyCode inventoryKey = KeyCode.E;
 
     private bool touchscreenMode;
     public GameObject craftingButton;
     public GameObject inventoryButton;
 
     private Vector3 showingPos = new(0, 0, 0);
-    private Vector3 hiddenPos = new(0, Screen.height * 2, 0);
+    private Vector3 hiddenPos;
     private Vector3 targetPos;
-    public float velocity = 5f;
+    [SerializeField] private float velocity = 5f;
 
     /// <summary>
     /// Create a singleton instance of the InventoryKeyHandler.
@@ -29,6 +26,7 @@ public class InventoryKeyHandler : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        hiddenPos = new(0, Screen.height * 1.5f, 0);
     }
 
     // Start is called before the first frame update
@@ -122,7 +120,7 @@ public class InventoryKeyHandler : MonoBehaviour
     /// Toggle the inventory menu. Useful for assigning to a button.
     /// </summary>
     public void ToggleInventory()
-        {
+    {
         if (inventoryIsShowing)
         {
             CloseInventory();
