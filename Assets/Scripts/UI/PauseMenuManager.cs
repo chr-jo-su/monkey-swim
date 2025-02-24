@@ -21,7 +21,7 @@ public class PauseMenuManager : MonoBehaviour
     void Start()
     {
         paused = true;
-        hiddenPos = new(0, Screen.height * 1.5f, 0);
+        hiddenPos = new(0, Screen.height * 1.5f);
         UnpauseGame();
     }
 
