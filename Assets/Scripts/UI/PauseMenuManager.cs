@@ -11,9 +11,9 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private float velocity = 5f;
     [HideInInspector] public bool paused;
 
-    private Vector3 showingPos = new(0, 0, 0);
-    private Vector3 hiddenPos;
-    private Vector3 targetPos;
+    private Vector2 showingPos = new(0, 0);
+    private Vector2 hiddenPos;
+    private Vector2 targetPos;
 
     /// <summary>
     /// Unpauses the game on start.
@@ -109,8 +109,7 @@ public class PauseMenuManager : MonoBehaviour
 
         while (!asyncLoadLevel.isDone) yield return null;
 
-        TransitionManager.instance.LoadTransition("TitleScreen", pauseMenu);
-        //SceneManager.GetSceneByName("TransitionScene").GetRootGameObjects()[1].GetComponent<TransitionManager>().LoadTransition("TitleScreen", pauseMenu);
+        TransitionManager.instance.LoadTransition("TitleScreen");
     }
 
     /// <summary>
