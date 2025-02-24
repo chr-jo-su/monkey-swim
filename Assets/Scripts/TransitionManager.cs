@@ -7,6 +7,7 @@ public class TransitionManager : MonoBehaviour
 {
     // Variables
     public static TransitionManager instance;
+
     public GameObject transitionScreen;
     public float velocity = 5f;
 
@@ -54,11 +55,13 @@ public class TransitionManager : MonoBehaviour
             {
                 LoadNewScene();
                 canLoadNewScene = false;
+
             }
             // Check if the new scene has been loaded in
             else if (SceneManager.GetSceneByName(sceneName).isLoaded)
             {
                 // New scene has been loaded in at this point
+
 
                 // Check if items can/need to be copied over
                 if (canCopyOver)
@@ -171,6 +174,7 @@ public class TransitionManager : MonoBehaviour
         this.sceneName = sceneName;
         this.toCopyOver = toCopyOver;
         this.runSpecialCode = runSpecialCode;
+
     }
 
     /// <summary>
