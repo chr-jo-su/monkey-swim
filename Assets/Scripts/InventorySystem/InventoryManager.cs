@@ -12,19 +12,12 @@ public class InventoryManager : MonoBehaviour
 
     public Item[] items;
 
-    // Awake is called when the script instance is being loaded
+    /// <summary>
+    /// Create a singleton instance of the InventoryManager.
+    /// </summary>
     private void Awake()
     {
         instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //TODO: Remove testing code
-        // Testing code
-        AddItems(items[0]);
-        AddItems(items[1]);
     }
 
     /// <summary>

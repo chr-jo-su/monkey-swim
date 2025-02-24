@@ -8,14 +8,12 @@ public class PauseMenuManager : MonoBehaviour
     // Variables
     public GameObject pauseMenu;
     public KeyCode pauseMenuKey = KeyCode.Escape;
-    public float velocity = 5f;
-    private bool paused;
+    [SerializeField] private float velocity = 5f;
+    [HideInInspector] public bool paused;
 
-    [HideInInspector] private Vector3 openPos = new(Screen.width / 2, Screen.height / 2, 0);
-    [HideInInspector] private Vector3 closePos = new(Screen.width / 2, Screen.height * 3, 0);
+    private Vector3 showingPos = new(0, 0, 0);
+    private Vector3 hiddenPos;
     private Vector3 targetPos;
-
-    private AsyncOperation asyncLoadLevel;
 
     /// <summary>
     /// Unpauses the game on start.
@@ -23,6 +21,7 @@ public class PauseMenuManager : MonoBehaviour
     void Start()
     {
         paused = true;
+        hiddenPos = new(0, Screen.height * 1.5f, 0);
         UnpauseGame();
     }
 
@@ -73,7 +72,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (paused)
         {
-            targetPos = closePos;
+            targetPos = hiddenPos;
             Time.timeScale = 1f;
             paused = false;
         }
@@ -86,7 +85,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (!paused)
         {
-            targetPos = openPos;
+            targetPos = showingPos;
             Time.timeScale = 0f;
             paused = true;
         }
@@ -106,11 +105,12 @@ public class PauseMenuManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator LoadLevel()
     {
-        asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
 
         while (!asyncLoadLevel.isDone) yield return null;
 
-        SceneManager.GetSceneByName("TransitionScene").GetRootGameObjects()[1].GetComponent<TransitionManager>().LoadTransition("TitleScreen", pauseMenu);
+        TransitionManager.instance.LoadTransition("TitleScreen", pauseMenu);
+        //SceneManager.GetSceneByName("TransitionScene").GetRootGameObjects()[1].GetComponent<TransitionManager>().LoadTransition("TitleScreen", pauseMenu);
     }
 
     /// <summary>
@@ -119,6 +119,6 @@ public class PauseMenuManager : MonoBehaviour
     private void AnimateMenu()
     {
         // Animate the menu moving
-        pauseMenu.transform.position = Vector3.Lerp(pauseMenu.transform.position, targetPos, velocity * Time.unscaledDeltaTime);
+        pauseMenu.transform.localPosition = Vector3.Lerp(pauseMenu.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
     }
 }
