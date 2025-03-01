@@ -44,15 +44,6 @@ public class BossSlide : MonoBehaviour
         //     tent.enabled = false;
         //     quid.enabled = true;
         // }
-
-        if (bossHealth.GetHealth() <= 0 && !gameOver)
-        {
-            TentacleManager.instance.TurnOff();
-            QuidManager.instance.TurnOff();
-
-            StartCoroutine(LoadGameOverScreen());
-            gameOver = true;
-        }
     }
 
     public void BossSlideIn()
