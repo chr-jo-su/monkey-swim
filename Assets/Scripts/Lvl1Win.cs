@@ -6,14 +6,15 @@ using TMPro;
 public class lvl1Win : MonoBehaviour
 {
     public TextMeshProUGUI txt;
-    private string[] wrds = new string[12];
+    private string[] wrds = new string[11];
     private int pos = 0;
+    public SceneChanger sc;
     // Start is called before the first frame update
     void Start()
     {
         wrds[0] = "NOW LETS COOK A FRIED KRAKEN FEAST \n A crispy, golden-fried kraken tentacle, served with creamy mashed potatoes and steamed broccoli.";
         wrds[1] = "INGREDIENTS:";
-        wrds[2] = "FOR THE FRIED KRAKEN:\n 1 large kraken tentacle\n 2 cups coconut milk\n 2 cups flour\n 1 cup cornstarch\n 1 tbsp smoked paprika\n 1 tbsp garlic powder \n 1 tsp cayenne pepper\n Salt & black pepper to taste\n 1 egg\n 1 cup cold sparkling water and Coconut oil for deep frying";
+        wrds[2] = "FOR THE FRIED KRAKEN:\n 1 large kraken tentacle, 2 cups coconut milk, 2 cups flour, 1 cup cornstarch, 1 tbsp smoked paprika, 1 tbsp garlic powder, 1 tsp cayenne pepper, Salt & black pepper to taste, 1 egg, 1 cup cold sparkling water and Coconut oil for deep frying";
         wrds[3] = "FOR THE MASHED POTATOES:\n 4 large potatoes, peeled and cubed\n 4 tbsp butter\n .5 cups heavy cream\n Salt & pepper to taste";
         wrds[4] = "FOR THE BROCCOLI:\n 1 head of broccoli, cut into florets\n 2 tbsp olive oil\n 2 cloves garlic, minced\n Salt & pepper to taste";
         wrds[5] = "Step 1: Preparing the Kraken:\n Tenderize the tentacle - Boil the kraken tentacle in a large pot of salted water for 45 minutes\n Drain and pat dry, then slice into smaller, manageable portions.";
@@ -28,7 +29,14 @@ public class lvl1Win : MonoBehaviour
     // Update is called once per frame
     public void SecretServiceAnnouncementToParliment()
     {
-        txt.text = wrds[pos];
-        pos++;
+        if (pos < 11)
+        {
+            txt.text = wrds[pos];
+            pos++;
+        }
+        else
+        {
+            sc.ChangeScene("TitleScreen");
+        }
     }
 }
