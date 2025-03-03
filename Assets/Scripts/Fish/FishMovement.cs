@@ -160,7 +160,8 @@ public class FishMovement : MonoBehaviour
         if (collision.gameObject.name.Contains("Square")
                 || collision.gameObject.name.Contains("Triangle")
                 || collision.gameObject.name.Contains("Hexagon")
-                || collision.gameObject.name.Contains("seaLine"))
+                || collision.gameObject.name.Contains("seaLine")
+                || collision.gameObject.name.Contains("Terrain"))
         {
             moveLeft = !moveLeft;
             GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
