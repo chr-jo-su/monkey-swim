@@ -21,7 +21,9 @@ MonoBehaviour:
   type: 0
   itemID: 349754
   isStackable: 1
-  maxStackSize: 16
+  maxStackSize: 15
   oxygenBoost: 0
   healthBoost: 0
   speedBoost: 0
+  oxygenChange: 0
+  speedChange: 0

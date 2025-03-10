@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class BossHealthBar : HealthBar
 {
     // Variables
+    private bool gameOver = false;
     protected bool shake = false;
     protected Vector3 barPosition;
     [SerializeField] protected float lowHealth;
@@ -16,6 +17,7 @@ public class BossHealthBar : HealthBar
     {
         base.Start();
         barPosition = healthSlider.transform.localPosition;
+        PlayerScore.instance.SetAtBossLevel(true);
     }
 
     /// <summary>
@@ -55,8 +57,18 @@ public class BossHealthBar : HealthBar
         }
     }
 
+    /// <summary>
+    /// Damages the boss for the given amount of health. Also prints out the player's score and shows the game over screen when the boss dies.
+    /// </summary>
+    /// <param name="damage">The amount of damage to give.</param>
     public new void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+
+        if (base.GetHealth() <= 0 && !gameOver)
+        {
+            StartCoroutine(LoadGameOverScreen());
+            gameOver = true;
+        }
     }
 }

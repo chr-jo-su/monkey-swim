@@ -14,8 +14,8 @@ public class OxygenBar : MonoBehaviour
     private bool canBreath = true;
     private float oxygen;
     [SerializeField] private float maxOxygen = 100.0f;
-    [SerializeField] protected int oxygenGainRate = 2;
-    [SerializeField] protected int oxygenDepletionRate = 1;
+    [SerializeField] protected float oxygenGainRate = 20;
+    [SerializeField] protected float oxygenDepletionRate = -1;
     [SerializeField] protected float lowOxygen;
     [SerializeField] private int oxygenDamage = 3;
     [SerializeField] private int drownTimer = 100;
@@ -54,13 +54,18 @@ public class OxygenBar : MonoBehaviour
     {
         if (oxygen > 0.0f && !canBreath)
         {
-            oxygen -= oxygenDepletionRate * Time.deltaTime;
+            oxygen += oxygenDepletionRate * Time.deltaTime;
+            isMaxOxygen = false;
             oxygenSlider.value = oxygen;
         }
         else if (oxygen < maxOxygen && canBreath)
         {
             oxygen += oxygenGainRate * Time.deltaTime;
             oxygenSlider.value = oxygen;
+        }
+        else if (oxygen == maxOxygen)
+        {
+            isMaxOxygen = true;
         }
 
         if (oxygen <= 0.0f)
@@ -132,9 +137,18 @@ public class OxygenBar : MonoBehaviour
     }
 
     /// <summary>
+    /// Changes the oxygen depletion rate of the player by the given value. The depletion rate is capped at 0.
+    /// </summary>
+    /// <param name="val">The value to change the oxygen depletion rate by. Can be negative.</param>
+    public void ChangeOxygenDepletionRate(float val)
+    {
+        oxygenDepletionRate = Math.Max(oxygenDepletionRate + val, -0.1f);
+    }
+
+    /// <summary>
     /// Change the size of the oxygen bar.
     /// </summary>
-    public void ChangeOxygenBarSize()
+    private void ChangeOxygenBarSize()
     {
         oxygenSlider.transform.localScale = new Vector3(oxygenBarRatio * maxOxygen, oxygenSlider.transform.localScale.y, oxygenSlider.transform.localScale.z);
         oxygenSlider.maxValue = maxOxygen;

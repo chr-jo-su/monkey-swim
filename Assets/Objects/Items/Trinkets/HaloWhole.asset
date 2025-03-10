@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: HaloWhole
   m_EditorClassIdentifier: 
   itemName: Halo
-  itemDescription: Try throwing it. It might return to you, it might not. Who knows???
+  itemDescription: Gives you health like an angel. But you do need to breathe more.
   itemSprite: {fileID: 21300000, guid: 1be4ba5193a8e7240a947007579ad2bf, type: 3}
   durability: 100
-  durabilityDecreasePerUse: 10
-  damagePerAttack: 25
-  type: 0
+  durabilityDecreasePerUse: 0
+  damagePerAttack: 0
+  type: 4
   itemID: 46486928
-  isStackable: 1
-  maxStackSize: 5
-  oxygenBoost: 0
+  isStackable: 0
+  maxStackSize: 1
+  oxygenBoost: 25
   healthBoost: 0
   speedBoost: 0
+  oxygenChange: 0
+  speedChange: 0

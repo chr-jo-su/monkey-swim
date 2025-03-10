@@ -49,7 +49,7 @@ public class FishSpawner : MonoBehaviour
             }
         }
 
-        if (clearTimer <= 0) 
+        if (clearTimer <= 0)
         {
             foreach (GameObject fish in spawnedFishes)
             {
@@ -75,17 +75,18 @@ public class FishSpawner : MonoBehaviour
         Vector3 viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
         bool isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
                         viewportPoint.y >= 0 && viewportPoint.y <= 1;
-        
-        while(isInView) {
+
+        while (isInView)
+        {
             randomVector = new Vector2(
                 Random.Range(transform.position.x - transform.localScale.x / 2,
                 transform.position.x + transform.localScale.x / 2),
                 Random.Range(transform.position.y - transform.localScale.y / 2,
                 transform.position.y + transform.localScale.y / 2));
 
-                viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
-                isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
-                            viewportPoint.y >= 0 && viewportPoint.y <= 1;
+            viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
+            isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+                        viewportPoint.y >= 0 && viewportPoint.y <= 1;
         }
 
         GameObject newFish = Instantiate(possibleFishToSpawn[index],

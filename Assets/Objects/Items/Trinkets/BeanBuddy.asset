@@ -25,3 +25,5 @@ MonoBehaviour:
   oxygenBoost: 0
   healthBoost: -15
   speedBoost: 5
+  oxygenChange: 0
+  accelerationChange: 1

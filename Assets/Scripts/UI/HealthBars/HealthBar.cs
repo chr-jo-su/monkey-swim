@@ -44,7 +44,7 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Changes the max health of the player by the given value. Can be either negative or positive. This value also changes the current health of the player to be in the range of [0, maxHealth].
+    /// Changes the max health of the character by the given value. Can be either negative or positive. This value also changes the current health of the character to be in the range of [0, maxHealth].
     /// </summary>
     /// <param name="val">The value to change the max health by.</param>
     public void ChangeMaxHealth(int val)
@@ -55,7 +55,7 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Damages the player for the given amount of health.
+    /// Damages the character for the given amount of health.
     /// </summary>
     /// <param name="val">The amount of damage to give.</param>
     public void TakeDamage(int val)
@@ -64,7 +64,7 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Heals the player for the given amount of health until the player reaches max health.
+    /// Heals the character for the given amount of health until the character reaches max health.
     /// </summary>
     /// <param name="val">The amount of health to heal.</param>
     public void Heal(int val)
@@ -73,20 +73,47 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the current health of the player.
+    /// Returns the current health of the character.
     /// </summary>
-    /// <returns>Integer value of player's health.</returns>
+    /// <returns>Integer value of character's health.</returns>
     public float GetHealth()
     {
         return health;
     }
 
     /// <summary>
-    /// Returns the max health of the player.
+    /// Returns the max health of the character.
     /// </summary>
-    /// <returns>Integer value of the player's max health.</returns>
+    /// <returns>Integer value of the character's max health.</returns>
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    /// <summary>
+    /// Loads the game over scene and unloads the current scene.
+    /// </summary>
+    /// <returns>An enumerator that's used when running as a coroutine.</returns>
+    protected IEnumerator LoadGameOverScreen()
+    {
+        Debug.Log("Computed score: " + PlayerScore.instance.GetScore());
+        Debug.Log("Raw score: ");
+        foreach (int score in PlayerScore.instance.GetRawScore())
+        {
+            Debug.Log("    " + score);
+        }
+
+        string gameOverScene = "GameOver";
+        SceneManager.LoadScene(gameOverScene, LoadSceneMode.Additive);
+
+        // Set the new scene as the default and unload the old scene
+        string oldSceneName = SceneManager.GetActiveScene().name;
+
+        while (!SceneManager.GetSceneByName(gameOverScene).isLoaded) yield return null;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameOverScene));
+
+        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
+        while (!asyncUnload.isDone) yield return null;
     }
 }
