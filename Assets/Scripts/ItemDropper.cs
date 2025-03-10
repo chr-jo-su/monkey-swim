@@ -54,6 +54,9 @@ public class ItemDropper : MonoBehaviour
                 collider.size = spriteRender.size;
                 collider.isTrigger = true;
 
+                BoxCollider2D colliderphys = droppedItem.AddComponent<BoxCollider2D>();
+                collider.size = spriteRender.size;
+
                 randX = Random.Range(-1, 2);
                 randY = Random.Range(-1, 2);
                 randForce = Random.Range(minForce, maxForce);
