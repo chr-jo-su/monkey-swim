@@ -11,15 +11,21 @@ using Vector3 = UnityEngine.Vector3;
 public class BossSlide : MonoBehaviour
 {
     public static BossSlide instance;
+
     public float health = 500.0f;
     public BossHealthBar bossHealth;
+
     private Rigidbody2D rb;
+    
     private Vector3 StartPosition;
     private float DistanceOut = 22;
     private float SlideSpeed = 15;
     public bool SlideIn = false;
+    
     public TentacleManager tent;
     public QuidManager quid;
+
+    private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +48,15 @@ public class BossSlide : MonoBehaviour
         //     tent.enabled = false;
         //     quid.enabled = true;
         // }
+
+        if (bossHealth.GetHealth() <= 0 && !gameOver)
+        {
+            TentacleManager.instance.TurnOff();
+            QuidManager.instance.TurnOff();
+
+            StartCoroutine(LoadGameWonScreen());
+            gameOver = true;
+        }
     }
 
     public void BossSlideIn()
@@ -75,5 +90,25 @@ public class BossSlide : MonoBehaviour
             health -= 25;
             bossHealth.TakeDamage(25);
         }
+    }
+
+    /// <summary>
+    /// Loads the win scene and unloads the current scene.
+    /// </summary>
+    /// <returns>An enumerator that's used when running as a coroutine.</returns>
+    private IEnumerator LoadGameWonScreen()
+    {
+        string gameWonScene = "WinLvl1";
+        SceneManager.LoadScene(gameWonScene, LoadSceneMode.Additive);
+
+        // Set the new scene as the default and unload the old scene
+        string oldSceneName = SceneManager.GetActiveScene().name;
+
+        while (!SceneManager.GetSceneByName(gameWonScene).isLoaded) yield return null;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameWonScene));
+
+        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
+        while (!asyncUnload.isDone) yield return null;
     }
 }
