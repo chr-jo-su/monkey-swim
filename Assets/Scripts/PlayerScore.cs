@@ -31,8 +31,6 @@ public class PlayerScore : MonoBehaviour
     {
         timeAlive += 0.015f;
 
-        Debug.Log(timeAlive);
-
         if (!atBossLevel)
         {
             depth = Mathf.Min(transform.position.y, depth);
@@ -46,7 +44,8 @@ public class PlayerScore : MonoBehaviour
     public double GetScore()
     {
         Debug.Log("Time alive: " + timeAlive);
-        float finalScore = (atBossLevel ? 1000 : (Mathf.Abs(depth) * 10)) + (fishKilled * 100) + timeAlive;
+        //float finalScore = (atBossLevel ? 1000 : (Mathf.Abs(depth) * 10)) + (fishKilled * 100) + timeAlive;
+        float finalScore = timeAlive;
 
         return (int)finalScore;
     }

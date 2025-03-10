@@ -21,8 +21,6 @@ public class BossSlide : MonoBehaviour
     public TentacleManager tent;
     public QuidManager quid;
 
-    private bool gameOver = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -77,25 +75,5 @@ public class BossSlide : MonoBehaviour
             health -= 25;
             bossHealth.TakeDamage(25);
         }
-    }
-
-    /// <summary>
-    /// Loads the game over scene and unloads the current scene.
-    /// </summary>
-    /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    private IEnumerator LoadGameOverScreen()
-    {
-        string gameOverScene = "GameOver";
-        SceneManager.LoadScene(gameOverScene, LoadSceneMode.Additive);
-
-        // Set the new scene as the default and unload the old scene
-        string oldSceneName = SceneManager.GetActiveScene().name;
-
-        while (!SceneManager.GetSceneByName(gameOverScene).isLoaded) yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameOverScene));
-
-        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
-        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
-        while (!asyncUnload.isDone) yield return null;
     }
 }
