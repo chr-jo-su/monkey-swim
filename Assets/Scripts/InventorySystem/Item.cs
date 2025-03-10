@@ -26,11 +26,11 @@ public class Item : ScriptableObject
     [Header("Not visible to players")]
     
     [Range(0, 100)]
-    [Tooltip("The amount of durability that is decreased per use. This vaule should be between 0 and 100 inclusive.")]
+    [Tooltip("The amount of durability that is decreased per use. This value should be between 0 and 100 inclusive.")]
     public int durabilityDecreasePerUse = 0;
 
     [Range(0, 100)]
-    [Tooltip("The damage dealt to the enemy per hit. This vaule should be between 0 and 100 inclusive.")]
+    [Tooltip("The damage dealt to the enemy per hit. This value should be between 0 and 100 inclusive.")]
     public int damagePerAttack = 0;
 
     [Tooltip("The type of the item.")]
@@ -46,19 +46,27 @@ public class Item : ScriptableObject
     [Tooltip("The maximum amount of items that can be stacked together if stackable. isStackable must be true for this value to be used.")]
     public int maxStackSize = 1;
 
-    [Header("Change these values if the item is  trinket")]
+    [Header("Change these values if the item is a trinket")]
 
     [Range(-50, 100)]
-    [Tooltip("The boost to the player's oxygen meter. This vaule should be between -50 and 100 inclusive.")]
+    [Tooltip("The boost to the player's oxygen meter. This value should be between -50 and 100 inclusive.")]
     public int oxygenBoost = 0;
 
     [Range(-50, 100)]
-    [Tooltip("The boost to the player's health meter. This vaule should be between -50 and 100 inclusive.")]
+    [Tooltip("The boost to the player's health meter. This value should be between -50 and 100 inclusive.")]
     public int healthBoost = 0;
 
     [Range(-15, 15)]
-    [Tooltip("The boost to the player's swim speed. This vaule should be between -15 and 15 inclusive.")]
+    [Tooltip("The boost to the player's swim speed. This value should be between -15 and 15 inclusive.")]
     public int speedBoost = 0;
+
+    [Range(-10f, 0.9f)]
+    [Tooltip("The change to the player's rate of change of oxygen. This value should be between -10 and 0.9 inclusive.")]
+    public float oxygenChange = 0;
+
+    [Range(-15, 15)]
+    [Tooltip("The change to the player's acceleration. This value should be between 0 and 15 inclusive.")]
+    public int accelerationChange = 0;
 
     /// <summary>
     /// Generates a random item ID through an option in the Inspector when the itemID variable is right-clicked.

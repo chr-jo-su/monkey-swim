@@ -11,13 +11,17 @@ using Vector3 = UnityEngine.Vector3;
 public class BossSlide : MonoBehaviour
 {
     public static BossSlide instance;
+
     public float health = 500.0f;
     public BossHealthBar bossHealth;
+
     private Rigidbody2D rb;
+    
     private Vector3 StartPosition;
     private float DistanceOut = 22;
     private float SlideSpeed = 15;
     public bool SlideIn = false;
+    
     public TentacleManager tent;
     public QuidManager quid;
 
@@ -89,7 +93,7 @@ public class BossSlide : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the game over scene and unloads the current scene.
+    /// Loads the win scene and unloads the current scene.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
     private IEnumerator LoadGameWonScreen()

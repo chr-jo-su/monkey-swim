@@ -255,7 +255,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds the boosts of the given item or trinkets to the player.
+    /// Adds the boosts of the given item or trinkets to the player. Also spawns the trinket or weapon into the scene.
     /// </summary>
     /// <param name="item">The Item object that should be checked for boosts/trinkets.</param>
     public void EquipItem(Item item)
@@ -264,30 +264,41 @@ public class InventoryManager : MonoBehaviour
         {
             // Spawn the trinket into the scene here
         }
+        else if (item.type == ItemType.Weapon)
+        {
+            // Spawn the weapon into the scene here
+        }
         else if (item.type == ItemType.Armour)
         {
             // Change the player sprite to the armoured version
         }
 
-        // Remove the oxygen boost
+        // Add the oxygen boost
         OxygenBar.instance.ChangeMaxOxygen(item.oxygenBoost);
 
-        // Remove the health boost
+        // Add the health boost
         PlayerHealthBar.instance.ChangeMaxHealth(item.healthBoost);
 
-        // Remove the speed boost
+        // Add the speed boost
         PlayerMovement.instance.ChangeMoveSpeed(item.speedBoost);
+
+        // Add the oxygen depletion rate change
+        OxygenBar.instance.ChangeOxygenDepletionRate(item.oxygenChange);
     }
 
     /// <summary>
-    /// Removes the boosts of the given item or trinkets from the player.
+    /// Removes the boosts of the given item or trinkets from the player. Also despawns the trinket or weapon from the scene.
     /// </summary>
     /// <param name="item">The Item object that should be checked for boosts/trinkets.</param>
     public void UnequipItem(Item item)
     {
         if (item.type == ItemType.Trinket)
         {
-            // Spawn the trinket into the scene here
+            // Despawn the trinket from the scene here
+        }
+        else if (item.type == ItemType.Weapon)
+        {
+            // Despawn the weapon from the scene here
         }
         else if (item.type == ItemType.Armour)
         {
@@ -302,5 +313,8 @@ public class InventoryManager : MonoBehaviour
 
         // Remove the speed boost
         PlayerMovement.instance.ChangeMoveSpeed(-item.speedBoost);
+
+        // Remove the oxygen depletion rate change
+        OxygenBar.instance.ChangeOxygenDepletionRate(-item.oxygenChange);
     }
 }
