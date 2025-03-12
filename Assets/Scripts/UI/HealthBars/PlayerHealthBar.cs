@@ -13,6 +13,7 @@ public class PlayerHealthBar : HealthBar
     private bool isMaxHealth = true;
     private bool gameOver = false;
     protected bool shake = false;
+    private HealthBar healthBar;
 
     private float healthBarRatio;
     protected Vector3 barPosition;
@@ -87,9 +88,7 @@ public class PlayerHealthBar : HealthBar
 
         if (base.GetHealth() <= 0 && !gameOver)
         {
-            PlayerScore.instance.ResetScore();
-
-            StartCoroutine(LoadGameOverScreen());
+            SceneTransitionManager();
             gameOver = true;
         }
     }
@@ -140,5 +139,30 @@ public class PlayerHealthBar : HealthBar
 
         healthSlider.maxValue = maxHealth;
         damageSlider.maxValue = maxHealth;
+    }
+
+    private IEnumerator ResetScene()
+    {
+        GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        GameObject Grabber = GameObject.FindGameObjectWithTag("Grabber");
+
+        Player.GetComponent<PlayerMovement>().stopMovement();
+        Grabber.GetComponent<Grabber>().goGrabbaGrabba = true;
+        
+        yield return new WaitForSecondsRealtime(2);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void SceneTransitionManager()
+    {
+        if (SceneManager.GetActiveScene().name == "BossLevel")
+        {
+            StartCoroutine(healthBar.LoadGameOverScreen());
+        }
+        else
+        {
+            StartCoroutine(ResetScene());
+        }
     }
 }

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     // Variables
     public static PlayerMovement instance;
 
-    [SerializeField] private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
     public GameObject seaLineObject; // should be a thin object with a boxCollider2D component and trigger enabled
                                      // that signifies the sea line
@@ -258,5 +258,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isInSea()
     {
         return inSea;
+    }
+
+    public void stopMovement() {
+        moveSpeed = 0;
     }
 }

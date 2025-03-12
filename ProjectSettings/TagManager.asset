@@ -12,6 +12,7 @@ TagManager:
   - Squid
   - Boss
   - Sealine
+  - Grabber
   layers:
   - Default
   - TransparentFX
