@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class TransitionManager : MonoBehaviour
 
     private string sceneName;
     private List<GameObject> toCopyOver;
-    private bool runSpecialCode;
+    private Action additionalCode;
 
     /// <summary>
     /// Hides the transition screen on start and sets the positions for the start and end.
@@ -78,10 +79,7 @@ public class TransitionManager : MonoBehaviour
                     {
                         StartCoroutine(UnloadOldScenes());
 
-                        if (runSpecialCode)
-                        {
-                            RunSpecialCode();
-                        }
+                        additionalCode?.Invoke();
 
                         canUnloadOldScenes = false;
                     }
@@ -165,7 +163,7 @@ public class TransitionManager : MonoBehaviour
     /// Starts the transition to switch to sceneName with given name.
     /// </summary>
     /// <param name="sceneName">The name of the sceneName to be loaded as a string.</param>
-    public void LoadTransition(string sceneName, List<GameObject> toCopyOver = null, bool runSpecialCode = false)
+    public void LoadTransition(string sceneName, List<GameObject> toCopyOver = null, Action additionalCode = null)
     {
         // Show the transition screen
         ShowTransitionScreen();
@@ -173,7 +171,7 @@ public class TransitionManager : MonoBehaviour
         // Save info to use later
         this.sceneName = sceneName;
         this.toCopyOver = toCopyOver;
-        this.runSpecialCode = runSpecialCode;
+        this.additionalCode = additionalCode;
 
     }
 
@@ -213,22 +211,6 @@ public class TransitionManager : MonoBehaviour
         }
 
         return true;
-    }
-
-    /// <summary>
-    /// This is run when the player is teleported to the boss level.
-    /// </summary>
-    private void RunSpecialCode()
-    {
-        // Reset player position and change sceneChanged bool to true
-        foreach (GameObject go in SceneManager.GetSceneByName(sceneName).GetRootGameObjects())
-        {
-            if (go.name == "Player")
-            {
-                go.transform.position = new Vector3(0, 0, 0);
-                go.GetComponent<PlayerMovement>().sceneChanged = true;
-            }
-        }
     }
 
     /// <summary>

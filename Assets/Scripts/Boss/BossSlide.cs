@@ -54,7 +54,7 @@ public class BossSlide : MonoBehaviour
             TentacleManager.instance.TurnOff();
             QuidManager.instance.TurnOff();
 
-            StartCoroutine(LoadGameWonScreen());
+            StartCoroutine(LoadWinScreen());
             gameOver = true;
         }
     }
@@ -96,19 +96,11 @@ public class BossSlide : MonoBehaviour
     /// Loads the win scene and unloads the current scene.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    private IEnumerator LoadGameWonScreen()
+    private IEnumerator LoadWinScreen()
     {
-        string gameWonScene = "WinLvl1";
-        SceneManager.LoadScene(gameWonScene, LoadSceneMode.Additive);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
 
-        // Set the new scene as the default and unload the old scene
-        string oldSceneName = SceneManager.GetActiveScene().name;
-
-        while (!SceneManager.GetSceneByName(gameWonScene).isLoaded) yield return null;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameWonScene));
-
-        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
-        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
-        while (!asyncUnload.isDone) yield return null;
+        TransitionManager.instance.LoadTransition("WinLvl1");
     }
 }

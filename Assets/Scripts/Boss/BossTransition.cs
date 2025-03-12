@@ -55,6 +55,22 @@ public class BossTransition : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        TransitionManager.instance.LoadTransition("BossLevel", itemsToCopyOver, true);
+        TransitionManager.instance.LoadTransition("BossLevel", itemsToCopyOver, ResetPlayerPosition);
+    }
+
+    /// <summary>
+    /// This is run when the player is teleported to the boss level.
+    /// </summary>
+    private void ResetPlayerPosition()
+    {
+        // Reset player position and change sceneChanged bool to true
+        foreach (GameObject go in SceneManager.GetSceneByName("BossLevel").GetRootGameObjects())
+        {
+            if (go.name == "Player")
+            {
+                go.transform.position = new Vector3(0, 0, 0);
+                go.GetComponent<PlayerMovement>().sceneChanged = true;
+            }
+        }
     }
 }

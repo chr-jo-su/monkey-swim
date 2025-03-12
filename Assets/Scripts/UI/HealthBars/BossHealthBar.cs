@@ -64,11 +64,5 @@ public class BossHealthBar : HealthBar
     public new void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-
-        if (base.GetHealth() <= 0 && !gameOver)
-        {
-            StartCoroutine(LoadGameOverScreen());
-            gameOver = true;
-        }
     }
 }
