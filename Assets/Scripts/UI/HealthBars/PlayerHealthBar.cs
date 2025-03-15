@@ -145,13 +145,17 @@ public class PlayerHealthBar : HealthBar
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         GameObject Grabber = GameObject.FindGameObjectWithTag("Grabber");
+        String sceneName = "Level1";
+
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
 
         Player.GetComponent<PlayerMovement>().stopMovement();
         Grabber.GetComponent<Grabber>().goGrabbaGrabba = true;
         
         yield return new WaitForSecondsRealtime(2);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        TransitionManager.instance.LoadTransition(sceneName);
     }
 
     private void SceneTransitionManager()
