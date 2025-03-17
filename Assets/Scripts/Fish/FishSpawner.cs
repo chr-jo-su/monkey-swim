@@ -25,13 +25,13 @@ public class FishSpawner : MonoBehaviour
 
     private float clearTimer = 1;
 
-    public Camera mainCamera;
+    //public Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateSpawner", 0, spawnInterval);
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void UpdateSpawner()
@@ -72,7 +72,7 @@ public class FishSpawner : MonoBehaviour
             Random.Range(transform.position.y - transform.localScale.y / 2,
             transform.position.y + transform.localScale.y / 2));
 
-        Vector3 viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
+        Vector3 viewportPoint = Camera.current.WorldToViewportPoint(randomVector);
         bool isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
                         viewportPoint.y >= 0 && viewportPoint.y <= 1;
 
@@ -84,7 +84,7 @@ public class FishSpawner : MonoBehaviour
                 Random.Range(transform.position.y - transform.localScale.y / 2,
                 transform.position.y + transform.localScale.y / 2));
 
-            viewportPoint = mainCamera.WorldToViewportPoint(randomVector);
+            viewportPoint = Camera.current.WorldToViewportPoint(randomVector);
             isInView = viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
                         viewportPoint.y >= 0 && viewportPoint.y <= 1;
         }
