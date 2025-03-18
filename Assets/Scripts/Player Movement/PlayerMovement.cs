@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="other"></param>
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other != null && other.name == seaLineObject.name)
+        if (other != null && seaLineObject != null && other.name == seaLineObject.name)
         {
             if (inSea)
             {
