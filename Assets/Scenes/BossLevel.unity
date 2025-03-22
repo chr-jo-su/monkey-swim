@@ -448,7 +448,7 @@ Transform:
   m_GameObject: {fileID: 281766725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18, y: 4.55, z: 0}
+  m_LocalPosition: {x: -20.03, y: 4.35, z: 0}
   m_LocalScale: {x: 1, y: 27, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -625,16 +625,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossObjects:
-  - {fileID: 8290471326646125568, guid: 419ad97b780494151b4e87ea0bf82548, type: 3}
-  - {fileID: 8290471326646125568, guid: 419ad97b780494151b4e87ea0bf82548, type: 3}
-  - {fileID: 8290471326646125568, guid: 419ad97b780494151b4e87ea0bf82548, type: 3}
-  - {fileID: 8290471326646125568, guid: 419ad97b780494151b4e87ea0bf82548, type: 3}
-  - {fileID: 8290471326646125568, guid: 419ad97b780494151b4e87ea0bf82548, type: 3}
-  spawnPositionX: 0400000000000000fcfffffff8fffffff4ffffff
-  spawnPositionY: f5fffffff5fffffff5fffffff5fffffff5ffffff
+  - {fileID: 4815105526595634050, guid: ccbccce331e844c34ace6ad6c9bbbf73, type: 3}
+  - {fileID: 4815105526595634050, guid: ccbccce331e844c34ace6ad6c9bbbf73, type: 3}
+  - {fileID: 4815105526595634050, guid: ccbccce331e844c34ace6ad6c9bbbf73, type: 3}
+  spawnPositionX: f6fffffffcffffff02000000
+  spawnPositionY: f5fffffff5fffffff5ffffff
   spawnTimes:
-  - 2
-  - 3
   - 2
   - 3
   - 2
