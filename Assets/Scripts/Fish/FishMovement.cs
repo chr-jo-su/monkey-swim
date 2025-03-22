@@ -1,13 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Runtime.InteropServices;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 public class FishMovement : MonoBehaviour
 {
@@ -38,8 +32,6 @@ public class FishMovement : MonoBehaviour
     private float colorTimer = 0;
     private float originalMoveSpeed;
 
-    private Camera mainCamera;
-
     void Start()
     {
         healthMax = health;
@@ -49,19 +41,25 @@ public class FishMovement : MonoBehaviour
         fishHealth = gameObject.GetComponentInChildren<EnemyHealthBar>();
         seaLineObject = GameObject.Find("seaLine");
         originalMoveSpeed = moveSpeed;
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         spawnPos = transform.position;
     }
 
     void Update()
     {
+        CheckNull();
+
         // OPTIMZATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        Vector3 viewportPoint = mainCamera.WorldToViewportPoint(transform.position);
+        Vector3 viewportPoint = new(0, 0, 0);
+        if (Camera.current != null)
+        {
+            viewportPoint = Camera.current.WorldToViewportPoint(transform.position);
+        }
+
         bool isInView = viewportPoint.x >= -0.4 && viewportPoint.x <= 1.4 &&
                         viewportPoint.y >= -0.4 && viewportPoint.y <= 1.4;
         // if (!isInView)
-            // return;
+        // return;
 
         // HEALTH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (health <= 0.0f)
@@ -85,7 +83,7 @@ public class FishMovement : MonoBehaviour
 
         // MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance <= detectionRadius) 
+        if (distance <= detectionRadius)
         {
             chasing = true;
             chaseTimer = timeToDeAggro;
@@ -190,4 +188,9 @@ public class FishMovement : MonoBehaviour
         }
     }
 
+    void CheckNull()
+    {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 }

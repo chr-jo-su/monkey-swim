@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class BossHealthBar : HealthBar
 {
     // Variables
-    private bool gameOver = false;
     protected bool shake = false;
     protected Vector3 barPosition;
     [SerializeField] protected float lowHealth;
@@ -64,11 +63,5 @@ public class BossHealthBar : HealthBar
     public new void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-
-        if (base.GetHealth() <= 0 && !gameOver)
-        {
-            StartCoroutine(LoadGameOverScreen());
-            gameOver = true;
-        }
     }
 }
