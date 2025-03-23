@@ -72,7 +72,7 @@ MonoBehaviour:
   oxygenSlider: {fileID: 1966520745160303653}
   maxOxygen: 100
   oxygenGainRate: 20
-  oxygenDepletionRate: 1
+  oxygenDepletionRate: -2
   lowOxygen: 0.25
   oxygenDamage: 3
   drownTimer: 100
