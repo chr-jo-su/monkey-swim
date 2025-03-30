@@ -15,12 +15,12 @@ public class BusFishZoom : MonoBehaviour
         zoomSpeed = 5;
         busFishTransform = GameObject.Find("BusFish").transform;
         zoomStartVerticalLevel = (int)(busFishTransform.position.y * 0.9f);
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         if (transform.position.y <= zoomStartVerticalLevel) {
             camera.orthographicSize += zoomSpeed * Time.unscaledDeltaTime;
         } else {
