@@ -145,7 +145,7 @@ public class PlayerHealthBar : HealthBar
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         GameObject Grabber = GameObject.FindGameObjectWithTag("Grabber");
-        String sceneName = "Level1";
+        String sceneName = "Level1New";
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
