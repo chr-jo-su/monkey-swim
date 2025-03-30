@@ -238,7 +238,7 @@ public class TransitionManager : MonoBehaviour
     private IEnumerator UnloadOldScenes()
     {
         List<AsyncOperation> asyncOperations = new();
-
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
         // Unload previous scenes
         for (int i = SceneManager.sceneCount - 1; i >= 0; i--)
         {
