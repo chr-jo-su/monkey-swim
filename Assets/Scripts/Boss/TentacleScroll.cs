@@ -34,7 +34,7 @@ public class TentacleScroll : MonoBehaviour
             rb.MovePosition(rb.position + direction*movement*moveSpeed*Time.fixedDeltaTime);
         }
 
-        if (transform.position.y >= 4)
+        if (transform.position.y >= -2)
         {
             for (int i = 0; i < 100; i++)
             {
@@ -44,7 +44,7 @@ public class TentacleScroll : MonoBehaviour
             direction = -1;
         }
 
-        if (transform.position.y <= -12)
+        if (transform.position.y <= -16)
         {
             TentacleManager.instance.enabled = false;
             QuidManager.instance.enabled = true;
