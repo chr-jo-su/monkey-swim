@@ -13,7 +13,6 @@ public class PlayerHealthBar : HealthBar
     private bool isMaxHealth = true;
     private bool gameOver = false;
     protected bool shake = false;
-    private HealthBar healthBar;
 
     private float healthBarRatio;
     protected Vector3 barPosition;
@@ -136,33 +135,58 @@ public class PlayerHealthBar : HealthBar
     {
         healthSlider.transform.localScale = new Vector3(healthBarRatio * maxHealth, healthSlider.transform.localScale.y, healthSlider.transform.localScale.z);
         damageSlider.transform.localScale = new Vector3(healthBarRatio * maxHealth, damageSlider.transform.localScale.y, damageSlider.transform.localScale.z);
-        health = maxHealth;
+
         healthSlider.maxValue = maxHealth;
         damageSlider.maxValue = maxHealth;
     }
 
     private IEnumerator ResetScene()
     {
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        GameObject Grabber = GameObject.FindGameObjectWithTag("Grabber");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject grabber = GameObject.FindGameObjectWithTag("Grabber");
         String sceneName = "Level1New";
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        Player.GetComponent<PlayerMovement>().stopMovement();
-        Grabber.GetComponent<Grabber>().goGrabbaGrabba = true;
-        
+        player.GetComponent<PlayerMovement>().stopMovement();
+        grabber.GetComponent<Grabber>().goGrabbaGrabba = true;
+
         yield return new WaitForSecondsRealtime(2);
 
-        TransitionManager.instance.LoadTransition(sceneName);
+        TransitionManager.instance.LoadTransition(sceneName, CopyItemsAndRemoveInventory);
+    }
+
+    /// <summary>
+    /// Remove the inventory system from the new scene after the player dies and copies over the old inventory.
+    /// </summary>
+    /// <returns>True when the code has finished running.</returns>
+    private bool CopyItemsAndRemoveInventory(string sceneName)
+    {
+        // Find the inventory system and remove it from the scene
+        GameObject inventory = GameObject.Find("InventorySystem");
+        // Rename it so it doesn't get found again
+        inventory.name = "InventorySystemOld";
+
+        inventory = GameObject.Find("InventorySystem");
+        Destroy(inventory);
+
+        inventory = GameObject.Find("InventorySystemOld");
+        inventory.name = "InventorySystem";
+
+        // Move the inventory system to the new scene
+        SceneManager.MoveGameObjectToScene(inventory, SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
+
+        inventory.GetComponent<InventoryManager>().UpdateInstance();
+
+        return true;
     }
 
     private void SceneTransitionManager()
     {
         if (SceneManager.GetActiveScene().name == "BossLevel")
         {
-            StartCoroutine(healthBar.LoadGameOverScreen());
+            StartCoroutine(LoadGameOverScreen());
         }
         else
         {

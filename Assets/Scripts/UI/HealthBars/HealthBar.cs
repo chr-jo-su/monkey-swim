@@ -91,10 +91,10 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the game over scene and unloads the current scene.
+    /// Loads the game over scene and unloads the current scene. Doesn't use the transition screen.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    public IEnumerator LoadGameOverScreen()
+    protected IEnumerator LoadGameOverScreen()
     {
         Debug.Log("Computed score: " + PlayerScore.instance.GetScore());
         Debug.Log("Raw score: ");

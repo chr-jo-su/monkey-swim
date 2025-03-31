@@ -324,4 +324,12 @@ public class InventoryManager : MonoBehaviour
         // Remove the damage boost
         BanarangDamage.instance.ChangeDamage(-item.damage);
     }
+
+    /// <summary>
+    /// Update the instance.
+    /// </summary>
+    public void UpdateInstance()
+    {
+        instance = this;
+    }
 }

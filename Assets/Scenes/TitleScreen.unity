@@ -903,6 +903,30 @@ PrefabInstance:
       propertyPath: m_RaycastPadding.z
       value: 190
       objectReference: {fileID: 0}
+    - target: {fileID: 2133797578058378577, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133797578058378577, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133797578058378577, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133797578058378577, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133797578058378577, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133797578058378577, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3643953308717252900, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
       propertyPath: m_Name
       value: MainTitle

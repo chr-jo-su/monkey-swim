@@ -43,6 +43,18 @@ public class BossTransition : MonoBehaviour
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
     private IEnumerator LoadBossScene()
     {
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
+
+        TransitionManager.instance.LoadTransition("BossLevel", CopyItemsAndResetPlayerPosition);
+    }
+
+    /// <summary>
+    /// Copies over any items needed and resets the player's position.
+    /// </summary>
+    /// <returns>True when the function has finished running.</returns>
+    private bool CopyItemsAndResetPlayerPosition(string sceneName)
+    {
         // Items that should be moved over are added
         List<GameObject> itemsToCopyOver = new()
         {
@@ -52,17 +64,11 @@ public class BossTransition : MonoBehaviour
             GameObject.Find("Player")
         };
 
-        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
-        while (!asyncLoadLevel.isDone) yield return null;
+        foreach (GameObject gameObject in itemsToCopyOver)
+        {
+            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(sceneName));
+        }
 
-        TransitionManager.instance.LoadTransition("BossLevel", itemsToCopyOver, ResetPlayerPosition);
-    }
-
-    /// <summary>
-    /// This is run when the player is teleported to the boss level.
-    /// </summary>
-    private void ResetPlayerPosition()
-    {
         // Reset player position and change sceneChanged bool to true
         foreach (GameObject go in SceneManager.GetSceneByName("BossLevel").GetRootGameObjects())
         {
@@ -72,5 +78,7 @@ public class BossTransition : MonoBehaviour
                 go.GetComponent<PlayerMovement>().sceneChanged = true;
             }
         }
+
+        return true;
     }
 }
