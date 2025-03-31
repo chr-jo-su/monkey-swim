@@ -58,13 +58,12 @@ public class Item : ScriptableObject
 
     [Range(-15, 15)]
     [Tooltip("The boost to the player's swim speed. This value should be between -15 and 15 inclusive.")]
-
-    public int damage = 0;
-
-    [Range(-15, 15)]
-    [Tooltip("The boost to the Banarang's damage. This value should be between -15 and 15 inclusive.")]
     public int speedBoost = 0;
 
+    [Range(-15, 15)]
+    [Tooltip("The boost to the item's damage. This value should be between -15 and 15 inclusive.")]
+    public int itemDamage = 0;
+    
     [Range(-10f, 0.9f)]
     [Tooltip("The change to the player's rate of change of oxygen. This value should be between -10 and 0.9 inclusive.")]
     public float oxygenChange = 0;

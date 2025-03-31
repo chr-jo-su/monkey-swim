@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BanarangDamage : HealthBar
+public class BanarangDamage : MonoBehaviour
 {
     // Variables
     public static BanarangDamage instance;
@@ -16,7 +16,7 @@ public class BanarangDamage : HealthBar
         instance = this;
     }
 
-    private new void Start()
+    private void Start()
     {
         damage = 15;
     }

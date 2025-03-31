@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class lvl1Win : MonoBehaviour
 {
     public TextMeshProUGUI txt;
     private string[] wrds = new string[11];
     private int pos = 0;
-    public SceneChanger sc;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +36,7 @@ public class lvl1Win : MonoBehaviour
         }
         else
         {
-            sc.ChangeScene("TitleScreen");
+            SceneManager.LoadScene("TitleScreen");
         }
     }
 }

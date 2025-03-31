@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MoveInvisibleBox : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class MoveInvisibleBox : MonoBehaviour
     private string[] wrds = new string[5];
     private int pos = 0;
     public Camera cam;
-    public SceneChanger sc;
     // public TextMeshProUGUI txt;
     // Start is called before the first frame update
     // x = [-4.4, 5, -4.4, 5, 2]
@@ -52,7 +52,7 @@ public class MoveInvisibleBox : MonoBehaviour
         }
         else
         {
-            sc.ChangeScene("Level1New");
+            SceneManager.LoadScene("Level1New");
         }
     }
 }

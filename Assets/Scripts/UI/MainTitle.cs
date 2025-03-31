@@ -10,15 +10,19 @@ public class MainMenu : MonoBehaviour
     public float Velocity;
     public bool MrPresidentTheMonkeyHasBeenPressed = false;
 
-    void Update() {
+    void Update()
+    {
         if (MrPresidentTheMonkeyHasBeenPressed == true)
         {
             HideMainTitleMenu();
             BigRedArrow.SetActive(true);
-        } else {
+        }
+        else
+        {
             BigRedArrow.SetActive(false);
         }
-        if (transform.position.y > 10)
+
+        if (transform.localPosition.y - Camera.main.pixelHeight >= Camera.main.pixelHeight * (2 / 3))
         {
             Menu.SetActive(false);
         }
@@ -26,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public void HideMainTitleMenu()
     {
-        transform.position = Vector2.Lerp(transform.position, new Vector2(0,30), Velocity * Time.unscaledDeltaTime);
+        transform.localPosition = Vector2.Lerp(transform.localPosition, new Vector2(0, Screen.height * 1.5f), Velocity * Time.unscaledDeltaTime);
     }
 
     public void SecretServiceAnnouncementToThePresident()

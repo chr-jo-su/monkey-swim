@@ -136,10 +136,10 @@ RectTransform:
   - {fileID: 6534291593823186070}
   m_Father: {fileID: 6080661516745303271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1990740124583370814
 CanvasRenderer:
@@ -193,7 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 3643953308717252900}
   ChimpButton: {fileID: 6562708457830954638}
-  Velocity: 1
+  BigRedArrow: {fileID: 0}
+  Velocity: 3
   MrPresidentTheMonkeyHasBeenPressed: 0
 --- !u!1 &6562708457830954638
 GameObject:
@@ -208,7 +209,7 @@ GameObject:
   - component: {fileID: 1515778940027841665}
   - component: {fileID: 7567469273418643961}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 200, y: 210, z: 190, w: 210}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -293,8 +294,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.8352941, g: 0.7254902, b: 0.15294118, a: 1}
+    m_PressedColor: {r: 0.7411765, g: 0.6313726, b: 0.20392157, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
