@@ -15,11 +15,11 @@ public class BanarangDamage : HealthBar
     {
         instance = this;
     }
+
     private new void Start()
     {
         damage = 15;
     }
-
 
     public int GetDamage()
     {
@@ -29,4 +29,10 @@ public class BanarangDamage : HealthBar
     public void ChangeDamage(int d) {
         damage += d;
     }
+
+    public void ResetInstance()
+    {
+        instance = this;
+    }
+
 }
