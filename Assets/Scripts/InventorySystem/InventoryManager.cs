@@ -284,6 +284,10 @@ public class InventoryManager : MonoBehaviour
 
         // Add the oxygen depletion rate change
         OxygenBar.instance.ChangeOxygenDepletionRate(item.oxygenChange);
+
+        // Add the damage boost
+        BanarangDamage.instance.ChangeDamage(item.damage);
+
     }
 
     /// <summary>
@@ -316,5 +320,8 @@ public class InventoryManager : MonoBehaviour
 
         // Remove the oxygen depletion rate change
         OxygenBar.instance.ChangeOxygenDepletionRate(-item.oxygenChange);
+
+        // Remove the damage boost
+        BanarangDamage.instance.ChangeDamage(-item.damage);
     }
 }

@@ -88,7 +88,7 @@ public class BossSlide : MonoBehaviour
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
             health -= 25;
-            bossHealth.TakeDamage(25);
+            bossHealth.TakeDamage(BanarangDamage.instance.GetDamage());
         }
     }
 
