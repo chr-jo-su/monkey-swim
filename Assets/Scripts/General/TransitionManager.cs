@@ -13,7 +13,7 @@ public class TransitionManager : MonoBehaviour
     public float velocity = 5f;
 
     private bool canLoadNewScene = true;
-    private bool canCopyOver = true;
+    private bool canRunCustomCode = true;
     private bool canUnloadOldScenes = true;
     private bool endTransition = false;
 
@@ -22,8 +22,8 @@ public class TransitionManager : MonoBehaviour
     private Vector2 targetPos;
 
     private string sceneName;
-    private List<GameObject> toCopyOver;
-    private Action additionalCode;
+    private Func<string, bool> additionalCode;
+    private bool additionalCodeHasRun = false;
 
     /// <summary>
     /// Hides the transition screen on start and sets the positions for the start and end.
@@ -63,23 +63,21 @@ public class TransitionManager : MonoBehaviour
             {
                 // New scene has been loaded in at this point
 
-
-                // Check if items can/need to be copied over
-                if (canCopyOver)
+                // Check if custom code needs to be run
+                if (canRunCustomCode)
                 {
-                    CopyOverItems();
-                    canCopyOver = false;
+                    additionalCodeHasRun = additionalCode != null ? additionalCode(this.sceneName) : true;
+                    canRunCustomCode = false;
                 }
-                else if (IsCopiedOver())
+                else if (additionalCodeHasRun)
                 {
-                    // Items have been copied over at this point
+                    // Custom code has been run and completed at this point (this could include copying items over or removing specific items)
+                    additionalCodeHasRun = true;
 
                     // Check if the other scenes can be unloaded (not including the new or transition scene)
                     if (canUnloadOldScenes)
                     {
                         StartCoroutine(UnloadOldScenes());
-
-                        additionalCode?.Invoke();
 
                         canUnloadOldScenes = false;
                     }
@@ -93,7 +91,6 @@ public class TransitionManager : MonoBehaviour
                         Time.timeScale = 1f;
 
                         // Change the active camera to the new scene's camera
-                        //Camera.main.gameObject.SetActive(false);
                         Camera.allCameras[0].gameObject.SetActive(true);
 
                         endTransition = true;
@@ -163,14 +160,13 @@ public class TransitionManager : MonoBehaviour
     /// Starts the transition to switch to sceneName with given name.
     /// </summary>
     /// <param name="sceneName">The name of the sceneName to be loaded as a string.</param>
-    public void LoadTransition(string sceneName, List<GameObject> toCopyOver = null, Action additionalCode = null)
+    public void LoadTransition(string sceneName, Func<string, bool> additionalCode = null)
     {
         // Show the transition screen
         ShowTransitionScreen();
 
         // Save info to use later
         this.sceneName = sceneName;
-        this.toCopyOver = toCopyOver;
         this.additionalCode = additionalCode;
 
     }
@@ -182,35 +178,6 @@ public class TransitionManager : MonoBehaviour
     {
         // Load the next sceneName
         SceneManager.LoadScene(this.sceneName, LoadSceneMode.Additive);
-    }
-
-    /// <summary>
-    /// Copies over items from the old scene into the new scene if there are any.
-    /// </summary>
-    private void CopyOverItems()
-    {
-        // Add items here, if any
-        if (toCopyOver != null)
-        {
-            foreach (GameObject gameObject in toCopyOver)
-            {
-                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(this.sceneName));
-            }
-        }
-    }
-
-    /// <summary>
-    /// Checks if all items that need to be copied over have been copied over.
-    /// </summary>
-    /// <returns>A boolean value whether the items have all been copied over or not.</returns>
-    private bool IsCopiedOver()
-    {
-        if (toCopyOver != null)
-        {
-            return toCopyOver.TrueForAll(gameObject => gameObject.scene == SceneManager.GetSceneByName(this.sceneName));
-        }
-
-        return true;
     }
 
     /// <summary>

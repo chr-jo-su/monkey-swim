@@ -317,4 +317,12 @@ public class InventoryManager : MonoBehaviour
         // Remove the oxygen depletion rate change
         OxygenBar.instance.ChangeOxygenDepletionRate(-item.oxygenChange);
     }
+
+    /// <summary>
+    /// Update the instance.
+    /// </summary>
+    public void UpdateInstance()
+    {
+        instance = this;
+    }
 }
