@@ -15,8 +15,6 @@ public class FishMovement : MonoBehaviour
     // public int damageTaken;
     public GameObject seaLineObject;
     private GameObject healthSystem;
-    public float health = 100.0f;
-    private float healthMax;
     private EnemyHealthBar fishHealth;
     public float detectionRadius = 4;
     public float timeToDeAggro = 1; // in seconds
@@ -34,7 +32,6 @@ public class FishMovement : MonoBehaviour
 
     void Start()
     {
-        healthMax = health;
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         healthSystem = transform.Find("Canvas/EnemyHealthManager").gameObject;
@@ -62,14 +59,14 @@ public class FishMovement : MonoBehaviour
         // return;
 
         // HEALTH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        if (health <= 0.0f)
+        if (fishHealth.GetHealth() <= 0.0f)
         {
             GetComponent<ItemDropper>().enabled = true;
             if (GetComponent<ItemDropper>().finished)
                 Destroy(gameObject);
         }
 
-        if (health < healthMax)
+        if (fishHealth.GetHealth() < fishHealth.GetMaxHealth())
             healthSystem.transform.localScale = new Vector3(0.2f, 0.1f, 1);
 
         // turn red on hit
@@ -151,8 +148,8 @@ public class FishMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
-            health -= 20;//BanarangDamage.instance.GetDamage()
-                
+            fishHealth.TakeDamage(20);
+
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
             chasing = true;
