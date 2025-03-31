@@ -34,4 +34,5 @@ public class BanarangDamage : HealthBar
     {
         instance = this;
     }
+
 }
