@@ -52,7 +52,7 @@ public class MoveInvisibleBox : MonoBehaviour
         }
         else
         {
-            sc.ChangeScene("Level1");
+            sc.ChangeScene("Level1New");
         }
     }
 }
