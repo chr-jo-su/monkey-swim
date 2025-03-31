@@ -12,7 +12,7 @@ public class FishMovement : MonoBehaviour
 
     [SerializeField]
     public int damage;
-    public int damageTaken;
+    // public int damageTaken;
     public GameObject seaLineObject;
     private GameObject healthSystem;
     public float health = 100.0f;
@@ -151,8 +151,8 @@ public class FishMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
-            health -= damageTaken;
-            fishHealth.TakeDamage(damageTaken);
+            health -= 20;//BanarangDamage.instance.GetDamage()
+                
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
             chasing = true;

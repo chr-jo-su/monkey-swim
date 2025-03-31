@@ -136,7 +136,7 @@ public class PlayerHealthBar : HealthBar
     {
         healthSlider.transform.localScale = new Vector3(healthBarRatio * maxHealth, healthSlider.transform.localScale.y, healthSlider.transform.localScale.z);
         damageSlider.transform.localScale = new Vector3(healthBarRatio * maxHealth, damageSlider.transform.localScale.y, damageSlider.transform.localScale.z);
-
+        health = maxHealth;
         healthSlider.maxValue = maxHealth;
         damageSlider.maxValue = maxHealth;
     }

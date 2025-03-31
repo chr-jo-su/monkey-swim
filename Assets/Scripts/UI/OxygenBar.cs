@@ -142,7 +142,7 @@ public class OxygenBar : MonoBehaviour
     /// <param name="val">The value to change the oxygen depletion rate by. Can be negative.</param>
     public void ChangeOxygenDepletionRate(float val)
     {
-        oxygenDepletionRate = Math.Max(oxygenDepletionRate + val, -0.1f);
+        oxygenDepletionRate = Math.Min(oxygenDepletionRate + val, 0.1f);
     }
 
     /// <summary>
