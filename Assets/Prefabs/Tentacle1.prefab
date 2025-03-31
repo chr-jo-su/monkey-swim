@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5556011336944174976}
   - component: {fileID: 607028551157713623}
   - component: {fileID: 5913469380766840087}
+  - component: {fileID: -4227037585623372361}
   m_Layer: 0
   m_Name: Tentacle1
   m_TagString: Untagged
@@ -150,3 +151,38 @@ MonoBehaviour:
   rb: {fileID: 607028551157713623}
   moving: 1
   direction: 1
+--- !u!70 &-4227037585623372361
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815105526595634050}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 4.46, y: 9.39}
+  m_Direction: 0
