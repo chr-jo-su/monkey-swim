@@ -23,7 +23,6 @@ public class BanarangDamage : MonoBehaviour
 
     public int GetDamage()
     {
-        Debug.Log("damage");
         return damage;
     }
     public void ChangeDamage(int d) {

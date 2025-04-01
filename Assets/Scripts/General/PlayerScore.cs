@@ -43,7 +43,6 @@ public class PlayerScore : MonoBehaviour
     /// <returns>An integer representing the player's score.</returns>
     public double GetScore()
     {
-        Debug.Log("Time alive: " + timeAlive);
         //float finalScore = (atBossLevel ? 1000 : (Mathf.Abs(depth) * 10)) + (fishKilled * 100) + timeAlive;
         float finalScore = timeAlive;
 
