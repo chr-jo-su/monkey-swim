@@ -76,6 +76,7 @@ public class BossTransition : MonoBehaviour
             {
                 go.transform.position = new Vector3(0, 0, 0);
                 go.GetComponent<PlayerMovement>().sceneChanged = true;
+                go.GetComponent<BusFishZoom>().enabled = false;
             }
         }
 
