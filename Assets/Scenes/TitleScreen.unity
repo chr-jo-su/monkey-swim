@@ -974,6 +974,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8548813311877873481, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: def2648eb5251734aad3333769daa202, type: 3}
     - target: {fileID: 9088185592776105480, guid: c0f0d3714dedb744bb7986264c7db03b, type: 3}
       propertyPath: BigRedArrow
       value: 
