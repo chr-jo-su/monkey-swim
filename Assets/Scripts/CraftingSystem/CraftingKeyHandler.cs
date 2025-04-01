@@ -32,6 +32,9 @@ public class CraftingKeyHandler : MonoBehaviour
 
         // Start the crafting closed
         CloseCraftingMenu();
+
+        // Scale the background to screen size
+        craftingMenu.transform.GetChild(0).localScale = new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1);
     }
 
     // Update is called once per frame

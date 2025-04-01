@@ -121,6 +121,8 @@ MonoBehaviour:
   inventoryKey: 101
   craftingButton: {fileID: 516071701811194278}
   inventoryButton: {fileID: 7347400520117839341}
+  hiddenPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
   velocity: 5
 --- !u!114 &5101109049234071484
 MonoBehaviour:

@@ -40,6 +40,9 @@ public class InventoryKeyHandler : MonoBehaviour
         // Start the inventory closed
         inventoryIsShowing = true;
         CloseInventory();
+
+        // Scale the background to the screen size
+        inventory.transform.GetChild(0).localScale = new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1);
     }
 
     // Update is called once per frame
