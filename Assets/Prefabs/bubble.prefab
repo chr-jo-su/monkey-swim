@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  oxygenGain: 10
+  oxygenGain: 30
   speed: 4
   deletePositionY: 20
 --- !u!58 &718462517396679335
