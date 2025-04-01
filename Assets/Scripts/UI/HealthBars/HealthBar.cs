@@ -96,12 +96,12 @@ public class HealthBar : MonoBehaviour
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
     protected IEnumerator LoadGameOverScreen()
     {
-        Debug.Log("Computed score: " + PlayerScore.instance.GetScore());
-        Debug.Log("Raw score: ");
-        foreach (int score in PlayerScore.instance.GetRawScore())
-        {
-            Debug.Log("    " + score);
-        }
+        Debug.Log("Final score: " + PlayerScore.instance.GetScore());
+        //Debug.Log("Raw score: ");
+        //foreach (int score in PlayerScore.instance.GetRawScore())
+        //{
+        //    Debug.Log("    " + score);
+        //}
 
         string gameOverScene = "GameOver";
         SceneManager.LoadScene(gameOverScene, LoadSceneMode.Additive);

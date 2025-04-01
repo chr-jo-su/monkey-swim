@@ -163,7 +163,49 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
             // Set the text info for the item
             ItemTooltip tooltip = newGameObjectItem.GetComponent<ItemTooltip>();
-            tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            if (storedItem.itemDescription == "")
+            {
+                string description = "";
+                if (storedItem.oxygenBoost != 0)
+                {
+                    description += "Max oxygen ";
+                    if (storedItem.oxygenBoost > 0)
+                    {
+                        description += "+";
+                    }
+                    description += storedItem.oxygenBoost + "\n";
+                }
+                if (storedItem.healthBoost != 0)
+                {
+                    description += "Max health ";
+                    if (storedItem.healthBoost > 0)
+                    {
+                        description += "+";
+                    }
+                    description += storedItem.healthBoost + "\n";
+                }
+                if (storedItem.speedBoost != 0)
+                {
+                    description += "Speed Boost +" + storedItem.speedBoost + "\n";
+                }
+                if (storedItem.itemDamage != 0)
+                {
+                    description += "Damage Boost +" + storedItem.itemDamage + "\n";
+                }
+                if (storedItem.oxygenChange != 0)
+                {
+                    description += "Oxygen Rate +" + storedItem.oxygenChange + "\n";
+                }
+                if (storedItem.damagePerAttack != 0)
+                {
+                    description += "Damage +" + storedItem.damagePerAttack + "\n";
+                }
+
+                tooltip.SetItemInfoText(storedItem.itemName, description);
+            } else
+            {
+                tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            }
         }
     }
 }

@@ -32,6 +32,9 @@ public class CraftingKeyHandler : MonoBehaviour
 
         // Start the crafting closed
         CloseCraftingMenu();
+
+        // Scale the background to screen size
+        craftingMenu.transform.GetChild(0).localScale = new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1);
     }
 
     // Update is called once per frame
@@ -68,22 +71,19 @@ public class CraftingKeyHandler : MonoBehaviour
     /// </summary>
     public void CloseCraftingMenu()
     {
-        if (isShowing)
+        targetPos = hiddenPos;
+
+        // Remove any tooltip menus if there are any
+        try
         {
-            targetPos = hiddenPos;
-
-            // Remove any tooltip menus if there are any
-            try
-            {
-                Destroy(GameObject.Find("ItemTooltip(Clone)"));
-            }
-            catch (System.Exception) { }
-
-            // Remove all the items from the crafting list
-            CraftingManager.instance.UnpopulateCraftingList();
-
-            isShowing = false;
+            Destroy(GameObject.Find("ItemTooltip(Clone)"));
         }
+        catch (System.Exception) { }
+
+        // Remove all the items from the crafting list
+        CraftingManager.instance.UnpopulateCraftingList();
+
+        isShowing = false;
     }
 
     /// <summary>
@@ -127,5 +127,10 @@ public class CraftingKeyHandler : MonoBehaviour
     {
         // Animate the menu moving
         craftingMenu.transform.localPosition = Vector3.Lerp(craftingMenu.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
+    }
+
+    public bool IsShowing()
+    {
+        return isShowing;
     }
 }

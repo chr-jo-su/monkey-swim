@@ -57,7 +57,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -120,27 +120,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_SizeDelta.x
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,11 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -672
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 460
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 166108747890924356, guid: bee921ffe10654268bf231705b99b023, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

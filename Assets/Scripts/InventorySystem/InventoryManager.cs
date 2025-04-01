@@ -8,9 +8,8 @@ public class InventoryManager : MonoBehaviour
     // Variables
     public static InventoryManager instance;
 
-    public InventorySlotHolder[] slots;
-
-    public Item[] items;
+    [SerializeField] private InventorySlotHolder[] slots;
+    [SerializeField] private SlotHolder[] trinketSlots;
 
     /// <summary>
     /// Create a singleton instance of the InventoryManager.
@@ -273,21 +272,7 @@ public class InventoryManager : MonoBehaviour
             // Change the player sprite to the armoured version
         }
 
-        // Add the oxygen boost
-        OxygenBar.instance.ChangeMaxOxygen(item.oxygenBoost);
-
-        // Add the health boost
-        PlayerHealthBar.instance.ChangeMaxHealth(item.healthBoost);
-
-        // Add the speed boost
-        PlayerMovement.instance.ChangeMoveSpeed(item.speedBoost);
-
-        // Add the oxygen depletion rate change
-        OxygenBar.instance.ChangeOxygenDepletionRate(item.oxygenChange);
-
-        // Add the damage boost
-        BanarangDamage.instance.ChangeDamage(item.itemDamage);
-
+        ApplyBoosts(item, true);
     }
 
     /// <summary>
@@ -309,27 +294,56 @@ public class InventoryManager : MonoBehaviour
             // Change the player sprite back to the original
         }
 
-        // Remove the oxygen boost
-        OxygenBar.instance.ChangeMaxOxygen(-item.oxygenBoost);
+        ApplyBoosts(item, false);
+    }
 
-        // Remove the health boost
-        PlayerHealthBar.instance.ChangeMaxHealth(-item.healthBoost);
-
-        // Remove the speed boost
-        PlayerMovement.instance.ChangeMoveSpeed(-item.speedBoost);
-
-        // Remove the oxygen depletion rate change
-        OxygenBar.instance.ChangeOxygenDepletionRate(-item.oxygenChange);
-
-        // Remove the damage boost
-        BanarangDamage.instance.ChangeDamage(-item.itemDamage);
+    public void MoveToNewScene()
+    {
+        MoveTrinketsToInventory();
+        UpdateInstance();
     }
 
     /// <summary>
     /// Update the instance.
     /// </summary>
-    public void UpdateInstance()
+    private void UpdateInstance()
     {
         instance = this;
+        gameObject.GetComponent<InventoryKeyHandler>().CloseInventory();
+        gameObject.GetComponent<InventoryKeyHandler>().hiddenPos = new(0, Screen.height * 1.5f, 0);
+    }
+
+    /// <summary>
+    /// Moves all the trinkets to the inventory.
+    /// </summary>
+    private void MoveTrinketsToInventory()
+    {
+        foreach (SlotHolder child in trinketSlots)
+        {
+            if (child.transform.childCount != 0)
+            {
+                InventoryItem inventoryItem = child.transform.GetChild(0).GetComponent<InventoryItem>();
+                AddItems(inventoryItem.storedItem, inventoryItem.currentStackSize);
+                Destroy(child.transform.GetChild(0).gameObject);
+            }
+        }
+    }
+
+    public void ApplyBoosts(Item item, bool add)
+    {
+        // Remove the oxygen boost
+        OxygenBar.instance.ChangeMaxOxygen(add ? item.oxygenBoost : -item.oxygenBoost);
+
+        // Remove the health boost
+        PlayerHealthBar.instance.ChangeMaxHealth(add ? item.healthBoost : -item.healthBoost);
+
+        // Remove the speed boost
+        PlayerMovement.instance.ChangeMoveSpeed(add ? item.speedBoost : -item.speedBoost);
+
+        // Remove the oxygen depletion rate change
+        OxygenBar.instance.ChangeOxygenDepletionRate(add ? item.oxygenChange : -item.oxygenChange);
+
+        // Remove the damage boost
+        BanarangDamage.instance.ChangeDamage(add ? item.itemDamage : -item.itemDamage);
     }
 }

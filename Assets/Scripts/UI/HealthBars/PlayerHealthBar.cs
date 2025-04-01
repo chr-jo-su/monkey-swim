@@ -177,7 +177,7 @@ public class PlayerHealthBar : HealthBar
         // Move the inventory system to the new scene
         SceneManager.MoveGameObjectToScene(inventory, SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
 
-        inventory.GetComponent<InventoryManager>().UpdateInstance();
+        inventory.GetComponent<InventoryManager>().MoveToNewScene();
 
         return true;
     }

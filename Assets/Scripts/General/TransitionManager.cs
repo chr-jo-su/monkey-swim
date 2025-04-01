@@ -31,9 +31,21 @@ public class TransitionManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        hiddenPos = new(0, transitionScreen.transform.localPosition.y);
+        hiddenPos = new(0, transitionScreen.transform.localPosition.y * 1.5f);
 
         HideTransitionScreen();
+    }
+
+    private void Start()
+    {
+        if (Screen.width / 1920f > Screen.height / 1080f)
+        {
+            transitionScreen.transform.localScale = new Vector3(Screen.height / 1080f, Screen.height / 1080f, 1);
+        }
+        else
+        {
+            transitionScreen.transform.localScale = new Vector3(Screen.width / 1920f, Screen.width / 1920f, 1);
+        }
     }
 
     /// <summary>
