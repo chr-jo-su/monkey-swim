@@ -20,6 +20,9 @@ public class WeaponManager : MonoBehaviour
     private float Rotation;
     private bool BananarangReady;
 
+    public AudioSource soundeffects;
+    public AudioClip[] swoosheffects;
+
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -55,6 +58,12 @@ public class WeaponManager : MonoBehaviour
                     Instantiate(BananarangObject, BananarangPosition, Quaternion.identity);
                     BananarangReady = false;
                     BananarangCount -= 1;
+
+                    if (!soundeffects)
+                        soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+                    
+                    int idx = UnityEngine.Random.Range(0, swoosheffects.Length);
+                    soundeffects.PlayOneShot(swoosheffects[idx]);
                 }
             }
         }

@@ -1315,6 +1315,26 @@ PrefabInstance:
       propertyPath: underWaterAmbience
       value: 
       objectReference: {fileID: 1319501342}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: painsounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: painsounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 64e148381b8744ea3af65a2185a6e820, type: 3}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: painsounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 562193c2e8a864d158eed0b293759a22, type: 3}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: painsounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e8f49f47a910460b8782cc77f14a694, type: 3}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: painsounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: d328a4fd31bcb436e902cc388dead6a9, type: 3}
     - target: {fileID: 4480218188751584525, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1395,6 +1415,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f52c257cccdde4c94944bdd18900bc67, type: 3}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e414fdc61a98642f39804de7b5e084de, type: 3}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 59aa9d1e0702640a98b7cffd35db8b6f, type: 3}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d4baa6eb4c9d4481b61267850d99872, type: 3}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 08ce55dd6ade2406f939a6a4829f4b25, type: 3}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 573544730eaab4718b3cf4f50ee9d100, type: 3}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: swoosheffects.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b6b47b4330404d22a1afbb110d56bdb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3908,7 +3960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
       propertyPath: m_Volume
-      value: 0.319
+      value: 0.246
       objectReference: {fileID: 0}
     - target: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
       propertyPath: m_audioClip
@@ -4479,7 +4531,7 @@ GameObject:
   - component: {fileID: 1661456216}
   m_Layer: 0
   m_Name: Audio Source
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4495,8 +4547,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.482
   m_Pitch: 1
   Loop: 0
   Mute: 0

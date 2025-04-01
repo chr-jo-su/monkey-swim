@@ -211,6 +211,11 @@ MonoBehaviour:
   detectionRadius: 4
   timeToDeAggro: 1
   timeToDeAggroBrangMultiplier: 4
+  soundeffects: {fileID: 0}
+  hurtsounds:
+  - {fileID: 8300000, guid: dcd867485af4c48bea7492f244ec8954, type: 3}
+  - {fileID: 8300000, guid: d62f46a7e899b459c9e7cb91d4c3113f, type: 3}
+  - {fileID: 8300000, guid: be39ecf019d0e4f4988a1507e7a9a632, type: 3}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4

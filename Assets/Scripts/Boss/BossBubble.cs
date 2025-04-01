@@ -9,9 +9,13 @@ public class BossBubble : MonoBehaviour
     public float speed = 4.0f;
     public float deletePositionY = 20.0f;
 
+    public AudioSource soundeffects;
+    public AudioClip bubblePop;
+
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -30,6 +34,8 @@ public class BossBubble : MonoBehaviour
         {
             OxygenBar.instance.ChangeOxygen(oxygenGain);
             Destroy(gameObject);
+
+            soundeffects.PlayOneShot(bubblePop);
         }
     }
 }

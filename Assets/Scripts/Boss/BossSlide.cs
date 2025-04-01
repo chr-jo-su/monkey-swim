@@ -27,6 +27,16 @@ public class BossSlide : MonoBehaviour
 
     private bool gameOver = false;
 
+    public AudioSource soundeffects;
+
+    public AudioClip[] painsounds;
+
+    public AudioClip slideInSound;
+    // public AudioClip slideOutSound;
+
+    // private bool playsound = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +46,8 @@ public class BossSlide : MonoBehaviour
         tent.enabled = true;
         quid.enabled = false;
         SlideIn = true;
+        soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+        soundeffects.PlayOneShot(slideInSound);
     }
 
     // Update is called once per frame
@@ -56,7 +68,12 @@ public class BossSlide : MonoBehaviour
 
             StartCoroutine(LoadWinScreen());
             gameOver = true;
+
+            
+
         }
+        
+
     }
 
     public void BossSlideIn()
@@ -68,7 +85,13 @@ public class BossSlide : MonoBehaviour
                 StartPosition,
                 SlideSpeed * Time.unscaledDeltaTime
             );
+
+            // if (playsound) {
+            //     soundeffects.PlayOneShot(slideInSound);
+            //     playsound = false;
+            // }
         }
+
     }
 
     public void BossSlideOut()
@@ -80,6 +103,11 @@ public class BossSlide : MonoBehaviour
                 new Vector3(DistanceOut, StartPosition.y, StartPosition.z),
                 SlideSpeed * Time.unscaledDeltaTime
             );
+
+            // if (playsound) {
+            //     soundeffects.PlayOneShot(slideOutSound);
+            //     playsound = false;
+            // }
         }
     }
 
@@ -89,6 +117,11 @@ public class BossSlide : MonoBehaviour
         {
             health -= 25;
             bossHealth.TakeDamage(BanarangDamage.instance.GetDamage());
+            if (!soundeffects)
+                soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+                    
+            int idx = UnityEngine.Random.Range(0, painsounds.Length);
+            soundeffects.PlayOneShot(painsounds[idx]);
         }
     }
 
