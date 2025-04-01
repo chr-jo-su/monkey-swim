@@ -13,6 +13,8 @@ TagManager:
   - Boss
   - Sealine
   - Grabber
+  - Sound
+  - Bubble
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float colorTimer = 0;
 
+    public AudioSource soundeffects;
+    public AudioClip[] painsounds;
+
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
     /// </summary>
@@ -195,6 +198,11 @@ public class PlayerMovement : MonoBehaviour
             colorTimer = 0.1f;
             Vector2 dir = -(other.transform.position - transform.position);
             rigidBody.AddForce(dir * 50);
+            if (!soundeffects)
+                soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+                    
+            int idx = UnityEngine.Random.Range(0, painsounds.Length);
+            soundeffects.PlayOneShot(painsounds[idx]);
         }
     }
 

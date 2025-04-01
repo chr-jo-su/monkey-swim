@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 1340126114}
   m_Layer: 0
   m_Name: Audio Source
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -821,7 +821,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.532
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1136,6 +1136,30 @@ PrefabInstance:
       propertyPath: bossHealth
       value: 
       objectReference: {fileID: 2323811412639445807}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: slideInSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c6fc84bc8704e444ba11a2bf237c156a, type: 3}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: slideOutSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0add24f92af0845018c13adc6042c095, type: 3}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: painsounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: painsounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ca117b861a2f4a0f89b57a200deaaef, type: 3}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: painsounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d32cbe64debae44039729cda079316ab, type: 3}
+    - target: {fileID: 9107173899890441185, guid: ef5149fdf333d5b458a24eb7f817ee15, type: 3}
+      propertyPath: painsounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d02f30f4928f46dbb9d44fa8f5964e4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

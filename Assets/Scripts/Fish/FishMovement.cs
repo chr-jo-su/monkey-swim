@@ -30,6 +30,10 @@ public class FishMovement : MonoBehaviour
     private float colorTimer = 0;
     private float originalMoveSpeed;
 
+    public AudioSource soundeffects;
+
+    public AudioClip[] hurtsounds;
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -157,7 +161,11 @@ public class FishMovement : MonoBehaviour
             moveSpeed = 0;
 
             // Vector2 dir = -(collision.transform.position - transform.position);
-
+            if (!soundeffects)
+                soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+                    
+            int idx = UnityEngine.Random.Range(0, hurtsounds.Length);
+            soundeffects.PlayOneShot(hurtsounds[idx], 0.5f);
         }
 
         // yikes ;; switch direction after colliding with primitive shapes (tim)

@@ -207,12 +207,15 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 1999087896956115757}
   damage: 30
-  damageTaken: 25
   seaLineObject: {fileID: 0}
-  health: 50
   detectionRadius: 4
   timeToDeAggro: 1
   timeToDeAggroBrangMultiplier: 4
+  soundeffects: {fileID: 0}
+  hurtsounds:
+  - {fileID: 8300000, guid: 36051f65f92a6416280dc72216a5a4e6, type: 3}
+  - {fileID: 8300000, guid: 510e8a5b8e19846fc9df5dcdcd4ffd78, type: 3}
+  - {fileID: 8300000, guid: d62f46a7e899b459c9e7cb91d4c3113f, type: 3}
 --- !u!50 &1999087896956115757
 Rigidbody2D:
   serializedVersion: 4
