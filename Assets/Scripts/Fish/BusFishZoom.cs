@@ -5,7 +5,7 @@ using UnityEngine;
 public class BusFishZoom : MonoBehaviour
 {
     private Transform busFishTransform;
-    private new Camera camera;
+    private Camera cameraObject;
     private int zoomStartVerticalLevel;
     private int zoomSpeed;
 
@@ -20,12 +20,12 @@ public class BusFishZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        cameraObject = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         if (transform.position.y <= zoomStartVerticalLevel) {
-            camera.orthographicSize += zoomSpeed * Time.unscaledDeltaTime;
+            cameraObject.orthographicSize += zoomSpeed * Time.unscaledDeltaTime;
         } else {
-            camera.orthographicSize -= zoomSpeed * Time.unscaledDeltaTime;
+            cameraObject.orthographicSize -= zoomSpeed * Time.unscaledDeltaTime;
         }
-        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, 6f, 10f);
+        cameraObject.orthographicSize = Mathf.Clamp(cameraObject.orthographicSize, 6f, 10f);
     }
 }
