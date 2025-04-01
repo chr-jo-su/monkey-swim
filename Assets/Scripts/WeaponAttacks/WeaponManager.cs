@@ -46,7 +46,7 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
-        if (PlayerMovement.instance.isInSea())
+        if (PlayerMovement.instance.isInSea() && !CraftingKeyHandler.instance.IsShowing() && !InventoryKeyHandler.instance.IsShowing())
         {
             if (BananarangReady)
             {

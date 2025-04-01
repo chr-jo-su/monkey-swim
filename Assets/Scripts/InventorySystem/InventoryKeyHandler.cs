@@ -16,8 +16,8 @@ public class InventoryKeyHandler : MonoBehaviour
     public GameObject inventoryButton;
 
     private Vector3 showingPos = new(0, 0, 0);
-    private Vector3 hiddenPos;
-    private Vector3 targetPos;
+    [HideInInspector] public Vector3 hiddenPos;
+    [HideInInspector] public Vector3 targetPos;
     [SerializeField] private float velocity = 5f;
 
     /// <summary>
@@ -85,19 +85,17 @@ public class InventoryKeyHandler : MonoBehaviour
     /// </summary>
     public void CloseInventory()
     {
-        if (inventoryIsShowing)
+        Awake();
+        targetPos = hiddenPos;
+
+        // Remove any tooltip menus if there are any
+        try
         {
-            targetPos = hiddenPos;
-
-            // Remove any tooltip menus if there are any
-            try
-            {
-                Destroy(GameObject.Find("ItemTooltip(Clone)"));
-            }
-            catch (System.Exception) { }
-
-            inventoryIsShowing = false;
+            Destroy(GameObject.Find("ItemTooltip(Clone)"));
         }
+        catch (System.Exception) { }
+
+        inventoryIsShowing = false;
     }
 
     /// <summary>
@@ -111,9 +109,9 @@ public class InventoryKeyHandler : MonoBehaviour
             CraftingKeyHandler.instance.CloseCraftingMenu();
 
             targetPos = showingPos;
-
-            inventoryIsShowing = true;
         }
+
+        inventoryIsShowing = true;
     }
 
     /// <summary>
@@ -138,5 +136,10 @@ public class InventoryKeyHandler : MonoBehaviour
     {
         // Animate the menu moving
         inventory.transform.localPosition = Vector3.Lerp(inventory.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
+    }
+
+    public bool IsShowing()
+    {
+        return inventoryIsShowing;
     }
 }

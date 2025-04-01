@@ -68,22 +68,19 @@ public class CraftingKeyHandler : MonoBehaviour
     /// </summary>
     public void CloseCraftingMenu()
     {
-        if (isShowing)
+        targetPos = hiddenPos;
+
+        // Remove any tooltip menus if there are any
+        try
         {
-            targetPos = hiddenPos;
-
-            // Remove any tooltip menus if there are any
-            try
-            {
-                Destroy(GameObject.Find("ItemTooltip(Clone)"));
-            }
-            catch (System.Exception) { }
-
-            // Remove all the items from the crafting list
-            CraftingManager.instance.UnpopulateCraftingList();
-
-            isShowing = false;
+            Destroy(GameObject.Find("ItemTooltip(Clone)"));
         }
+        catch (System.Exception) { }
+
+        // Remove all the items from the crafting list
+        CraftingManager.instance.UnpopulateCraftingList();
+
+        isShowing = false;
     }
 
     /// <summary>
@@ -127,5 +124,10 @@ public class CraftingKeyHandler : MonoBehaviour
     {
         // Animate the menu moving
         craftingMenu.transform.localPosition = Vector3.Lerp(craftingMenu.transform.localPosition, targetPos, velocity * Time.unscaledDeltaTime);
+    }
+
+    public bool IsShowing()
+    {
+        return isShowing;
     }
 }
