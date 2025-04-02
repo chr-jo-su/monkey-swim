@@ -36,12 +36,18 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource soundeffects;
     public AudioClip[] painsounds;
 
+    private float damageTimerBoss = 0.0f;
+
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
     /// </summary>
     private void Awake()
     {
         instance = this;
+
+        GameObject water = GameObject.FindGameObjectWithTag("Water");
+        Color prevColor = water.GetComponent<SpriteRenderer>().color;
+        water.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
     }
 
     /// <summary>
@@ -77,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.white;
         else
             colorTimer -= Time.deltaTime;
+
+        if (damageTimerBoss > 0.0f)
+            damageTimerBoss -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -159,6 +168,12 @@ public class PlayerMovement : MonoBehaviour
                 OxygenBar.instance.SetBreathe(true);
             }
         }
+
+        if (other.name == "Water")
+        {
+            Color prevColor = other.GetComponent<SpriteRenderer>().color;
+            other.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
+        }
     }
 
     /// <summary>
@@ -204,6 +219,18 @@ public class PlayerMovement : MonoBehaviour
             int idx = UnityEngine.Random.Range(0, painsounds.Length);
             soundeffects.PlayOneShot(painsounds[idx]);
         }
+
+        if (other.CompareTag("Tentacle") && damageTimerBoss <= 0)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            colorTimer = 0.1f;
+            if (!soundeffects)
+                soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+                    
+            int idx = UnityEngine.Random.Range(0, painsounds.Length);
+            soundeffects.PlayOneShot(painsounds[idx]);
+            damageTimerBoss = 1.0f;
+        }
     }
 
     /// <summary>
@@ -215,6 +242,7 @@ public class PlayerMovement : MonoBehaviour
         if (!inSea)
         {
             audioSource.PlayOneShot(splashSound);
+            inSea = true;
         }
 
         if (other.CompareTag("Item"))
@@ -222,6 +250,12 @@ public class PlayerMovement : MonoBehaviour
             InventoryManager.instance.AddItems(other.GetComponent<DroppedItem>().item);
             audioSource.PlayOneShot(itemPickupSound);
             Destroy(other.gameObject);
+        }
+
+        if (other.name == "Water")
+        {
+            Color prevColor = other.GetComponent<SpriteRenderer>().color;
+            other.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.1f);
         }
     }
 

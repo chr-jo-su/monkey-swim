@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 607028551157713623}
   - component: {fileID: 5913469380766840087}
   - component: {fileID: -5709259556766787083}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tentacle1
-  m_TagString: Untagged
+  m_TagString: Tentacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1982
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

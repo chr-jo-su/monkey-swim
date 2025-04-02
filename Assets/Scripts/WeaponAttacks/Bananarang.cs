@@ -84,7 +84,7 @@ public class Bananarang : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-         if (collision.tag != "Item" && collision.tag != "BananarangClone" && collision.tag != "Bubble") {
+         if (collision.tag != "Item" && collision.tag != "BananarangClone" && collision.tag != "Bubble" && collision.name != "Water") {
             ReturnToPlayer = true;
             gameObject.GetComponent<Collider2D>().enabled = false;
         }
