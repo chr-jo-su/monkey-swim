@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3965734027113982037}
   - component: {fileID: 6803831593602463665}
   - component: {fileID: 3729389878325057389}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: quid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1982
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
