@@ -15,6 +15,8 @@ TagManager:
   - Grabber
   - Sound
   - Bubble
+  - Tentacle
+  - Water
   layers:
   - Default
   - TransparentFX

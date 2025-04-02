@@ -18,7 +18,7 @@ public class BossSlide : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector3 StartPosition;
-    private float DistanceOut = 22;
+    public float DistanceOut = 8;
     private float SlideSpeed = 15;
     public bool SlideIn = false;
 
@@ -35,6 +35,12 @@ public class BossSlide : MonoBehaviour
     // public AudioClip slideOutSound;
 
     // private bool playsound = true;
+    private Camera mainCam;
+
+    private Vector3 EndPosition;
+
+    private Vector3 camOriginalPos;
+    private float colorTimer = 0.0f;
 
 
     // Start is called before the first frame update
@@ -42,12 +48,18 @@ public class BossSlide : MonoBehaviour
     {
         instance = this;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        StartPosition = transform.position;
+        StartPosition = gameObject.transform.position;
+        Debug.Log(StartPosition);
         tent.enabled = true;
         quid.enabled = false;
         SlideIn = true;
         soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
         soundeffects.PlayOneShot(slideInSound);
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mainCam.orthographicSize = 8.0f;
+        camOriginalPos = mainCam.transform.position;
+        EndPosition = new Vector3(DistanceOut + StartPosition.x, StartPosition.y, StartPosition.z);
+        Debug.Log(EndPosition);
     }
 
     // Update is called once per frame
@@ -68,12 +80,25 @@ public class BossSlide : MonoBehaviour
 
             StartCoroutine(LoadWinScreen());
             gameOver = true;
-
-            
-
         }
         
-
+        if (Mathf.Abs(gameObject.transform.position.x - StartPosition.x) > 0.01f && Mathf.Abs(gameObject.transform.position.x - EndPosition.x) > 0.01f)
+        {
+            if (!mainCam) {
+                mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                camOriginalPos = mainCam.transform.position;
+            }
+            mainCam.transform.localPosition = new Vector3(0, 0, -10) + (Vector3)UnityEngine.Random.insideUnitCircle * 0.2f;
+        } 
+        else
+        {
+            mainCam.transform.position = camOriginalPos;
+        }
+        
+        if (colorTimer <= 0)
+            GetComponent<SpriteRenderer>().color = Color.white;
+        else
+            colorTimer -= Time.deltaTime;
     }
 
     public void BossSlideIn()
@@ -100,7 +125,7 @@ public class BossSlide : MonoBehaviour
         {
             gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
-                new Vector3(DistanceOut, StartPosition.y, StartPosition.z),
+                EndPosition,
                 SlideSpeed * Time.unscaledDeltaTime
             );
 
@@ -122,6 +147,9 @@ public class BossSlide : MonoBehaviour
                     
             int idx = UnityEngine.Random.Range(0, painsounds.Length);
             soundeffects.PlayOneShot(painsounds[idx]);
+
+            GetComponent<SpriteRenderer>().color = Color.red;
+            colorTimer = 0.1f;
         }
     }
 
