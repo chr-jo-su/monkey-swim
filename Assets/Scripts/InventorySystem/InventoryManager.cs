@@ -344,6 +344,6 @@ public class InventoryManager : MonoBehaviour
         OxygenBar.instance.ChangeOxygenDepletionRate(add ? item.oxygenChange : -item.oxygenChange);
 
         // Remove the damage boost
-        BanarangDamage.instance.ChangeDamage(add ? item.itemDamage : -item.itemDamage);
+        BananarangDamage.instance.ChangeDamage(add ? item.itemDamage : -item.itemDamage);
     }
 }

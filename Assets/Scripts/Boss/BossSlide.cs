@@ -141,7 +141,7 @@ public class BossSlide : MonoBehaviour
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
             health -= 25;
-            bossHealth.TakeDamage(BanarangDamage.instance.GetDamage());
+            bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
             if (!soundeffects)
                 soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
                     

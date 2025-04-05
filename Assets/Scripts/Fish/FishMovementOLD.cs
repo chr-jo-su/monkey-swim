@@ -143,7 +143,7 @@ public class FishMovementOLD : MonoBehaviour
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
             health -= damageTaken;
-            fishHealth.TakeDamage(BanarangDamage.instance.GetDamage());
+            fishHealth.TakeDamage(BananarangDamage.instance.GetDamage());
         }
 
         // yikes
