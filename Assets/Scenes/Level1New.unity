@@ -6720,6 +6720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 3243813035043964566, guid: 25b934e6857440743b44dc35d7302f1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6864461451864220544, guid: 25b934e6857440743b44dc35d7302f1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0

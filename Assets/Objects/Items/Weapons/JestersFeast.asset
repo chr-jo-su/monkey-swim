@@ -19,10 +19,13 @@ MonoBehaviour:
   durability: 100
   durabilityDecreasePerUse: 100
   damagePerAttack: 100
-  type: 2
+  type: 4
   itemID: 63364694
   isStackable: 1
   maxStackSize: 5
   oxygenBoost: 0
   healthBoost: 0
   speedBoost: 0
+  itemDamage: 12
+  oxygenChange: -2
+  accelerationChange: 0
