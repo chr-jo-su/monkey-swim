@@ -152,7 +152,7 @@ public class FishMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
-            fishHealth.TakeDamage(20);
+            fishHealth.TakeDamage(BanarangDamage.instance.GetDamage());
 
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;

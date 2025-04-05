@@ -25,6 +25,7 @@ public class BanarangDamage : MonoBehaviour
     {
         return damage;
     }
+
     public void ChangeDamage(int d) {
         damage += d;
     }
