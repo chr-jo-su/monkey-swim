@@ -20,6 +20,11 @@ public class AmmoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Script == null)
+        {
+            Script = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponManager>();
+        }
+
         Count = Script.BananarangCount;
 
         One.SetActive(false);

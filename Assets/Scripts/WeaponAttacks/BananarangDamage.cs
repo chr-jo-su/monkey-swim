@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BanarangDamage : MonoBehaviour
+public class BananarangDamage : MonoBehaviour
 {
     // Variables
-    public static BanarangDamage instance;
+    public static BananarangDamage instance;
     private int damage;
 
     private void Awake()
@@ -25,6 +25,7 @@ public class BanarangDamage : MonoBehaviour
     {
         return damage;
     }
+
     public void ChangeDamage(int d) {
         damage += d;
     }
