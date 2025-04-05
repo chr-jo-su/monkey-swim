@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingMenu: {fileID: 4980742537661116917}
   craftingMenuKey: 113
+  velocity: 5
 --- !u!114 &8384916767382428796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   recipes:
   - {fileID: 11400000, guid: 9c9ec562f657b9349b8fb3d70493dc2f, type: 2}
   - {fileID: 11400000, guid: f9e9932d461b6f944b03fe63f645f144, type: 2}
+  - {fileID: 11400000, guid: b59c4efda263645e5942a2d42c3f1ff1, type: 2}
   - {fileID: 11400000, guid: 7b56615a59f682543a45138048e19df7, type: 2}
   - {fileID: 11400000, guid: 71789c84ae1a6044d9629ee950dc2dd8, type: 2}
   craftingList: {fileID: 4727501809881433203}

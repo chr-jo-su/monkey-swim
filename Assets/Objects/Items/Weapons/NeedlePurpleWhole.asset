@@ -21,8 +21,8 @@ MonoBehaviour:
   damagePerAttack: 50
   type: 4
   itemID: 46096102
-  isStackable: 1
-  maxStackSize: 5
+  isStackable: 0
+  maxStackSize: 1
   oxygenBoost: 0
   healthBoost: -8
   speedBoost: 0
