@@ -1252,6 +1252,22 @@ PrefabInstance:
       value: playerLaunch (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
+      propertyPath: maxForceX
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
+      propertyPath: maxForceY
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
+      propertyPath: minForceX
+      value: -700
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
+      propertyPath: minForceY
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1621673447}
@@ -1263,6 +1279,10 @@ PrefabInstance:
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
+    - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
+      propertyPath: forceMultiplier
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4123254675902071843, guid: e08c73ecf66254b29b8ed9038bb630ec, type: 3}
       propertyPath: underWaterMusic
       value: 
