@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (damageTimerBoss > 0.0f)
             damageTimerBoss -= Time.deltaTime;
+
     }
 
     void FixedUpdate()
@@ -302,7 +303,12 @@ public class PlayerMovement : MonoBehaviour
         return inSea;
     }
 
-    public void stopMovement() {
+    public void stopMovement()
+    {
         moveSpeed = 0;
+    }
+    public void startMovement()
+    {
+        moveSpeed = 5f;
     }
 }
