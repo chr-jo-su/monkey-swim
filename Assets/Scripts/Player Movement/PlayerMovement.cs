@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] painsounds;
 
     private float damageTimerBoss = 0.0f;
-    private bool diddled;
 
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
@@ -49,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
         GameObject water = GameObject.FindGameObjectWithTag("Water");
         Color prevColor = water.GetComponent<SpriteRenderer>().color;
         water.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
-        diddled = false;
     }
 
     /// <summary>
@@ -79,18 +77,16 @@ public class PlayerMovement : MonoBehaviour
             RelinkAttributes();
         }
 
-        if (!diddled)
-        {
-            ProcessInputs();
+        ProcessInputs();
 
-            if (colorTimer <= 0)
-                GetComponent<SpriteRenderer>().color = Color.white;
-            else
-                colorTimer -= Time.deltaTime;
+        if (colorTimer <= 0)
+            GetComponent<SpriteRenderer>().color = Color.white;
+        else
+            colorTimer -= Time.deltaTime;
 
-            if (damageTimerBoss > 0.0f)
-                damageTimerBoss -= Time.deltaTime;
-        }
+        if (damageTimerBoss > 0.0f)
+            damageTimerBoss -= Time.deltaTime;
+
     }
 
     void FixedUpdate()
@@ -311,11 +307,8 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = 0;
     }
-
-    public IEnumerator Suffocate()
+    public void startMovement()
     {
-        diddled=true;
-        yield return new WaitForSeconds(3);
-        diddled=false;
+        moveSpeed = 5f;
     }
 }

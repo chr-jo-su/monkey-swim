@@ -1,30 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using Vector3 = UnityEngine.Vector3;
 
-public class BossMovement : MonoBehaviour
+public class BossWeird : MonoBehaviour
 {
-    // public static BossMovement instance;
-
-    public float health = 500.0f;
-    public BossHealthBar bossHealth;
-
     public PlayerMovement player;
-    // Start is called before the first frame update
-    public PlayerMovement player;
-    public int oxygenLoss = -15;
+    public int oxygenGain = -15;
     public float speed = 0.0f;
     public float deletePositionY = 20.0f;
+
+    public AudioSource soundeffects;
+    public AudioClip bubblePop;
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -41,12 +32,14 @@ public class BossMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            OxygenBar.instance.ChangeOxygen(oxygenLoss);
+            Debug.Log("aOOga");
+            OxygenBar.instance.ChangeOxygen(oxygenGain);
             PlayerMovement.instance.stopMovement();
             yield return new WaitForSeconds(3);
             PlayerMovement.instance.startMovement();
             // Destroy(gameObject);
 
+            soundeffects.PlayOneShot(bubblePop);
         }
     }
 }
