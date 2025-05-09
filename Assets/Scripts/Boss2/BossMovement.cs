@@ -15,7 +15,6 @@ public class BossMovement : MonoBehaviour
     public float health = 500.0f;
     public BossHealthBar bossHealth;
 
-    public PlayerMovement player;
     // Start is called before the first frame update
     public PlayerMovement player;
     public int oxygenLoss = -15;
@@ -29,12 +28,7 @@ public class BossMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
-
-        if (transform.position.y >= deletePositionY)
-        {
-            // Destroy(gameObject);
-        }
+        
     }
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
