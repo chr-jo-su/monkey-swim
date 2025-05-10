@@ -23,9 +23,11 @@ public class CraftingManager : MonoBehaviour
 
     public GameObject craftingFocusSlot;
     public TMP_Text craftingFocusTitleText;
+    public TMP_Text craftingFocusTypeText;
     public GameObject craftingQuantitySection;
     private Item currentSelectedItem;
     public TMP_Text craftingFocusResourcesText;
+    public TMP_Text craftingFocusBoostsText;
 
     public GameObject imagePrefab;
 
@@ -181,6 +183,8 @@ public class CraftingManager : MonoBehaviour
         // Set the text to the name of the item
         craftingFocusTitleText.text = selectedItem.itemName;
 
+        craftingFocusTypeText.text = selectedItem.type.ToString();
+
         // Find the recipe for the selected item
         CraftingRecipe selectedRecipe = itemToRecipeDictionary[selectedItem];
 
@@ -193,6 +197,32 @@ public class CraftingManager : MonoBehaviour
         }
 
         craftingFocusResourcesText.text = resourceText;
+
+        // Set the boosts text of the selected item
+        string boostsText = "";
+
+        if (selectedItem.oxygenBoost != 0)
+        {
+            boostsText += "Oxygen:             " + (selectedItem.oxygenBoost > 0 ? "+" : "") + selectedItem.oxygenBoost + "\n";
+        }
+        if (selectedItem.healthBoost != 0)
+        {
+            boostsText += "Health:              " + (selectedItem.healthBoost > 0 ? "+" : "") + selectedItem.healthBoost + "\n";
+        }
+        if (selectedItem.speedBoost != 0)
+        {
+            boostsText += "Speed:                " + (selectedItem.speedBoost > 0 ? "+" : "") + selectedItem.speedBoost + "\n";
+        }
+        if (selectedItem.itemDamage != 0)
+        {
+            boostsText += "Damage:            " + (selectedItem.itemDamage > 0 ? "+" : "") + selectedItem.itemDamage + "\n";
+        }
+        if (selectedItem.oxygenChange != 0)
+        {
+            boostsText += "Oxygen Change: " + (selectedItem.oxygenChange > 0 ? "+" : "") + selectedItem.oxygenChange + "\n";
+        }
+
+        craftingFocusBoostsText.text = boostsText;
 
         // Find out the maximum number of items that can be crafted
         int maxCraftable = InventoryManager.instance.GetMaximumCapacity(selectedItem);
@@ -217,7 +247,7 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        craftingQuantitySection.GetComponent<CraftingQuantityHandler>().ResetQuantitySection();
+        craftingQuantitySection.GetComponent<CraftingQuantityHandler>().ResetQuantitySection(maxCraftable == 0 ? 0 : 1);
         craftingQuantitySection.GetComponent<CraftingQuantityHandler>().SetMaxQuantity(maxCraftable);
     }
 
@@ -231,9 +261,10 @@ public class CraftingManager : MonoBehaviour
             Destroy(craftingFocusSlot.transform.GetChild(0).gameObject);
         }
 
-        craftingFocusTitleText.text = "Select an item to craft";
-
-        craftingFocusResourcesText.text = "Select an item to see the recipe.";
+        craftingFocusTitleText.text = "Item to craft";
+        craftingFocusResourcesText.text = "";
+        craftingFocusTypeText.text = "";
+        craftingFocusBoostsText.text = "";
 
         craftingQuantitySection.GetComponent<CraftingQuantityHandler>().ResetQuantitySection(0);
     }

@@ -8,11 +8,13 @@ public class CraftingQuantityHandler : MonoBehaviour {
     private int maxQuantity;
     [HideInInspector] public int currentQuantity;
 
-    public TMP_Text quantityText;
+    [SerializeField] private TMP_Text quantityText;
+    [SerializeField] private GameObject incrementButton;
+    [SerializeField] private GameObject decrementButton;
 
     // Start is called before the first frame update
     void Start() {
-        ResetQuantitySection();
+        ResetQuantitySection(0);
     }
 
     /// <summary>
@@ -21,6 +23,7 @@ public class CraftingQuantityHandler : MonoBehaviour {
     /// <param name="maxQuantity">An integer specifying the maximum allowed quantity.</param>
     public void SetMaxQuantity(int maxQuantity) {
         this.maxQuantity = maxQuantity;
+        CheckToHide();
     }
 
     /// <summary>
@@ -28,9 +31,10 @@ public class CraftingQuantityHandler : MonoBehaviour {
     /// </summary>
     public void IncrementQuantity() {
         currentQuantity++;
-        currentQuantity = Mathf.Clamp(currentQuantity, 0, maxQuantity);
+        currentQuantity = Mathf.Clamp(currentQuantity, maxQuantity == 0 ? 0 : 1, maxQuantity);
 
         SetText();
+        CheckToHide();
     }
 
     /// <summary>
@@ -38,17 +42,18 @@ public class CraftingQuantityHandler : MonoBehaviour {
     /// </summary>
     public void DecrementQuantity() {
         currentQuantity--;
-        currentQuantity = Mathf.Clamp(currentQuantity, 0, maxQuantity);
+        currentQuantity = Mathf.Clamp(currentQuantity, maxQuantity == 0? 0 : 1, maxQuantity);
 
         SetText();
+        CheckToHide();
     }
 
     /// <summary>
     /// Resets the variables and text to the original values.
     /// </summary>
-    public void ResetQuantitySection() {
+    public void ResetQuantitySection(int startAmount) {
         maxQuantity = 0;
-        currentQuantity = 0;
+        currentQuantity = startAmount;
 
         SetText();
     }
@@ -58,5 +63,11 @@ public class CraftingQuantityHandler : MonoBehaviour {
     /// </summary>
     private void SetText() {
         quantityText.text = currentQuantity.ToString();
+    }
+
+    private void CheckToHide()
+    {
+        incrementButton.SetActive(maxQuantity > 0 && currentQuantity < maxQuantity);
+        decrementButton.SetActive(currentQuantity > 1);
     }
 }
