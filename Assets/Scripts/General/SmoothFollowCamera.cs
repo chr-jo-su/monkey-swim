@@ -11,7 +11,9 @@ public class SmoothFollowCamera : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        if (playerObject.GetComponent<PlayerMovement>())
+            smoothTime = 1 / playerObject.GetComponent<PlayerMovement>().moveSpeed * 1.6f;
         Vector3 targetPosition = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y, transform.position.z);
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }

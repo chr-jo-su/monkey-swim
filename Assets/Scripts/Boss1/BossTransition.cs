@@ -34,6 +34,8 @@ public class BossTransition : MonoBehaviour
     /// </summary>
     public void TeleportPlayerToBossScene()
     {
+        PlayerHealthBar.instance.Heal(999999999);
+        OxygenBar.instance.ChangeOxygen(999999999);
         StartCoroutine(LoadBossScene());
     }
 
