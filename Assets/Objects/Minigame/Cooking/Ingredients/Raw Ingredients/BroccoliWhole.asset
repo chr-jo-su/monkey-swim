@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
   m_Name: BroccoliWhole
   m_EditorClassIdentifier: 
+  ingredientID: 3338607
   ingredientName: Whole Broccoli
   itemSprite: {fileID: 21300000, guid: 3eb58abac03f28e4985abe5b97edcfe0, type: 3}
   ingredientType: 1
   timeToConvert: 0
   clicksToConvert: 10
   nextForms:
+  - {fileID: 11400000, guid: 09156e76f7c046049bcf297f2d191b84, type: 2}
   - {fileID: 11400000, guid: 09156e76f7c046049bcf297f2d191b84, type: 2}

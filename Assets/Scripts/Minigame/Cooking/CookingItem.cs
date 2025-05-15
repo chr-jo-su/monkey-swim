@@ -11,11 +11,15 @@ public class CookingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public Image image;
     [HideInInspector] public CookingIngredient storedIngredient;
 
-    private int clickCount = 0;
+    private float clickCount = 0;
     private float timeCount = 0f;
+
     private bool clickStarted = false;
     private bool timerStarted = false;
+
     private bool converted = false;
+
+    [SerializeField] private Slider conversionBar;
 
     [SerializeField] private GameObject tooltipPrefab;
 
@@ -36,6 +40,39 @@ public class CookingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             converted = true;
             CookingAreaManager.instance.ConvertCurrentItem();
+        }
+
+        if (!isOnPrepArea)
+        {
+            timerStarted = false;
+            timeCount = 0f;
+
+            clickStarted = false;
+            clickCount = 0;
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+        else if (isOnPrepArea)
+        {
+            if (storedIngredient.ingredientType != IngredientType.None)
+            {
+                foreach (Transform child in transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+
+            if (storedIngredient.ingredientType == IngredientType.Clickable)
+            {
+                conversionBar.value = (storedIngredient.clicksToConvert - clickCount) / storedIngredient.clicksToConvert;
+            }
+            else if (storedIngredient.ingredientType == IngredientType.Timed)
+            {
+                conversionBar.value = (storedIngredient.timeToConvert - timeCount) / storedIngredient.timeToConvert;
+            }
         }
     }
 
