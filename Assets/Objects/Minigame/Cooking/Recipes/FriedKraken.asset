@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c537016f974dd594086450361cb28ff2, type: 3}
+  m_Name: FriedKraken
+  m_EditorClassIdentifier: 
+  recipeName: Fried Kraken
+  ingredients:
+  - {fileID: 11400000, guid: 0ea6ec098991d8144bce0593514511b4, type: 2}
+  - {fileID: 11400000, guid: 3bd3aacb89d916042912432318dc92e5, type: 2}
+  - {fileID: 11400000, guid: 0ea6ec098991d8144bce0593514511b4, type: 2}
+  - {fileID: 11400000, guid: dd175426e0039aa4eae787a1acec11b2, type: 2}
+  - {fileID: 11400000, guid: 0ae929a0589dc964e8e77ae270987b63, type: 2}
+  - {fileID: 11400000, guid: dd175426e0039aa4eae787a1acec11b2, type: 2}
+  - {fileID: 11400000, guid: ec24765d24ecbec419a10c55345bad59, type: 2}
+  - {fileID: 11400000, guid: 0ae929a0589dc964e8e77ae270987b63, type: 2}
+  - {fileID: 11400000, guid: 5a73535ec45989b49ba57109f74e9176, type: 2}
+  maxTime: 45

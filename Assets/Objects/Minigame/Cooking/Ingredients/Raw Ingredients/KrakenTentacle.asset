@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
+  m_Name: KrakenTentacle
+  m_EditorClassIdentifier: 
+  ingredientID: 80696512
+  ingredientName: Kraken Tentacle
+  itemSprite: {fileID: 21300000, guid: 83ecea0014088364284511b08bc87cf9, type: 3}
+  ingredientType: 1
+  timeToConvert: 0
+  clicksToConvert: 30
+  nextForms:
+  - {fileID: 11400000, guid: 0ea6ec098991d8144bce0593514511b4, type: 2}

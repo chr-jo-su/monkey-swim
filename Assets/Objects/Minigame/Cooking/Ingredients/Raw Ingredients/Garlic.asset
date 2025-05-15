@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
+  m_Name: Garlic
+  m_EditorClassIdentifier: 
+  ingredientID: 45241084
+  ingredientName: Garlic
+  itemSprite: {fileID: 21300000, guid: b1956236e99cecc4eab4666b44122166, type: 3}
+  ingredientType: 1
+  timeToConvert: 0
+  clicksToConvert: 5
+  nextForms:
+  - {fileID: 11400000, guid: 189a2300732ef6648856997577374cd8, type: 2}
