@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1720570928612291584}
   - component: {fileID: 400319202692485920}
   - component: {fileID: 3720858118090455678}
-  - component: {fileID: 6940917230295908747}
   - component: {fileID: 7890688098070816704}
   - component: {fileID: 5078265877535129589}
+  - component: {fileID: 7038304377229656263}
   m_Layer: 5
   m_Name: ReferenceSlot
   m_TagString: Untagged
@@ -78,21 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6940917230295908747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3553016272845506849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f842e736ec6c87e47a3c1dd8f8a52af0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 3720858118090455678}
-  inventoryItemPrefab: {fileID: 903062702048024672, guid: cf00059ae5ccd2d47817e0f591159d19, type: 3}
-  selectedScale: {x: 2.25, y: 2.25, z: 2.25}
 --- !u!114 &7890688098070816704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +117,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0.08235294, g: 1, b: 0, a: 0.72156864}
   m_EffectDistance: {x: 0, y: 0}
   m_UseGraphicAlpha: 1
+--- !u!114 &7038304377229656263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3553016272845506849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645d1abae24c4344ba947e79455a8684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 3720858118090455678}
+  CookingIngredientPrefab: {fileID: 903062702048024672, guid: c95490377fbdf4240aa2578fbe36194b, type: 3}

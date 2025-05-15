@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7183750126879639072}
   - component: {fileID: 856654786209152025}
   - component: {fileID: 3353799045401145473}
-  - component: {fileID: 9063796906452023895}
   - component: {fileID: 6563417206896376631}
   - component: {fileID: 7807262942615289430}
+  - component: {fileID: 6935507120292792713}
   m_Layer: 5
   m_Name: CookingSlot
   m_TagString: Untagged
@@ -78,21 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9063796906452023895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8494835151845287566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f842e736ec6c87e47a3c1dd8f8a52af0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 3353799045401145473}
-  inventoryItemPrefab: {fileID: 903062702048024672, guid: cf00059ae5ccd2d47817e0f591159d19, type: 3}
-  selectedScale: {x: 2.25, y: 2.25, z: 2.25}
 --- !u!114 &6563417206896376631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,11 +109,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8494835151845287566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.08235294, g: 1, b: 0, a: 0.72156864}
-  m_EffectDistance: {x: 0, y: 0}
+  m_EffectColor: {r: 1, g: 0, b: 0.2551365, a: 0.78431374}
+  m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &6935507120292792713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494835151845287566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462e5a41df80bca4c9289c9f26d97cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 3353799045401145473}
+  CookingIngredientPrefab: {fileID: 903062702048024672, guid: c95490377fbdf4240aa2578fbe36194b, type: 3}
