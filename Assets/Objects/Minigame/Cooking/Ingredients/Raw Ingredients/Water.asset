@@ -20,3 +20,9 @@ MonoBehaviour:
   clicksToConvert: 0
   nextForms:
   - {fileID: 11400000, guid: 3939467849d72da4982290d5958f948a, type: 2}
+  inProgressSFXClips:
+  - {fileID: 8300000, guid: 0bc3f52ec54c23e489e1371b4c396d5f, type: 3}
+  - {fileID: 8300000, guid: e8b2e640689772742b9994f2b1df09b9, type: 3}
+  completedSFXClips:
+  - {fileID: 8300000, guid: 2657c45b1eac65b408a0fad41a386aad, type: 3}
+  - {fileID: 8300000, guid: cf9fccfe3884a6a4eb7303b71229f1d2, type: 3}

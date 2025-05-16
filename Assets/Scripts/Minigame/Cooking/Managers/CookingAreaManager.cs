@@ -50,6 +50,9 @@ public class CookingAreaManager : MonoBehaviour
         List<CookingIngredient> nextForms = ingredientPrepAreaSlot.GetStoredIngredient().nextForms;
         float scale = ingredientPrepAreaSlot.GetStoredIngredientScale();
 
+        // Play completed sound effect
+        CookingMinigameManager.instance.PlaySFX(ingredientPrepAreaSlot.GetStoredIngredient().GetRandomCompletedSFXClip());
+
         // Remove it and add the next form items to the prep area
         ingredientPrepAreaSlot.RemoveIngredients();
 

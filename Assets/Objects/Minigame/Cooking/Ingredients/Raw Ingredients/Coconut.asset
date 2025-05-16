@@ -21,3 +21,11 @@ MonoBehaviour:
   nextForms:
   - {fileID: 11400000, guid: 0ae929a0589dc964e8e77ae270987b63, type: 2}
   - {fileID: 11400000, guid: 3bd3aacb89d916042912432318dc92e5, type: 2}
+  inProgressSFXClips:
+  - {fileID: 8300000, guid: 609a4b0f17d5fb04fb5f60079d1c5b6c, type: 3}
+  - {fileID: 8300000, guid: a20542be45f3f114eb5b78736ae5c56f, type: 3}
+  - {fileID: 8300000, guid: 4c5daddbd76bd3e4a88438edb756dad4, type: 3}
+  completedSFXClips:
+  - {fileID: 8300000, guid: b01a6a752ea34e949a73cb52b90ac1a5, type: 3}
+  - {fileID: 8300000, guid: 9e621e8eb273315498c0480b215d7e2c, type: 3}
+  - {fileID: 8300000, guid: 86cb09060ccffb344b7eb4c68d0d3860, type: 3}

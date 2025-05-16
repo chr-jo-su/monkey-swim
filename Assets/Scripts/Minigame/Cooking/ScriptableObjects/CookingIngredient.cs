@@ -30,6 +30,12 @@ public class CookingIngredient : ScriptableObject
     [Tooltip("The ingredients that the current ingredient converts to once it's finished with clicking or waiting. This value will be null if it's the final form or it can be multiple if there's more than one thing that's made from it.")]
     public List<CookingIngredient> nextForms;
 
+    [Tooltip("The sound effects that will be played when the ingredient is clicked (can be used for timed or clickable ingredients).")]
+    public List<AudioClip> inProgressSFXClips;
+
+    [Tooltip("The sound effects that will be played when the ingredient is clicked (can be used for timed or clickable ingredients).")]
+    public List<AudioClip> completedSFXClips;
+
     /// <summary>
     /// Generates a random item ID through an option in the Inspector when the ingredientID variable is right-clicked.
     /// This should be unique to each ingredient, not to each instance of every ingredient.
@@ -37,6 +43,16 @@ public class CookingIngredient : ScriptableObject
     private void GenerateIngredientID()
     {
         ingredientID = Random.Range(0, 99999999);
+    }
+
+    public AudioClip GetRandomInProgressSFXClip()
+    {
+        return inProgressSFXClips.Count > 0 ? inProgressSFXClips[Random.Range(0, inProgressSFXClips.Count)] : null;
+    }
+
+    public AudioClip GetRandomCompletedSFXClip()
+    {
+        return completedSFXClips.Count > 0 ? completedSFXClips[Random.Range(0, completedSFXClips.Count)] : null;
     }
 }
 

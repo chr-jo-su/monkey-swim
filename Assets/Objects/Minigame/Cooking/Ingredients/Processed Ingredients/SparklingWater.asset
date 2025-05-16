@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
-  m_Name: SparklingWater 1
+  m_Name: SparklingWater
   m_EditorClassIdentifier: 
   ingredientName: Sparkling Water
   itemSprite: {fileID: 21300000, guid: a12f1a5efa21c934f92c6c33850a61f0, type: 3}

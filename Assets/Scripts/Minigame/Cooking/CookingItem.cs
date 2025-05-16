@@ -91,10 +91,12 @@ public class CookingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             clickStarted = true;
             clickCount++;
+            CookingMinigameManager.instance.PlaySFX(storedIngredient.GetRandomInProgressSFXClip());
         }
         else if (storedIngredient.ingredientType == IngredientType.Timed && !timerStarted)
         {
             timerStarted = true;
+            CookingMinigameManager.instance.PlaySFX(storedIngredient.GetRandomInProgressSFXClip());
         }
     }
 
@@ -155,6 +157,7 @@ public class CookingItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
+            CookingMinigameManager.instance.PlayClickSFX();
         }
     }
 

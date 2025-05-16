@@ -10,7 +10,9 @@ public class CookingMinigameManager : MonoBehaviour
     private float timer = 0f;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    private bool hasGameStarted = false;
     private bool isGameOver = false;
+    [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private TextMeshProUGUI winScreenText;
 
@@ -18,6 +20,11 @@ public class CookingMinigameManager : MonoBehaviour
 
     [SerializeField] private List<CookingRecipe> recipeList;
     private int currentRecipeIndex = -1;
+
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private List<AudioClip> dropSFX;
+    [SerializeField] private List<AudioClip> recipeSubmitCorrectSFX;
+    [SerializeField] private List<AudioClip> recipeSubmitIncorrectSFX;
 
     // Create a singleton instance of this game
     public static CookingMinigameManager instance;
@@ -60,6 +67,11 @@ public class CookingMinigameManager : MonoBehaviour
         if (completed)
         {
             ShowNextRecipe();
+            PlayRecipeSubmitSFX(true);
+        }
+        else
+        {
+            PlayRecipeSubmitSFX(false);
         }
     }
 
@@ -69,6 +81,7 @@ public class CookingMinigameManager : MonoBehaviour
 
         if (currentRecipeIndex >= recipeList.Count)
         {
+            isGameOver = true;
             ShowEndScreen(true);
         }
         else
@@ -86,7 +99,7 @@ public class CookingMinigameManager : MonoBehaviour
 
     private void UpdateTimer()
     {
-        if (!isGameOver)
+        if (!isGameOver && hasGameStarted)
         {
             timer -= Time.deltaTime;
             timerText.text = timer.ToString("F1");
@@ -114,5 +127,52 @@ public class CookingMinigameManager : MonoBehaviour
         {
             winScreenText.text = "You lose!";
         }
+    }
+
+    public void PlayClickSFX()
+    {
+        sfxSource.PlayOneShot(dropSFX.Count > 0 ? dropSFX[Random.Range(0, dropSFX.Count)] : null);
+    }
+
+    public void PlayRecipeSubmitSFX(bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            sfxSource.PlayOneShot(recipeSubmitCorrectSFX.Count > 0 ? recipeSubmitCorrectSFX[Random.Range(0, recipeSubmitCorrectSFX.Count)] : null);
+        }
+        else
+        {
+            sfxSource.PlayOneShot(recipeSubmitIncorrectSFX.Count > 0 ? recipeSubmitIncorrectSFX[Random.Range(0, recipeSubmitIncorrectSFX.Count)] : null);
+        }
+    }
+
+    public void PlaySFX(AudioClip sfx)
+    {
+        sfxSource.PlayOneShot(sfx);
+    }
+
+    public void RestartMinigame()
+    {
+        currentRecipeIndex = -1;
+        ShowNextRecipe();
+
+        winScreen.SetActive(false);
+        startScreen.SetActive(true);
+
+        hasGameStarted = false;
+        isGameOver = false;
+    }
+
+    public void ExitMinigame()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void StartGame()
+    {
+        PlayClickSFX();
+
+        startScreen.SetActive(false);
+        hasGameStarted = true;
     }
 }
