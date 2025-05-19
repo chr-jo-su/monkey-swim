@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using Vector3 = UnityEngine.Vector3;
 
 public class BossMovement : MonoBehaviour
 {
@@ -19,7 +17,10 @@ public class BossMovement : MonoBehaviour
     public PlayerMovement player;
     public int oxygenLoss = -15;
     public float speed = 0.0f;
-    public float deletePositionY = 20.0f;
+    private bool isJumping = true;
+    private bool facingRight = false;
+    public Rigidbody2D rb;
+
 
     private void Start()
     {
@@ -28,7 +29,26 @@ public class BossMovement : MonoBehaviour
 
     private void Update()
     {
-        
+        if (isJumping)
+        {
+            if (facingRight)
+            {
+                Debug.Log("JUMP!");
+                rb.velocity = new Vector2(5 * GetForceDivide(), Mathf.Abs(transform.position.x - 1));
+            }
+            else
+            {
+                rb.velocity = new Vector2(-(Mathf.Abs(transform.position.x - 5)), 5 * GetForceDivide());
+            }
+        }
+    }
+
+    private float GetForceDivide()
+    {
+        float aiY = transform.position.y;
+        float destinationY = 2;
+        float test = Mathf.Abs(aiY - destinationY);
+        return aiY > destinationY ? 1f / test : 1f;
     }
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
