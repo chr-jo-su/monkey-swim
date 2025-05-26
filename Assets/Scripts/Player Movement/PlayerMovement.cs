@@ -45,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
     {
         instance = this;
 
-        GameObject water = GameObject.FindGameObjectWithTag("Water");
-        Color prevColor = water.GetComponent<SpriteRenderer>().color;
-        water.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
+        // GameObject water = GameObject.FindGameObjectWithTag("Water");
+        // Color prevColor = water.GetComponent<SpriteRenderer>().color;
+        // water.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
     }
 
     /// <summary>
