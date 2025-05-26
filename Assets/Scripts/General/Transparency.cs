@@ -18,9 +18,9 @@ public class Transparency : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monkey"))
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("hi");
+            GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
         }
     }
 }
