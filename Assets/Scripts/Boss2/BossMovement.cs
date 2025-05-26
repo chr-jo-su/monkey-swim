@@ -17,39 +17,68 @@ public class BossMovement : MonoBehaviour
     public PlayerMovement player;
     public int oxygenLoss = -15;
     public float speed = 0.0f;
-    private bool isJumping = true;
-    private bool facingRight = false;
+    // private bool isJumping = true;
+    // private bool facingRight = false;
     public Rigidbody2D rb;
+    public bool moving = true;
+    public int directionY = 1;
+    public int directionX = -1;
+    public float moveSpeed = 2.5f;
+    Vector2 v;
 
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        v = new Vector2(directionX, directionY);
     }
 
     private void Update()
     {
-        if (isJumping)
+        // if (moving)
+        // {
+        //     rb.MovePosition(rb.position + direction*movement*moveSpeed*Time.fixedDeltaTime);
+        // }
+
+        if (transform.position.y >= 7)
         {
-            if (facingRight)
-            {
-                Debug.Log("JUMP!");
-                rb.velocity = new Vector2(5 * GetForceDivide(), Mathf.Abs(transform.position.x - 1));
-            }
-            else
-            {
-                rb.velocity = new Vector2(-(Mathf.Abs(transform.position.x - 5)), 5 * GetForceDivide());
-            }
+            moving = true;
+            directionY = -1;
         }
+
+        if (transform.position.x <= -11)
+        {
+            Debug.Log("AHHHHH");
+            moving = true;
+            directionX = 1;
+        }
+        if (transform.position.x >= 11)
+        {
+            moving = true;
+            directionX = -2;
+        }
+
+        if (transform.position.y <= -2)
+        {
+            Debug.Log("AHHHHH");
+            moving = true;
+            directionY = 1;
+        }
+
+
+        v = new Vector2(directionX, directionY);
+
+        rb.AddForce(v.normalized * moveSpeed);
+
     }
 
-    private float GetForceDivide()
-    {
-        float aiY = transform.position.y;
-        float destinationY = 2;
-        float test = Mathf.Abs(aiY - destinationY);
-        return aiY > destinationY ? 1f / test : 1f;
-    }
+    // private float GetForceDivide()
+    // {
+    //     float aiY = transform.position.y;
+    //     float destinationY = 2;
+    //     float test = Mathf.Abs(aiY - destinationY);
+    //     return aiY > destinationY ? 1f / test : 1f;
+    // }
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
