@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
   m_Name: CoconutOil
   m_EditorClassIdentifier: 
+  ingredientID: 0
   ingredientName: Coconut Oil
-  itemSprite: {fileID: 21300000, guid: b80870bd489a7524294eecde10e71823, type: 3}
+  itemSprite: {fileID: 21300000, guid: 9189c4ec37a1fc146901ca53289d63ab, type: 3}
+  ingredientType: 0
+  timeToConvert: 0
+  clicksToConvert: 0
+  nextForms: []
+  inProgressSFXClips: []
+  completedSFXClips: []

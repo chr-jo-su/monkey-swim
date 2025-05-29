@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
   m_Name: HeavyCream
   m_EditorClassIdentifier: 
+  ingredientID: 0
   ingredientName: Heavy Cream
-  itemSprite: {fileID: 21300000, guid: 6be2d7022b47720478ac6031fe658314, type: 3}
+  itemSprite: {fileID: 21300000, guid: 9c70d00ee1a4bd4459a6a1110e8335a3, type: 3}
+  ingredientType: 0
+  timeToConvert: 0
+  clicksToConvert: 0
+  nextForms: []
+  inProgressSFXClips: []
+  completedSFXClips: []

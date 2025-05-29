@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientID: 58921014
   ingredientName: Egg
-  itemSprite: {fileID: 21300000, guid: e470780044cf4774d99c74abe75bf86e, type: 3}
+  itemSprite: {fileID: 21300000, guid: 4c32cd26d925f7b4ca3d4875236e2c53, type: 3}
   ingredientType: 2
   timeToConvert: 5
   clicksToConvert: 0

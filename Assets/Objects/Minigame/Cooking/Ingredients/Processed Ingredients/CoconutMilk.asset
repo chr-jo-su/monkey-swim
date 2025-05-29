@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
   m_Name: CoconutMilk
   m_EditorClassIdentifier: 
+  ingredientID: 0
   ingredientName: Coconut Milk
-  itemSprite: {fileID: 21300000, guid: cc60cac3de4da6f408373458cdcb9b85, type: 3}
+  itemSprite: {fileID: 21300000, guid: 3735c47b199371e40981db8651040cfb, type: 3}
+  ingredientType: 0
+  timeToConvert: 0
+  clicksToConvert: 0
+  nextForms: []
+  inProgressSFXClips: []
+  completedSFXClips: []

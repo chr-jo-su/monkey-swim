@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientID: 98532006
   ingredientName: Coconut
-  itemSprite: {fileID: 21300000, guid: 919cd5af271f81a478f0a51ce8ca003a, type: 3}
+  itemSprite: {fileID: 21300000, guid: faa568f3cfa3dbc488b9101bc1d202c9, type: 3}
   ingredientType: 1
   timeToConvert: 0
   clicksToConvert: 20

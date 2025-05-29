@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientID: 80696512
   ingredientName: Kraken Tentacle
-  itemSprite: {fileID: 21300000, guid: 83ecea0014088364284511b08bc87cf9, type: 3}
+  itemSprite: {fileID: 21300000, guid: 3079be30271ece147a36beba0bd22694, type: 3}
   ingredientType: 1
   timeToConvert: 0
   clicksToConvert: 30

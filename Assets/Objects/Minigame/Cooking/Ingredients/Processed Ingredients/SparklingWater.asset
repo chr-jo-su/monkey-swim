@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
   m_Name: SparklingWater
   m_EditorClassIdentifier: 
+  ingredientID: 0
   ingredientName: Sparkling Water
-  itemSprite: {fileID: 21300000, guid: a12f1a5efa21c934f92c6c33850a61f0, type: 3}
+  itemSprite: {fileID: 21300000, guid: e8c9226bdfd33ea499bdd94d5905bc33, type: 3}
+  ingredientType: 0
+  timeToConvert: 0
+  clicksToConvert: 0
+  nextForms: []
+  inProgressSFXClips: []
+  completedSFXClips: []

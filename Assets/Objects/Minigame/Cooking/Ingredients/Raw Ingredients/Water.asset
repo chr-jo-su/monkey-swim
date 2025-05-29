@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientID: 94444739
   ingredientName: Water
-  itemSprite: {fileID: 21300000, guid: 1491d43b7441b0f449b331e62530162a, type: 3}
+  itemSprite: {fileID: 21300000, guid: 723c575954b8fee4eb8a2d59bdecbbe4, type: 3}
   ingredientType: 2
   timeToConvert: 7
   clicksToConvert: 0
