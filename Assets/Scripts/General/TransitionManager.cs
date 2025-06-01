@@ -25,6 +25,10 @@ public class TransitionManager : MonoBehaviour
     private Func<string, bool> additionalCode;
     private bool additionalCodeHasRun = false;
 
+    // Add these fields at the top of your class:
+    private bool waitingAfterCustomCode = true;
+    private float waitTimer = 1.5f;
+
     /// <summary>
     /// Hides the transition screen on start and sets the positions for the start and end.
     /// </summary>
@@ -85,6 +89,16 @@ public class TransitionManager : MonoBehaviour
                 {
                     // Custom code has been run and completed at this point (this could include copying items over or removing specific items)
                     additionalCodeHasRun = true;
+
+                    if (waitingAfterCustomCode)
+                    {
+                        waitTimer -= Time.unscaledDeltaTime;
+                        if (waitTimer > 0f)
+                        {
+                            return; // Wait until the timer runs out
+                        }
+                        waitingAfterCustomCode = false;
+                    }
 
                     // Check if the other scenes can be unloaded (not including the new or transition scene)
                     if (canUnloadOldScenes)
