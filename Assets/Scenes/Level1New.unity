@@ -12630,6 +12630,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1889461596}
     - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: soundeffects
+      value: 
+      objectReference: {fileID: 930167278}
+    - target: {fileID: 1536919061356436556, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: seaLineObject
       value: 
       objectReference: {fileID: 1998483635}
@@ -12745,6 +12749,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
+      propertyPath: soundeffects
+      value: 
+      objectReference: {fileID: 930167278}
     - target: {fileID: 8320751795465293374, guid: bb95059c729f24ff9a8605c2c03ceb9a, type: 3}
       propertyPath: swoosheffects.Array.size
       value: 7
@@ -14043,6 +14051,11 @@ Transform:
 --- !u!82 &895752724 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
+  m_PrefabInstance: {fileID: 1475110400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &930167278 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 918413383949809835, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
   m_PrefabInstance: {fileID: 1475110400}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1011868312
