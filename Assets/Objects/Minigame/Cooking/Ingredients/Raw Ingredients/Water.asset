@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  ingredientID: 94444739
+  ingredientName: Water
+  itemSprite: {fileID: 21300000, guid: 723c575954b8fee4eb8a2d59bdecbbe4, type: 3}
+  ingredientType: 2
+  timeToConvert: 7
+  clicksToConvert: 0
+  nextForms:
+  - {fileID: 11400000, guid: 3939467849d72da4982290d5958f948a, type: 2}
+  inProgressSFXClips:
+  - {fileID: 8300000, guid: 0bc3f52ec54c23e489e1371b4c396d5f, type: 3}
+  - {fileID: 8300000, guid: e8b2e640689772742b9994f2b1df09b9, type: 3}
+  completedSFXClips:
+  - {fileID: 8300000, guid: 2657c45b1eac65b408a0fad41a386aad, type: 3}
+  - {fileID: 8300000, guid: cf9fccfe3884a6a4eb7303b71229f1d2, type: 3}
