@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Objects/Item")]
 public class Item : ScriptableObject
 {
-    // Item descriptors
     [Header("Visible to players")]
 
     [Tooltip("The name of the item that will be displayed in the inventory.")]

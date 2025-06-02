@@ -45,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
     {
         instance = this;
 
-        GameObject water = GameObject.FindGameObjectWithTag("Water");
-        Color prevColor = water.GetComponent<SpriteRenderer>().color;
-        water.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
+        // GameObject water = GameObject.FindGameObjectWithTag("Water");
+        // Color prevColor = water.GetComponent<SpriteRenderer>().color;
+        // water.GetComponent<SpriteRenderer>().color = new Color(prevColor.r, prevColor.g, prevColor.b, 0.96f);
     }
 
     /// <summary>
@@ -92,6 +92,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
+        if (transform.position.y > seaLineObject.transform.position.y)
+        {
+            inSea = false;
+        }
+        else
+        {
+            inSea = true;
+        }
     }
 
     /// <summary>
@@ -216,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(dir * 50);
             if (!soundeffects)
                 soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
-                    
+
             int idx = UnityEngine.Random.Range(0, painsounds.Length);
             soundeffects.PlayOneShot(painsounds[idx]);
         }
@@ -227,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
             colorTimer = 0.1f;
             if (!soundeffects)
                 soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
-                    
+
             int idx = UnityEngine.Random.Range(0, painsounds.Length);
             soundeffects.PlayOneShot(painsounds[idx]);
             damageTimerBoss = 1.0f;

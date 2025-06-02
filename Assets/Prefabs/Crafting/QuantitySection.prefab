@@ -396,6 +396,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentQuantity: 0
   quantityText: {fileID: 2733377536547935318}
+  incrementButton: {fileID: 2693487894279551090}
+  decrementButton: {fileID: 7000882167163610993}
 --- !u!1 &6626511499514781509
 GameObject:
   m_ObjectHideFlags: 0

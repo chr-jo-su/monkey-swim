@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
+public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+{
     // Variables
     public Item storedItem;
 
@@ -16,7 +17,8 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     private bool allowTooltip = true;
 
     // Awake is called when the script instance is being loaded
-    private void Awake() {
+    private void Awake()
+    {
         deselectedScale = transform.localScale;
         DeselectSlot();
     }
@@ -26,7 +28,8 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// </summary>
     /// <param name="newItem">The item to be added to the slot.</param>
     /// <param name="imagePrefab">The prefab of the image to be shown in the slot.</param>
-    public void InitialiseSlot(Item newItem, GameObject imagePrefab) {
+    public void InitialiseSlot(Item newItem, GameObject imagePrefab)
+    {
         storedItem = newItem;
 
         // Add an image game object to the slot
@@ -39,14 +42,16 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// <summary>
     /// Change the color of the slot to indicate that it is selected.
     /// </summary>
-    public void SelectSlot() {
+    public void SelectSlot()
+    {
         transform.localScale = selectedScale;
     }
 
     /// <summary>
     /// Change the color of the slot to indicate that it is deselected.
     /// </summary>
-    public void DeselectSlot() {
+    public void DeselectSlot()
+    {
         transform.localScale = deselectedScale;
     }
 
@@ -54,7 +59,8 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// Selects the slot when clicked. Deselects all other slots.
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerClick(PointerEventData eventData) {
+    public void OnPointerClick(PointerEventData eventData)
+    {
         CraftingManager.instance.DeselectAllSlots();
         SelectSlot();
         CraftingManager.instance.ShowSelectedRecipe(storedItem);
@@ -64,7 +70,8 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// Checks if the mouse was hovering over the object for a certain amount of time.
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerEnter(PointerEventData eventData) {
+    public void OnPointerEnter(PointerEventData eventData)
+    {
         allowTooltip = true;
         Invoke("ShowTooltip", tooltipDelay);
     }
@@ -73,15 +80,18 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     /// Don't try to show the tooltip if the mouse exits the object.
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerExit(PointerEventData eventData) {
+    public void OnPointerExit(PointerEventData eventData)
+    {
         allowTooltip = false;
     }
 
     /// <summary>
     /// Shows a menu for the inventory item when hovered over. The ItemTooltip script handles destroying the object.
     /// </summary>
-    public void ShowTooltip() {
-        if (allowTooltip) {
+    public void ShowTooltip()
+    {
+        if (allowTooltip)
+        {
             // Instantiate the tooltip
             GameObject newGameObjectItem = Instantiate(tooltipPrefab, transform.root);
 
@@ -94,16 +104,35 @@ public class CraftingSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             newGameObjectItem.transform.position = Input.mousePosition;
 
             // Check if the tooltip is off the screen and make it always show fully
-            if (Input.mousePosition.y - height < 0) {
+            if (Input.mousePosition.y - height < 0)
+            {
                 newGameObjectItem.transform.position = new Vector3(newGameObjectItem.transform.position.x, height, newGameObjectItem.transform.position.z);
             }
-            if (Input.mousePosition.x + width > Screen.width) {
+            if (Input.mousePosition.x + width > Screen.width)
+            {
                 newGameObjectItem.transform.position = new Vector3(Screen.width - width, newGameObjectItem.transform.position.y, newGameObjectItem.transform.position.z);
             }
 
             // Set the text for the item info
             ItemTooltip tooltip = newGameObjectItem.GetComponent<ItemTooltip>();
-            tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+
+            if (storedItem.itemDescription == "")
+            {
+                // Show the boosts instead of the manually added description
+                string oxygenBoost = storedItem.oxygenBoost != 0 ? "Max oxygen: " + storedItem.oxygenBoost + "\n" : "";
+                string healthBoost = storedItem.healthBoost != 0 ? "Max health: " + storedItem.healthBoost + "\n" : "";
+                string speedBoost = storedItem.speedBoost != 0 ? "Max speed: " + storedItem.speedBoost + "\n" : "";
+                string itemDamage = storedItem.itemDamage != 0 ? "Attack damage: " + storedItem.itemDamage + "\n" : "";
+                string oxygenChange = storedItem.oxygenChange != 0 ? "Oxygen Rate: " + storedItem.oxygenChange + "\n" : "";
+
+                string description = oxygenBoost + healthBoost + speedBoost + itemDamage + oxygenChange;
+
+                tooltip.SetItemInfoText(storedItem.itemName, description);
+            }
+            else
+            {
+                tooltip.SetItemInfoText(storedItem.itemName, storedItem.itemDescription);
+            }
         }
     }
 }
