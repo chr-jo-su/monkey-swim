@@ -21,10 +21,12 @@ public class BossMovement : MonoBehaviour
     // private bool facingRight = false;
     public Rigidbody2D rb;
     public bool moving = true;
-    public int directionY = 1;
-    public int directionX = -1;
-    public float moveSpeed = 2.5f;
+    public int directionY = 5;
+    public int directionX = -2;
+    public float moveSpeed = 5f;
+    public float acc = 0f;
     Vector2 v;
+    Vector2 accV;
 
 
     private void Start()
@@ -40,35 +42,34 @@ public class BossMovement : MonoBehaviour
         //     rb.MovePosition(rb.position + direction*movement*moveSpeed*Time.fixedDeltaTime);
         // }
 
-        if (transform.position.y >= 7)
+        if (transform.position.y >= 5.5f)
         {
+            directionY = -2;
             moving = true;
-            directionY = -1;
+            acc = 1;
         }
-
-        if (transform.position.x <= -11)
+        else if (transform.position.x <= -11)
         {
-            Debug.Log("AHHHHH");
+            Debug.Log("switch");
             moving = true;
             directionX = 1;
         }
-        if (transform.position.x >= 11)
+        else if (transform.position.x >= 10)
         {
             moving = true;
             directionX = -2;
         }
-
-        if (transform.position.y <= -2)
+        else if (transform.position.y <= -4.5)
         {
-            Debug.Log("AHHHHH");
+            directionY = 10;
             moving = true;
-            directionY = 1;
+            acc = -14.7f; //-14.7
         }
 
 
         v = new Vector2(directionX, directionY);
-
-        rb.AddForce(v.normalized * moveSpeed);
+        accV = new Vector2(1, acc);
+        rb.MovePosition(rb.position + v * moveSpeed * Time.fixedDeltaTime + accV*Time.fixedDeltaTime*Time.fixedDeltaTime);
 
     }
 

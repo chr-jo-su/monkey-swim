@@ -7302,7 +7302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: bossSceneName
-      value: BossLevelVodyanoy
+      value: BossLevel
       objectReference: {fileID: 0}
     - target: {fileID: 8967887884360435219, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: m_Name
