@@ -5,6 +5,7 @@ Welcome to the source code for *Fish ’n Chimps*, the first game developed by B
 This game is an action-packed aquatic adventure where you, the player, control a monkey navigating through dangerous waters. With intuitive controls and vibrant visuals, this game challenges your reflexes and planning as you swim, collect and craft power-ups, and attack your way through enemies to make the dish of your dreams - a Kraken!
 
 Play the game here:
+
 👉 [itch.io page](https://banana-byte-entertainment.itch.io/fish-n-chimps)
 
 ## Project Structure
