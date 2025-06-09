@@ -7,13 +7,15 @@ public class SeaGoatIdle : StateMachineBehaviour
     // Variables
     private int currentTime = 0;
     [SerializeField] private int idleAnimLength = 110;
-    [SerializeField] private int jumpWindUpAnimLength = 181;
-    [SerializeField] private int totalAnimLength = 200;
-    private Vector3 targetJumpPosition = new Vector3(0, 8, -1);
+    [SerializeField] private int jumpWindUpAnimLength = 181 - 110;
+
+    private Quaternion targetRotation = new();
+    private Vector3 targetJumpPosition = new(0, 9.5f, -1);
     private Vector3 distanceChange;
 
     private bool doJumpWindUp = false;
     private bool doJump = false;
+    private bool complete = false;
 
     public StageType nextAttackType = StageType.None;
 
@@ -21,10 +23,24 @@ public class SeaGoatIdle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         currentTime = 0;
+        doJump = false;
+        doJumpWindUp = false;
+        complete = false;
 
-        jumpWindUpAnimLength -= idleAnimLength;
+        animator.ResetTrigger("DashWarn");
+        animator.ResetTrigger("HornMissile");
+
+        if (nextAttackType == StageType.Dash || nextAttackType == StageType.None)
+        {
+            nextAttackType = StageType.HornMissile;
+        }
+        else if (nextAttackType == StageType.HornMissile)
+        {
+            nextAttackType = StageType.Dash;
+        }
 
         distanceChange = (targetJumpPosition - animator.transform.position) / jumpWindUpAnimLength;
+        targetRotation = Quaternion.Euler(0, 0, 75);
 
         SeaGoatManager.instance.ChangeStage(StageType.Idle);
     }
@@ -49,33 +65,43 @@ public class SeaGoatIdle : StateMachineBehaviour
         if (doJumpWindUp)
         {
             animator.transform.Translate(Vector3.down * 0.01f, Space.World); // Move down slightly
-            animator.transform.Rotate(0, 0, 1f); // Rotate slightly
+
+            if (animator.transform.rotation != targetRotation)
+            {
+                animator.transform.Rotate(0, 0, 1f); // Rotate slightly
+            }
         }
-        else if (doJump)
+        else if (doJump && !complete)
         {
-            animator.transform.Translate(distanceChange, Space.World);
+            if (animator.transform.position.x >= targetJumpPosition.x && animator.transform.position.y >= targetJumpPosition.y)
+            {
+                complete = true;
+            }
+            else
+            {
+                animator.transform.Translate(distanceChange, Space.World);
+            }
         }
 
         // Transition to next attack type
-        if (currentTime >= totalAnimLength)
+        if (complete)
         {
-            animator.SetBool("Idle", false);
-            if (nextAttackType == StageType.Dash || nextAttackType == StageType.None)
+            if (nextAttackType == StageType.Dash)
             {
-                nextAttackType = StageType.HornMissile;
-                animator.SetBool("Dash", true);
+                animator.SetTrigger("DashWarn");
             }
             else if (nextAttackType == StageType.HornMissile)
             {
-                nextAttackType = StageType.Dash;
-                animator.SetBool("HornMissile", true);
+                animator.SetTrigger("HornMissile");
             }
+
+            complete = false;
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.ResetTrigger("Idle");
+    }
 }

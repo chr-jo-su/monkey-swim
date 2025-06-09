@@ -7,9 +7,10 @@ public class SeaGoatStart : StateMachineBehaviour
     // Variables
     private int currentTime = 0;
     [SerializeField] private int pauseAnimLength = 68;
-    [SerializeField] private int rotationAnimLength = 136;
-    [SerializeField] private int angeredAnimLength = 337;
-    [SerializeField] private int totalAnimLength = 417;
+    [SerializeField] private int rotationAnimLength = 136 - 68;
+    [SerializeField] private int angeredAnimLength = 349 - 136;
+    [SerializeField] private int totalAnimLength = 418;
+    private Quaternion targetRotation = new();
 
     private bool doRotation = false;
     private bool doReverseRotation = false;
@@ -17,8 +18,7 @@ public class SeaGoatStart : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        angeredAnimLength -= rotationAnimLength;
-        rotationAnimLength -= pauseAnimLength;
+        targetRotation = Quaternion.Euler(0, 0, 60);
 
         SeaGoatManager.instance.ChangeStage(StageType.Start);
     }
@@ -30,31 +30,33 @@ public class SeaGoatStart : StateMachineBehaviour
 
         if (currentTime >= angeredAnimLength + rotationAnimLength + pauseAnimLength)
         {
+            doRotation = false;
             doReverseRotation = true;
         }
         else if (currentTime >= rotationAnimLength + pauseAnimLength)
         {
+            doReverseRotation = false;
             doRotation = false;
         }
         else if (currentTime >= pauseAnimLength)
         {
+            doReverseRotation = false;
             doRotation = true;
         }
 
         // Do rotation for angered state
-        if (doRotation)
+        if (doRotation && animator.transform.rotation != targetRotation)
         {
             animator.transform.Rotate(0, 0, 1f);
         }
-        else if (doReverseRotation)
+        else if (doReverseRotation && animator.transform.rotation != Quaternion.Euler(0, 0, 0))
         {
             animator.transform.Rotate(0, 0, -1f);
         }
 
         if (currentTime >= totalAnimLength)
         {
-            animator.SetBool("Idle", true);
-            currentTime = 0;
+            animator.SetTrigger("Idle");
         }
     }
 
