@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class Transparency : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
+            Color base_color = GetComponent<MeshRenderer>().material.color;
+            base_color.a = 0.3f;
+            GetComponent<MeshRenderer>().material.color = base_color;
         }
     }
 }
