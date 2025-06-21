@@ -9,19 +9,37 @@ public class SeaGoatIdle : StateMachineBehaviour
     [SerializeField] private int idleAnimLength = 110;
     [SerializeField] private int jumpWindUpAnimLength = 181 - 110;
 
+    [SerializeField] private int rotation = 75;
     private Quaternion targetRotation = new();
     private Vector3 targetJumpPosition = new(0, 9.5f, -1);
     private Vector3 distanceChange;
+
+    private int direction;
+
+    private GameObject seaGoatBoss;
+    [SerializeField] private float bossScale = 0.35f;
 
     private bool doJumpWindUp = false;
     private bool doJump = false;
     private bool complete = false;
 
     public StageType nextAttackType = StageType.None;
+    [SerializeField] private int dashCount = 3;
+    private int totalDashes = 0;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        direction = animator.GetInteger("direction");
+
+        // Find the game object to manipulate visuals
+        if (seaGoatBoss == null)
+        {
+            seaGoatBoss = GameObject.Find("SeaGoat");
+        }
+        seaGoatBoss.GetComponent<PolygonCollider2D>().enabled = false;
+        seaGoatBoss.transform.localScale = new Vector3(bossScale * (direction == 0 ? 1 : -direction), bossScale, bossScale);
+
         currentTime = 0;
         doJump = false;
         doJumpWindUp = false;
@@ -30,17 +48,19 @@ public class SeaGoatIdle : StateMachineBehaviour
         animator.ResetTrigger("DashWarn");
         animator.ResetTrigger("HornMissile");
 
-        if (nextAttackType == StageType.Dash || nextAttackType == StageType.None)
+        if (nextAttackType == StageType.Dash && totalDashes == dashCount)
         {
             nextAttackType = StageType.HornMissile;
+            totalDashes = 0;
         }
-        else if (nextAttackType == StageType.HornMissile)
+        else
         {
+            totalDashes++;
             nextAttackType = StageType.Dash;
         }
 
         distanceChange = (targetJumpPosition - animator.transform.position) / jumpWindUpAnimLength;
-        targetRotation = Quaternion.Euler(0, 0, 75);
+        targetRotation = Quaternion.Euler(0, 0, (direction >= 0 ? -rotation : rotation));
 
         SeaGoatManager.instance.ChangeStage(StageType.Idle);
     }
@@ -68,18 +88,18 @@ public class SeaGoatIdle : StateMachineBehaviour
 
             if (animator.transform.rotation != targetRotation)
             {
-                animator.transform.Rotate(0, 0, 1f); // Rotate slightly
+                animator.transform.Rotate(0, 0, (direction > 0 ? -1 : 1)); // Rotate slightly
             }
         }
         else if (doJump && !complete)
         {
-            if (animator.transform.position.x >= targetJumpPosition.x && animator.transform.position.y >= targetJumpPosition.y)
+            if (animator.transform.position.y >= targetJumpPosition.y)
             {
                 complete = true;
             }
             else
             {
-                animator.transform.Translate(distanceChange, Space.World);
+                animator.transform.Translate(distanceChange, Space.World);  // Do jump
             }
         }
 
@@ -96,6 +116,9 @@ public class SeaGoatIdle : StateMachineBehaviour
             }
 
             complete = false;
+
+            // Reset the scale for other animations to control
+            seaGoatBoss.transform.localScale = new Vector3(bossScale, bossScale, bossScale);
         }
     }
 

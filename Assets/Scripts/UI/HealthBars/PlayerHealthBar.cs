@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerHealthBar : HealthBar
 {
@@ -64,8 +62,8 @@ public class PlayerHealthBar : HealthBar
         {
             if (shake)
             {
-                healthSlider.transform.localPosition = new Vector3(barPosition.x + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.y + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.z);
-                damageSlider.transform.localPosition = new Vector3(barPosition.x + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.y + UnityEngine.Random.Range(-shakeAmount, shakeAmount), barPosition.z);
+                healthSlider.transform.localPosition = new Vector3(barPosition.x + Random.Range(-shakeAmount, shakeAmount), barPosition.y + Random.Range(-shakeAmount, shakeAmount), barPosition.z);
+                damageSlider.transform.localPosition = new Vector3(barPosition.x + Random.Range(-shakeAmount, shakeAmount), barPosition.y + Random.Range(-shakeAmount, shakeAmount), barPosition.z);
             }
             else
             {
@@ -109,7 +107,7 @@ public class PlayerHealthBar : HealthBar
         }
         else
         {
-            health = Math.Min(health, maxHealth);
+            health = Mathf.Min(health, maxHealth);
         }
     }
 
@@ -144,7 +142,7 @@ public class PlayerHealthBar : HealthBar
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject grabber = GameObject.FindGameObjectWithTag("Grabber");
-        String sceneName = "Level1New";
+        string sceneName = "Level1New";
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
@@ -184,7 +182,7 @@ public class PlayerHealthBar : HealthBar
 
     private void SceneTransitionManager()
     {
-        if (SceneManager.GetActiveScene().name == "BossLevel")
+        if (SceneManager.GetActiveScene().name == "BossLevel" || SceneManager.GetActiveScene().name == "SeaGoatBoss")
         {
             StartCoroutine(LoadGameOverScreen());
         }

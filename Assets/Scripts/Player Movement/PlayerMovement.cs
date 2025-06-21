@@ -51,15 +51,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes health from the player.
-    /// </summary>
-    /// <param name="damage">The amount of health to remove from the player.</param>
-    public void TakeDamage(int damage)
-    {
-        PlayerHealthBar.instance.TakeDamage(damage);
-    }
-
-    /// <summary>
     /// Sets the collision between the player and the sea line to be ignored.
     /// </summary>
     void Start()

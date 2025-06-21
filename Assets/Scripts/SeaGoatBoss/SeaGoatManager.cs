@@ -7,16 +7,65 @@ public class SeaGoatManager : MonoBehaviour
     // Variables
     public static SeaGoatManager instance;
 
-    [SerializeField] private StageType stage = StageType.Start;
+    [SerializeField] private BossHealthBar bossHealth;
+    [SerializeField] private float stage2Health;
+    private bool stage2Started = false;
+
+    [SerializeField] private AudioSource soundeffects;
+    [SerializeField] private AudioClip[] painsounds;
+    private float colorTimer = 0.0f;
+
+    public StageType stage = StageType.Start;
 
     public void Awake()
     {
         instance = this;
     }
 
+    public void Start()
+    {
+        OxygenBar.instance.SetBreathe(false);       // As we start in the sea, it doesn't auto update (this might be removed later as the player is teleported from other levels to here)
+    }
+
+    public void Update()
+    {
+        if (bossHealth.GetHealth() <= stage2Health && !stage2Started) {
+            //TODO: Instantiate the two separate bosses and destroy the current game object (and any horn missiles that are in the scene)
+            stage2Started = true;
+        }
+
+        if (colorTimer <= 0)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else
+        {
+            colorTimer -= Time.deltaTime;
+        }
+    }
+
     public void ChangeStage(StageType type)
     {
         stage = type;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Bananarang(Clone)")
+        {
+            bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
+            if (!soundeffects)
+                soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+
+            int idx = Random.Range(0, painsounds.Length);
+            soundeffects.PlayOneShot(painsounds[idx]);
+
+            GetComponent<SpriteRenderer>().color = Color.red;
+            colorTimer = 0.1f;
+        } else if (collision.gameObject.name == "Player")
+        {
+            PlayerHealthBar.instance.TakeDamage(25);
+        }
     }
 }
 
