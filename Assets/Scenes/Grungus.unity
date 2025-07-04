@@ -1968,6 +1968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appear: 1
+  animator: {fileID: 1560819639}
 --- !u!95 &1560819639
 Animator:
   serializedVersion: 5
