@@ -11,7 +11,7 @@ public class Grungus : MonoBehaviour
     private Color visible = new Color(1f, 1f, 1f, 1f);
     private Color invisible = new Color(1f, 1f, 1f, 0f);
     private float timer = 0;
-    private String direction = "right";
+    private String direction = "left";
     public Animator animator;
 
     void Start()
@@ -36,7 +36,7 @@ public class Grungus : MonoBehaviour
         if (timer >= 3)
         {
             Attack();
-            timer = 0;
+            timer = -3;
         }
     }
 
