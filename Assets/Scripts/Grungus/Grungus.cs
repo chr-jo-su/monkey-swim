@@ -36,7 +36,7 @@ public class Grungus : MonoBehaviour
         if (timer >= 3)
         {
             Attack();
-            timer = -3;
+            timer = 0;
         }
     }
 

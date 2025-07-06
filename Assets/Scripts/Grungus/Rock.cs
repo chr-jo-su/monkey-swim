@@ -21,9 +21,9 @@ public class Rock : MonoBehaviour
 
     private void Update()
     {
-        Angle += 0.0008f;
-        transform.rotation = quaternion.Euler(0, 0, Angle * Mathf.Rad2Deg);
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+        Angle += 0.03f;
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0, Angle * Mathf.Rad2Deg), Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, transform.position.y - 5 * Time.deltaTime, transform.position.z);
 
         if (transform.position.y <= deletePositionY)
         {

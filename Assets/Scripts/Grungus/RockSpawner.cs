@@ -12,7 +12,7 @@ public class RockSpawner : MonoBehaviour
     private Vector2 randomVector;
 
     public float spawnLocationY = 10;
-    // THESE TWO X VALUES ARE A RANGE; THE BUBBLES WILL SPAWN SOMEWHERE INBETWEEN
+    // THESE TWO X VALUES ARE A RANGE; THE ROCKS WILL SPAWN SOMEWHERE INBETWEEN
     public float spawnLocationXMin = -10;
     public float spawnLocationXMax = 10;
 
