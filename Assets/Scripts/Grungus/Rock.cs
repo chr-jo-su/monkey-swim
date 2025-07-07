@@ -6,6 +6,7 @@ using UnityEngine;
 public class Rock : MonoBehaviour
 {
     public PlayerMovement player;
+    private int damage = 20;
     public float speed = 4.0f;
     private float Angle;
     public float deletePositionY = -20.0f;
@@ -38,6 +39,15 @@ public class Rock : MonoBehaviour
             Destroy(gameObject);
 
             soundeffects.PlayOneShot(bubblePop);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerHealthBar.instance.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

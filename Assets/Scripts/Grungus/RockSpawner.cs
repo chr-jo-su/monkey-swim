@@ -11,8 +11,8 @@ public class RockSpawner : MonoBehaviour
     private float randomNumber;
     private Vector2 randomVector;
 
-    public float spawnLocationY = 10;
-    // THESE TWO X VALUES ARE A RANGE; THE ROCKS WILL SPAWN SOMEWHERE INBETWEEN
+    public float spawnLocationYMin = 10;
+    public float spawnLocationYMax = 15;
     public float spawnLocationXMin = -10;
     public float spawnLocationXMax = 10;
 
@@ -28,7 +28,8 @@ public class RockSpawner : MonoBehaviour
         if (randomNumber <= rockSpawnChance)
         {
             randomVector = new Vector2(Random.Range(spawnLocationXMin,
-                spawnLocationXMax), spawnLocationY);
+                spawnLocationXMax), Random.Range(spawnLocationYMin,
+                spawnLocationYMax));
 
             Instantiate(rockPrefab, randomVector, Quaternion.identity);
         }
