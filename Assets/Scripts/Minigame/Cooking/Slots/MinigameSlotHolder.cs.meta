@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 854ce43d3847e5f4c989e9a1303409a0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - image: {instanceID: 0}
+  - CookingIngredientPrefab: {fileID: 903062702048024672, guid: c95490377fbdf4240aa2578fbe36194b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
