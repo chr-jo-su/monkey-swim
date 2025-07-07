@@ -17,7 +17,8 @@ public class BossMovement : MonoBehaviour
     public PlayerMovement player;
     public int oxygenLoss = -15;
     public float speed = 0.0f;
-    // private bool isJumping = true;
+    public bool isJumping = true;
+    public int jumpCount = 0;
     // private bool facingRight = false;
     public Rigidbody2D rb;
     public bool moving = true;
@@ -27,59 +28,79 @@ public class BossMovement : MonoBehaviour
     public float acc = 0f;
     Vector2 v;
     Vector2 accV;
+    private Vector3 EndPosition;
+    private float SlideSpeed = 15;
+    private Vector3 StartPosition;
+    public float DistanceOut = 8;
+    public GameObject[] logs;
 
 
     private void Start()
     {
+        Debug.Log("start fnct");
+        DeactivateAllLogs();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        StartPosition = gameObject.transform.position;
+        EndPosition = new Vector3(StartPosition.x, StartPosition.y, StartPosition.z);
         v = new Vector2(directionX, directionY);
+        BeeManager.instance.TurnOff();
     }
 
     private void Update()
     {
-        // if (moving)
-        // {
-        //     rb.MovePosition(rb.position + direction*movement*moveSpeed*Time.fixedDeltaTime);
-        // }
-
-        if (transform.position.y >= 5.5f)
+        if (isJumping)
         {
-            directionY = -2;
-            moving = true;
-            acc = 1;
-        }
-        else if (transform.position.x <= -11)
-        {
-            Debug.Log("switch");
-            moving = true;
-            directionX = 1;
-        }
-        else if (transform.position.x >= 10)
-        {
-            moving = true;
-            directionX = -2;
-        }
-        else if (transform.position.y <= -4.5)
-        {
-            directionY = 10;
-            moving = true;
-            acc = -14.7f; //-14.7
-        }
+            if (transform.position.y >= 5.5f)
+            {
+                directionY = -2;
+                moving = true;
+                acc = 1;
+                jumpCount++;
+            }
+            else if (transform.position.x <= -11)
+            {
+                Debug.Log("switch");
+                moving = true;
+                directionX = 1;
+                jumpCount++;
+            }
+            else if (transform.position.x >= 10)
+            {
+                moving = true;
+                directionX = -2;
+                jumpCount++;
+            }
+            else if (transform.position.y <= -4.5)
+            {
+                directionY = 10;
+                moving = true;
+                acc = -14.7f; //-14.7
+                jumpCount++;
+            }
 
 
-        v = new Vector2(directionX, directionY);
-        accV = new Vector2(1, acc);
-        rb.MovePosition(rb.position + v * moveSpeed * Time.fixedDeltaTime + accV*Time.fixedDeltaTime*Time.fixedDeltaTime);
+            v = new Vector2(directionX, directionY);
+            accV = new Vector2(1, acc);
+            rb.MovePosition(rb.position + v * moveSpeed * Time.fixedDeltaTime + accV*Time.fixedDeltaTime*Time.fixedDeltaTime);
 
+            if (jumpCount > 15)
+            {
+                isJumping = false;
+                BeeManager.instance.TurnOn();
+            }
+        }
+        else
+        {
+            StartSlideOut();
+            if (BeeManager.instance.checkBees())
+            {
+                BeeManager.instance.TurnOff();
+                DeactivateAllLogs();
+                jumpCount = 0;
+                isJumping = true;
+            }
+        }
     }
-
-    // private float GetForceDivide()
-    // {
-    //     float aiY = transform.position.y;
-    //     float destinationY = 2;
-    //     float test = Mathf.Abs(aiY - destinationY);
-    //     return aiY > destinationY ? 1f / test : 1f;
-    // }
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -93,4 +114,49 @@ public class BossMovement : MonoBehaviour
 
         }
     }
+
+    public void StartSlideOut()
+    {
+        StartCoroutine(BossSlideOut());
+    }
+
+    private IEnumerator BossSlideOut()
+    {
+        while (Vector3.Distance(transform.position, EndPosition) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                EndPosition,
+                SlideSpeed * Time.unscaledDeltaTime
+            );
+            Debug.Log("move");
+            yield return null; // Wait for next frame
+        }
+
+        // Snap exactly to target to avoid float error
+        transform.position = EndPosition;
+
+        // Now activate logs
+        ActivateAllLogs();
+    }
+
+    private void DeactivateAllLogs()
+    {
+        Debug.Log("deactivating logs");
+        foreach (GameObject log in logs)
+        {
+            if (log != null)
+                log.SetActive(false);
+        }
+    }
+
+    private void ActivateAllLogs()
+    {
+        foreach (GameObject log in logs)
+            {
+                if (log != null)
+                    log.SetActive(true);
+            }
+    }
+
 }
