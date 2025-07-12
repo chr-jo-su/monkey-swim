@@ -26,6 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Grungus.unity
     guid: 28db1eaa8170fa34bb7d4e0641897652
+  - enabled: 1
     path: Assets/Scenes/BossLevelVodyanoy.unity
     guid: 4d10b2c37c20f480386ee20423cc1959
   m_configObjects: {}
