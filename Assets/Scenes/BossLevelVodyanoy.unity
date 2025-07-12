@@ -1049,6 +1049,13 @@ MonoBehaviour:
   - {fileID: 2028262049}
   - {fileID: 1486266908}
   - {fileID: 82933393}
+  bossObjects:
+  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
+  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
+  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
+  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
+  spawnPositionX: f4ffffff0c0000000c000000f4ffffff
+  spawnPositionY: f9fffffff9ffffff0500000005000000
 --- !u!212 &840697069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3167,7 +3174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1525004733
 Transform:
   m_ObjectHideFlags: 0
@@ -3202,9 +3209,9 @@ MonoBehaviour:
   spawnPositionX: f4fffffff4ffffff0c000000
   spawnPositionY: f9ffffff0600000005000000
   spawnTimes:
-  - 10
-  - 10
-  - 10
+  - 20
+  - 20
+  - 20
   boss: {fileID: 0}
 --- !u!1001 &1599670581
 PrefabInstance:

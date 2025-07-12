@@ -33,6 +33,11 @@ public class BossMovement : MonoBehaviour
     private Vector3 StartPosition;
     public float DistanceOut = 8;
     public GameObject[] logs;
+    public GameObject[] bossObjects;
+    public int[] spawnPositionX;
+    public int[] spawnPositionY;
+    private int counter = 0;
+
 
 
     private void Start()
@@ -43,7 +48,7 @@ public class BossMovement : MonoBehaviour
         StartPosition = gameObject.transform.position;
         EndPosition = new Vector3(StartPosition.x, StartPosition.y, StartPosition.z);
         v = new Vector2(directionX, directionY);
-        BeeManager.instance.TurnOff();
+        // BeeManager.instance.TurnOff();
     }
 
     private void Update()
@@ -83,18 +88,28 @@ public class BossMovement : MonoBehaviour
             accV = new Vector2(1, acc);
             rb.MovePosition(rb.position + v * moveSpeed * Time.fixedDeltaTime + accV*Time.fixedDeltaTime*Time.fixedDeltaTime);
 
-            if (jumpCount > 15)
+            if (jumpCount > 50)
             {
                 isJumping = false;
-                BeeManager.instance.TurnOn();
+                foreach (double s in spawnPositionX)
+                {
+                    if (counter < 3)
+                    {
+                        Vector2 spawnPos = new Vector2(spawnPositionX[counter], spawnPositionY[counter]);
+                        Instantiate(bossObjects[counter], spawnPos, Quaternion.identity);
+                    }
+                    // Debug.Log(counter);
+                    counter++;
+                }
+                counter = 0;
             }
         }
         else
         {
             StartSlideOut();
-            if (BeeManager.instance.checkBees())
+            if (GameObject.Find("bee(Clone)") == null)
             {
-                BeeManager.instance.TurnOff();
+                Debug.Log("its time to jump");
                 DeactivateAllLogs();
                 jumpCount = 0;
                 isJumping = true;
