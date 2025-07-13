@@ -122,9 +122,11 @@ public class BossMovement : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             OxygenBar.instance.ChangeOxygen(oxygenLoss);
+            PlayerMovement.instance.changeDrowning();
             PlayerMovement.instance.stopMovement();
             yield return new WaitForSeconds(3);
             PlayerMovement.instance.startMovement();
+            PlayerMovement.instance.changeDrowning();
             // Destroy(gameObject);
 
         }
