@@ -14,7 +14,7 @@ public class ItemTooltip : MonoBehaviour, IPointerExitHandler
     /// </summary>
     /// <param name="name">The name of the object that's currently right-clicked.</param>
     /// <param name="description">The description of the object that's currently right-clicked.</param>
-    public void SetItemInfoText(string name, string description)
+    public void SetItemInfoText(string name, string description = "")
     {
         itemName.text = name;
         itemDescription.text = description;

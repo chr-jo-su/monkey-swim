@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] painsounds;
 
     private float damageTimerBoss = 0.0f;
+    private bool isDrowning = false;
 
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
+        RelinkAttributes();
     }
 
     /// <summary>
@@ -91,6 +93,19 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             inSea = true;
+        }
+
+        if (inSea)
+        {
+            rigidBody.gravityScale = 0F;
+            canMoveUp = true;
+            OxygenBar.instance.SetBreathe(false);
+        }
+        else
+        {
+            rigidBody.gravityScale = 1F;
+            canMoveUp = false;
+            OxygenBar.instance.SetBreathe(true);
         }
     }
 
@@ -154,21 +169,7 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="other"></param>
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other != null && seaLineObject != null && other.name == seaLineObject.name)
-        {
-            if (inSea)
-            {
-                rigidBody.gravityScale = 0F;
-                canMoveUp = true;
-                OxygenBar.instance.SetBreathe(false);
-            }
-            else
-            {
-                rigidBody.gravityScale = 1F;
-                canMoveUp = false;
-                OxygenBar.instance.SetBreathe(true);
-            }
-        }
+
 
         if (other.name == "Water")
         {
@@ -318,5 +319,19 @@ public class PlayerMovement : MonoBehaviour
     public void startMovement()
     {
         moveSpeed = 5f;
+    }
+
+    public void changeDrowning()
+    {
+        if (isDrowning)
+        {
+            isDrowning = false;
+            animator.SetBool("drowning", false);
+        }
+        else
+        {
+            isDrowning = true;
+            animator.SetBool("drowning", true);
+        }
     }
 }

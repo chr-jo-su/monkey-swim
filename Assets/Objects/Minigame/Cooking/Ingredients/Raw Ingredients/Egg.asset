@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8377b8cfa0599cd4b8ccc277bbe1e519, type: 3}
+  m_Name: Egg
+  m_EditorClassIdentifier: 
+  ingredientID: 58921014
+  ingredientName: Egg
+  itemSprite: {fileID: 21300000, guid: 4c32cd26d925f7b4ca3d4875236e2c53, type: 3}
+  ingredientType: 2
+  timeToConvert: 5
+  clicksToConvert: 0
+  nextForms:
+  - {fileID: 11400000, guid: ec24765d24ecbec419a10c55345bad59, type: 2}
+  inProgressSFXClips:
+  - {fileID: 8300000, guid: 4dc3ab60e388e9f4cb9913b7e0923443, type: 3}
+  completedSFXClips:
+  - {fileID: 8300000, guid: c39f83cbce9e7d54486799105cad29a2, type: 3}
+  - {fileID: 8300000, guid: bb2dc2b1e7d49be499077972e77c3719, type: 3}
+  - {fileID: 8300000, guid: bc7916c17f3b1d347b4699c532b9db4a, type: 3}
+  - {fileID: 8300000, guid: 365656d6ba39cf94785526d2b4b40250, type: 3}
+  - {fileID: 8300000, guid: 52d6c8e3d647d2347a1ab27935f1bbf3, type: 3}

@@ -48,7 +48,7 @@ public class BossTransition : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        TransitionManager.instance.LoadTransition("BossLevel", CopyItemsAndResetPlayerPosition);
+        TransitionManager.instance.LoadTransition(bossSceneName, CopyItemsAndResetPlayerPosition);
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public class BossTransition : MonoBehaviour
         }
 
         // Reset player position and change sceneChanged bool to true
-        foreach (GameObject go in SceneManager.GetSceneByName("BossLevel").GetRootGameObjects())
+        foreach (GameObject go in SceneManager.GetSceneByName(bossSceneName).GetRootGameObjects())
         {
             if (go.name == "Player")
             {

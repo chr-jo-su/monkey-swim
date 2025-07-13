@@ -14,11 +14,11 @@ public class BossFightManager : MonoBehaviour
     private int counter = 0;
     private float timerMax = 0;
     private bool[] alreadySpawned;
-    private bool running;
+    protected bool running = true;
 
     private void Start()
     {
-        running = true;
+        // running = true;
         foreach (float s in spawnTimes)
         {
             if (s > timerMax)
