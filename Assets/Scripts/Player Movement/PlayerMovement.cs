@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] painsounds;
 
     private float damageTimerBoss = 0.0f;
+    private bool isDrowning = false;
 
     /// <summary>
     /// Creates a singleton instance of the PlayerMovement.
@@ -319,5 +320,19 @@ public class PlayerMovement : MonoBehaviour
     public void startMovement()
     {
         moveSpeed = 5f;
+    }
+
+    public void changeDrowning()
+    {
+        if (isDrowning)
+        {
+            isDrowning = false;
+            animator.SetBool("drowning", false);
+        }
+        else
+        {
+            isDrowning = true;
+            animator.SetBool("drowning", true);
+        }
     }
 }
