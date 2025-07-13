@@ -17,7 +17,6 @@ public class SeaGoatIdle : StateMachineBehaviour
     private int direction;
 
     private GameObject seaGoatBoss;
-    [SerializeField] private float bossScale = 0.35f;
 
     private bool doJumpWindUp = false;
     private bool doJump = false;
@@ -37,8 +36,9 @@ public class SeaGoatIdle : StateMachineBehaviour
         {
             seaGoatBoss = GameObject.Find("SeaGoat");
         }
-        seaGoatBoss.GetComponent<PolygonCollider2D>().enabled = false;
-        seaGoatBoss.transform.localScale = new Vector3(bossScale * (direction == 0 ? 1 : -direction), bossScale, bossScale);
+        SeaGoatManager.instance.SetCanBeHurt(false);    // The boss can't take damage but can still hurt the player
+        SeaGoatManager.instance.SetCanDamage(true);
+        seaGoatBoss.transform.localScale = new Vector3(SeaGoatManager.instance.regularBossScale * (direction == 0 ? 1 : -direction), SeaGoatManager.instance.regularBossScale, 1);
 
         currentTime = 0;
         doJump = false;
@@ -46,9 +46,9 @@ public class SeaGoatIdle : StateMachineBehaviour
         complete = false;
 
         animator.ResetTrigger("DashWarn");
-        animator.ResetTrigger("HornMissile");
+        animator.ResetTrigger("HornMissileWarn");
 
-        if (nextAttackType == StageType.Dash && totalDashes == dashCount)
+        if ((nextAttackType == StageType.Dash || nextAttackType == StageType.None) && totalDashes >= dashCount)
         {
             nextAttackType = StageType.HornMissile;
             totalDashes = 0;
@@ -112,13 +112,13 @@ public class SeaGoatIdle : StateMachineBehaviour
             }
             else if (nextAttackType == StageType.HornMissile)
             {
-                animator.SetTrigger("HornMissile");
+                animator.SetTrigger("HornMissileWarn");
             }
 
             complete = false;
 
             // Reset the scale for other animations to control
-            seaGoatBoss.transform.localScale = new Vector3(bossScale, bossScale, bossScale);
+            seaGoatBoss.transform.localScale = new Vector3(SeaGoatManager.instance.regularBossScale, SeaGoatManager.instance.regularBossScale, 1);
         }
     }
 

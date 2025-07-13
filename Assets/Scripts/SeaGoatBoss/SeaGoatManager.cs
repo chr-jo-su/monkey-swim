@@ -15,7 +15,17 @@ public class SeaGoatManager : MonoBehaviour
     [SerializeField] private AudioClip[] painsounds;
     private float colorTimer = 0.0f;
 
-    public StageType stage = StageType.Start;
+    private bool canBeHurt = false;
+    private bool canDamage = true;
+
+    [HideInInspector] public StageType stage;
+
+    [HideInInspector] public float regularBossScale = 0.35f;
+    [HideInInspector] public float dashBossScale = 0.50f;
+    [HideInInspector] public float hornMissileBossScale = 0.25f;
+
+    public GameObject leftHornMissilePrefab;
+    public GameObject rightHornMissilePrefab;
 
     public void Awake()
     {
@@ -51,7 +61,7 @@ public class SeaGoatManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Bananarang(Clone)")
+        if (collision.gameObject.name == "Bananarang(Clone)" && canBeHurt)
         {
             bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
             if (!soundeffects)
@@ -62,10 +72,20 @@ public class SeaGoatManager : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
-        } else if (collision.gameObject.name == "Player")
+        } else if (collision.gameObject.name == "Player" && canDamage)
         {
             PlayerHealthBar.instance.TakeDamage(25);
         }
+    }
+
+    public void SetCanBeHurt(bool canBeHurt)
+    {
+        this.canBeHurt = canBeHurt;
+    }
+
+    public void SetCanDamage(bool canDamage)
+    {
+        this.canDamage = canDamage;
     }
 }
 

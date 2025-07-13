@@ -45,7 +45,8 @@ public class SeaGoatDashWarn : StateMachineBehaviour
         }
 
         seaGoatBoss.GetComponent<SpriteRenderer>().sortingOrder = 0;
-        seaGoatBoss.GetComponent<PolygonCollider2D>().enabled = false;
+        SeaGoatManager.instance.SetCanBeHurt(false);
+        SeaGoatManager.instance.SetCanDamage(false);
         seaGoatBoss.transform.localScale = new Vector3(-enterDirection * seaGoatBoss.transform.localScale.x, seaGoatBoss.transform.localScale.y, seaGoatBoss.transform.localScale.z);
 
         SeaGoatManager.instance.ChangeStage(StageType.Dash);

@@ -15,7 +15,6 @@ public class SeaGoatDashAttack : StateMachineBehaviour
     private int direction = 0;  // 1 for right, -1 for left
 
     private GameObject seaGoatBoss;
-    [SerializeField] private float bossDashScale = 0.50f;
 
     [SerializeField] private int cameraShakeSpeed = 10;
     [SerializeField] private int cameraShakeIntensity = 10;
@@ -35,8 +34,9 @@ public class SeaGoatDashAttack : StateMachineBehaviour
         }
 
         seaGoatBoss.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        seaGoatBoss.GetComponent<PolygonCollider2D>().enabled = true;
-        seaGoatBoss.transform.localScale = new Vector3(direction * bossDashScale, bossDashScale, bossDashScale);
+        SeaGoatManager.instance.SetCanBeHurt(true);
+        SeaGoatManager.instance.SetCanDamage(true);
+        seaGoatBoss.transform.localScale = new Vector3(direction * SeaGoatManager.instance.dashBossScale, SeaGoatManager.instance.dashBossScale, 1);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -46,7 +46,7 @@ public class SeaGoatDashAttack : StateMachineBehaviour
 
         if (currentTime >= totalAnimLength)
         {
-            animator.SetTrigger("ResetDash");
+            animator.SetTrigger("Reset");
             Camera.main.transform.position = new Vector3(0, 0, -10);
         }
         else

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaGoatResetDashAttack : StateMachineBehaviour
+public class SeaGoatReset : StateMachineBehaviour
 {
     // Variables
     [SerializeField] private float totalAnimLength = 150;
@@ -14,7 +14,6 @@ public class SeaGoatResetDashAttack : StateMachineBehaviour
     private int direction = 0;  // 1 for right, -1 for left
 
     private GameObject seaGoatBoss;
-    [SerializeField] private float bossScale = 0.35f;
 
     private bool complete = false;
 
@@ -26,7 +25,8 @@ public class SeaGoatResetDashAttack : StateMachineBehaviour
         {
             seaGoatBoss = GameObject.Find("SeaGoat");
         }
-        seaGoatBoss.GetComponent<PolygonCollider2D>().enabled = false;
+        SeaGoatManager.instance.SetCanBeHurt(false);
+        SeaGoatManager.instance.SetCanDamage(true);
 
         direction = animator.GetInteger("direction");
         complete = false;
@@ -35,7 +35,7 @@ public class SeaGoatResetDashAttack : StateMachineBehaviour
         movementDelta = (trueTargetResetPos.x - animator.transform.position.x) / totalAnimLength;
 
         animator.transform.position = new Vector3(Mathf.Round(animator.transform.position.x), -2, -1);
-        animator.transform.localScale = new Vector3(-direction * bossScale, bossScale, bossScale);
+        animator.transform.localScale = new Vector3(-direction * SeaGoatManager.instance.regularBossScale, SeaGoatManager.instance.regularBossScale, 1);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -61,6 +61,6 @@ public class SeaGoatResetDashAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("ResetDash");
+        animator.ResetTrigger("Reset");
     }
 }
