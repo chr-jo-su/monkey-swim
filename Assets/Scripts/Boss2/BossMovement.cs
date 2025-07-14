@@ -106,13 +106,18 @@ public class BossMovement : MonoBehaviour
         }
         else
         {
+            Debug.Log(jumpCount);
             StartSlideOut();
+            transform.position = EndPosition;
+            ActivateAllLogs();
             if (GameObject.Find("bee(Clone)") == null)
             {
                 Debug.Log("its time to jump");
                 DeactivateAllLogs();
                 jumpCount = 0;
                 isJumping = true;
+                Debug.Log(jumpCount);
+                Debug.Log(isJumping);
             }
         }
     }
@@ -153,8 +158,6 @@ public class BossMovement : MonoBehaviour
         // Snap exactly to target to avoid float error
         transform.position = EndPosition;
 
-        // Now activate logs
-        ActivateAllLogs();
     }
 
     private void DeactivateAllLogs()
