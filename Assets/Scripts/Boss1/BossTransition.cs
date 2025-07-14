@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class BossTransition : MonoBehaviour
 {
     // Variables
-    public string bossSceneName;
-    public GameObject popUp;
+    [SerializeField] private string bossSceneName;
+    [SerializeField] private GameObject popUp;
+    [SerializeField] private Vector3 playerPosition = new(0, 0, 0);
 
     /// <summary>
     /// Hides the pop up on start.
@@ -76,7 +77,7 @@ public class BossTransition : MonoBehaviour
         {
             if (go.name == "Player")
             {
-                go.transform.position = new Vector3(0, 0, 0);
+                go.transform.position = playerPosition;
                 go.GetComponent<PlayerMovement>().sceneChanged = true;
                 go.GetComponent<BusFishZoom>().enabled = false;
             }

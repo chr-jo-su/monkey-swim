@@ -39,7 +39,8 @@ public class SeaGoatManager : MonoBehaviour
 
     public void Update()
     {
-        if (bossHealth.GetHealth() <= stage2Health && !stage2Started) {
+        if (bossHealth.GetHealth() <= stage2Health && !stage2Started)
+        {
             //TODO: Instantiate the two separate bosses and destroy the current game object (and any horn missiles that are in the scene)
             stage2Started = true;
         }
@@ -72,7 +73,8 @@ public class SeaGoatManager : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;
-        } else if (collision.gameObject.name == "Player" && canDamage)
+        }
+        else if (collision.gameObject.name == "Player" && canDamage)
         {
             PlayerHealthBar.instance.TakeDamage(25);
         }
