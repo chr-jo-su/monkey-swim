@@ -14,6 +14,8 @@ public class Grungus : MonoBehaviour
     private String direction = "left";
     public Animator animator;
 
+    [SerializeField] private BossHealthBar bossHealth;
+
     void Start()
     {
         Mathf.Clamp(progress, 0, 1);
@@ -56,6 +58,26 @@ public class Grungus : MonoBehaviour
         {
             animator.SetTrigger("LeftAttack");
             direction = "right";
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Bananarang(Clone)")
+        {
+            bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
+            //if (!soundeffects)
+            //    soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+
+            //int idx = Random.Range(0, painsounds.Length);
+            //soundeffects.PlayOneShot(painsounds[idx]);
+
+            //GetComponent<SpriteRenderer>().color = Color.red;
+            //colorTimer = 0.1f;
+        }
+        else if (collision.gameObject.name == "Player")
+        {
+            PlayerHealthBar.instance.TakeDamage(25);
         }
     }
 }
