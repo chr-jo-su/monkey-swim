@@ -52,10 +52,12 @@ public class Grungus : MonoBehaviour
         if (direction == "right")
         {
             animator.SetTrigger("RightAttack");
+            animator.ResetTrigger("LeftAttack");
             direction = "left";
         }
         else
         {
+            animator.ResetTrigger("RightAttack");
             animator.SetTrigger("LeftAttack");
             direction = "right";
         }

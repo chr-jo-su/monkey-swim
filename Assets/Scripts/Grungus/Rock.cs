@@ -38,7 +38,7 @@ public class Rock : MonoBehaviour
         {
             Destroy(gameObject);
 
-            soundeffects.PlayOneShot(bubblePop);
+            // soundeffects.PlayOneShot(bubblePop); // need a sound effect
         }
     }
 

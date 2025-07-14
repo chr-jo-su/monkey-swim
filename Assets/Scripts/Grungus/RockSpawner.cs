@@ -15,10 +15,32 @@ public class RockSpawner : MonoBehaviour
     public float spawnLocationYMax = 15;
     public float spawnLocationXMin = -10;
     public float spawnLocationXMax = 10;
+    public Animator animator;
+    private bool rightAttack;
+    private bool leftAttack;
+    
 
     private void Start()
     {
         InvokeRepeating("UpdateSpawner", 0, spawnInterval);
+    }
+
+    void Update() {
+        rightAttack = animator.GetBool("RightAttack");
+        leftAttack = animator.GetBool("LeftAttack");
+
+        float y = 15;
+        if (leftAttack == true) {
+            for (int x = 4; x <= 14; x += 2) {
+                Instantiate(rockPrefab, new Vector2(x, y), Quaternion.identity);
+                y -= 0.5f;
+            }
+        } else if (rightAttack == true) {
+            for (int x = -14; x <= -4; x += 2) {
+                Instantiate(rockPrefab, new Vector2(x, y), Quaternion.identity);
+                y += 0.5f;
+            }
+        }
     }
 
     void UpdateSpawner()

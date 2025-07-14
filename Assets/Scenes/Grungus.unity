@@ -2499,6 +2499,7 @@ MonoBehaviour:
   spawnLocationYMax: 15
   spawnLocationXMin: -15
   spawnLocationXMax: 15
+  animator: {fileID: 1560819639}
 --- !u!4 &1834838818
 Transform:
   m_ObjectHideFlags: 0
