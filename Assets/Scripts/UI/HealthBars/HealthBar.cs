@@ -25,6 +25,9 @@ public class HealthBar : MonoBehaviour
 
         healthSlider.value = health;
         damageSlider.value = health;
+
+        healthSlider.maxValue = maxHealth;
+        damageSlider.maxValue = maxHealth;
     }
 
     /// <summary>
@@ -69,7 +72,7 @@ public class HealthBar : MonoBehaviour
     /// <param name="val">The amount of health to heal.</param>
     public void Heal(int val)
     {
-        health = Math.Max(health + val, maxHealth);
+        health = Math.Min(health + val, maxHealth);
     }
 
     /// <summary>

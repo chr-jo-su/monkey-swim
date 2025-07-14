@@ -52,15 +52,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes health from the player.
-    /// </summary>
-    /// <param name="damage">The amount of health to remove from the player.</param>
-    public void TakeDamage(int damage)
-    {
-        PlayerHealthBar.instance.TakeDamage(damage);
-    }
-
-    /// <summary>
     /// Sets the collision between the player and the sea line to be ignored.
     /// </summary>
     void Start()
@@ -275,35 +266,43 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void RelinkAttributes()
     {
+        sceneChanged = true;
+
         if (seaTopBoxCollider == null)
         {
             seaTopBoxCollider = GameObject.Find("SeaTopBox").GetComponent<Collider2D>();
+            sceneChanged = false;
         }
         if (seaLineObject == null)
         {
             seaLineObject = GameObject.Find("seaLine");
+            sceneChanged = false;
         }
         if (audioSource == null)
         {
             audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+            sceneChanged = false;
         }
         if (seaAmbience == null)
         {
             seaAmbience = GameObject.Find("seaAmbience").GetComponent<AudioSource>();
+            sceneChanged = false;
         }
         if (underWaterAmbience == null)
         {
             underWaterAmbience = GameObject.Find("underWaterAmbience").GetComponent<AudioSource>();
+            sceneChanged = false;
         }
         if (underWaterMusic == null)
         {
             underWaterMusic = GameObject.Find("underWaterMusic").GetComponent<AudioSource>();
+            sceneChanged = false;
         }
 
         if (seaTopBoxCollider != null && !Physics2D.GetIgnoreCollision(seaTopBoxCollider, playerCollider))
         {
-            sceneChanged = false;
             Physics2D.IgnoreCollision(seaTopBoxCollider, playerCollider, true);
+            sceneChanged = false;
         }
     }
 

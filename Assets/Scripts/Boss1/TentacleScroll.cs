@@ -54,7 +54,7 @@ public class TentacleScroll : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (damageTimer > 0.0f)
+        if (damageTimer > 0)
             damageTimer -= Time.deltaTime;
     }
 
@@ -64,10 +64,10 @@ public class TentacleScroll : MonoBehaviour
     /// </summary>
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && damageTimer <= 0.0f)
+        if (collision.gameObject.tag == "Player" && damageTimer <= 0)
         {
             PlayerHealthBar.instance.TakeDamage(damage);
-            damageTimer = 1.0f;
+            damageTimer = 1;
         }
     }
 }

@@ -121,6 +121,12 @@ MonoBehaviour:
   underWaterMusic: {fileID: 0}
   seaTopBoxCollider: {fileID: 0}
   playerCollider: {fileID: 127681522772710495}
+  soundeffects: {fileID: 0}
+  painsounds:
+  - {fileID: 8300000, guid: 64e148381b8744ea3af65a2185a6e820, type: 3}
+  - {fileID: 8300000, guid: 562193c2e8a864d158eed0b293759a22, type: 3}
+  - {fileID: 8300000, guid: 0e8f49f47a910460b8782cc77f14a694, type: 3}
+  - {fileID: 8300000, guid: d328a4fd31bcb436e902cc388dead6a9, type: 3}
 --- !u!50 &1296609502298723916
 Rigidbody2D:
   serializedVersion: 4
@@ -199,6 +205,15 @@ MonoBehaviour:
   MaxBananarangCount: 3
   BananarangCount: 0
   WeaponRebound: 1
+  soundeffects: {fileID: 0}
+  swoosheffects:
+  - {fileID: 8300000, guid: f52c257cccdde4c94944bdd18900bc67, type: 3}
+  - {fileID: 8300000, guid: e414fdc61a98642f39804de7b5e084de, type: 3}
+  - {fileID: 8300000, guid: 59aa9d1e0702640a98b7cffd35db8b6f, type: 3}
+  - {fileID: 8300000, guid: 3d4baa6eb4c9d4481b61267850d99872, type: 3}
+  - {fileID: 8300000, guid: 08ce55dd6ade2406f939a6a4829f4b25, type: 3}
+  - {fileID: 8300000, guid: 573544730eaab4718b3cf4f50ee9d100, type: 3}
+  - {fileID: 8300000, guid: 0b6b47b4330404d22a1afbb110d56bdb, type: 3}
 --- !u!70 &127681522772710495
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

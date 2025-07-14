@@ -1,9 +1,10 @@
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
 [CustomEditor(typeof(MeshRenderer))]
-
 public class MeshRendererSortingLayersEditor : Editor
 {
 	public override void OnInspectorGUI()
@@ -39,3 +40,5 @@ public class MeshRendererSortingLayersEditor : Editor
 		EditorGUILayout.EndHorizontal();
 	}
 }
+
+#endif
