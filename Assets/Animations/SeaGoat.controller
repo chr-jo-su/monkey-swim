@@ -529,7 +529,7 @@ MonoBehaviour:
   jumpWindUpAnimLength: 71
   rotation: 75
   nextAttackType: 0
-  dashCount: 1
+  dashCount: 3
 --- !u!1101 &6757743804357401795
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

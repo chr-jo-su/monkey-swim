@@ -99,7 +99,7 @@ public class HealthBar : MonoBehaviour
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
     protected IEnumerator LoadGameOverScreen()
     {
-        Debug.Log("Final score: " + PlayerScore.instance.GetScore());
+        //Debug.Log("Final score: " + PlayerScore.instance.GetScore());
         //Debug.Log("Raw score: ");
         //foreach (int score in PlayerScore.instance.GetRawScore())
         //{
@@ -115,7 +115,16 @@ public class HealthBar : MonoBehaviour
         while (!SceneManager.GetSceneByName(gameOverScene).isLoaded) yield return null;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameOverScene));
 
-        Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
+        // Set the scene that the game over scene will change to
+        if (oldSceneName == "KrakenBoss")
+        {
+            SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level1New";
+        } else
+        {
+            SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level2";
+        }
+
+            Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
         while (!asyncUnload.isDone) yield return null;
     }

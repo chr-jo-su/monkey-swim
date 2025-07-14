@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ArmourSlotHolder : SlotHolder
+public class WeaponSlotHolder : SlotHolder
 {
     /// <summary>
     /// This adds the object to the slot if it is empty and is Armour.
@@ -14,7 +14,7 @@ public class ArmourSlotHolder : SlotHolder
         if (transform.childCount == 0)
         {
             InventoryItem draggableItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            if (draggableItem.storedItem.type == ItemType.Armour)
+            if (draggableItem.storedItem.type == ItemType.Weapon)
             {
                 draggableItem.parentAfterDrag = transform;
 

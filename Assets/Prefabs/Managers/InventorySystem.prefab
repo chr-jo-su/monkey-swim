@@ -168,6 +168,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2479236152868172386}
     m_Modifications:
+    - target: {fileID: 283323114755138377, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_Name
+      value: WeaponSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 548448187337581990, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_text
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 556059745308661629, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -591,6 +599,10 @@ PrefabInstance:
     - target: {fileID: 8135491189919267319, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150513905427630458, guid: 8959568b29908464ba78b908099a8103, type: 3}
+      propertyPath: m_Name
+      value: WeaponText
       objectReference: {fileID: 0}
     - target: {fileID: 8222634218691192443, guid: 8959568b29908464ba78b908099a8103, type: 3}
       propertyPath: m_AnchorMax.y

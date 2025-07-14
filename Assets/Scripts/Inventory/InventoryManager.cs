@@ -267,10 +267,6 @@ public class InventoryManager : MonoBehaviour
         {
             // Spawn the weapon into the scene here
         }
-        else if (item.type == ItemType.Armour)
-        {
-            // Change the player sprite to the armoured version
-        }
 
         ApplyBoosts(item, true);
     }
@@ -288,10 +284,6 @@ public class InventoryManager : MonoBehaviour
         else if (item.type == ItemType.Weapon)
         {
             // Despawn the weapon from the scene here
-        }
-        else if (item.type == ItemType.Armour)
-        {
-            // Change the player sprite back to the original
         }
 
         ApplyBoosts(item, false);
