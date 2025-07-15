@@ -31046,7 +31046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: bossSceneName
-      value: SeaGoat
+      value: SeaGoatBoss
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: playerPosition.x

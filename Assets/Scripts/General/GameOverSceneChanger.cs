@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class GameOverSceneChanger : MonoBehaviour
 {
-    public void ChangeScene(string sceneName)
+    public string sceneName;
+    public void ChangeScene()
     {
         SceneManager.LoadScene(sceneName);
     }

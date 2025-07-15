@@ -875,7 +875,7 @@ GameObject:
   - component: {fileID: 6787145405151962348}
   - component: {fileID: 548448187337581990}
   m_Layer: 0
-  m_Name: ArmourText
+  m_Name: WeaponText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Armour
+  m_text: Weapon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: f629c6e43dba4bf38cb74d8860150664, type: 2}
@@ -1895,7 +1895,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2200521040140808825, guid: ad2c97d7897835648868287a36c9802e, type: 3}
       propertyPath: m_Name
-      value: ArmourSlot
+      value: WeaponSlot
       objectReference: {fileID: 0}
     - target: {fileID: 7996772354965732555, guid: ad2c97d7897835648868287a36c9802e, type: 3}
       propertyPath: m_Pivot.x

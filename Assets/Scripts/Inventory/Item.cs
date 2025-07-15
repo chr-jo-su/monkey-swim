@@ -84,8 +84,6 @@ public class Item : ScriptableObject
 public enum ItemType
 {
     Others,         // Others is the default item type. Most, if not all, items should not be this type.
-    Consumable,     // Consumables have a durabilityDecreasePerUse of 100 (they are gone after a single use).
     Weapon,         // Weapons have a durabilityDecreasePerUse of 1 or higher and are not stackable.
-    Armour,         // Armour have a durabilityDecreasePerUse of 1 or higher and are not stackable.
     Trinket         // Trinkets are not stackable.
 }
