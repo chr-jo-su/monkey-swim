@@ -1704,7 +1704,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924085606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff10d4828198d446e98cd7a5cf2b0264, type: 3}
   m_Name: 
@@ -2618,7 +2618,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1b1485bb6ca10134cb26f555177792fe, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.34814358, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3023,61 +3023,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1525004731
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1525004733}
-  - component: {fileID: 1525004734}
-  m_Layer: 0
-  m_Name: BeeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1525004733
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525004731}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 171.5, y: 3, z: 10.864948}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1525004734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525004731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a079f94d67c4bce8a089859b8717a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossObjects:
-  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
-  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
-  - {fileID: 5988594236247676143, guid: 7546aee72d4354be6a0fe96ab3eb3226, type: 3}
-  spawnPositionX: f4fffffff4ffffff0c000000
-  spawnPositionY: f9ffffff0600000005000000
-  spawnTimes:
-  - 20
-  - 20
-  - 20
-  boss: {fileID: 0}
 --- !u!1001 &1599670581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3294,7 +3239,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
       propertyPath: Loop
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
       propertyPath: m_Volume
@@ -3303,7 +3248,7 @@ PrefabInstance:
     - target: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: bcb0a3b829af14b2fb507f0d922a186c, type: 3}
+      objectReference: {fileID: 8300000, guid: 72a4e34383c454a11afafcc2ace48fb2, type: 3}
     - target: {fileID: 480564964071169579, guid: 5d0ce6f5e0a0c41fc8845aec8ffeda8a, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3759,5 +3704,4 @@ SceneRoots:
   - {fileID: 579399288}
   - {fileID: 440920008}
   - {fileID: 1181156921}
-  - {fileID: 1525004733}
   - {fileID: 741565738}
