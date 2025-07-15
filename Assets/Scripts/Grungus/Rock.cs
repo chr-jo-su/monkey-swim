@@ -23,7 +23,7 @@ public class Rock : MonoBehaviour
     private void Update()
     {
         Angle += 0.03f;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0, Angle * Mathf.Rad2Deg), Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, Angle * Mathf.Rad2Deg), Time.deltaTime);
         transform.position = new Vector3(transform.position.x, transform.position.y - 5 * Time.deltaTime, transform.position.z);
 
         if (transform.position.y <= deletePositionY)
@@ -47,6 +47,10 @@ public class Rock : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PlayerHealthBar.instance.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.name == "Bananarang(Clone)")
+        {
             Destroy(gameObject);
         }
     }
