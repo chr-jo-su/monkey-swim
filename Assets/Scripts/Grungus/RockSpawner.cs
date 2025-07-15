@@ -31,12 +31,12 @@ public class RockSpawner : MonoBehaviour
 
         float y = 15;
         if (leftAttack == true) {
-            for (int x = 4; x <= 14; x += 2) {
+            for (int x = 0; x <= 14; x += 2) {
                 Instantiate(rockPrefab, new Vector2(x, y), Quaternion.identity);
                 y -= 0.5f;
             }
         } else if (rightAttack == true) {
-            for (int x = -14; x <= -4; x += 2) {
+            for (int x = -14; x <= 0; x += 2) {
                 Instantiate(rockPrefab, new Vector2(x, y), Quaternion.identity);
                 y += 0.5f;
             }
