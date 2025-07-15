@@ -144,7 +144,7 @@ public class BossMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 EndPosition,
-                SlideSpeed * Time.unscaledDeltaTime
+                SlideSpeed * Time.deltaTime
             );
             Debug.Log("move");
             yield return null; // Wait for next frame
