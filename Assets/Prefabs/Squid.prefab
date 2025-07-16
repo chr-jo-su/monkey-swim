@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6803831593602463665}
   - component: {fileID: 3729389878325057389}
   m_Layer: 10
-  m_Name: quid
+  m_Name: Squid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

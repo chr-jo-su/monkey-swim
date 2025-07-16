@@ -5,58 +5,51 @@ using UnityEngine.SceneManagement;
 
 public class BossSlide : MonoBehaviour
 {
+    // Variables
     public static BossSlide instance;
 
-    public float health = 500.0f;
-    public BossHealthBar bossHealth;
+    [SerializeField] private BossHealthBar bossHealth;
 
-    private Rigidbody2D rb;
+    private float colorTimer = 0.0f;
 
-    private Vector3 StartPosition;
-    public float DistanceOut = 8;
-    private float SlideSpeed = 15;
-    public bool SlideIn = false;
-
-    public TentacleManager tent;
-    public QuidManager quid;
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+    [SerializeField] private float distanceOut = 13;
+    private float slideSpeed = 15;
+    [HideInInspector] public bool slideIn = false;
 
     private bool gameOver = false;
 
-    public AudioSource soundeffects;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip[] painSFX;
+    [SerializeField] private AudioClip slideInSFX;
 
-    public AudioClip[] painsounds;
-
-    public AudioClip slideInSound;
-    // public AudioClip slideOutSound;
-
-    // private bool playsound = true;
-    private Camera mainCam;
-
-    private Vector3 EndPosition;
-
+    private Camera mainCamera;
     private Vector3 camOriginalPos;
-    private float colorTimer = 0.0f;
 
-
-    // Start is called before the first frame update
-    void Start()
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
         instance = this;
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        StartPosition = gameObject.transform.position;
-        tent.enabled = true;
-        quid.enabled = false;
-        SlideIn = true;
-        soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
-        soundeffects.PlayOneShot(slideInSound);
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        mainCam.orthographicSize = 8.0f;
-        camOriginalPos = mainCam.transform.position;
-        EndPosition = new Vector3(DistanceOut + StartPosition.x, StartPosition.y, StartPosition.z);
+    }
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        startPosition = gameObject.transform.position;
+        TentacleManager.instance.enabled = true;
+        SquidManager.instance.enabled = false;
+        slideIn = true;
+        sfxSource = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+        sfxSource.PlayOneShot(slideInSFX);
+        mainCamera = Camera.main;
+        mainCamera.orthographicSize = 8.0f;
+        camOriginalPos = mainCamera.transform.position;
+        endPosition = new Vector3(distanceOut + startPosition.x, startPosition.y, startPosition.z);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         BossSlideOut();
         BossSlideIn();
@@ -64,25 +57,25 @@ public class BossSlide : MonoBehaviour
         if (bossHealth.GetHealth() <= 0 && !gameOver)
         {
             TentacleManager.instance.TurnOff();
-            QuidManager.instance.TurnOff();
+            SquidManager.instance.TurnOff();
 
             StartCoroutine(LoadNextLevel());
             gameOver = true;
         }
 
-        if (Mathf.Abs(gameObject.transform.position.x - StartPosition.x) > 0.01f && Mathf.Abs(gameObject.transform.position.x - EndPosition.x) > 0.01f)
+        if (Mathf.Abs(gameObject.transform.position.x - startPosition.x) > 0.01f && Mathf.Abs(gameObject.transform.position.x - endPosition.x) > 0.01f)
         {
-            if (!mainCam)
+            if (!mainCamera)
             {
-                mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-                camOriginalPos = mainCam.transform.position;
+                mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                camOriginalPos = mainCamera.transform.position;
             }
 
-            mainCam.transform.localPosition = new Vector3(0, 0, -10) + (Vector3)UnityEngine.Random.insideUnitCircle * 0.2f;
+            mainCamera.transform.localPosition = new Vector3(0, 0, -10) + (Vector3)Random.insideUnitCircle * 0.2f;
         }
         else
         {
-            mainCam.transform.position = camOriginalPos;
+            mainCamera.transform.position = camOriginalPos;
         }
 
         if (colorTimer <= 0)
@@ -95,54 +88,53 @@ public class BossSlide : MonoBehaviour
         }
     }
 
-    public void BossSlideIn()
+    /// <summary>
+    /// Moves the boss into the screen.
+    /// </summary>
+    private void BossSlideIn()
     {
-        if (SlideIn == false)
+        if (slideIn == false)
         {
             gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
-                StartPosition,
-                SlideSpeed * Time.unscaledDeltaTime
+                startPosition,
+                slideSpeed * Time.unscaledDeltaTime
             );
-
-            // if (playsound) {
-            //     soundeffects.PlayOneShot(slideInSound);
-            //     playsound = false;
-            // }
         }
 
     }
 
-    public void BossSlideOut()
+    /// <summary>
+    /// Moves the boss out of the screen.
+    /// </summary>
+    private void BossSlideOut()
     {
-        if (SlideIn == true)
+        if (slideIn == true)
         {
             gameObject.transform.position = Vector3.MoveTowards(
                 gameObject.transform.position,
-                EndPosition,
-                SlideSpeed * Time.unscaledDeltaTime
+                endPosition,
+                slideSpeed * Time.unscaledDeltaTime
             );
-
-            // if (playsound) {
-            //     soundeffects.PlayOneShot(slideOutSound);
-            //     playsound = false;
-            // }
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Checks whether the Bananarang hits the boss and reduces its health and plays a sound effect.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Bananarang(Clone)")
         {
-            health -= 25;
             bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
-            if (!soundeffects)
+            if (!sfxSource)
             {
-                soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
+                sfxSource = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
             }
 
-            int idx = UnityEngine.Random.Range(0, painsounds.Length);
-            soundeffects.PlayOneShot(painsounds[idx]);
+            int idx = Random.Range(0, painSFX.Length);
+            sfxSource.PlayOneShot(painSFX[idx]);
 
             GetComponent<SpriteRenderer>().color = Color.red;
             colorTimer = 0.1f;

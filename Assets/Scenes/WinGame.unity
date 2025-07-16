@@ -280,8 +280,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 471398683}
-        m_TargetAssemblyTypeName: lvl1Win, Assembly-CSharp
-        m_MethodName: SecretServiceAnnouncementToParliment
+        m_TargetAssemblyTypeName: WinGame, Assembly-CSharp
+        m_MethodName: AdvanceWinText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -560,7 +560,6 @@ GameObject:
   - component: {fileID: 471398682}
   - component: {fileID: 471398681}
   - component: {fileID: 471398683}
-  - component: {fileID: 471398684}
   m_Layer: 0
   m_Name: gorilla_the_grilla
   m_TagString: Untagged
@@ -648,18 +647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 200837663}
---- !u!114 &471398684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471398680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7356f81b295b7460f900a863d6b2211d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &604416865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,12 +1325,12 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1528727203}
+  - {fileID: 604416867}
   - {fileID: 1407479613}
   - {fileID: 612116038}
   - {fileID: 1560040916}
-  - {fileID: 1528727203}
   - {fileID: 471398682}
   - {fileID: 1703693616}
   - {fileID: 367791314}
   - {fileID: 894514889}
-  - {fileID: 604416867}

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class TentacleScroll : MonoBehaviour
 {
-   //Variables
+    // Variables
     public const float moveSpeed = 2.5f;
     public Rigidbody2D rb;
-    private Transform player;
     Vector2 movement;
     public bool moving = true;
     public int direction = 1;
@@ -19,7 +18,6 @@ public class TentacleScroll : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -28,12 +26,13 @@ public class TentacleScroll : MonoBehaviour
         movement.y = 1;
     }
 
+    // Fixed Update is called at a set interval
     void FixedUpdate()
     {
-        //Movement
+        // Movement
         if (moving)
         {
-            rb.MovePosition(rb.position + direction*movement*moveSpeed*Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime * movement);
         }
 
         if (transform.position.y >= -2)
@@ -42,6 +41,7 @@ public class TentacleScroll : MonoBehaviour
             {
                 moving = false;
             }
+
             moving = true;
             direction = -1;
         }
@@ -49,22 +49,25 @@ public class TentacleScroll : MonoBehaviour
         if (transform.position.y <= -16)
         {
             TentacleManager.instance.enabled = false;
-            QuidManager.instance.enabled = true;
-            BossSlide.instance.SlideIn = false;
+            SquidManager.instance.enabled = true;
+            BossSlide.instance.slideIn = false;
+
             Destroy(gameObject);
         }
 
         if (damageTimer > 0)
+        {
             damageTimer -= Time.deltaTime;
+        }
     }
 
     /// <summary>
-    /// If the player collides with the enemy, it gets the instane of the health
-    /// and deals damage
+    /// If the player collides with the enemy, it gets the instance of the health and deals damage.
     /// </summary>
+    /// <param name="collision"></param>
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && damageTimer <= 0)
+        if (collision.gameObject.CompareTag("Player") && damageTimer <= 0)
         {
             PlayerHealthBar.instance.TakeDamage(damage);
             damageTimer = 1;

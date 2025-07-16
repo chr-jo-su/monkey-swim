@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BossFightManager : MonoBehaviour
 {
-    public GameObject[] bossObjects;
-    //public int[][] spawnPosition;
-    public int[] spawnPositionX;
-    public int[] spawnPositionY;
-    public float[] spawnTimes;
+    // Variables
+    [SerializeField] protected GameObject[] bossObjects;
+    [SerializeField] private int[] spawnPositionX;
+    [SerializeField] private int[] spawnPositionY;
+    [SerializeField] private float[] spawnTimes;
 
     private float time = 0;
     private int counter = 0;
@@ -16,9 +16,9 @@ public class BossFightManager : MonoBehaviour
     private bool[] alreadySpawned;
     protected bool running = true;
 
+    // Start is called before the first frame update
     private void Start()
     {
-        // running = true;
         foreach (float s in spawnTimes)
         {
             if (s > timerMax)
@@ -30,6 +30,7 @@ public class BossFightManager : MonoBehaviour
         alreadySpawned = new bool[bossObjects.Length];
     }
 
+    // Update is called once per frame
     protected void Update()
     {
         if (running)
@@ -42,8 +43,10 @@ public class BossFightManager : MonoBehaviour
                     Instantiate(bossObjects[counter], spawnPos, Quaternion.identity);
                     alreadySpawned[counter] = true;
                 }
+
                 counter++;
             }
+
             counter = 0;
 
             if (time >= timerMax)
@@ -58,6 +61,9 @@ public class BossFightManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Turns off the current boss.
+    /// </summary>
     public void TurnOff()
     {
         running = false;
