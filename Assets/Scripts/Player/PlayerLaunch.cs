@@ -43,9 +43,6 @@ public class PlayerLaunch : MonoBehaviour
             
             rigidBody.AddForce(forceDirection);
 
-            //Debug.Log("Released with mouth position: " + -(mousePosition.x - rigidBody.position.x) * forceMultiplier + ", " + -(mousePosition.y - rigidBody.position.y) * forceMultiplier);
-            // Debug.Log("Released with a force of " + forceDirection.x + ", " + forceDirection.y);
-            
             mainCamera.GetComponent<SmoothFollowCamera>().enabled = true; 
             mainCamera.GetComponent<SmoothFollowCamera>().playerObject = gameObject;
 

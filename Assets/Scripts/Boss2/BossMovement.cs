@@ -41,7 +41,6 @@ public class BossMovement : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("start fnct");
         DeactivateAllLogs();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         StartPosition = gameObject.transform.position;
@@ -63,7 +62,6 @@ public class BossMovement : MonoBehaviour
             }
             else if (transform.position.x <= -11)
             {
-                Debug.Log("switch");
                 moving = true;
                 directionX = 1;
                 jumpCount++;
@@ -97,7 +95,6 @@ public class BossMovement : MonoBehaviour
                         Vector2 spawnPos = new Vector2(spawnPositionX[counter], spawnPositionY[counter]);
                         Instantiate(bossObjects[counter], spawnPos, Quaternion.identity);
                     }
-                    // Debug.Log(counter);
                     counter++;
                 }
                 counter = 0;
@@ -105,18 +102,14 @@ public class BossMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log(jumpCount);
             StartSlideOut();
             transform.position = EndPosition;
             ActivateAllLogs();
             if (GameObject.Find("bee(Clone)") == null)
             {
-                Debug.Log("its time to jump");
                 DeactivateAllLogs();
                 jumpCount = 0;
                 isJumping = true;
-                Debug.Log(jumpCount);
-                Debug.Log(isJumping);
             }
         }
     }
@@ -160,7 +153,6 @@ public class BossMovement : MonoBehaviour
                 EndPosition,
                 SlideSpeed * Time.deltaTime
             );
-            Debug.Log("move");
             yield return null; // Wait for next frame
         }
 
@@ -171,7 +163,6 @@ public class BossMovement : MonoBehaviour
 
     private void DeactivateAllLogs()
     {
-        Debug.Log("deactivating logs");
         foreach (GameObject log in logs)
         {
             if (log != null)

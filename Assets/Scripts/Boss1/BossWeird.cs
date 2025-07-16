@@ -32,7 +32,6 @@ public class BossWeird : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            Debug.Log("aOOga");
             OxygenBar.instance.ChangeOxygen(oxygenGain);
             PlayerMovement.instance.stopMovement();
             yield return new WaitForSeconds(3);
