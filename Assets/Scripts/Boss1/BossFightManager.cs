@@ -42,7 +42,6 @@ public class BossFightManager : MonoBehaviour
                     Instantiate(bossObjects[counter], spawnPos, Quaternion.identity);
                     alreadySpawned[counter] = true;
                 }
-                // Debug.Log(counter);
                 counter++;
             }
             counter = 0;
