@@ -1994,8 +1994,9 @@ MonoBehaviour:
   titleBackground: {fileID: 1014443297}
   credits: {fileID: 1219055207}
   fadeInTime: 120
-  endPosition: {x: 0, y: 6215, z: 0}
-  scrollSpeed: 1
+  endPosition: {x: 0, y: 5125, z: 0}
+  scrollSpeed: 125
+  acceleration: 25
   transitionHoldTime: 1.5
   titleHoldTime: 1.5
   endHoldTime: 2
