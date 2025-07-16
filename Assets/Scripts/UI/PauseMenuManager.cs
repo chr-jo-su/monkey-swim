@@ -100,7 +100,7 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the level asynchronously.
+    /// Loads the title screen asynchronously.
     /// </summary>
     /// <returns></returns>
     IEnumerator LoadLevel()

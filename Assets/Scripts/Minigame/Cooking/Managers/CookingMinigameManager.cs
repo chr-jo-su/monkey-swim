@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CookingMinigameManager : MonoBehaviour
 {
@@ -165,7 +166,7 @@ public class CookingMinigameManager : MonoBehaviour
 
     public void ExitMinigame()
     {
-        Destroy(this.gameObject);
+        StartCoroutine(LoadMainMenu());
     }
 
     public void StartGame()
@@ -174,5 +175,17 @@ public class CookingMinigameManager : MonoBehaviour
 
         startScreen.SetActive(false);
         hasGameStarted = true;
+    }
+
+    /// <summary>
+    /// Loads the main menu scene and unloads the current scene.
+    /// </summary>
+    /// <returns>An enumerator that's used when running as a coroutine.</returns>
+    private IEnumerator LoadMainMenu()
+    {
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
+
+        TransitionManager.instance.LoadTransition("TitleScreen");
     }
 }

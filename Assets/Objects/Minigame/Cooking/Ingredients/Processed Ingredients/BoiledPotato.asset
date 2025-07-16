@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientID: 0
   ingredientName: Boiled Potato
-  itemSprite: {fileID: 21300000, guid: f52438020319c054fba659ed8aed6494, type: 3}
+  itemSprite: {fileID: 21300000, guid: 41cd2a2331fb18c4f90104085e95e014, type: 3}
   ingredientType: 0
   timeToConvert: 0
   clicksToConvert: 0

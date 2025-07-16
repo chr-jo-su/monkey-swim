@@ -4,11 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class lvl1Win : MonoBehaviour
+public class WinGame : MonoBehaviour
 {
+    // Variables
     public TextMeshProUGUI txt;
     private string[] wrds = new string[11];
     private int pos = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +28,10 @@ public class lvl1Win : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    public void SecretServiceAnnouncementToParliment()
+    /// <summary>
+    /// Advance the win text when the player clicks.
+    /// </summary>
+    public void AdvanceWinText()
     {
         if (pos < 11)
         {
@@ -36,7 +40,7 @@ public class lvl1Win : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("TitleScreen");
+            SceneManager.LoadScene("Credits");
         }
     }
 }

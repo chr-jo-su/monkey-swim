@@ -118,7 +118,7 @@ public class HealthBar : MonoBehaviour
         // Set the scene that the game over scene will change to
         if (oldSceneName == "KrakenBoss")
         {
-            SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level1New";
+            SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level1";
         } else
         {
             SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level2";
