@@ -1,12 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using Vector3 = UnityEngine.Vector3;
 
 public class BossSlide : MonoBehaviour
 {
@@ -49,7 +44,6 @@ public class BossSlide : MonoBehaviour
         instance = this;
         rb = gameObject.GetComponent<Rigidbody2D>();
         StartPosition = gameObject.transform.position;
-        Debug.Log(StartPosition);
         tent.enabled = true;
         quid.enabled = false;
         SlideIn = true;
@@ -59,7 +53,6 @@ public class BossSlide : MonoBehaviour
         mainCam.orthographicSize = 8.0f;
         camOriginalPos = mainCam.transform.position;
         EndPosition = new Vector3(DistanceOut + StartPosition.x, StartPosition.y, StartPosition.z);
-        Debug.Log(EndPosition);
     }
 
     // Update is called once per frame
@@ -67,38 +60,39 @@ public class BossSlide : MonoBehaviour
     {
         BossSlideOut();
         BossSlideIn();
-        // if (bossHealth.GetHealth() < bossHealth.GetMaxHealth()/2)
-        // {
-        //     tent.enabled = false;
-        //     quid.enabled = true;
-        // }
 
         if (bossHealth.GetHealth() <= 0 && !gameOver)
         {
             TentacleManager.instance.TurnOff();
             QuidManager.instance.TurnOff();
 
-            StartCoroutine(LoadWinScreen());
+            StartCoroutine(LoadNextLevel());
             gameOver = true;
         }
-        
+
         if (Mathf.Abs(gameObject.transform.position.x - StartPosition.x) > 0.01f && Mathf.Abs(gameObject.transform.position.x - EndPosition.x) > 0.01f)
         {
-            if (!mainCam) {
+            if (!mainCam)
+            {
                 mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
                 camOriginalPos = mainCam.transform.position;
             }
+
             mainCam.transform.localPosition = new Vector3(0, 0, -10) + (Vector3)UnityEngine.Random.insideUnitCircle * 0.2f;
-        } 
+        }
         else
         {
             mainCam.transform.position = camOriginalPos;
         }
-        
+
         if (colorTimer <= 0)
+        {
             GetComponent<SpriteRenderer>().color = Color.white;
+        }
         else
+        {
             colorTimer -= Time.deltaTime;
+        }
     }
 
     public void BossSlideIn()
@@ -143,8 +137,10 @@ public class BossSlide : MonoBehaviour
             health -= 25;
             bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
             if (!soundeffects)
+            {
                 soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
-                    
+            }
+
             int idx = UnityEngine.Random.Range(0, painsounds.Length);
             soundeffects.PlayOneShot(painsounds[idx]);
 
@@ -154,14 +150,14 @@ public class BossSlide : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the win scene and unloads the current scene.
+    /// Loads the next level and unloads the Kraken boss level.
     /// </summary>
     /// <returns>An enumerator that's used when running as a coroutine.</returns>
-    private IEnumerator LoadWinScreen()
+    private IEnumerator LoadNextLevel()
     {
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        TransitionManager.instance.LoadTransition("WinLvl1");
+        TransitionManager.instance.LoadTransition("Level2");
     }
 }

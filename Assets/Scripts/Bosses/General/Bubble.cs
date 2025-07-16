@@ -15,7 +15,7 @@ public class Bubble : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        soundeffects = GameObject.FindGameObjectWithTag("Sounds").GetComponent<AudioSource>();
+        soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
         if (soundeffects == null)
         {
             soundeffects = GameObject.Find("effectsSource").GetComponent<AudioSource>();

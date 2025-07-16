@@ -10,7 +10,6 @@ public class BossMovement : MonoBehaviour
 {
     // public static BossMovement instance;
 
-    public float health = 500.0f;
     public BossHealthBar bossHealth;
 
     // Start is called before the first frame update
@@ -106,13 +105,18 @@ public class BossMovement : MonoBehaviour
         }
         else
         {
+            Debug.Log(jumpCount);
             StartSlideOut();
+            transform.position = EndPosition;
+            ActivateAllLogs();
             if (GameObject.Find("bee(Clone)") == null)
             {
                 Debug.Log("its time to jump");
                 DeactivateAllLogs();
                 jumpCount = 0;
                 isJumping = true;
+                Debug.Log(jumpCount);
+                Debug.Log(isJumping);
             }
         }
     }
@@ -127,8 +131,18 @@ public class BossMovement : MonoBehaviour
             yield return new WaitForSeconds(3);
             PlayerMovement.instance.startMovement();
             PlayerMovement.instance.changeDrowning();
-            // Destroy(gameObject);
+        }
+        else if (collision.gameObject.name == "Bananarang(Clone)")
+        {
+            bossHealth.TakeDamage(BananarangDamage.instance.GetDamage());
+            //if (!soundeffects)
+            //    soundeffects = GameObject.FindGameObjectWithTag("Sound").GetComponent<AudioSource>();
 
+            //int idx = UnityEngine.Random.Range(0, painsounds.Length);
+            //soundeffects.PlayOneShot(painsounds[idx]);
+
+            //GetComponent<SpriteRenderer>().color = Color.red;
+            //colorTimer = 0.1f;
         }
     }
 
@@ -153,8 +167,6 @@ public class BossMovement : MonoBehaviour
         // Snap exactly to target to avoid float error
         transform.position = EndPosition;
 
-        // Now activate logs
-        ActivateAllLogs();
     }
 
     private void DeactivateAllLogs()

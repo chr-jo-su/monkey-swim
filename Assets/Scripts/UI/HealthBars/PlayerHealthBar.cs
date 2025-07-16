@@ -142,7 +142,7 @@ public class PlayerHealthBar : HealthBar
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject grabber = GameObject.FindGameObjectWithTag("Grabber");
-        string sceneName = "Level1New";
+        string sceneName = SceneManager.GetActiveScene().name;
 
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
@@ -182,7 +182,7 @@ public class PlayerHealthBar : HealthBar
 
     private void SceneTransitionManager()
     {
-        if (SceneManager.GetActiveScene().name == "BossLevel" || SceneManager.GetActiveScene().name == "SeaGoatBoss")
+        if (SceneManager.GetActiveScene().name.Contains("Boss"))
         {
             StartCoroutine(LoadGameOverScreen());
         }

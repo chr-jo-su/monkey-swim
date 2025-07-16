@@ -18,7 +18,7 @@ MonoBehaviour:
   durability: 100
   durabilityDecreasePerUse: 10
   damagePerAttack: 20
-  type: 2
+  type: 1
   itemID: 79042927
   isStackable: 0
   maxStackSize: 1

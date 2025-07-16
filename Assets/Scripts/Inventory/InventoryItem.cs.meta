@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 41e46be989a152c45b04b546e8d4d7db
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - image: {instanceID: 0}
+  - textObject: {instanceID: 0}
+  - storedItem: {instanceID: 0}
+  - tooltipPrefab: {fileID: 9183276346393224946, guid: 9963eb7d5ea6c0949845f30798d5af1a, type: 3}
+  - parentAfterDrag: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
