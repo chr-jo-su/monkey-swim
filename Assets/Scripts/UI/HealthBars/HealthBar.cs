@@ -116,13 +116,13 @@ public class HealthBar : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameOverScene));
 
         // Set the scene that the game over scene will change to
-        if (oldSceneName == "KrakenBoss")
-        {
-            SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level1";
-        } else
-        {
-            SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level2";
-        }
+        // if (oldSceneName == "KrakenBoss")
+        // {
+        //     SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level1";
+        // } else
+        // {
+        //     SceneManager.GetActiveScene().GetRootGameObjects()[1].GetComponentInChildren<GameOverSceneChanger>().sceneName = "Level2";
+        // }
 
             Scene oldScene = SceneManager.GetSceneByName(oldSceneName);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(oldScene);
