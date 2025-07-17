@@ -42,8 +42,8 @@ public class BossHealthBar : HealthBar
         {
             if (shake)
             {
-                healthSlider.transform.localPosition = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0);
-                damageSlider.transform.localPosition = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0);
+                healthSlider.transform.localPosition = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
+                damageSlider.transform.localPosition = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0);
             }
             else
             {

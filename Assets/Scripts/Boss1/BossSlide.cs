@@ -157,6 +157,31 @@ public class BossSlide : MonoBehaviour
         {
             TransitionManager.instance.LoadTransition("WinGame");
         }
-        TransitionManager.instance.LoadTransition("Level2");
+        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+    }
+
+    /// <summary>
+    /// Remove the inventory system from the new scene after the player dies and copies over the old inventory.
+    /// </summary>
+    /// <returns>True when the code has finished running.</returns>
+    private bool CopyItemsAndRemoveInventory(string sceneName)
+    {
+        // Find the inventory system and remove it from the scene
+        GameObject inventory = GameObject.Find("InventorySystem");
+        // Rename it so it doesn't get found again
+        inventory.name = "InventorySystemOld";
+
+        inventory = GameObject.Find("InventorySystem");
+        Destroy(inventory);
+
+        inventory = GameObject.Find("InventorySystemOld");
+        inventory.name = "InventorySystem";
+
+        // Move the inventory system to the new scene
+        SceneManager.MoveGameObjectToScene(inventory, SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
+
+        inventory.GetComponent<InventoryManager>().MoveToNewScene();
+
+        return true;
     }
 }
