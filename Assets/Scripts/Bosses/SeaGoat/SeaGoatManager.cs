@@ -106,10 +106,13 @@ public class SeaGoatManager : MonoBehaviour
         InventoryManager.instance.beatBosses[2] = true;
         if (InventoryManager.instance.toWin())
         {
+            Debug.Log("WinGame");
             TransitionManager.instance.LoadTransition("WinGame");
         }
-        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
-        // return null;
+        else
+        {
+            TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        }
     }
 
     /// <summary>

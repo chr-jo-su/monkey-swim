@@ -97,10 +97,13 @@ public class Grungus : MonoBehaviour
         InventoryManager.instance.beatBosses[1] = true;
         if (InventoryManager.instance.toWin())
         {
+            Debug.Log("WinGame");
             TransitionManager.instance.LoadTransition("WinGame");
         }
-        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
-        // return null;
+        else
+        {
+            TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        }
     }
 
     /// <summary>

@@ -194,9 +194,13 @@ public class BossMovement : MonoBehaviour
         InventoryManager.instance.beatBosses[0] = true;
         if (InventoryManager.instance.toWin())
         {
+            Debug.Log("WinGame");
             TransitionManager.instance.LoadTransition("WinGame");
         }
-        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        else
+        {
+            TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        }
     }
 
     /// <summary>
