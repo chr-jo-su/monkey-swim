@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Grungus : MonoBehaviour
 {
@@ -90,15 +91,15 @@ public class Grungus : MonoBehaviour
 
     private IEnumerator LoadNextLevel()
     {
-        // AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
-        // while (!asyncLoadLevel.isDone) yield return null;
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
 
-        // PlayerScore.instance.beatBosses[1] = true;
-        // if (PlayerScore.instance.toWin())
-        // {
-        //     TransitionManager.instance.LoadTransition("WinGame");
-        // }
-        // TransitionManager.instance.LoadTransition("Level2");
-        return null;
+        PlayerScore.instance.beatBosses[1] = true;
+        if (PlayerScore.instance.toWin())
+        {
+            TransitionManager.instance.LoadTransition("WinGame");
+        }
+        TransitionManager.instance.LoadTransition("Level2");
+        // return null;
     }
 }

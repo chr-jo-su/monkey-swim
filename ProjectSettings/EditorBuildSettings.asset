@@ -30,10 +30,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2.unity
     guid: 1b52b472644e54685b904a5fc652b8f4
   - enabled: 1
-    path: Assets/Scenes/Grungus.unity
+    path: Assets/Scenes/Bosses/GrungusBoss.unity
     guid: 28db1eaa8170fa34bb7d4e0641897652
   - enabled: 1
-    path: Assets/Scenes/BossLevelVodyanoy.unity
+    path: Assets/Scenes/Bosses/VodyanoyBoss.unity
     guid: 4d10b2c37c20f480386ee20423cc1959
   - enabled: 1
     path: Assets/Scenes/Bosses/SeaGoatBoss.unity
