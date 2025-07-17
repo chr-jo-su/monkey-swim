@@ -103,8 +103,8 @@ public class SeaGoatManager : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        PlayerScore.instance.beatBosses[2] = true;
-        if (PlayerScore.instance.toWin())
+        InventoryManager.instance.beatBosses[2] = true;
+        if (InventoryManager.instance.toWin())
         {
             TransitionManager.instance.LoadTransition("WinGame");
         }

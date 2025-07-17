@@ -191,8 +191,8 @@ public class BossMovement : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        PlayerScore.instance.beatBosses[0] = true;
-        if (PlayerScore.instance.toWin())
+        InventoryManager.instance.beatBosses[0] = true;
+        if (InventoryManager.instance.toWin())
         {
             TransitionManager.instance.LoadTransition("WinGame");
         }

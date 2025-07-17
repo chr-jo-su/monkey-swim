@@ -152,8 +152,8 @@ public class BossSlide : MonoBehaviour
         while (!asyncLoadLevel.isDone) yield return null;
 
         if (isLvl2)
-            PlayerScore.instance.beatBosses[3] = true;
-        if (PlayerScore.instance.toWin())
+            InventoryManager.instance.beatBosses[3] = true;
+        if (InventoryManager.instance.toWin())
         {
             TransitionManager.instance.LoadTransition("WinGame");
         }
