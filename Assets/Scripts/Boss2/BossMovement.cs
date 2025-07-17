@@ -36,6 +36,7 @@ public class BossMovement : MonoBehaviour
     public int[] spawnPositionX;
     public int[] spawnPositionY;
     private int counter = 0;
+    private bool gameOver = false;
 
 
 
@@ -51,6 +52,12 @@ public class BossMovement : MonoBehaviour
 
     private void Update()
     {
+        if (bossHealth.GetHealth() <= 0 && !gameOver)
+        {
+            StartCoroutine(LoadNextLevel());
+            gameOver = true;
+        }
+
         if (isJumping)
         {
             if (transform.position.y >= 5.5f)
@@ -177,6 +184,19 @@ public class BossMovement : MonoBehaviour
                 if (log != null)
                     log.SetActive(true);
             }
+    }
+    
+    private IEnumerator LoadNextLevel()
+    {
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
+
+        PlayerScore.instance.beatBosses[0] = true;
+        if (PlayerScore.instance.toWin())
+        {
+            TransitionManager.instance.LoadTransition("WinGame");
+        }
+        TransitionManager.instance.LoadTransition("Level2");
     }
 
 }

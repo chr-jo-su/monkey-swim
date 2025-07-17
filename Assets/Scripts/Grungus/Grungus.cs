@@ -13,6 +13,7 @@ public class Grungus : MonoBehaviour
     private float timer = 0;
     private String direction = "left";
     public Animator animator;
+    private bool gameOver = false;
 
     [SerializeField] private BossHealthBar bossHealth;
 
@@ -23,6 +24,12 @@ public class Grungus : MonoBehaviour
 
     void Update()
     {
+        if (bossHealth.GetHealth() <= 0 && !gameOver)
+        {
+            StartCoroutine(LoadNextLevel());
+            gameOver = true;
+        }
+
         if (appear)
         {
             progress += Time.deltaTime;
@@ -79,5 +86,19 @@ public class Grungus : MonoBehaviour
         {
             PlayerHealthBar.instance.TakeDamage(25);
         }
+    }
+
+    private IEnumerator LoadNextLevel()
+    {
+        // AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        // while (!asyncLoadLevel.isDone) yield return null;
+
+        // PlayerScore.instance.beatBosses[1] = true;
+        // if (PlayerScore.instance.toWin())
+        // {
+        //     TransitionManager.instance.LoadTransition("WinGame");
+        // }
+        // TransitionManager.instance.LoadTransition("Level2");
+        return null;
     }
 }

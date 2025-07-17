@@ -26,6 +26,7 @@ public class SeaGoatManager : MonoBehaviour
 
     public GameObject leftHornMissilePrefab;
     public GameObject rightHornMissilePrefab;
+    private bool gameOver = false;
 
     public void Awake()
     {
@@ -39,6 +40,12 @@ public class SeaGoatManager : MonoBehaviour
 
     public void Update()
     {
+        if (bossHealth.GetHealth() <= 0 && !gameOver)
+        {
+            StartCoroutine(LoadNextLevel());
+            gameOver = true;
+        }
+
         if (bossHealth.GetHealth() <= stage2Health && !stage2Started)
         {
             //TODO: Instantiate the two separate bosses and destroy the current game object (and any horn missiles that are in the scene)
@@ -88,6 +95,20 @@ public class SeaGoatManager : MonoBehaviour
     public void SetCanDamage(bool canDamage)
     {
         this.canDamage = canDamage;
+    }
+
+    private IEnumerator LoadNextLevel()
+    {
+        // AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        // while (!asyncLoadLevel.isDone) yield return null;
+
+        // PlayerScore.instance.beatBosses[2] = true;
+        // if (PlayerScore.instance.toWin())
+        // {
+        //     TransitionManager.instance.LoadTransition("WinGame");
+        // }
+        // TransitionManager.instance.LoadTransition("Level2");
+        return null;
     }
 }
 

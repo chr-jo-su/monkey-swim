@@ -26,6 +26,7 @@ public class BossSlide : MonoBehaviour
 
     private Camera mainCamera;
     private Vector3 camOriginalPos;
+    public bool isLvl2;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -150,6 +151,12 @@ public class BossSlide : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
+        if (isLvl2)
+            PlayerScore.instance.beatBosses[3] = true;
+        if (PlayerScore.instance.toWin())
+        {
+            TransitionManager.instance.LoadTransition("WinGame");
+        }
         TransitionManager.instance.LoadTransition("Level2");
     }
 }

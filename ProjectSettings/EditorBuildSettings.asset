@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bosses/LolBoss.unity
     guid: 598fdbcc4961b4a6597ebf6bd31212f4
+  - enabled: 1
+    path: Assets/Scenes/WinGamePt2.unity
+    guid: 8c54ce1ef4e31465c957bd4dca6223dd
   m_configObjects: {}
