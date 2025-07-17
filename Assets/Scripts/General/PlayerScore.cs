@@ -12,7 +12,6 @@ public class PlayerScore : MonoBehaviour
     private int fishKilled;
     private bool atBossLevel = false;
     private float depth = 0;
-    public bool[] beatBosses = {false, false, false, false};
 
     /// <summary>
     /// Creates a singleton instance of the PlayerScore.
@@ -83,17 +82,5 @@ public class PlayerScore : MonoBehaviour
     public void SetAtBossLevel(bool value)
     {
         atBossLevel = value;
-    }
-
-    public bool toWin()
-    {
-        for (int i = 0; i < beatBosses.Length; i++) 
-        {
-            if (beatBosses[i] == false)
-            {
-                return false;
-            }
-        }
-        return true;
     }
 }

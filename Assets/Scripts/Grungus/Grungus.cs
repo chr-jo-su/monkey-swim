@@ -94,13 +94,16 @@ public class Grungus : MonoBehaviour
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
         while (!asyncLoadLevel.isDone) yield return null;
 
-        PlayerScore.instance.beatBosses[1] = true;
-        if (PlayerScore.instance.toWin())
+        InventoryManager.instance.beatBosses[1] = true;
+        if (InventoryManager.instance.toWin())
         {
+            Debug.Log("WinGame");
             TransitionManager.instance.LoadTransition("WinGame");
         }
-        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
-        // return null;
+        else
+        {
+            TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        }
     }
 
     /// <summary>

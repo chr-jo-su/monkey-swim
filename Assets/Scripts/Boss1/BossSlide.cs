@@ -152,12 +152,21 @@ public class BossSlide : MonoBehaviour
         while (!asyncLoadLevel.isDone) yield return null;
 
         if (isLvl2)
-            PlayerScore.instance.beatBosses[3] = true;
-        if (PlayerScore.instance.toWin())
         {
-            TransitionManager.instance.LoadTransition("WinGame");
+            InventoryManager.instance.beatBosses[3] = true;
+            if (InventoryManager.instance.toWin())
+            {
+                Debug.Log("WinGame");
+                TransitionManager.instance.LoadTransition("WinGame");
+            }
+            else{
+                TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+            }
         }
-        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        else
+        {
+            TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        }
     }
 
     /// <summary>

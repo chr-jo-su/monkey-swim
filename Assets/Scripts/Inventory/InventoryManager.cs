@@ -338,4 +338,19 @@ public class InventoryManager : MonoBehaviour
         // Remove the damage boost
         BananarangDamage.instance.ChangeDamage(add ? item.itemDamage : -item.itemDamage);
     }
+
+
+    public bool[] beatBosses = { false, false, false, false };
+
+    public bool toWin()
+    {
+        for (int i = 0; i < beatBosses.Length; i++)
+        {
+            if (beatBosses[i] == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
