@@ -8,6 +8,6 @@ public class GameOverSceneChanger : MonoBehaviour
     public string sceneName;
     public void ChangeScene()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Level1");
     }
 }

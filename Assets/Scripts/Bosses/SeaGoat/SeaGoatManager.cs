@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SeaGoatManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class SeaGoatManager : MonoBehaviour
 
     public GameObject leftHornMissilePrefab;
     public GameObject rightHornMissilePrefab;
+    private bool gameOver = false;
 
     public void Awake()
     {
@@ -39,6 +41,12 @@ public class SeaGoatManager : MonoBehaviour
 
     public void Update()
     {
+        if (bossHealth.GetHealth() <= 0 && !gameOver)
+        {
+            StartCoroutine(LoadNextLevel());
+            gameOver = true;
+        }
+
         if (bossHealth.GetHealth() <= stage2Health && !stage2Started)
         {
             //TODO: Instantiate the two separate bosses and destroy the current game object (and any horn missiles that are in the scene)
@@ -88,6 +96,45 @@ public class SeaGoatManager : MonoBehaviour
     public void SetCanDamage(bool canDamage)
     {
         this.canDamage = canDamage;
+    }
+
+    private IEnumerator LoadNextLevel()
+    {
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone) yield return null;
+
+        PlayerScore.instance.beatBosses[2] = true;
+        if (PlayerScore.instance.toWin())
+        {
+            TransitionManager.instance.LoadTransition("WinGame");
+        }
+        TransitionManager.instance.LoadTransition("Level2", CopyItemsAndRemoveInventory);
+        // return null;
+    }
+
+    /// <summary>
+    /// Remove the inventory system from the new scene after the player dies and copies over the old inventory.
+    /// </summary>
+    /// <returns>True when the code has finished running.</returns>
+    private bool CopyItemsAndRemoveInventory(string sceneName)
+    {
+        // Find the inventory system and remove it from the scene
+        GameObject inventory = GameObject.Find("InventorySystem");
+        // Rename it so it doesn't get found again
+        inventory.name = "InventorySystemOld";
+
+        inventory = GameObject.Find("InventorySystem");
+        Destroy(inventory);
+
+        inventory = GameObject.Find("InventorySystemOld");
+        inventory.name = "InventorySystem";
+
+        // Move the inventory system to the new scene
+        SceneManager.MoveGameObjectToScene(inventory, SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
+
+        inventory.GetComponent<InventoryManager>().MoveToNewScene();
+
+        return true;
     }
 }
 

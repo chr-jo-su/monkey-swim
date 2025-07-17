@@ -31136,7 +31136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: bossSceneName
-      value: Grungus
+      value: GrungusBoss
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: playerPosition.x
@@ -31927,7 +31927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: bossSceneName
-      value: BossLevelVodyanoy
+      value: VodyanoyBoss
       objectReference: {fileID: 0}
     - target: {fileID: 8693267722057507731, guid: 6ceffa4fe67e1904ba297adc85d9c523, type: 3}
       propertyPath: playerPosition.x
